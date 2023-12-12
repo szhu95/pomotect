@@ -34,3 +34,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+questionable endeavors
+
+postmodern tectonics
+
+## Page Layout
+
+Three pages: Objects, Articles, About
+
+Objects Page:
+
+Carousel - of objects, t-shirts, slipmats etc.
+
+Grid style 
+
+Articles Page:
+
+Blog Style - right justified, small text
+
+About Page:
+
+Block of text
