@@ -5,30 +5,43 @@ import { Header } from '@/components'
 const About = () => {
     return (
         <div>
-            <Header />
-            <p>At Postmodern Tectonics, we've crafted a digital haven where the worlds of design, architecture, clothing, and house music unite in a seamless blend of inspiration and innovation. Through captivating blog articles and carefully curated objects, we invite you to embark on a sensory journey that transcends the ordinary.
-            </p>
+            <div className="about">
+                <h3 className="about_main_header">The About Page</h3>
 
-            <p>Our Vision:
+                <h3 className="about_header">Postmodern Tectonics </h3>
 
-                Postmodern Tectonics was born from a vision to create a platform that celebrates the convergence of creativity across various realms. We believe that design is not just about aesthetics, architecture is more than structures, fashion extends beyond clothing, and house music is a cultural expression. Together, they form a rich tapestry that weaves stories and experiences.
-            </p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or, sometimes <b>POMO—TECT™</b> was born from a vision to create a platform that celebrates
+                    the convergence of creativity across all realms.</p>
+                <p>We research and design tools and symbols for people who like to make and/or do stuff:</p>
 
-            <p>Explore Through Blog Articles:
+                <ul className="padding-x">
+                    <li>Djs.</li>
+                    <li>Designers.</li>
+                    <li>Musicians.</li>
+                    <li>Architects.</li>
+                    <li>Engineers.</li>
+                    <li>Artists.</li>
+                </ul>
 
-                Dive into our insightful blog articles that explore the latest trends, unveil the narratives behind iconic designs, and delve into the cultural significance of house music. Our team of passionate writers, designers, and experts curate content that goes beyond the surface, offering a deep dive into the intricacies of each realm. From interviews with industry leaders to in-depth analyses, our blog is your gateway to a world of knowledge.
-            </p>
+                <p>We are eternally inspired by these people, so we outfit them for purpose with our products and celebrate them through our brand.</p>
 
-            <p>Objects That Tell Stories:
+                <h3 className="about_header">Objects</h3>
+                From unique decor pieces to fashion-forward accessories and audio gems, our collection is a testament to the marriage of form and function.
 
-                Discover a carefully curated collection of objects that embody the essence of design, architecture, fashion, and house music. Each object tells a story, a narrative that extends beyond its physical form. From unique decor pieces to fashion-forward accessories and audio gems, our collection is a testament to the marriage of form and function.
-            </p>
+                <h3 className="about_header">Articles</h3>
+                Dive into our insightful editorial, explore the latest trends, unveil the narratives behind iconic designs,
+                and delve into the cultural significance of house music. Our team curates content that goes beyond the surface,
+                offering a deep dive into the intricacies of each creative realm.
 
-            <p>
-                Aesthetic Harmony:
+                <h3 className="about_header">Events</h3>
+                From time-to-time, we bring people together on the dancefloor – where we can all listen more,
+                talk less and dance until dawn in a temporary autonomous zone.
+                <p>Find us somewhere in between New York & Los Angeles.</p>
 
-                Immerse yourself in the aesthetic harmony that defines Postmodern Tectonics. Our platform is designed to be a visual and auditory delight, offering you a seamless experience as you navigate through the realms of creativity. From striking visuals to curated mixes, every element is meticulously crafted to enhance your exploration.
-            </p>
+
+                <h3 className="about_header">About the About Page</h3>
+                Founded in 2024 by a couple o’ lads that went to school together.
+            </div>
         </div >
     )
 }

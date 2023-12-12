@@ -14,7 +14,7 @@ const Hero = () => {
                 </h1>
 
                 <p className="hero__subtitle">
-                    Architecture, Music, Fashion, and Design Converge in Inspired Objects and Thoughts
+                    A b2b of ideas
                 </p>
 
                 <CustomButton

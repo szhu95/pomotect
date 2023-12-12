@@ -39,7 +39,22 @@
 
 /* START: Header stylers */
 
+.about {
+  padding-left: 10px;
+}
 
+.about_main_header {
+  margin-bottom: 10px;
+  color: white;
+  background-color: blue;
+  display: table;
+}
+
+.about_header {
+  color: white;
+  background-color: black;
+  display: table;
+}
 /* END: Header stylers */
 
 /* START: Hero styles */
@@ -98,7 +113,7 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
