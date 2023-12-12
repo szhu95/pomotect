@@ -1,9 +1,11 @@
 
 import React from 'react'
+import { Header } from '@/components'
 
 const About = () => {
     return (
         <div>
+            <Header />
             <p>At Postmodern Tectonics, we've crafted a digital haven where the worlds of design, architecture, clothing, and house music unite in a seamless blend of inspiration and innovation. Through captivating blog articles and carefully curated objects, we invite you to embark on a sensory journey that transcends the ordinary.
             </p>
 

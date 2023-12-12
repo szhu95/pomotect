@@ -37,6 +37,12 @@
 }
 /* END: General styles */
 
+/* START: Header stylers */
+
+
+/* END: Header stylers */
+
+/* START: Hero styles */
 .hero {
   @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
 }

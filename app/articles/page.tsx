@@ -1,8 +1,12 @@
 import React from 'react'
+import { Header } from '@/components'
 
 const Articles = () => {
   return (
-    <div>articles</div>
+    <div>
+        <Header />
+        articles
+        </div>
   )
 }
 
