@@ -1,12 +1,14 @@
 import Image from 'next/image'
-import AboutPage from '../pages/about'
-import ArticlesPage from '../pages/articles'
-import ObjectsPage from '../pages/objects'
+import { Hero } from '@/components'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div><AboutPage/></div>
+    <main className="overflow-hidden">
+      <Link href="/objects" className="page-link">Objects</Link>
+      <Link href="/articles" className="page-link">Articles</Link>
+      <Link href="/about" className="page-link">About</Link>
+      <Hero />
     </main>
   )
 }
