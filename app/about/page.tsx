@@ -25,15 +25,15 @@ const About = () => {
 
                 <p>We are eternally inspired by these people, so we outfit them for purpose with our products and celebrate them through our brand.</p>
 
-                <h3 className="about_header">Objects</h3>
+                <h3><b>Objects</b></h3>
                 From unique decor pieces to fashion-forward accessories and audio gems, our collection is a testament to the marriage of form and function.
 
-                <h3 className="about_header">Articles</h3>
+                <h3><b>Articles</b></h3>
                 Dive into our insightful editorial, explore the latest trends, unveil the narratives behind iconic designs,
                 and delve into the cultural significance of house music. Our team curates content that goes beyond the surface,
                 offering a deep dive into the intricacies of each creative realm.
 
-                <h3 className="about_header">Events</h3>
+                <h3><b>Events</b></h3>
                 From time-to-time, we bring people together on the dancefloor – where we can all listen more,
                 talk less and dance until dawn in a temporary autonomous zone.
                 <p>Find us somewhere in between New York & Los Angeles.</p>
