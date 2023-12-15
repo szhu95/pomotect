@@ -35,6 +35,7 @@ const About = () => {
                         <li>Engineer Things.</li>
                     </ul>
                     <br />
+                    
                     <p>We are eternally inspired by these people, so we outfit them for purpose with our products and celebrate them through our brand.</p>
                 </div>
                 <div className="about-section">
