@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Header, Hero } from '@/components'
-import Link from 'next/link'
+import Head from 'next/head';
 
 export default function Home() {
   return (
