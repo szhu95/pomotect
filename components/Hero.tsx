@@ -2,25 +2,27 @@
 
 import Image from 'next/image';
 import CustomButton from './CustomButton';
+import landingPageBackground from '../assets/images/landing-page-bg.png'
+
+import { useRouter } from 'next/navigation'
 
 const Hero = () => {
-    const handleScroll = () => { };
+    const router = useRouter()
 
     return (
         <div className="hero">
-            <div className="flex-1 pt-36 padding-x">
-                <h1 className="hero__title">
-                    Postmodern Tectonics
-                </h1>
-
-                <p className="hero__subtitle">
-                    A b2b of ideas
-                </p>
-
+            <div className="flex-1 pt-20 padding-x landing_page">
                 <CustomButton
                     title="Explore Objects"
                     containerStyles="bg-primary-blue text-white mt-10"
-                    handleClick={handleScroll}
+                    handleClick={() => router.push('/objects')}
+                />
+
+                <Image
+                    src={landingPageBackground}
+                    width={700}
+                    height={300}
+                    alt="landing page background image"
                 />
             </div>
         </div>

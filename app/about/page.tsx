@@ -3,44 +3,65 @@ import React from 'react'
 import { Header } from '@/components'
 
 const About = () => {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    let lastUpdatedDate = mm + '/' + dd + '/' + yyyy;
+
     return (
         <div>
-            <div className="about">
-                <h3 className="about_main_header">The About Page</h3>
+            <div className="site-section">
+                <div className="about-section">
+                    <h3 className="main_header">About</h3>
+                    <p><i>Most recently updated on {lastUpdatedDate}</i></p>
+                </div>
+                <div className="about-section">
+                    <h3 className="about_header">Postmodern Tectonics </h3>
 
-                <h3 className="about_header">Postmodern Tectonics </h3>
+                    <p>Or, sometimes <b>POMO—TECT™</b> is a b2b (back-to-back) of ideas.</p>
 
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or, sometimes <b>POMO—TECT™</b> was born from a vision to create a platform that celebrates
-                    the convergence of creativity across all realms.</p>
-                <p>We research and design tools and symbols for people who like to make and/or do stuff:</p>
-
-                <ul className="padding-x">
-                    <li>Djs.</li>
-                    <li>Designers.</li>
-                    <li>Musicians.</li>
-                    <li>Architects.</li>
-                    <li>Engineers.</li>
-                    <li>Artists.</li>
-                </ul>
-
-                <p>We are eternally inspired by these people, so we outfit them for purpose with our products and celebrate them through our brand.</p>
-
-                <h3><b>Objects</b></h3>
-                From unique decor pieces to fashion-forward accessories and audio gems, our collection is a testament to the marriage of form and function.
-
-                <h3><b>Articles</b></h3>
-                Dive into our insightful editorial, explore the latest trends, unveil the narratives behind iconic designs,
-                and delve into the cultural significance of house music. Our team curates content that goes beyond the surface,
-                offering a deep dive into the intricacies of each creative realm.
-
-                <h3><b>Events</b></h3>
-                From time-to-time, we bring people together on the dancefloor – where we can all listen more,
-                talk less and dance until dawn in a temporary autonomous zone.
-                <p>Find us somewhere in between New York & Los Angeles.</p>
+                    <p>We talk about, research, and design tools and symbols for people who like to:</p>
 
 
-                <h3 className="about_header">About the About Page</h3>
-                Founded in 2024 by a couple o’ lads that went to school together.
+                    <ul className="padding-x">
+                        <li>DJ.</li>
+                        <li>Design.</li>
+                        <li>Dance.</li>
+                        <li>Make Music.</li>
+                        <li>and Art.</li>
+                        <li>Architect Stuff.</li>
+                        <li>Engineer Things.</li>
+                    </ul>
+                    <br />
+                    <p>We are eternally inspired by these people, so we outfit them for purpose with our products and celebrate them through our brand.</p>
+                </div>
+                <div className="about-section">
+                    <h3><b>Objects</b></h3>
+                    Form and function and all that. A collection of things and garments that we make and sometimes
+                    sell if we can figure out how to actually make them. Let us know if you want to help with that last part.
+                    It’s hard.
+                </div>
+
+                <div className="about-section">
+                    <h3><b>Words</b></h3>
+                    Here we explore general curiosities and questions. We quote. We clip things from the web.
+                    Disciplined observation of the world is the source of all creative inspiration so we try
+                    to keep an eye or ear out for goings-on worth capturing.
+                </div>
+
+                <div className="about-section">
+                    <h3><b>Events</b></h3>
+                    From time-to-time, we bring people together to dance, to listen more,
+                    and to talk less — a temporary autonomous zone.
+                </div>
+
+                <div className="about-section">
+                    <h3 className="about_header">About the About</h3>
+                    Founded in 2024© by a few longtime friends.
+                    <p>Find us somewhere in between New York & Los Angeles.</p>
+                </div>
             </div>
         </div >
     )

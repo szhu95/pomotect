@@ -17,7 +17,7 @@
 }
 
 .padding-x {
-  @apply sm:px-16 px-6;
+  padding-left: 15%;
 }
 
 .padding-y {
@@ -35,26 +35,51 @@
 .custom-btn {
   @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
 }
+
+.home-link {
+  display: inline-block;
+}
+
+.header-link {
+  padding-left: 10px;
+  font-style: italic;
+  padding-bottom: 10px;
+  border-bottom: solid;
+}
 /* END: General styles */
 
 /* START: Header stylers */
 
-.about {
+.site-section {
   padding-left: 10px;
 }
 
-.about_main_header {
-  margin-bottom: 10px;
+.about-section {
+  margin-bottom: 30px;
+  text-align:justify;
+}
+
+.main_header {
   color: white;
   background-color: blue;
   display: table;
   text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  padding-right: 7.5%;
 }
 
 .about_header {
   color: white;
   background-color: black;
   display: table;
+  font-weight: bold;
+  font-style: italic;
+  min-width: 15%;
+}
+
+landing_page {
+  justify-content: right;
 }
 /* END: Header stylers */
 
@@ -124,10 +149,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: white;
+  padding-left: 10%;
+  max-width: 70%;
 }

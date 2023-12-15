@@ -1,11 +1,10 @@
 import React from 'react'
-import { Header } from '@/components'
 
 const Articles = () => {
   return (
-    <div>
-        articles
-        </div>
+    <div className="site-section">
+      <div className="main_header">Words</div>
+    </div>
   )
 }
 
