@@ -52,6 +52,7 @@
 
 .site-section {
   padding-left: 10px;
+  margin-bottom: 30px;
 }
 
 .about-section {
@@ -129,6 +130,25 @@ landing_page {
 
 .home__error-container {
   @apply mt-16 flex justify-center items-center flex-col gap-2;
+}
+
+.objects_link {
+  font-style: italic;
+  padding-right: 30px;
+  margin-right: 40px;
+}
+
+.soundcloud_link {
+  margin-top: 30px;
+}
+
+.soundcloud_title {
+  font-style: italic;
+  margin-top: 5px;
+  background-color: black;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 /* END: Home styles */
 
