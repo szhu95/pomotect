@@ -35,8 +35,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-questionable endeavors
-
 postmodern tectonics
 
 ## Page Layout
@@ -45,14 +43,18 @@ Three pages: Objects, Articles, About
 
 Objects Page:
 
-Carousel - of objects, t-shirts, slipmats etc.
+Shop of objects, t-shirts, slipmats etc.
 
 Grid style 
 
-Articles Page:
+Words Page:
 
-Blog Style - right justified, small text
+Blog style - email format
 
 About Page:
 
 Block of text
+
+Sounds Page:
+
+Sets + Mixes
