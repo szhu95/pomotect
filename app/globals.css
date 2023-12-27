@@ -46,6 +46,10 @@
   padding-bottom: 10px;
   border-bottom: solid;
 }
+
+.product-details {
+  max-width: 35%;
+}
 /* END: General styles */
 
 /* START: Header stylers */
