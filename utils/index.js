@@ -14,3 +14,12 @@ export async function storefront(query, variables = {}) {
 export function formatPrice(number) {
     return Intl.NumberFormat("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 0}).format(number);
 }
+
+export function formatDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = today.toLocaleString('default', { month: 'long' });
+    var yyyy = today.getFullYear();
+    let lastUpdatedDate = mm + ' ' + dd + ', ' + yyyy;
+    return lastUpdatedDate
+}

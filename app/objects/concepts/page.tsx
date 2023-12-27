@@ -1,14 +1,11 @@
 import { CustomButton } from '@/components';
+import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 
 const Concepts = () => {
 
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-    let lastUpdatedDate = mm + '/' + dd + '/' + yyyy;
+    let lastUpdatedDate = formatDate();
     
     return (
         <div>
