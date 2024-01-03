@@ -1,10 +1,17 @@
-import { FocusEventHandler, MouseEventHandler } from "react";
+import { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react";
 
 export interface CustomButtonProps {
     title: string;
     containerStyles?: string;
     handleFocus?:
     FocusEventHandler<HTMLButtonElement>;
-    handleClick?:
-    MouseEventHandler<HTMLButtonElement>;
+    handleClick?: any;
+}
+
+export interface CustomDropdownProps {
+    selected: string;
+    title: string;
+    options: string[];
+    containerStyles?: string;
+    handleChange?: any;
 }

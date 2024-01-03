@@ -12,7 +12,7 @@ export async function storefront(query, variables = {}) {
 }
 
 export function formatPrice(number) {
-    return Intl.NumberFormat("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 0}).format(number);
+    return Intl.NumberFormat("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}).format(number);
 }
 
 export function formatDate() {

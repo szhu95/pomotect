@@ -33,7 +33,7 @@
 }
 
 .custom-btn {
-  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
+  @apply flex flex-row relative justify-center items-center py-1 px-6 outline-none;
 }
 
 .home-link {
@@ -44,7 +44,7 @@
   padding-left: 10px;
   font-style: italic;
   padding-bottom: 10px;
-  border-bottom: solid;
+  border-bottom: solid 1px black;
 }
 
 .product-details {
@@ -57,6 +57,7 @@
 .site-section {
   padding-left: 10px;
   margin-bottom: 30px;
+  @apply text-sm;
 }
 
 .about-section {
@@ -68,11 +69,29 @@
   color: white;
   background-color: blue;
   display: table;
-  text-align: center;
   font-weight: bold;
   font-style: italic;
   padding-right: 7.5%;
   padding-left: 1px;
+}
+
+.product-details-header {
+  color: white;
+  background-color: black;
+  display: inline-block;
+  font-weight: bold;
+  font-style: italic;
+  padding-right: 7.5%;
+  padding-left: 1px;
+}
+
+.product-image {
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+.product-info {
+  border-bottom: 1px solid gray;
 }
 
 .about_header {
@@ -84,7 +103,12 @@
   min-width: 15%;
 }
 
-landing_page {
+.back-button {
+  float: right;
+  font-style: italic;
+}
+
+.landing_page {
   justify-content: right;
 }
 /* END: Header stylers */
