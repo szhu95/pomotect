@@ -5,7 +5,8 @@ export interface CustomButtonProps {
     containerStyles?: string;
     handleFocus?:
     FocusEventHandler<HTMLButtonElement>;
-    handleClick?: any;
+    handleClick: 
+    MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface CustomDropdownProps {

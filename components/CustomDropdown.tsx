@@ -41,7 +41,7 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                                                     'relative cursor-default select-none py-2 pl-3 pr-9'
                                                 )
                                             }
-                                            value={size.toUpperCase()}
+                                            value={size}
                                             key={size}
                                         >
                                             {({ selected, active }) => (

@@ -1,60 +1,145 @@
 "use client"
-import { formatDate, formatPrice, storefront } from "@/utils";
-import Link from "next/link";
+import { storefront } from "@/utils";
 import React, { useState } from "react";
-import Image from "next/image";
 import CustomDropdown from "@/components/CustomDropdown";
-import { CustomButton } from "@/components";
+import { CustomButton, LoadButton } from "@/components";
 
-async function addToCart(variant_id: any) {
-    let data = {
-        'items': [{
-            'id': variant_id,
-            'quantity': 1
-        }]
-    };
+async function addToCart(variant_id: string) {
+  const gql = String.raw;
 
-    await fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+  const addToCheckoutQuery = gql`
+mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
+  checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
+    checkout {
+      id
+      lineItems(first: 10) {
+        edges {
+          node {
+            id
+            quantity
+            variant {
+              ... on ProductVariant {
+                id
+              }
+            }
+          }
+        }
+      }
+      paymentDue {
+        amount
+        currencyCode
+      }
+      subtotalPrice {
+        amount
+        currencyCode
+      }
+      totalTax {
+        amount
+        currencyCode
+      }
+      totalPrice {
+          amount
+          currencyCode
+      }
+    }
+    checkoutUserErrors {
+      field
+      message
+    }
+  }
+}
+`;
+
+  const createCheckoutQuery = gql`
+mutation checkoutCreate($input: CheckoutCreateInput!) {
+  checkoutCreate(input: $input) {
+    checkout {
+      id
+      webUrl
+      lineItems(first: 5) {
+         edges {
+           node {
+             title
+             quantity
+           }
+         }
+       }
+    }
+    checkoutUserErrors {
+      field
+      message
+    }
+  }
+}
+  `;
+
+  async function createCheckout() {
+    const { data } = await storefront(createCheckoutQuery, {
+      "input": {
+        "lineItems": {
+          "variantId": variant_id,
+          "quantity": 1
+        }
+      }
     })
-        .then(response => {
-            return response.json();
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+
+    console.log("cart was created! response is " + JSON.stringify(data));
+    localStorage.setItem("checkoutId", data.checkoutCreate.checkout.id);
+  }
+
+
+  if (!localStorage.getItem("checkoutId")) {
+    await createCheckout();
+    return;
+  }
+
+  await storefront(addToCheckoutQuery, {
+    "checkoutId": localStorage.getItem("checkoutId"),
+    "lineItems": {
+      "variantId": variant_id,
+      "quantity": 1
+    }
+  })
+    .then(response => {
+      console.log("cart was updated! response is " + JSON.stringify(response));
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
 
 const ProductCta = ({ variantName, options, variants }: any) => {
 
-    // console.log("VARIANT NAME **********" + JSON.stringify(variantName));
+  const [size, setSize] = useState(options[0]);
+  const [isLoading, setIsLoading] = useState(false);
 
-    // console.log("OPTIONS NAME **********" + JSON.stringify(options));
+  let variantArr = variants.edges;
 
-    console.log("VARIANTS ARE **********" + JSON.stringify(variants));
+  async function mapVariants(variantArr: any, searchKey: string) {
+    setIsLoading(true);
+    console.log("variant Arr is " + JSON.stringify(variantArr));
+    console.log("searchKey is " + searchKey)
+    let variantId = "";
+    variantArr.filter((obj: any) => {
+      if (obj.node?.title === searchKey) {
+        variantId = obj.node.id;
+      }
+    });
+    console.log("return value is " + variantId);
+    await addToCart(variantId);
 
-    const [size, setSize] = useState(options[0]);
-    const [isLoading, setIsLoading] = useState(false);
+    //update cart count
 
-    async function mapVariants() {
-        //setIsLoading(true);
-        let temp = variants.edges[0].node.get(size);
-        console.log("VARIANTS ARE **********" + temp);
-        await addToCart(temp);
-        setIsLoading(false);
-    }
+    setIsLoading(false);
+  }
 
-    return (
-        <div>
-            <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
-            {isLoading == false ? <CustomButton containerStyles="w-full bg-gray-300 text-white font-medium mt-5" title={"ADD TO CART"} handleClick={mapVariants} /> : ""}
-        </div>
-    )
+  return (
+    <div>
+      <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
+      {isLoading == false ? <CustomButton containerStyles="w-full bg-gray-300 text-white font-medium mt-5" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
+    </div>
+  )
 }
 
 export default ProductCta

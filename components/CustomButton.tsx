@@ -11,7 +11,7 @@ const CustomButton = ( { title, containerStyles, handleFocus, handleClick }: Cus
             type={"button"}
             className={`custom-btn ${containerStyles}`}
             onFocus={handleFocus}
-            onClick={handleClick}
+            onClick={(e) => handleClick(e)}
         >
             <span className={`flex-1`}>
                 {title}

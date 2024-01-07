@@ -2,7 +2,7 @@ import { formatDate, formatPrice, storefront } from "@/utils";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { CustomButton, CustomDropdown, ProductCta } from "@/components";
+import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 
 const gql = String.raw;
@@ -112,7 +112,7 @@ export default async function Product({
           <p className="float-right text-3xl font-light text-gray-300">[{params.handle}]</p>
           <Image
             src={image.transformedSrc}
-            alt={image.altText}
+            alt={"test"}
             width="600"
             height="800"
             className="float-right mt-12"

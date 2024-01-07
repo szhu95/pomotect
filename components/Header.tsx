@@ -10,18 +10,19 @@ const Header = () => {
                 <Link href="/" className="padding-y">
                     <Image
                         src={homeLogo}
-                        width={700}
+                        width={550}
                         height={500}
-                        alt="pomotect logo"
+                        alt="home page link"
                     />
                 </Link>
             </div>
             <div className="header-link">
-                <Link href="/about" className="focus:bg-primary-blue focus:text-white hover:bg-primary-blue hover:text-white">About</Link>
-                <Link href="/objects" className="padding-x focus:bg-primary-blue focus:text-white hover:bg-primary-blue hover:text-white">Objects</Link>
-                <Link href="/articles" className="padding-x focus:bg-primary-blue focus:text-white hover:bg-primary-blue hover:text-white">Words</Link>
-                <Link href="/sounds" className="padding-x focus:bg-primary-blue focus:text-white hover:bg-primary-blue hover:text-white">Sounds</Link>
-                <Link href="/archive" className="padding-x focus:bg-primary-blue focus:text-white hover:bg-primary-blue hover:text-white">Archive</Link>
+                <Link href="/about" className="hover:bg-primary-blue hover:text-white">About</Link>
+                <Link href="/objects" className="margin-x hover:bg-primary-blue hover:text-white">Objects</Link>
+                <Link href="/articles" className="margin-x hover:bg-primary-blue hover:text-white">Words</Link>
+                <Link href="/sounds" className="margin-x hover:bg-primary-blue hover:text-white">Sounds</Link>
+                <Link href="/archive" className="margin-x hover:bg-primary-blue hover:text-white">Archive</Link>
+                <Link href="/cart" className="float-right mr-2 hover:bg-primary-blue hover:text-white">Cart</Link>
             </div>
         </div>
     )
