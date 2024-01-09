@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react'
 
 
-export const getProducts = async () => {
+const getProducts = async () => {
     const { data } = await storefront(productsQuery);
     return {
       products: data.products,
