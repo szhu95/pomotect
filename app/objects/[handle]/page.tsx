@@ -73,8 +73,10 @@ export default async function Product({
 
   let image = product.images.edges[0].node;
 
-  console.log("product is " + JSON.stringify(product));
-
+  if (product) {
+    console.log("product is " + JSON.stringify(product));
+  }
+  
   return (
     <div>
       <div className="site-section">
@@ -99,7 +101,7 @@ export default async function Product({
             </div>
           </div>
           <div className="site-section w-full product-cta">
-            <ProductCta variantName={product.options[0].name} options={product.options[0].values} variants={product.variants}/>
+            <ProductCta variantName={product.options[0].name} options={product.options[0].values} variants={product.variants} />
           </div>
           <div className="site-section">
             <h1 className="mb-2">

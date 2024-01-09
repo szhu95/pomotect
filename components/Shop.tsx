@@ -50,8 +50,6 @@ export default async function Shop() {
           {response.products.edges.map((item: any) => {
             let product = item.node;
             let image = product.images.edges[0].node;
-            //console.log("product is " + JSON.stringify(product));
-            //console.log("image is " + JSON.stringify(image));
             return (
               <Link
                 key={product.handle}
