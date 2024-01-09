@@ -1,9 +1,48 @@
-import { Header, Shop } from '@/components'
-import { formatDate } from '@/utils';
+import { Shop } from '@/components'
+import { formatDate, storefront } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 
-const Objects = () => {
+
+export const getProducts = async () => {
+    const { data } = await storefront(productsQuery);
+    return {
+      products: data.products,
+    };
+  };
+  
+  const gql = String.raw;
+  
+  const productsQuery = gql`
+    query Products {
+      products(first: 6) {
+        edges {
+          node {
+            title
+            handle
+            tags
+            priceRange {
+              minVariantPrice {
+                amount
+              }
+            }
+            images(first: 2) {
+              edges {
+                node {
+                  transformedSrc
+                  altText
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+const Objects = async () => {
+
+    let response = (await getProducts()) as any;
 
     let lastUpdatedDate = formatDate();
     return (
@@ -19,7 +58,7 @@ const Objects = () => {
 
 
             <div>
-                <Shop />
+                <Shop response={response}/>
             </div>
         </div>
     )

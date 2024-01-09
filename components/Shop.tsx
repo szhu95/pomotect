@@ -2,44 +2,7 @@ import { formatPrice, storefront } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 
-export const getProducts = async () => {
-  const { data } = await storefront(productsQuery);
-  return {
-    products: data.products,
-  };
-};
-
-const gql = String.raw;
-
-const productsQuery = gql`
-  query Products {
-    products(first: 6) {
-      edges {
-        node {
-          title
-          handle
-          tags
-          priceRange {
-            minVariantPrice {
-              amount
-            }
-          }
-          images(first: 2) {
-            edges {
-              node {
-                transformedSrc
-                altText
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-export default async function Shop() {
-  let response = (await getProducts()) as any;
+export default function Shop({ response }: any) {
 
   return (
     <div className="bg-white">
