@@ -3,7 +3,7 @@ import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 
-const Objects = async () => {
+const Objects = () => {
 
     let lastUpdatedDate = formatDate();
     return (
