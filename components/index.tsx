@@ -5,6 +5,7 @@ import Shop from './Shop';
 import CustomDropdown from './CustomDropdown';
 import ProductCta from './ProductCta';
 import LoadButton from './LoadButton';
+import Cart from './Cart';
 
 export {
     Hero,
@@ -13,5 +14,6 @@ export {
     Shop,
     CustomDropdown,
     ProductCta,
-    LoadButton
+    LoadButton,
+    Cart
 }

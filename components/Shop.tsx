@@ -59,9 +59,11 @@ export default async function Shop() {
                 className="group"
               >
                 <div className="aspect-h-3 aspect-w-4 w-full overflow-hidden rounded-lg bg-gray-200">
-                  <img
+                  <Image
                     src={image.transformedSrc}
-                    alt={"hello"}
+                    alt={"product-image"}
+                    width={500}
+                    height={500}
                     className="h-full w-full object-cover object-center group-hover:opacity-75"
                   />
                 </div>
