@@ -2,7 +2,7 @@ import { Cart } from '@/components';
 import { formatDate } from '@/utils';
 import React from 'react'
 
-const page = () => {
+const page = async () => {
 
   let lastUpdatedDate = formatDate();
   return (
@@ -12,8 +12,7 @@ const page = () => {
         <p><i>Most recently updated on {lastUpdatedDate}</i></p>
       </div>
       <div className="site-section">
-        {/* <Cart /> */}
-        <div>Cart</div>
+        <Cart />
       </div>
     </div>
 

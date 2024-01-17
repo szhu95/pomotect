@@ -1,79 +1,94 @@
-// "use client";
-// import { storefront } from '@/utils';
-// import React, { useState } from 'react'
+"use client";
+import { storefront } from '@/utils';
+import React, { useCallback, useEffect, useState } from 'react'
+import { CustomButton } from '.';
 
-// const gql = String.raw;
+const gql = String.raw;
 
-// const getCheckoutLineItemsQuery = gql`
-// query getCheckoutLineItemsFromNode($id: ID!) {
-//   node(id: $id) {
-//     id
-//     ... on Checkout {
-//       id
-//       webUrl
-//       lineItems(first: 5) {
-//          edges {
-//            node {
-//              title
-//              quantity
-//              variant {
-//               title
-//               price {
-//                 amount
-//                 currencyCode
-//               }
-//             }
-//            }
-//          }
-//        }
-//       subtotalPrice {
-//         amount
-//         currencyCode
-//       },
-//       totalTax {
-//         amount
-//         currencyCode
-//       },
-//       totalPrice {
-//         amount
-//         currencyCode
-//       },
-//       updatedAt
-//     }
-//   }
-// }
-//   `;
+const getCheckoutLineItemsQuery = gql`
+query getCheckoutLineItemsFromNode($id: ID!) {
+  node(id: $id) {
+    id
+    ... on Checkout {
+      id
+      webUrl
+      lineItems(first: 5) {
+         edges {
+           node {
+             title
+             quantity
+             variant {
+              title
+              price {
+                amount
+                currencyCode
+              }
+            }
+           }
+         }
+       }
+      subtotalPrice {
+        amount
+        currencyCode
+      },
+      totalTax {
+        amount
+        currencyCode
+      },
+      totalPrice {
+        amount
+        currencyCode
+      },
+      updatedAt
+    }
+  }
+}
+  `;
 
-// async function getCart() {
-//     if (localStorage.getItem("checkoutId")) {
-//         let id = localStorage.getItem("checkoutId");
-//         const { data } = await storefront(getCheckoutLineItemsQuery, {
-//             "id": id
-//         })
+async function getCart() {
+    if (localStorage.getItem("checkoutId")) {
+        let id = localStorage.getItem("checkoutId");
+        const { data } = await storefront(getCheckoutLineItemsQuery, {
+            "id": id
+        })
 
-//         console.log("cart page! response is " + JSON.stringify(data));
-//     }
-// }
+        console.log("cart page! response is " + JSON.stringify(data));
+    }
+}
 
 
 
-export default async function Cart() {
+export default function Cart() {
 
-    // const [cart, setCart] = useState(
-    //     typeof window !== "undefined" ? localStorage.getItem("checkoutId") : "undefined"
-    //   );
-    
-    // let response = (await getCart()) as any;
+    let checkout;
+
+    const [cart, setCart] = useState('');
+    const [data, setData] = useState(null);
+
+    const retrieveCart = useCallback(async () => {
+        let response = (await getCart()) as any;
+        setData(response);
+        console.log("data is " + data);
+    }, [])
+
+    useEffect(() => {
+        checkout = localStorage.getItem("checkoutId");
+        setCart(checkout ? checkout : '');
+        retrieveCart();
+    }, [retrieveCart]);
 
     return (
         <div>
-            <div className="main_header">CHECKOUT</div>
             <div className="grid grid-cols-4">
+                <div className="main_header col-start-4">CHECKOUT</div>
                 <div>Images</div>
                 <div>Quantity</div>
                 <div>Price</div>
                 <div>Items</div>
             </div>
+
+            {data ? <div>{data}</div> : <div>Your Cart is Empty</div>}
+            {/* <CustomButton title='PROCEED'/> */}
         </div>
     )
 }

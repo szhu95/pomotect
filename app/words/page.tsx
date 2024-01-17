@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Articles = () => {
+const Words = () => {
   return (
     <div className="site-section">
       <div className="main_header">Words</div>
@@ -8,4 +8,4 @@ const Articles = () => {
   )
 }
 
-export default Articles
+export default Words
