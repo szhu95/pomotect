@@ -31,7 +31,7 @@ const Words = async () => {
 
       {response.posts.map((post: any) => {
         return (
-          <div className="mt-5">
+          <div key={post.id} className="mt-5">
             <div className='site-section words-header'>
               <div className="entry-number bg-black text-white">{post.primary_tag ? post.primary_tag.name : 'Title'}</div>
               <p><i>On {post.updated_at}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</i></p>
