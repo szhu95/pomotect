@@ -22,7 +22,7 @@ export default function RootLayout({
         <div className="site-layout text-center mt-5">
           {/* <Header />
           {children} */}
-          Work In Progress... 
+          <i>Work In Progress . . . </i>
         </div>
 
       </body>
