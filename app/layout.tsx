@@ -19,9 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="site-layout">
-          <Header />
-          {children}
+        <div className="site-layout text-center mt-5">
+          {/* <Header />
+          {children} */}
+          Work In Progress... 
         </div>
 
       </body>
