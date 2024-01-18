@@ -1,8 +1,9 @@
 "use client";
 
-import { Fragment } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
+import { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
 import { CustomDropdownProps } from '@/types';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -18,8 +19,14 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                         {/* <Listbox.Label className="block text-sm font-medium leading-6 text-black">{title}</Listbox.Label> */}
                         <div className="relative mt-2 text-center">
                             <Listbox.Button className="relative w-full cursor-default bg-white py-.5 text-center text-black shadow-sm ring-1 ring-inset ring-black focus:outline-none focus:ring-2 focus:ring-black sm:text-sm sm:leading-6">
-                                <span className="flex items-center">
-                                    <span className="ml-3 block truncate">{String(selected).toUpperCase()}</span>
+                                <span className="flex items-center justify-center">
+                                    <span className="block truncate text-center">{String(selected).toUpperCase()}</span>
+                                </span>
+                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                    <ChevronDownIcon
+                                        className="h-5 w-5 text-gray-400"
+                                        aria-hidden="true"
+                                    />
                                 </span>
                             </Listbox.Button>
 
@@ -38,7 +45,7 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                                             className={({ active }) =>
                                                 classNames(
                                                     active ? 'bg-primary-blue text-white' : 'text-gray-900',
-                                                    'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                    'relative cursor-default select-none py-2 pr-3 flex items-center justify-center'
                                                 )
                                             }
                                             value={size}

@@ -178,6 +178,13 @@
   margin-right: 40px;
 }
 
+.entry-number {
+  font-style: italic;
+  padding-right: 30px;
+  padding-left: 1px;
+  max-width: 100px;
+}
+
 .soundcloud_link {
   margin-top: 30px;
 }

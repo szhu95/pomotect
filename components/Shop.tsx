@@ -17,19 +17,19 @@ export default function Shop({ response }: any) {
               <Link
                 key={product.handle}
                 href={`objects/${product.handle}`}
-                className="group"
+                className="border-2 border-blue-500 hover:opacity-50 p-1"
               >
-                <div className="aspect-h-3 aspect-w-4 w-full overflow-hidden rounded-lg bg-gray-200">
+                <div className="aspect-h-3 aspect-w-4 w-full">
                   <Image
                     src={image.transformedSrc}
                     alt={"product-image"}
                     width={500}
                     height={500}
-                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    className="h-full w-full object-cover object-center"
                   />
                 </div>
-                <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
-                <p className="mt-1 text-lg font-medium text-gray-900">
+                <h3 className="mt-4 text-sm text-gray-700 text-right">{product.handle}</h3>
+                <p className="mt-1 text-sm text-gray-900 text-right">
                   {formatPrice(product.priceRange.minVariantPrice.amount)}
                 </p>
               </Link>

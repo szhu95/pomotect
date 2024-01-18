@@ -29,10 +29,10 @@ const Words = async () => {
         <p><i>Most recently updated on {response.updated_at}</i></p>
       </div>
       <div className='site-section words-header'>
-        <div className="objects_link bg-black text-white ">No.1</div>
+        <div className="entry-number bg-black text-white">No.1</div>
         <p><i>On {response.updated_at}, {response.primary_author.name} {'<stevie@pomotect.com>'} wrote:</i></p>
       </div>
-      <div className="words-body">
+      <div className="site-section words-body">
         <div>{response.title}</div>
         <div>{response.html}</div>
         <div>
