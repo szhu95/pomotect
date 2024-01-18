@@ -14,7 +14,7 @@ const Hero = () => {
             <div className="flex-1 pt-20 padding-x landing_page">
                 <CustomButton
                     title="Explore Objects"
-                    containerStyles="bg-primary-blue text-white mt-10"
+                    containerStyles="flex float-right bg-primary-blue mt-10"
                     handleClick={() => router.push('/objects')}
                 />
 

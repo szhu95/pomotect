@@ -13,7 +13,7 @@ const CustomButton = ( { title, containerStyles, handleFocus, handleClick }: Cus
             onFocus={handleFocus}
             onClick={(e) => handleClick(e)}
         >
-            <span className={`flex-1`}>
+            <span className={`flex-1 text-white`}>
                 {title}
             </span>
         </button>
