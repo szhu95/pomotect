@@ -62,20 +62,20 @@ export default function Cart() {
 
     let checkout;
 
-    const [cart, setCart] = useState('');
-    const [data, setData] = useState(null);
+    // const [cart, setCart] = useState('');
+    // const [data, setData] = useState(null);
 
-    const retrieveCart = useCallback(async () => {
-        let response = (await getCart()) as any;
-        setData(response);
-        console.log("data is " + data);
-    }, [])
+    // const retrieveCart = useCallback(async () => {
+    //     let response = (await getCart()) as any;
+    //     setData(response);
+    //     console.log("data is " + data);
+    // }, [])
 
-    useEffect(() => {
-        checkout = localStorage.getItem("checkoutId");
-        setCart(checkout ? checkout : '');
-        retrieveCart();
-    }, [retrieveCart]);
+    // useEffect(() => {
+    //     checkout = localStorage.getItem("checkoutId");
+    //     setCart(checkout ? checkout : '');
+    //     retrieveCart();
+    // }, [retrieveCart]);
 
     return (
         <div>
@@ -87,7 +87,7 @@ export default function Cart() {
                 <div>Items</div>
             </div>
 
-            {data ? <div>{data}</div> : <div>Your Cart is Empty</div>}
+             <div>Your Cart is Empty</div>
             {/* <CustomButton title='PROCEED'/> */}
         </div>
     )

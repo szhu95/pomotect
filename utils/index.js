@@ -9,12 +9,12 @@ export async function storefront(query, variables = {}) {
         },
         body: JSON.stringify({ query, variables }),
     })
-    
+
     return response.json();
 }
 
 export function formatPrice(number) {
-    return Intl.NumberFormat("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}).format(number);
+    return Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format(number);
 }
 
 export function formatDate() {
@@ -27,22 +27,26 @@ export function formatDate() {
 }
 
 export function formatUpdatedDate(date) {
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = today.toLocaleString('default', { month: 'long' });
-  var yyyy = today.getFullYear();
-  let lastUpdatedDate = mm + ' ' + dd + ', ' + yyyy;
-  return lastUpdatedDate
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = today.toLocaleString('default', { month: 'long' });
+    var yyyy = today.getFullYear();
+    let lastUpdatedDate = mm + ' ' + dd + ', ' + yyyy;
+    return lastUpdatedDate
 }
 
 export async function getPosts() {
-  const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags", {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept-Version': 'v5.0',
-      }
-  })
-  
-  return response.json();
+    const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Version': 'v5.0',
+        }
+    })
+
+    return response.json();
+}
+
+export function createMarkup(description) {
+    return { __html: description };
 }
