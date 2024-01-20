@@ -2,6 +2,8 @@ import React from 'react';
 import { formatDate, getPosts } from '@/utils';
 import Image from "next/image";
 import parse from 'html-react-parser';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
+
 
 async function getData() {
   const posts = await getPosts()
@@ -39,7 +41,7 @@ const Words = async () => {
               <div className="entry-number bg-black text-white">{post.title? post.title : 'Title'}</div>
               <p><i>On {post.updated_at}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</i></p>
             </div>
-            <div className="site-section words-body max-h-96 overflow-y-auto">
+            <div className="site-section words-body">
               <div>{parse(post.html)}</div>
               <div>
                 {post.feature_image && <Image
@@ -54,6 +56,8 @@ const Words = async () => {
           </div>
         )
       })}
+
+      <ScrollToTopButton />
     </div>
   )
 }
