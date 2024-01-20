@@ -96,6 +96,10 @@
   border-bottom: solid 1px black;
 }
 
+.words-body {
+  border: dashed 2px blue;
+}
+
 .product-image {
   margin-top: 100px;
   margin-left: 20px;
