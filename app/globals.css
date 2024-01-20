@@ -98,6 +98,7 @@
 
 .words-body {
   border: dashed 2px blue;
+  padding-right: 3px;
 }
 
 .product-image {
