@@ -16,3 +16,10 @@ export interface CustomDropdownProps {
     containerStyles?: string;
     handleChange?: any;
 }
+
+export interface SoundcloudProps {
+    title_href?: string;
+    title?: string;
+    label?: string;
+    src?: string;
+}

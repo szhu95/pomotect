@@ -6,6 +6,7 @@ import CustomDropdown from './CustomDropdown';
 import ProductCta from './ProductCta';
 import LoadButton from './LoadButton';
 import Cart from './Cart';
+import Soundcloud from './Soundcloud';
 
 export {
     Hero,
@@ -15,5 +16,6 @@ export {
     CustomDropdown,
     ProductCta,
     LoadButton,
-    Cart
+    Cart,
+    Soundcloud
 }

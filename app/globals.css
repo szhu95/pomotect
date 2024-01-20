@@ -214,3 +214,8 @@ body {
   padding-left: 10%;
   max-width: 70%;
 }
+
+.soundcloud-section {
+  border: dashed orange 2px;
+  padding-right: 10px;
+}
