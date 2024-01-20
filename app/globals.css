@@ -118,6 +118,10 @@
   min-width: 15%;
 }
 
+.product-tile {
+  border: dashed 2px blue;
+  /* border-2 border-blue-500 border-dotted */
+}
 .back-button {
   float: right;
   font-style: italic;

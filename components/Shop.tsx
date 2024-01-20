@@ -17,7 +17,7 @@ export default function Shop({ response }: any) {
               <Link
                 key={product.handle}
                 href={`objects/${product.handle}`}
-                className="border-2 border-blue-500 hover:opacity-50 p-1"
+                className="product-tile vhover:opacity-50 p-1"
               >
                 <div className="aspect-h-3 aspect-w-4 w-full">
                   <Image
