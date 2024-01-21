@@ -27,7 +27,6 @@ const Events = () => {
                         <span>Winston House, Los Angeles</span>
                     </li>
                     <div className="w-1/4 p-1 max-w-10 flex-col items-center center centered fixed">
-                        <figure className="portrait">
                             <Image
                                 loading="eager"
                                 width={2831}
@@ -35,7 +34,6 @@ const Events = () => {
                                 src={WinstonFlyer}
                                 alt="Winston Flyer"
                             />
-                        </figure>
                     </div>
                 </ol>
             </div>
