@@ -2,7 +2,7 @@ import { CustomButton } from '@/components';
 import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
-import WinstonFlyer from '../../../assets/images/flyer-1.jpeg'
+import WinstonFlyer from '../../../assets/images/flyer-1.jpg'
 import Image from 'next/image';
 
 const Events = () => {
