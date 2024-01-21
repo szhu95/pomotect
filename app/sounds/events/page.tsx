@@ -33,7 +33,7 @@ const Events = () => {
                                 width={2831}
                                 height={2877}
                                 src={WinstonFlyer}
-                                alt="Altered Egos"
+                                alt="Winston Flyer"
                             />
                         </figure>
                     </div>

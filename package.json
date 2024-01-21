@@ -21,6 +21,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-scroll-to-top": "^3.0.0",
+    "sharp": "^0.33.2",
     "shopify-buy": "^2.21.1",
     "tw-elements": "^1.1.0"
   },
