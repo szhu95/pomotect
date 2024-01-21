@@ -19,14 +19,14 @@ const Events = () => {
                 <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Mixes</Link>
                 <Link href="/sounds/events" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Events</Link>
             </div>
-            <div className="flex p-2 w-1/8 max-w-12">
+            <div className="flex p-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
                     <li>
                         <span>Out of the Blue</span>
                         <br></br>
                         <span>Winston House, Los Angeles</span>
                     </li>
-                    <div className="w-1/4 p-1 max-w-10 flex-col items-center center centered fixed">
+                    <div className="w-1/4 mt-3 max-w-10 flex-col items-center center centered fixed">
                         <Image
                             width={2831}
                             height={2877}
