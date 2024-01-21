@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 
 
-const Events = () => {
+const Sounds = () => {
 
     let lastUpdatedDate = formatDate();
 
@@ -28,4 +28,4 @@ const Events = () => {
     )
 }
 
-export default Events
+export default Sounds
