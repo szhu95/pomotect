@@ -81,7 +81,7 @@ export default async function Product({
     <div>
       <div className="site-section">
         <h3 className="product-details-header">Objects</h3>
-        <Link href="/objects" className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
+        <Link href="/objects" scroll={false} className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
       </div>
       <div className="inline-flex">
         <div className="product-details">

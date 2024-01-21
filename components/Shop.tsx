@@ -15,6 +15,7 @@ export default function Shop({ response }: any) {
             let image = product.images.edges[0].node;
             return (
               <Link
+                scroll={false}
                 key={product.handle}
                 href={`objects/${product.handle}`}
                 className="product-tile vhover:opacity-50 p-1"
