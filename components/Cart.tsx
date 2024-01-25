@@ -80,7 +80,7 @@ export default function Cart() {
     return (
         <div>
             <div className="grid grid-cols-4">
-                <div className="main_header col-start-4">CHECKOUT</div>
+                <div className="cart-header col-start-4">CHECKOUT</div>
                 <div>Images</div>
                 <div>Quantity</div>
                 <div>Price</div>

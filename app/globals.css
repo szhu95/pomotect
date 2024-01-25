@@ -92,6 +92,16 @@
   padding-left: 1px;
 }
 
+.cart-header {
+  color: white;
+  background-color: #B84221;
+  display: inline-block;
+  font-weight: bold;
+  font-style: italic;
+  padding-right: 7.5%;
+  padding-left: 1px;
+}
+
 .words-header {
   padding-bottom: 15px;
   border-bottom: solid 1px black;

@@ -8,7 +8,7 @@ const page = async () => {
   return (
     <div>
       <div className="site-section">
-        <div className="product-details-header">Items</div>
+        <div className="cart-header">Items</div>
         <p><i>Most recently updated on {lastUpdatedDate}</i></p>
       </div>
       <div className="site-section">

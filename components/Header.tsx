@@ -21,7 +21,7 @@ const Header = () => {
                 <Link href="/objects" scroll={false} className="margin-x hover:bg-primary-blue hover:text-white">Objects</Link>
                 <Link href="/words" scroll={false} className="margin-x hover:bg-primary-blue hover:text-white">Words</Link>
                 <Link href="/sounds" scroll={false} className="margin-x hover:bg-primary-blue hover:text-white">Sounds</Link>
-                <Link href="/cart" scroll={false} className="float-right mr-2 hover:bg-primary-blue hover:text-white">Cart</Link>
+                <Link href="/cart" scroll={false} className="float-right mr-2 hover:bg-terracotta hover:text-white">Cart</Link>
             </div>
         </div>
     )
