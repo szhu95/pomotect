@@ -1,9 +1,19 @@
+"use client";
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/home-logo.png'
 
 const Header = () => {
+    const [cartFilled, setCartFilled] = useState(false)
+
+    useEffect(() => {
+        let checkout = typeof window !== "undefined" ? localStorage.getItem("checkoutId") : null;
+        if (checkout) {
+            setCartFilled(true);
+        }
+    }, [])
+
     return (
         <div className="padding-y">
             <div className="home-link">
@@ -17,11 +27,11 @@ const Header = () => {
                 </Link>
             </div>
             <div className="header-link">
-                <Link href="/about" scroll={false} className="hover:bg-primary-blue hover:text-white">About</Link>
-                <Link href="/objects" scroll={false} className="margin-x hover:bg-primary-blue hover:text-white">Objects</Link>
-                <Link href="/words" scroll={false} className="margin-x hover:bg-primary-blue hover:text-white">Words</Link>
-                <Link href="/sounds" scroll={false} className="margin-x hover:bg-primary-blue hover:text-white">Sounds</Link>
-                <Link href="/cart" scroll={false} className="float-right mr-2 hover:bg-terracotta hover:text-white">Cart</Link>
+                <Link href="/about" scroll={false} className="hover:bg-primary-blue px-2 hover:text-white">About</Link>
+                <Link href="/objects" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Objects</Link>
+                <Link href="/words" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Words</Link>
+                <Link href="/sounds" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Sounds</Link>
+                <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
             </div>
         </div>
     )
