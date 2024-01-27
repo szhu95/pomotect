@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const gql = String.raw;
 
@@ -121,6 +122,7 @@ export default async function Product({
           />
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

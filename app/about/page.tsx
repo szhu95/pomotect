@@ -2,6 +2,7 @@
 import React from 'react'
 import { Header } from '@/components'
 import { formatDate } from '@/utils';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const About = () => {
 
@@ -61,6 +62,7 @@ const About = () => {
                     <p>Find us somewhere in between New York & Los Angeles.</p>
                 </div>
             </div>
+            <ScrollToTopButton />
         </div >
     )
 }

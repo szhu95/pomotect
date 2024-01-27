@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react'
 import WinstonFlyer from '../../../assets/images/flyer-1.jpg'
 import Image from 'next/image';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const Events = () => {
 
@@ -26,7 +27,7 @@ const Events = () => {
                         <br></br>
                         <span>Winston House, Los Angeles</span>
                     </li>
-                    <div className="w-1/2 mt-3 max-w-10 flex-col items-center center centered float-right">
+                    <div className="w-2/3 mt-3 max-w-10 flex-col items-center center centered float-right">
                         <Image
                             width={2831}
                             height={2877}
@@ -36,6 +37,7 @@ const Events = () => {
                     </div>
                 </ol>
             </div>
+            <ScrollToTopButton />
         </div>
     )
 }
