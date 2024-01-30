@@ -22,7 +22,7 @@ const Events = () => {
             </div>
             <div className="flex p-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
-                    <li>
+                    <li className="border-b">
                         <span>Out of the Blue</span>
                         <br></br>
                         <span>Winston House, Los Angeles</span>

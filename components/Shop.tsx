@@ -29,7 +29,8 @@ export default function Shop({ response }: any) {
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
-                <h3 className="mt-4 text-sm text-gray-700 text-right">{product.handle}</h3>
+                <h3 className="mt-4 text-sm text-gray-700 text-right">{product.title}</h3>
+                <p className="text-sm text-gray-700">{product?.tags[0]}</p>
                 <p className="mt-1 text-sm text-gray-900 text-right">
                   {formatPrice(product.priceRange.minVariantPrice.amount)}
                 </p>

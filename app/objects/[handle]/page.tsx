@@ -111,11 +111,11 @@ export default async function Product({
             <div dangerouslySetInnerHTML={createMarkup(product.descriptionHtml)} />
           </div>
         </div>
-        <div className="product-image">
+        <div className="product-image sm:w-full">
           <p className="float-right text-3xl font-light text-gray-300">[{params.handle}]</p>
           <Image
             src={image.transformedSrc}
-            alt={"test"}
+            alt={"product image"}
             width="600"
             height="800"
             className="float-right mt-12"

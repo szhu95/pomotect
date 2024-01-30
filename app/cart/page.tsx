@@ -2,7 +2,7 @@ import { Cart } from '@/components';
 import { formatDate } from '@/utils';
 import React from 'react'
 
-const page = async () => {
+const CartPage = async () => {
 
   let lastUpdatedDate = formatDate();
   return (
@@ -19,4 +19,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default CartPage
