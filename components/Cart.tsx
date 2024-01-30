@@ -112,7 +112,7 @@ export default function Cart() {
           (!isLoading && data ? data.node?.lineItems.edges.map((item: any) => {
 
             return (
-              <div className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
+              <div key={item.node.id} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
                 <div>
                   <Image
                     className="border-2 border-dashed border-terracotta py-2 max-h-24"
