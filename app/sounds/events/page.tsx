@@ -23,11 +23,11 @@ const Events = () => {
             <div className="flex p-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
                     <li className="border-b">
-                        <span>Out of the Blue</span>
+                        <span className="text-primary-blue font-semibold">Out of the Blue</span>
                         <br></br>
-                        <span>Winston House, Los Angeles</span>
+                        <p className="text-right italic">Winston House, Los Angeles</p>
                     </li>
-                    <div className="w-2/3 mt-3 max-w-10 flex-col items-center center centered float-right">
+                    <div className="w-1/2 mt-3 max-w-10 flex-col items-center center centered float-right">
                         <Image
                             width={2831}
                             height={2877}
