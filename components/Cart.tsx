@@ -115,8 +115,6 @@ export default function Cart() {
     if (localStorage.getItem("checkoutId")) {
       setIsLoading(true);
       let id = localStorage.getItem("checkoutId");
-      console.log('checkout ID is ' + id);
-      console.log('lineItemIds is ' + variantId)
       await storefront(removeLineItemFromCartQuery, {
         "checkoutId": id,
         "lineItemIds": [
@@ -155,7 +153,7 @@ export default function Cart() {
       </div>
 
       {
-        !cart ? <div>YOUR CART IS EMPTY</div> :
+        !cart || total === "0.0" ? <div className="py-6">YOUR CART IS EMPTY</div> :
           (!isLoading && data ? data.node?.lineItems.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
@@ -190,7 +188,7 @@ export default function Cart() {
       }
       <div className="text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta">TOTAL BEFORE TAXES + SHIPPING</div>
       <div className="text-right pr-2 font-semibold pt-2 mb-2">{formatter.format(Number(total))}</div>
-      <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold">CHECKOUT</Link>
+      {total === "0.0" ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold">CHECKOUT</Link>}
     </div>
   )
 }
