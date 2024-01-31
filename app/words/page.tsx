@@ -41,7 +41,7 @@ const Words = async () => {
               <div className="entry-number bg-black text-white">{post.title? post.title : 'Title'}</div>
               <p><i>On {post.updated_at}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</i></p>
             </div>
-            <div className="site-section words-body max-h-96 overflow-y-auto">
+            <div className="site-section ml-2 words-body max-h-96 overflow-y-auto">
               <div className="pr-2 py-1">{parse(post.html)}</div>
               <div className="pr-2 py-4">
                 {post.feature_image && <Image
