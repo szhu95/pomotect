@@ -14,6 +14,10 @@ const Header = () => {
         }
     }, [])
 
+    function handleSmallScreenNavigation(event: MouseEvent<HTMLDivElement, MouseEvent>): void {
+        throw new Error('Function not implemented.');
+    }
+
     return (
         <div className="padding-y">
             <div className="home-link">
@@ -33,8 +37,9 @@ const Header = () => {
                 <Link href="/sounds" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Sounds</Link>
                 <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
             </div>
-            <div className="header-menu block sm:hidden">
-                Test
+            <div onClick={handleSmallScreenNavigation} className="header-link block sm:hidden">
+                Menu
+                <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
             </div>
         </div>
     )
