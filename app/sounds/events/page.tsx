@@ -25,7 +25,7 @@ const Events = () => {
                     <li className="border-b">
                         <span className="text-primary-blue font-semibold">Out of the Blue</span>
                         <br></br>
-                        <p className="text-right italic">Winston House, Los Angeles</p>
+                        <p className="text-right text-primary-blue italic">Winston House, Los Angeles</p>
                     </li>
                     <div className="w-1/2 mt-3 max-w-10 flex-col items-center center centered float-right">
                         <Image

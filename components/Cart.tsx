@@ -7,6 +7,34 @@ import Link from 'next/link';
 
 const gql = String.raw;
 
+const removeLineItemFromCartQuery = gql`
+mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
+  checkoutLineItemsRemove(checkoutId: $checkoutId, lineItemIds: $lineItemIds) {
+    checkout {
+      id
+      webUrl
+      lineItems(first: 10) {
+        edges {
+          node {
+            id
+            quantity
+            variant {
+              ... on ProductVariant {
+                id
+              }
+            }
+          }
+        }
+      }
+  }
+  checkoutUserErrors {
+      field
+      message
+    }
+  }
+}
+`
+
 const getCheckoutLineItemsQuery = gql`
 query getCheckoutLineItemsFromNode($id: ID!) {
   node(id: $id) {
@@ -17,6 +45,7 @@ query getCheckoutLineItemsFromNode($id: ID!) {
       lineItems(first: 5) {
          edges {
            node {
+             id
              title
              quantity
              variant {
@@ -71,22 +100,40 @@ export default function Cart() {
 
   let checkout;
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
   const [cart, setCart] = useState('');
   const [data, setData] = useState(null) as any;
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutUrl, setCheckoutUrl] = useState('');
+  const [total, setTotal] = useState('');
+
+  async function removeItemFromCart(variantId: any) {
+    if (localStorage.getItem("checkoutId")) {
+      setIsLoading(true);
+      let id = localStorage.getItem("checkoutId");
+      console.log('checkout ID is ' + id);
+      console.log('lineItemIds is ' + variantId)
+      await storefront(removeLineItemFromCartQuery, {
+        "checkoutId": id,
+        "lineItemIds": [
+          variantId
+        ]
+      }).then(retrieveCart)
+    }
+  }
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
     console.log("data is " + JSON.stringify(response));
-    setData(response ? response : '')
-    setCheckoutUrl(response.node.webUrl)
+    setData(response ? response : '');
+    setCheckoutUrl(response.node.webUrl);
+    setTotal(response.node.totalPrice.amount)
     setIsLoading(false);
   }, [])
-
-  async function removeItemFromCart(variantId: any) {
-    console.log(variantId);
-  }
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -109,10 +156,10 @@ export default function Cart() {
 
       {
         !cart ? <div>YOUR CART IS EMPTY</div> :
-          (!isLoading && data ? data.node?.lineItems.edges.map((item: any) => {
+          (!isLoading && data ? data.node?.lineItems.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
-              <div key={item.node.id} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
+              <div key={i} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
                 <div>
                   <Image
                     className="border-2 border-dashed border-terracotta py-2 max-h-24"
@@ -122,11 +169,11 @@ export default function Cart() {
                     alt="product image" />
                 </div>
                 <div>{item.node.quantity}</div>
-                <div>{Number(item.node.variant?.price.amount) * Number(item.node.quantity)}</div>
+                <div>{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
                 <div>
                   {item.node.title} <br></br>
                   <i>{item.node.variant?.title}</i> <br></br>
-                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta float-right mt-5" handleClick={() => removeItemFromCart(item.node.variant?.id)} />
+                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta float-right mt-5" handleClick={() => removeItemFromCart(item.node.id)} />
                 </div>
               </div>
             )
@@ -141,8 +188,9 @@ export default function Cart() {
             </svg>
           )
       }
-      <div>TOTAL BEFORE TAXES + SHIPPING</div>
-      <Link href={checkoutUrl} scroll={false} className="float-right px-2 mr-2 bg-terracotta text-white">CHECKOUT</Link>
+      <div className="text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta">TOTAL BEFORE TAXES + SHIPPING</div>
+      <div className="text-right pr-2 font-semibold pt-2 mb-2">{formatter.format(Number(total))}</div>
+      <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold">CHECKOUT</Link>
     </div>
   )
 }
