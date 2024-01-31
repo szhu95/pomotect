@@ -205,9 +205,8 @@
 
 .objects_link {
   font-style: italic;
+  @apply block mr-2 sm:mr-20 md:inline-block;
   padding-right: 30px;
-  padding-left: 1px;
-  margin-right: 40px;
 }
 
 .entry-number {
