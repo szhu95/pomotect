@@ -1,8 +1,5 @@
 "use client"
-import Image from 'next/image'
-import { Header, Hero } from '@/components'
-import Head from 'next/head';
-import { storefront } from '@/utils';
+import { Hero } from '@/components'
 
 export default function Home() {
 

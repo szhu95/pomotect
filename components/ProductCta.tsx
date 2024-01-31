@@ -143,7 +143,7 @@ const ProductCta = ({ variantName, options, variants }: any) => {
   return (
     <div>
       <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
-      {isLoading == false ? <CustomButton containerStyles="w-full bg-gray-300 text-white font-medium mt-5" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
+      {isLoading == false ? <CustomButton containerStyles="w-full bg-primary-blue text-white font-medium mt-5" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
     </div>
   )
 }
