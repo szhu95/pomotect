@@ -6,11 +6,10 @@ const Footer = () => {
 
     return (
         <div className="flex border-t border-black">
-            <div>
-                Terms & Conditions Privacy Policy Contact Us
+            <div className="site-section italic text-gray-700">
+                Terms & Conditions Privacy Policy
             </div>
-            <div className="checkout_btn">
-                
+            <div className="site-section italic text-gray-700 checkout_btn">
                 <Link href="https://www.instagram.com/pomotect/">
                     <Image
                         src={BlueHandLogo}
