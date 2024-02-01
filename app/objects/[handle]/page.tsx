@@ -73,10 +73,6 @@ export default async function Product({
   let product = response?.product;
 
   let image = product.images.edges[0].node;
-
-  if (product) {
-    console.log("product is " + JSON.stringify(product));
-  }
   
   return (
     <div>
