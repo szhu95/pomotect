@@ -25,7 +25,7 @@ const Words = async () => {
 
   let response = data.posts;
 
-  let utcTimeString = response.posts[0].updated_at;
+  let utcTimeString = response.posts[0].created_at;
   const date = new Date(utcTimeString);
   let formattedDate = formatUpdatedDate(date)
 
@@ -37,7 +37,7 @@ const Words = async () => {
       </div>
 
       {response.posts.map((post: any) => {
-        let postUtcTimeString = post.updated_at;
+        let postUtcTimeString = post.created_at;
         let postDate = new Date(postUtcTimeString)
         let formattedPostDate = formatUpdatedDate(postDate);
         return (
