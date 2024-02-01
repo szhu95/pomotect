@@ -8,10 +8,10 @@ const Footer = () => {
         <div className="flex border-t border-black">
             <div className="site-section italic text-gray-700 py-1">
                 <Link href="/terms" className="mr-2 md:mr-10">
-                    Terms & Conditions
+                    Privacy & Terms Of Use
                 </Link>
-                <Link href="/privacy">
-                Privacy Policy
+                <Link href="/contact">
+                    Contact
                 </Link>
             </div>
             <div className="site-section italic text-gray-700 checkout_btn">

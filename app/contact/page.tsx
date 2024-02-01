@@ -1,13 +1,13 @@
 import React from 'react'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 
-const Privacy = () => {
+const Contact = () => {
 
     return (
         <div>
             <div className="site-section">
                 <div className="about-section">
-                    <h3 className="main_header">Privacy Policy</h3>
+                    <h3 className="main_header">Contact</h3>
                 </div>
             </div>
             <ScrollToTopButton />
@@ -15,4 +15,4 @@ const Privacy = () => {
     )
 }
 
-export default Privacy
+export default Contact
