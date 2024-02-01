@@ -18,6 +18,10 @@
   color: black;
 }
 
+.minion-font {
+  font-family: "Minion";
+}
+
 /* START: General styles */
 .max-width {
   @apply max-w-[1440px] mx-auto;
@@ -77,6 +81,7 @@
 }
 
 .about-section {
+  font-family: 'Minion';
   margin-bottom: 30px;
   text-align: justify;
 }
