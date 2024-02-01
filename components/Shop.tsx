@@ -18,7 +18,7 @@ export default function Shop({ response }: any) {
                 href={`objects/${product.handle}`}
                 className="product-tile hover:opacity-50 p-1"
               >
-                <div className="w-full">
+                <div className="relative w-full">
                   <Image
                     src={image.transformedSrc}
                     alt={"product-image"}
@@ -26,12 +26,11 @@ export default function Shop({ response }: any) {
                     height={500}
                     className="h-full w-full object-center"
                   />
+                  <div className="absolute right-[0px] top-[0%] text-sm text-gray-700">{product.title}</div>
+                  <p className="absolute right-[0px] bottom-[0px] mt-1 text-sm text-gray-900 text-right">
+                    {formatPrice(product.priceRange.minVariantPrice.amount)}
+                  </p>
                 </div>
-                
-                <h3 className="mt-4 text-sm text-gray-700 text-right">{product.title}</h3>
-                <p className="mt-1 text-sm text-gray-900 text-right">
-                  {formatPrice(product.priceRange.minVariantPrice.amount)}
-                </p>
               </Link>
             );
           })}
