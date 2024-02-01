@@ -39,7 +39,7 @@
 }
 
 .custom-btn {
-  @apply flex flex-row relative justify-center items-center py-1 px-6 outline-none;
+  @apply flex flex-row relative justify-center items-center py-0 px-6 outline-none;
 }
 
 .home-link {

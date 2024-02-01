@@ -171,7 +171,7 @@ export default function Cart() {
                 <div>
                   {item.node.title} <br></br>
                   <i>{item.node.variant?.title}</i> <br></br>
-                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta float-right mt-5" handleClick={() => removeItemFromCart(item.node.id)} />
+                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-5" handleClick={() => removeItemFromCart(item.node.id)} />
                 </div>
               </div>
             )
