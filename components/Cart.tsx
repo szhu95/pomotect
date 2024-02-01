@@ -160,10 +160,10 @@ export default function Cart() {
               <div key={i} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
                 <div>
                   <Image
-                    className="border-2 border-dashed border-terracotta py-2 max-h-24"
+                    className="border-2 border-dashed border-terracotta py-2 max-h-30"
                     src={item.node.variant?.image.url}
                     width={100}
-                    height={200}
+                    height={250}
                     alt="product image" />
                 </div>
                 <div>{item.node.quantity}</div>
@@ -171,7 +171,7 @@ export default function Cart() {
                 <div>
                   {item.node.title} <br></br>
                   <i>{item.node.variant?.title}</i> <br></br>
-                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-5" handleClick={() => removeItemFromCart(item.node.id)} />
+                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-7" handleClick={() => removeItemFromCart(item.node.id)} />
                 </div>
               </div>
             )
