@@ -166,11 +166,11 @@ export default function Cart() {
                     height={250}
                     alt="product image" />
                 </div>
-                <div>{item.node.quantity}</div>
-                <div>{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
-                <div>
+                <div className="font-['Minion']">{item.node.quantity}</div>
+                <div className="font-['Minion']">{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
+                <div className="font-['Minion']">
                   {item.node.title} <br></br>
-                  <i>{item.node.variant?.title}</i> <br></br>
+                  <div className="font-['Minion'] italic">{item.node.variant?.title}</div> <br></br>
                   <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-7" handleClick={() => removeItemFromCart(item.node.id)} />
                 </div>
               </div>
