@@ -21,7 +21,7 @@ const Header = () => {
 
     return (
         <div className="padding-y">
-            <div className="home-link">
+            <div onClick={() => setIcon(false)} className="home-link">
                 <Link href="/" className="padding-y">
                     <Image
                         src={homeLogo}
@@ -48,9 +48,9 @@ const Header = () => {
             </div>
 
             <div className={menuIcon ?
-                'md:hidden absolute top-[150px] right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%] bg-primary-blue text-center text-white ease-in duration-300'
+                'md:hidden absolute top-[160px] right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%] bg-primary-blue text-center text-white ease-in duration-300'
                 :
-                'md:hidden absolute top-[150px] right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] bg-primary-blue text-white text-center ease-in duration-300'
+                'md:hidden absolute top-[160px] right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] bg-primary-blue text-white text-center ease-in duration-300'
             }>
                 <div className="w-full">
                     <ul>

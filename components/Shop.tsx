@@ -26,7 +26,7 @@ export default function Shop({ response }: any) {
                     alt={"product-image"}
                     width={500}
                     height={500}
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full object-center"
                   />
                 </div>
                 
