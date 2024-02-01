@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import parse from 'html-react-parser';
 
 const gql = String.raw;
 
@@ -73,6 +74,8 @@ export default async function Product({
   let product = response?.product;
 
   let image = product.images.edges[0].node;
+
+  let markup = parse(product.descriptionHtml);
   
   return (
     <div>
@@ -101,14 +104,14 @@ export default async function Product({
             <ProductCta variantName={product.options[0].name} options={product.options[0].values} variants={product.variants} />
           </div>
           <div className="site-section">
-            <h1 className="mb-2">
-              <b>Description</b>
-            </h1>
-            <div className="font-['Minion']" dangerouslySetInnerHTML={createMarkup(product.descriptionHtml)} />
+            <div className="mb-2 font-bold minion-font">
+              Description
+            </div>
+            <div className="minion-font">{markup}</div>
           </div>
         </div>
         <div className="product-image sm:w-full">
-          <p className="float-right text-3xl font-light text-gray-300">[{params.handle}]</p>
+          <p className="float-right text-3xl font-light text-gray-300 font-['Minion']">[{params.handle}]</p>
           <Image
             src={image.transformedSrc}
             alt={"product image"}

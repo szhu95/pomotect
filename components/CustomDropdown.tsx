@@ -20,9 +20,9 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                         <div className="relative mt-2 text-center">
                             <Listbox.Button className="relative w-full cursor-default bg-white py-.5 text-center text-black shadow-sm ring-1 ring-inset ring-black focus:outline-none focus:ring-2 focus:ring-black sm:text-sm sm:leading-6">
                                 <span className="flex items-center justify-center">
-                                    <span className="block truncate text-center">{String(selected).toUpperCase()}</span>
+                                    <span className="block truncate text-center minion-font">{String(selected).toUpperCase()}</span>
                                 </span>
-                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                <span className="opacity-0 md:opacity-100 pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronDownIcon
                                         className="h-5 w-5 text-gray-400"
                                         aria-hidden="true"
@@ -55,7 +55,7 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                                                 <>
                                                     <div className="flex items-center">
                                                         <span
-                                                            className={classNames('font-normal', 'ml-3 block truncate')}
+                                                            className={classNames('minion-font', 'ml-3 block truncate')}
                                                         >
                                                             {size.toUpperCase()}
                                                         </span>
