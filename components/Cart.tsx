@@ -153,7 +153,7 @@ export default function Cart() {
       </div>
 
       {
-        !cart || total === "0.0" ? <div className="py-6">YOUR CART IS EMPTY</div> :
+        !cart || total === "0.0" ? <div className="py-6 text-center">YOUR CART IS EMPTY</div> :
           (!isLoading && data ? data.node?.lineItems.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
@@ -177,7 +177,7 @@ export default function Cart() {
             )
           }) :
             <svg
-              className={"animate-spin h-5 w-5 mr-3"}
+              className={"animate-spin h-5 w-5 m-3"}
               viewBox={"0 0 24 24"}
               fill={"none"}
             >
