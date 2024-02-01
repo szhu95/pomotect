@@ -1,3 +1,7 @@
+import BlueHandLogo from "../assets/images/blue-hand-logo.png"
+import Image from 'next/image'
+import Link from 'next/link'
+
 const Footer = () => {
 
     return (
@@ -5,8 +9,16 @@ const Footer = () => {
             <div>
                 Terms & Conditions Privacy Policy Contact Us
             </div>
-            <div className="ml-[30%]">
-                Instagram Icon
+            <div className="checkout_btn">
+                
+                <Link href="https://www.instagram.com/pomotect/">
+                    <Image
+                        src={BlueHandLogo}
+                        width={25}
+                        height={25}
+                        alt="instagram link"
+                    />
+                </Link>
             </div>
         </div>
     )

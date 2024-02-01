@@ -17,7 +17,6 @@ const Hero = () => {
                     containerStyles="flex float-right bg-primary-blue mt-10"
                     handleClick={() => router.push('/objects')}
                 />
-
                 <Image
                     src={landingPageBackground}
                     width={700}
