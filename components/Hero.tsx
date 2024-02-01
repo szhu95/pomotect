@@ -11,12 +11,28 @@ const Hero = () => {
 
     return (
         <div className="hero">
-            <div className="flex-1 pt-20 padding-x landing_page">
+            <div className="relative flex-1 pt-20 padding-x landing_page">
+                <div className="absolute right-[0px] top-[35%]">
                 <CustomButton
                     title="Explore Objects"
-                    containerStyles="flex float-right bg-primary-blue mt-10"
+                    containerStyles="bg-primary-blue italic"
                     handleClick={() => router.push('/objects')}
                 />
+                </div>
+                <div className="absolute left-[15%] top-[57%]">
+                <CustomButton
+                    title="Explore Words"
+                    containerStyles="bg-primary-blue italic"
+                    handleClick={() => router.push('/words')}
+                />
+                </div>
+                <div className="absolute left-[50%] top-[80%]">
+                <CustomButton
+                    title="Explore Sounds"
+                    containerStyles="bg-primary-blue italic"
+                    handleClick={() => router.push('/sounds')}
+                />
+                </div>
                 <Image
                     src={landingPageBackground}
                     width={700}

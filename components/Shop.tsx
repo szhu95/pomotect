@@ -26,7 +26,7 @@ export default function Shop({ response }: any) {
                     height={500}
                     className="h-full w-full hover:opacity-50 object-center"
                   />
-                  <div className="">
+                  <div>
                     <div className="absolute right-[0px] top-[0%] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
                     <div className="absolute right-[0px] bottom-[0px] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">
                       {formatPrice(product.priceRange.minVariantPrice.amount)}
