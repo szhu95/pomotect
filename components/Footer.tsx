@@ -5,7 +5,7 @@ import Link from 'next/link'
 const Footer = () => {
 
     return (
-        <div className="flex border-t border-black">
+        <div className="flex border-t border-black mt-[250px]">
             <div className="site-section italic text-gray-700 py-1">
                 <Link href="/terms" className="mr-2 md:mr-10">
                     Privacy & Terms Of Use
