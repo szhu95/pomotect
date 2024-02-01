@@ -6,7 +6,7 @@ const Footer = () => {
 
     return (
         <div className="flex border-t border-black">
-            <div className="site-section italic text-gray-700">
+            <div className="site-section italic text-gray-700 py-1">
                 Terms & Conditions Privacy Policy
             </div>
             <div className="site-section italic text-gray-700 checkout_btn">
