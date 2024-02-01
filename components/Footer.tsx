@@ -15,14 +15,14 @@ const Footer = () => {
                 </Link>
             </div>
             <div className="site-section italic text-gray-700 checkout_btn">
-                <Link href="https://www.instagram.com/pomotect/">
+                <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer">
                     <Image
                         src={BlueHandLogo}
                         width={25}
                         height={25}
                         alt="instagram link"
                     />
-                </Link>
+                </a>
             </div>
         </div>
     )
