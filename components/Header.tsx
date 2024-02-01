@@ -25,9 +25,11 @@ const Header = () => {
                 <Link href="/" className="padding-y">
                     <Image
                         src={homeLogo}
+                        priority
                         width={400}
                         height={500}
                         alt="home page link"
+                        className="w-auto md:w-3/5 h-auto"
                     />
                 </Link>
             </div>
