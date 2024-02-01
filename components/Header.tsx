@@ -42,7 +42,7 @@ const Header = () => {
                 <div onClick={handleSmallerScreensNavigation}>
                     {menuIcon ? "X" : "Menu"}
                 </div>
-                <div className="checkout_btn">
+                <div className="checkout_btn" onClick={() => setIcon(false)} >
                 <Link href="/cart" scroll={false} id="checkout-btn" className="px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
                 </div>
             </div>
