@@ -16,7 +16,7 @@ export default function Shop({ response }: any) {
               <Link
                 key={product.handle}
                 href={`objects/${product.handle}`}
-                className="product-tile hover:opacity-50 p-1 hover:text-white"
+                className="group product-tile p-1"
               >
                 <div className="relative w-full">
                   <Image
@@ -24,12 +24,14 @@ export default function Shop({ response }: any) {
                     alt={"product-image"}
                     width={500}
                     height={500}
-                    className="h-full w-full object-center"
+                    className="h-full w-full hover:opacity-50 object-center"
                   />
-                  <div className="absolute right-[0px] top-[0%] text-sm text-gray-700">{product.title}</div>
-                  <p className="absolute right-[0px] bottom-[0px] mt-1 text-sm text-gray-900 text-right">
-                    {formatPrice(product.priceRange.minVariantPrice.amount)}
-                  </p>
+                  <div className="">
+                    <div className="absolute right-[0px] top-[0%] text-sm text-transparent group-hover:text-black group-focus:text-black">{product.title}</div>
+                    <div className="absolute right-[0px] bottom-[0px] text-sm text-transparent group-hover:text-black group-focus:text-black">
+                      {formatPrice(product.priceRange.minVariantPrice.amount)}
+                    </div>
+                  </div>
                 </div>
               </Link>
             );
