@@ -20,7 +20,7 @@ const Events = () => {
                 <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Mixes</Link>
                 <Link href="/sounds/events" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Events</Link>
             </div>
-            <div className="flex p-2 w-1/8 max-w-12 site-section">
+            <div className="flex px-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
                     <li className="border-b border-black -ml-2">
                         <span className="soundcloud_title ml-2 font-['Minion']">Out of the Blue</span>

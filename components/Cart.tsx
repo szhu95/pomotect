@@ -146,14 +146,14 @@ export default function Cart() {
   return (
     <div>
       <div className="grid grid-cols-4 cart-details-header">
-        <div className="text-white">Image</div>
-        <div className="text-white">Quantity</div>
-        <div className="text-white">Price</div>
-        <div className="text-white">Product</div>
+        <div className="text-white font-['Minion']">Image</div>
+        <div className="text-white font-['Minion']">Quantity</div>
+        <div className="text-white font-['Minion']">Price</div>
+        <div className="text-white font-['Minion']">Product</div>
       </div>
 
       {
-        !cart || total === "0.0" ? <div className="py-6 text-center">YOUR CART IS EMPTY</div> :
+        !cart || total === "0.0" ? <div className="py-6 text-center font-['Minion']">YOUR CART IS EMPTY</div> :
           (!isLoading && data ? data.node?.lineItems.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
@@ -186,9 +186,9 @@ export default function Cart() {
             </svg>
           )
       }
-      <div className="text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta">TOTAL BEFORE TAXES + SHIPPING</div>
-      <div className="text-right pr-2 font-semibold pt-2 mb-2">{formatter.format(Number(total))}</div>
-      {total === "0.0" ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold">CHECKOUT</Link>}
+      <div className="text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta font-['Minion']">TOTAL BEFORE TAXES + SHIPPING</div>
+      <div className="text-right pr-2 font-semibold pt-2 mb-2 font-['Minion']">{formatter.format(Number(total))}</div>
+      {total === "0.0" ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold font-['Minion']" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold font-['Minion']">CHECKOUT</Link>}
     </div>
   )
 }
