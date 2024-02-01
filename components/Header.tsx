@@ -38,15 +38,19 @@ const Header = () => {
                 <Link href="/sounds" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Sounds</Link>
                 <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
             </div>
-            <div onClick={handleSmallerScreensNavigation} className="header-link block md:hidden cursor-pointer">
-                {menuIcon ? "X" : "Menu"}
-                <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
+            <div className="header-link flex md:hidden cursor-pointer">
+                <div onClick={handleSmallerScreensNavigation}>
+                    {menuIcon ? "X" : "Menu"}
+                </div>
+                <div className="checkout_btn">
+                <Link href="/cart" scroll={false} id="checkout-btn" className="px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
+                </div>
             </div>
 
             <div className={menuIcon ?
-                'md:hidden absolute top-[150px] right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-screen bg-primary-blue text-center text-white ease-in duration-300'
+                'md:hidden absolute top-[150px] right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%] bg-primary-blue text-center text-white ease-in duration-300'
                 :
-                'md:hidden absolute top-[150px] right-0 italic left-[-100%] flex justify-center items-center w-full h-screen bg-primary-blue text-white text-center ease-in duration-300'
+                'md:hidden absolute top-[150px] right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] bg-primary-blue text-white text-center ease-in duration-300'
             }>
                 <div className="w-full">
                     <ul>
