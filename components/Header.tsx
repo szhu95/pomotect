@@ -52,7 +52,7 @@ const Header = () => {
                 :
                 'md:hidden absolute top-[160px] z-50 right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] text-center'
             }>
-                <div className="w-full">
+                <div className="w-full border-b border-black">
                     <ul>
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
                             <Link href="/about" scroll={false} className=" hover:bg-primary-blue px-2">About</Link>
