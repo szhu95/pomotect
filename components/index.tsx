@@ -7,6 +7,7 @@ import ProductCta from './ProductCta';
 import LoadButton from './LoadButton';
 import Cart from './Cart';
 import Soundcloud from './Soundcloud';
+import Footer from './Footer';
 
 export {
     Hero,
@@ -17,5 +18,6 @@ export {
     ProductCta,
     LoadButton,
     Cart,
-    Soundcloud
+    Soundcloud,
+    Footer
 }
