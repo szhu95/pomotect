@@ -39,7 +39,7 @@ const Header = () => {
                 <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">{cartFilled ? "Cart (!)" : "Cart"}</Link>
             </div>
             <div className="header-link flex md:hidden cursor-pointer">
-                <div onClick={handleSmallerScreensNavigation}>
+                <div className="hover:bg-primary-blue hover:text-white" onClick={handleSmallerScreensNavigation}>
                     {menuIcon ? "X" : "Menu"}
                 </div>
                 <div className="checkout_btn" onClick={() => setIcon(false)} >
@@ -55,19 +55,19 @@ const Header = () => {
                 <div className="w-full border-b border-black">
                     <ul>
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/about" scroll={false} className=" hover:bg-primary-blue px-2">About</Link>
+                            <Link href="/about" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">About</Link>
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/objects" scroll={false} className=" hover:bg-primary-blue px-2">Objects</Link>
+                            <Link href="/objects" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">Objects</Link>
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/words" scroll={false} className=" hover:bg-primary-blue px-2">Words</Link>
+                            <Link href="/words" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">Words</Link>
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/sounds" scroll={false} className=" hover:bg-primary-blue px-2">Sounds</Link>
+                            <Link href="/sounds" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">Sounds</Link>
                         </li>
                     </ul>
                 </div>
