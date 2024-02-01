@@ -7,7 +7,7 @@ const Terms = () => {
         <div>
             <div className="site-section">
                 <div className="about-section">
-                    <h3 className="main_header">Terms & Conditions</h3>
+                    <iframe className="border-2 border-primary-blue border-dashed w-full h-screen" src="terms.html"></iframe>
                 </div>
             </div>
             <ScrollToTopButton />
