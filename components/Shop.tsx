@@ -9,7 +9,7 @@ export default function Shop({ response }: any) {
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xl:gap-x-8">
           {response.products.edges.map((item: any) => {
             let product = item.node;
             let image = product.images.edges[0].node;
@@ -18,7 +18,7 @@ export default function Shop({ response }: any) {
                 scroll={false}
                 key={product.handle}
                 href={`objects/${product.handle}`}
-                className="product-tile vhover:opacity-50 p-1"
+                className="product-tile hover:opacity-50 p-1"
               >
                 <div className="w-full">
                   <Image
