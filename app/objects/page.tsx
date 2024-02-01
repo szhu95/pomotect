@@ -1,4 +1,5 @@
 import { Shop } from '@/components'
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { formatDate, storefront } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
@@ -60,6 +61,7 @@ const Objects = async () => {
             <div>
                 <Shop response={response}/>
             </div>
+            <ScrollToTopButton />
         </div>
     )
 }
