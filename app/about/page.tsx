@@ -12,7 +12,7 @@ const About = () => {
             <div className="site-section">
                 <div className="about-section">
                     <h3 className="main_header">About</h3>
-                    <p><i>Most recently updated on {lastUpdatedDate}</i></p>
+                    <p><i>Most recently updated on February 01, 2024</i></p>
                 </div>
                 <div className="about-section">
                     <h3 className="about_header minion-font">Postmodern Tectonics </h3>

@@ -14,7 +14,7 @@ const Events = () => {
         <div>
             <div className="site-section">
                 <h3 className="main_header">Sounds</h3>
-                <p><i>Most recently updated on {lastUpdatedDate}</i></p>
+                <p><i>Most recently updated on February 01, 2024</i></p>
             </div>
             <div className="site-section">
                 <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white minion-font">Mixes</Link>
