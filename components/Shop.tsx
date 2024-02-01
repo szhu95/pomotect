@@ -20,7 +20,7 @@ export default function Shop({ response }: any) {
                 href={`objects/${product.handle}`}
                 className="product-tile vhover:opacity-50 p-1"
               >
-                <div className="aspect-h-3 aspect-w-4 w-full">
+                <div className="w-full">
                   <Image
                     src={image.transformedSrc}
                     alt={"product-image"}
@@ -31,7 +31,6 @@ export default function Shop({ response }: any) {
                 </div>
                 
                 <h3 className="mt-4 text-sm text-gray-700 text-right">{product.title}</h3>
-                <p className="text-sm text-gray-700">{product?.tags[0]}</p>
                 <p className="mt-1 text-sm text-gray-900 text-right">
                   {formatPrice(product.priceRange.minVariantPrice.amount)}
                 </p>

@@ -49,9 +49,9 @@ const Header = () => {
 
             {/* Smaller Screen Navigation */}
             <div className={menuIcon ?
-                'md:hidden top-[160px] z-50 right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%] text-center'
+                'md:hidden top-[160px] z-50 right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%]'
                 :
-                'md:hidden absolute top-[160px] z-50 right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] text-center'
+                'md:hidden absolute top-[160px] z-50 right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%]'
             }>
                 <div className="w-full border-b border-black">
                     <ul>
