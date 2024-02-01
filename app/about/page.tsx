@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Header } from '@/components'
 import { formatDate } from '@/utils';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 

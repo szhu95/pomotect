@@ -7,7 +7,12 @@ const Footer = () => {
     return (
         <div className="flex border-t border-black">
             <div className="site-section italic text-gray-700 py-1">
-                Terms & Conditions Privacy Policy
+                <Link href="/terms" className="mr-2 md:mr-10">
+                    Terms & Conditions
+                </Link>
+                <Link href="/privacy">
+                Privacy Policy
+                </Link>
             </div>
             <div className="site-section italic text-gray-700 checkout_btn">
                 <Link href="https://www.instagram.com/pomotect/">
