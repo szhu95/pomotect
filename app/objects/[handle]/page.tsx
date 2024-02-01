@@ -97,7 +97,7 @@ export default async function Product({
                 width="50"
                 height="50"
               />
-              <b>{formatPrice(product.priceRange.minVariantPrice.amount)}</b>
+              <div className='font-bold minion-font ml-2 mt-4'>{formatPrice(product.priceRange.minVariantPrice.amount)}</div>
             </div>
           </div>
           <div className="site-section w-full product-cta">
