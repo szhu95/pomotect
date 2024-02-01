@@ -40,21 +40,24 @@ const Words = async () => {
         let postUtcTimeString = post.created_at;
         let postDate = new Date(postUtcTimeString)
         let formattedPostDate = formatUpdatedDate(postDate);
+
+        let parsedPost = parse(post.html);
+
         return (
           <div key={post.id} className="mt-5">
             <div className='site-section words-header'>
-              <div className="entry-number bg-black text-white">{post.title? post.title : 'Title'}</div>
-              <p><i>On {formattedPostDate}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</i></p>
+              <div className="entry-number bg-black text-white font-['Minion']">{post.title? post.title : 'Title'}</div>
+              <div className="font-['Minion'] italic">On {formattedPostDate}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</div>
             </div>
             <div className="site-section ml-2 words-body max-h-96 overflow-y-auto">
-              <div className="pr-2 py-1">{parse(post.html)}</div>
+              <div className="pr-2 py-1 font-['Minion']">{parsedPost}</div>
               <div className="pr-2 py-4">
                 {post.feature_image && <Image
                   src={post.feature_image}
                   alt={"words-image"}
                   width={500}
                   height={500}
-                  className="h-full w-full object-cover object-center group-hover:opacity-75"
+                  className="h-full w-full object-cover object-center"
                 />}
               </div>
             </div>

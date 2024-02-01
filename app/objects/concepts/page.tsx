@@ -18,7 +18,7 @@ const Concepts = () => {
                 <Link href="/objects/concepts" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">{`Stuff we don't know how to make yet`}</Link>
             </div>
 
-            <div className="site-section"><i>Still Thinking . . .</i></div>
+            <div className="site-section italic font-['Minion']">Still Thinking . . .</div>
         </div>
     )
 }

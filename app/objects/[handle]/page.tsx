@@ -83,10 +83,10 @@ export default async function Product({
       <div className="inline-flex">
         <div className="product-details">
           <div className="site-section product-info">
-            <div className="main_header mt-5 w-full">{product.title}</div>
-            <p className="text-sm mb-5">
-              <i>Most recently updated on {lastUpdatedDate}</i>
-            </p>
+            <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
+            <div className="text-sm mb-5 italic font-['Minion']">
+              Most recently updated on {lastUpdatedDate}
+            </div>
             <div className="inline-grid gap-2 grid-cols-2">
               <Image
                 src={BlueHandLogo}
@@ -104,7 +104,7 @@ export default async function Product({
             <h1 className="mb-2">
               <b>Description</b>
             </h1>
-            <div dangerouslySetInnerHTML={createMarkup(product.descriptionHtml)} />
+            <div className="font-['Minion']" dangerouslySetInnerHTML={createMarkup(product.descriptionHtml)} />
           </div>
         </div>
         <div className="product-image sm:w-full">

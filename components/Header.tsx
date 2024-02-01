@@ -36,14 +36,14 @@ const Header = () => {
                 <Link href="/objects" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Objects</Link>
                 <Link href="/words" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Words</Link>
                 <Link href="/sounds" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Sounds</Link>
-                <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">Cart</Link>
+                <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">[ Cart ]</Link>
             </div>
             <div className="header-link flex md:hidden cursor-pointer">
                 <div className="hover:bg-primary-blue hover:text-white" onClick={handleSmallerScreensNavigation}>
                     {menuIcon ? "X" : "Menu"}
                 </div>
                 <div className="checkout_btn" onClick={() => setIcon(false)} >
-                    <Link href="/cart" scroll={false} id="checkout-btn" className="px-2 mr-2 hover:bg-terracotta hover:text-white">Cart</Link>
+                    <Link href="/cart" scroll={false} id="checkout-btn" className="px-2 mr-2 hover:bg-terracotta hover:text-white">[ Cart ]</Link>
                 </div>
             </div>
 

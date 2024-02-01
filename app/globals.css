@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Minion';
+  src: local('Minion'), url(../fonts/minion.otf) format('otf');
+}
+
 * {
   margin: 0;
   padding: 0;
