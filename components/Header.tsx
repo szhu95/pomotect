@@ -48,25 +48,25 @@ const Header = () => {
             </div>
 
             <div className={menuIcon ?
-                'md:hidden absolute top-[160px] right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%] bg-primary-blue text-center text-white ease-in duration-300'
+                'md:hidden top-[160px] z-50 right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%] text-center'
                 :
-                'md:hidden absolute top-[160px] right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] bg-primary-blue text-white text-center ease-in duration-300'
+                'md:hidden absolute top-[160px] z-50 right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%] text-center'
             }>
                 <div className="w-full">
                     <ul>
-                        <li onClick={handleSmallerScreensNavigation} className="py-5 cursor-pointer text-white font-semibold">
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
                             <Link href="/about" scroll={false} className=" hover:bg-primary-blue px-2">About</Link>
                         </li>
 
-                        <li onClick={handleSmallerScreensNavigation} className="py-5 cursor-pointer text-white font-semibold">
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
                             <Link href="/objects" scroll={false} className=" hover:bg-primary-blue px-2">Objects</Link>
                         </li>
 
-                        <li onClick={handleSmallerScreensNavigation} className="py-5 cursor-pointer text-white font-semibold">
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
                             <Link href="/words" scroll={false} className=" hover:bg-primary-blue px-2">Words</Link>
                         </li>
 
-                        <li onClick={handleSmallerScreensNavigation} className="py-5 cursor-pointer text-white font-semibold">
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
                             <Link href="/sounds" scroll={false} className=" hover:bg-primary-blue px-2">Sounds</Link>
                         </li>
                     </ul>
