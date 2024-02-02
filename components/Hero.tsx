@@ -15,24 +15,24 @@ const Hero = () => {
                 <div className="absolute right-[0px] top-[25%]">
                 <CustomButton
                     title="Explore Objects"
-                    containerStyles="bg-primary-blue hover:bg-yellow italic"
-                    textColor="text-white hover:text-black" 
+                    containerStyles="group bg-primary-blue hover:bg-yellow italic"
+                    textColor="text-white group-hover:text-black" 
                     handleClick={() => router.push('/objects')}
                 />
                 </div>
                 <div className="absolute left-[15%] top-[37%]">
                 <CustomButton
                     title="Explore Words"
-                    containerStyles="bg-primary-blue text-white hover:bg-yellow italic"
-                    textColor="text-white hover:text-black" 
+                    containerStyles="group bg-primary-blue text-white hover:bg-yellow italic"
+                    textColor="text-white group-hover:text-black" 
                     handleClick={() => router.push('/words')}
                 />
                 </div>
                 <div className="absolute left-[30%] md:left-[50%] top-[55%]">
                 <CustomButton
                     title="Explore Sounds"
-                    containerStyles="bg-primary-blue text-white hover:bg-yellow italic"
-                    textColor="text-white hover:text-black" 
+                    containerStyles="group bg-primary-blue text-white hover:bg-yellow italic"
+                    textColor="text-white group-hover:text-black" 
                     handleClick={() => router.push('/sounds')}
                 />
                 </div>
