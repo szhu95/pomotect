@@ -92,7 +92,7 @@
   display: table;
   font-weight: bold;
   font-style: italic;
-  padding-right: 7.5%;
+  padding-right: 60px;
   padding-left: 1px;
 }
 
@@ -240,7 +240,7 @@ body {
   color: black;
   background: white;
   @apply pl-[5%] md:pl-[10%];
-  @apply max-w-[90%] md:max-w-[70%];
+  @apply max-w-[90%] md:max-w-[80%];
 }
 
 .soundcloud-section {

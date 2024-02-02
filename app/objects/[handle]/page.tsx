@@ -26,6 +26,7 @@ const singleProductQuery = gql`
       descriptionHtml
       updatedAt
       tags
+      totalInventory
       priceRange {
         minVariantPrice {
           amount
@@ -70,9 +71,7 @@ export default async function Product({
 
   let markup = parse(product.descriptionHtml);
   
-  console.log("HTML IS ****" + product.descriptionHtml)
-
-  console.log("MARKUP IS ***" + JSON.stringify(markup))
+  console.log("PRODUCT IS ****" + JSON.stringify(product));
 
   return (
     <div>
