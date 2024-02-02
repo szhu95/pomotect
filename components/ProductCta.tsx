@@ -3,6 +3,7 @@ import { storefront } from "@/utils";
 import React, { useState } from "react";
 import CustomDropdown from "@/components/CustomDropdown";
 import { CustomButton, LoadButton } from "@/components";
+import Link from "next/link";
 
 async function addToCart(variant_id: string) {
   const gql = String.raw;
@@ -117,11 +118,13 @@ const ProductCta = ({ variantName, options, variants }: any) => {
 
   const [size, setSize] = useState(options[0]);
   const [isLoading, setIsLoading] = useState(false);
+  const [itemAdded, setItemAdded] = useState(false);
 
   let variantArr = variants.edges;
 
   async function mapVariants(variantArr: any, searchKey: string) {
     setIsLoading(true);
+    setItemAdded(false);
     if (variantArr) {
       console.log("variant Arr is " + JSON.stringify(variantArr));
       console.log("searchKey is " + searchKey)
@@ -138,12 +141,22 @@ const ProductCta = ({ variantName, options, variants }: any) => {
     //update cart count
 
     setIsLoading(false);
+    setItemAdded(true);
   }
 
   return (
     <div>
       <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
       {isLoading == false ? <CustomButton containerStyles="w-full bg-primary-blue text-white font-medium mt-5 minion-font" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
+      {itemAdded ?
+        <Link href='/cart'>
+          <div className="mt-4 text-center animate-pulse border border-primary-blue border-dashed text-primary-blue transition-opacity ease-in-out duration-700 opacity-100">
+            OBJECT ADDED TO CART ⇢
+          </div>
+        </Link>
+        :
+        <div />
+      }
     </div>
   )
 }

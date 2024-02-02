@@ -55,18 +55,11 @@ const singleProductQuery = gql`
   }
 `;
 
-function createMarkup(
-  description: string
-): { __html: string | TrustedHTML } | undefined {
-  return { __html: description };
-}
-
 export default async function Product({
   params,
 }: {
   params: { handle: string };
 }) {
-
 
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
@@ -76,7 +69,7 @@ export default async function Product({
   let image = product.images.edges[0].node;
 
   let markup = parse(product.descriptionHtml);
-  
+
   return (
     <div>
       <div className="site-section">
