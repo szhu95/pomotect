@@ -138,7 +138,6 @@ export default function Cart() {
       setIsLoading(true);
       checkout = localStorage.getItem("checkoutId");
       setCart(checkout ? checkout : '');
-      console.log("cart is " + checkout);
       retrieveCart();
     }
   }, []);
