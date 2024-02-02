@@ -50,7 +50,7 @@ const Words = async () => {
               <div className="font-['Minion'] italic">On {formattedPostDate}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</div>
             </div>
             <div className="site-section ml-2 words-body max-h-96 overflow-y-auto">
-              <div className="pr-2 py-1 font-['Minion']">{parsedPost}</div>
+              <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
               <div className="pr-2 py-4">
                 {post.feature_image && <Image
                   src={post.feature_image}
