@@ -77,8 +77,7 @@ export default async function Product({
         <Link href="/objects" scroll={false} className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
       </div>
       <div className="block md:flex-row-reverse md:inline-flex md:align-top">
-        <div className="product-image md:w-full ml-8 md:mt-16">
-          <p className="float-right text-3xl font-light text-gray-300 font-['Minion']">[{params.handle}]</p>
+        <div className="product-image md:w-full ml-8 md:mt-4">
           <Image
             src={image.transformedSrc}
             alt={"product image"}
