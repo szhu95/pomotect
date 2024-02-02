@@ -1,7 +1,8 @@
 import React from 'react'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import Image from "next/image";
-import BusinessCard from "../../assets/images/business-card.png"
+import BusinessCard from "../../assets/images/business-card.png";
+import BusinessCardBack from "../../assets/images/business-card-back.png"
 
 const Contact = () => {
 
@@ -14,6 +15,14 @@ const Contact = () => {
                         height={1000}
                         src={BusinessCard}
                         alt="business card"
+                    />
+
+                    <Image
+                        width={700}
+                        height={1000}
+                        className='mt-[15%]'
+                        src={BusinessCardBack}
+                        alt="business card back"
                     />
                 </div>
             </div>
