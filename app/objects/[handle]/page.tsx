@@ -106,11 +106,11 @@ export default async function Product({
           <div className="site-section w-full product-cta">
             <ProductCta variantName={product.options[0].name} options={product.options[0].values} variants={product.variants} />
           </div>
-          <div className="site-section">
+          <div className="site-section minion-font">
             <div className="mb-2 font-bold minion-font">
               Description
             </div>
-            <div className="minion-font">{markup}</div>
+            <div className="minion-font text-justify">{markup}</div>
           </div>
         </div>
       </div>

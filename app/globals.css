@@ -235,8 +235,8 @@
 body {
   color: black;
   background: white;
-  padding-left: 10%;
-  max-width: 70%;
+  @apply pl-[5%] md:pl-[10%];
+  @apply max-w-[90%] md:max-w-[70%];
 }
 
 .soundcloud-section {
