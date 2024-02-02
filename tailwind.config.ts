@@ -23,7 +23,8 @@ module.exports = {
           100: "rgba(59,60,152,0.02)",
         },
         "grey": "#747A88",
-        "terracotta": "#B84221"
+        "terracotta": "#B84221",
+        "yellow": "#FFFF00"
       },
       backgroundImage: {
         'pattern': "url('/pattern.png')",

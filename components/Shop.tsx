@@ -8,7 +8,7 @@ export default function Shop({ response }: any) {
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
-        <div className="grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <div className="grid grid-cols-1 col-auto gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
           {response.products.edges.map((item: any) => {
             let product = item.node;
             let image = product.images.edges[0].node;

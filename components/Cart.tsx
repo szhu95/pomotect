@@ -159,8 +159,7 @@ export default function Cart() {
               <div key={i} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
                 <div>
                   <Image
-                    className="border-2 border-dashed border-terracotta py-2 max-h-30"
-                    fetchPriority='high'
+                    className="border-2 border-dashed border-terracotta py-2 max-h-28"
                     src={item.node.variant?.image.url}
                     width={100}
                     height={250}
