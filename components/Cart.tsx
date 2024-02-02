@@ -161,6 +161,7 @@ export default function Cart() {
                 <div>
                   <Image
                     className="border-2 border-dashed border-terracotta py-2 max-h-30"
+                    fetchPriority='high'
                     src={item.node.variant?.image.url}
                     width={100}
                     height={250}
