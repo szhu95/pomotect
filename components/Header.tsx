@@ -27,9 +27,9 @@ const Header = () => {
                         src={homeLogo}
                         priority
                         width={400}
-                        height={500}
+                        height={600}
                         alt="home page link"
-                        className="w-auto md:w-3/5 h-auto"
+                        className="w-auto h-auto"
                     />
                 </Link>
             </div>
