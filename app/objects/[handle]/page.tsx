@@ -76,7 +76,17 @@ export default async function Product({
         <h3 className="product-details-header">Objects</h3>
         <Link href="/objects" scroll={false} className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
       </div>
-      <div className="inline-flex">
+      <div className="block md:flex-row-reverse md:inline-flex md:align-top">
+        <div className="product-image md:w-full ml-8">
+          <p className="float-right text-3xl font-light text-gray-300 font-['Minion']">[{params.handle}]</p>
+          <Image
+            src={image.transformedSrc}
+            alt={"product image"}
+            width="600"
+            height="800"
+            className="float-right mt-12"
+          />
+        </div>
         <div className="product-details">
           <div className="site-section product-info">
             <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
@@ -102,16 +112,6 @@ export default async function Product({
             </div>
             <div className="minion-font">{markup}</div>
           </div>
-        </div>
-        <div className="product-image sm:w-full">
-          <p className="float-right text-3xl font-light text-gray-300 font-['Minion']">[{params.handle}]</p>
-          <Image
-            src={image.transformedSrc}
-            alt={"product image"}
-            width="600"
-            height="800"
-            className="float-right mt-12"
-          />
         </div>
       </div>
       <ScrollToTopButton />

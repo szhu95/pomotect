@@ -67,7 +67,7 @@
 }
 
 .product-details {
-  max-width: 35%;
+  @apply max-w-full md:max-w-[35%];
 }
 
 /* END: General styles */
@@ -135,8 +135,6 @@
 }
 
 .product-image {
-  margin-top: 100px;
-  margin-left: 20px;
 }
 
 .product-info {

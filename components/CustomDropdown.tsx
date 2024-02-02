@@ -22,7 +22,7 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                                 <span className="flex items-center justify-center">
                                     <span className="block truncate text-center minion-font">{String(selected).toUpperCase()}</span>
                                 </span>
-                                <span className="opacity-0 md:opacity-100 pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronDownIcon
                                         className="h-5 w-5 text-gray-400"
                                         aria-hidden="true"
