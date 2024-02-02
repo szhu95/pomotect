@@ -16,8 +16,8 @@ const Sounds = () => {
                 <p><i>Most recently updated on February 01, 2024</i></p>
             </div>
             <div className="site-section">
-                <Link href="/sounds" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white minion-font">Mixes</Link>
-                <Link href="/sounds/events" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white minion-font">Events</Link>
+                <Link href="/sounds" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Mixes</Link>
+                <Link href="/sounds/events" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Events</Link>
             </div>
             
             <Soundcloud title_href="https://soundcloud.com/pomotect" title="pomotect" label="SPACE SOUNDS [1 of ?]" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1692501831&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />

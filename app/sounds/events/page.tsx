@@ -17,8 +17,8 @@ const Events = () => {
                 <p><i>Most recently updated on February 01, 2024</i></p>
             </div>
             <div className="site-section">
-                <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white minion-font">Mixes</Link>
-                <Link href="/sounds/events" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white minion-font">Events</Link>
+                <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Mixes</Link>
+                <Link href="/sounds/events" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Events</Link>
             </div>
             <div className="flex px-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">

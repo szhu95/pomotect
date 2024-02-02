@@ -1,4 +1,3 @@
-import { CustomButton } from '@/components';
 import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
@@ -14,8 +13,8 @@ const Concepts = () => {
                 <p><i>Most recently updated on {lastUpdatedDate}</i></p>
             </div>
             <div className="site-section">
-                <Link href="/objects" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white minion-font">For Sale</Link>
-                <Link href="/objects/concepts" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white minion-font">{`Stuff we don't know how to make yet`}</Link>
+                <Link href="/objects" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">For Sale</Link>
+                <Link href="/objects/concepts" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">{`Stuff we don't know how to make yet`}</Link>
             </div>
 
             <div className="site-section italic font-['Minion']">Still Thinking . . .</div>

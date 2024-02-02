@@ -3,7 +3,7 @@
 import { CustomButtonProps } from '@/types';
 import Image from 'next/image';
 
-const CustomButton = ( { title, containerStyles, handleFocus, handleClick }: CustomButtonProps) => {
+const CustomButton = ( { title, containerStyles, textColor, handleFocus, handleClick }: CustomButtonProps) => {
 
     return (
         <button
@@ -13,9 +13,9 @@ const CustomButton = ( { title, containerStyles, handleFocus, handleClick }: Cus
             onFocus={handleFocus}
             onClick={(e) => handleClick(e)}
         >
-            <span className={`flex-1 text-white font-['Minion']`}>
+            <div className={`flex-1 ${textColor}`}>
                 {title}
-            </span>
+            </div>
         </button>
     )
 }

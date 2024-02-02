@@ -126,8 +126,6 @@ const ProductCta = ({ variantName, options, variants }: any) => {
     setIsLoading(true);
     setItemAdded(false);
     if (variantArr) {
-      console.log("variant Arr is " + JSON.stringify(variantArr));
-      console.log("searchKey is " + searchKey)
     }
     let variantId = "";
     variantArr.filter((obj: any) => {
@@ -135,7 +133,6 @@ const ProductCta = ({ variantName, options, variants }: any) => {
         variantId = obj.node.id;
       }
     });
-    console.log("return value is " + variantId);
     await addToCart(variantId);
 
     //update cart count
@@ -147,7 +144,7 @@ const ProductCta = ({ variantName, options, variants }: any) => {
   return (
     <div>
       <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
-      {isLoading == false ? <CustomButton containerStyles="w-full bg-primary-blue text-white font-medium mt-5 minion-font" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
+      {isLoading == false ? <CustomButton containerStyles="w-full hover:bg-primary-blue border border-primary-blue text-black font-medium mt-5 minion-font" textColor="hover:text-white" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
       {itemAdded ?
         <Link href='/cart'>
           <div className="mt-4 text-center animate-pulse border border-primary-blue border-dashed text-primary-blue transition-opacity ease-in-out duration-700 opacity-100">

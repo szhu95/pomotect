@@ -172,7 +172,7 @@ export default function Cart() {
                 <div className="font-['Minion']">
                   {item.node.title} <br></br>
                   <div className="font-['Minion'] italic">{item.node.variant?.title}</div> <br></br>
-                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-7" handleClick={() => removeItemFromCart(item.node.id)} />
+                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-7" textColor="text-white minion-font" handleClick={() => removeItemFromCart(item.node.id)} />
                 </div>
               </div>
             )

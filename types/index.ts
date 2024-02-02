@@ -3,6 +3,7 @@ import { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react"
 export interface CustomButtonProps {
     title: string;
     containerStyles?: string;
+    textColor?: string;
     handleFocus?:
     FocusEventHandler<HTMLButtonElement>;
     handleClick: 
