@@ -16,7 +16,7 @@ const getProducts = async () => {
   
   const productsQuery = gql`
     query Products {
-      products(first: 6) {
+      products(first: 10) {
         edges {
           node {
             title
@@ -27,7 +27,7 @@ const getProducts = async () => {
                 amount
               }
             }
-            images(first: 2) {
+            images(first: 10) {
               edges {
                 node {
                   transformedSrc

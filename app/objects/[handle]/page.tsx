@@ -69,6 +69,10 @@ export default async function Product({
   let image = product.images.edges[0].node;
 
   let markup = parse(product.descriptionHtml);
+  
+  console.log("HTML IS ****" + product.descriptionHtml)
+
+  console.log("MARKUP IS ***" + JSON.stringify(markup))
 
   return (
     <div>
