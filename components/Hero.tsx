@@ -20,7 +20,7 @@ const Hero = () => {
                     handleClick={() => router.push('/objects')}
                 />
                 </div>
-                <div className="absolute left-[15%] top-[37%]">
+                <div className="absolute left-[15%] top-[52%] md:top-[37%]">
                 <CustomButton
                     title="Explore Words"
                     containerStyles="group bg-primary-blue text-white hover:bg-yellow italic"
@@ -28,7 +28,7 @@ const Hero = () => {
                     handleClick={() => router.push('/words')}
                 />
                 </div>
-                <div className="absolute left-[30%] md:left-[50%] top-[55%]">
+                <div className="absolute left-[40%] md:left-[50%] top-[80%] md:top-[55%]">
                 <CustomButton
                     title="Explore Sounds"
                     containerStyles="group bg-primary-blue text-white hover:bg-yellow italic"
