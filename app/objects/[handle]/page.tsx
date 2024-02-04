@@ -83,13 +83,13 @@ export default async function Product({
           {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
-              <div key={i} className="product-image md:w-full ml-8 md:mt-2">
+              <div key={i} className="product-image w-auto ml-8 md:mt-2">
                 <Image
                   src={item.node?.transformedSrc}
                   alt={"product image"}
                   width="600"
                   height="800"
-                  className="float-right"
+                  className="float-right mt-3 mb-7"
                 />
               </div>
             )
