@@ -35,7 +35,7 @@ export default function Shop({ response }: any) {
                 </div>
               </Link>
             );
-          })}
+          }).reverse()}
         </div>
       </div>
     </div>
