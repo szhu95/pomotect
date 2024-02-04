@@ -150,7 +150,6 @@ export default function Cart() {
         <div className="text-white font-['Minion']">Price</div>
         <div className="text-white font-['Minion']">Product</div>
       </div>
-
       {
         !cart || total === "0.0" ? <div className="py-6 text-center font-['Minion']">YOUR CART IS EMPTY</div> :
           (!isLoading && data ? data.node?.lineItems.edges.map((item: any, i: React.Key | null | undefined) => {

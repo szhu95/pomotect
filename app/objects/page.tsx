@@ -22,6 +22,7 @@ const getProducts = async () => {
             title
             handle
             tags
+            totalInventory
             priceRange {
               minVariantPrice {
                 amount

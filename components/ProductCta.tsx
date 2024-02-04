@@ -114,7 +114,7 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
 }
 
 
-const ProductCta = ({ variantName, options, variants }: any) => {
+const ProductCta = ({ variantName, options, quantity, variants }: any) => {
 
   const [size, setSize] = useState(options[0]);
   const [isLoading, setIsLoading] = useState(false);
@@ -144,7 +144,8 @@ const ProductCta = ({ variantName, options, variants }: any) => {
   return (
     <div>
       <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
-      {isLoading == false ? <CustomButton containerStyles="w-full group hover:bg-primary-blue border border-2 border-primary-blue text-black font-medium mt-5 minion-font" textColor="group-hover:text-white minion-font" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
+      
+        { isLoading == false ? quantity == "0" ? <div className="mt-2 text-center">SOLD OUT</div> : <CustomButton containerStyles="w-full group hover:bg-primary-blue border border-2 border-primary-blue text-black font-medium mt-5 minion-font" textColor="group-hover:text-white minion-font" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
       {itemAdded ?
         <Link href='/cart'>
           <div className="mt-4 text-center minion-font animate-pulse border border-primary-blue border-dashed text-primary-blue transition-opacity ease-in-out duration-700 opacity-100">
