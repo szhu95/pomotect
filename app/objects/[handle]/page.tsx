@@ -6,6 +6,7 @@ import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import parse from 'html-react-parser';
+import Carousel from "@/components/Carousel";
 
 const gql = String.raw;
 
@@ -67,10 +68,8 @@ export default async function Product({
 
   let product = response?.product;
 
-  let image = product.images.edges[0].node;
-
   let markup = parse(product.descriptionHtml);
-  
+
   console.log("PRODUCT IS ****" + JSON.stringify(product));
 
   return (
@@ -79,16 +78,29 @@ export default async function Product({
         <h3 className="product-details-header">Objects</h3>
         <Link href="/objects" scroll={false} className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
       </div>
-      <div className="block md:flex-row-reverse md:inline-flex md:align-top">
-        <div className="product-image md:w-full ml-8 md:mt-4">
-          <Image
-            src={image.transformedSrc}
-            alt={"product image"}
-            width="600"
-            height="800"
-            className="float-right mt-12"
-          />
+      <div className="md:flex-row-reverse md:inline-flex md:align-top">
+        <div className="hidden md:block">
+          {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
+
+            return (
+              <div key={i} className="product-image md:w-full ml-8 md:mt-2">
+                <Image
+                  src={item.node?.transformedSrc}
+                  alt={"product image"}
+                  width="600"
+                  height="800"
+                  className="float-right"
+                />
+              </div>
+            )
+          })
+          }
         </div>
+
+        <div className="block md:hidden">
+          <Carousel images={product.images} />
+        </div>
+
         <div className="product-details">
           <div className="site-section product-info">
             <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
