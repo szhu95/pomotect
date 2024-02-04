@@ -16,7 +16,7 @@ const Hero = () => {
                 <CustomButton
                     title="EXPLORE OBJECTS"
                     containerStyles="bg-black hover:bg-primary-blue italic"
-                    textColor="text-white" 
+                    textColor="text-white font-semibold" 
                     handleClick={() => router.push('/objects')}
                 />
                 </div>
@@ -24,7 +24,7 @@ const Hero = () => {
                 <CustomButton
                     title="EXPLORE WORDS"
                     containerStyles="bg-black hover:bg-primary-blue italic"
-                    textColor="text-white"
+                    textColor="text-white font-semibold"
                     handleClick={() => router.push('/words')}
                 />
                 </div>
@@ -32,7 +32,7 @@ const Hero = () => {
                 <CustomButton
                     title="EXPLORE SOUNDS"
                     containerStyles="bg-black hover:bg-primary-blue italic"
-                    textColor="text-white" 
+                    textColor="text-white font-semibold" 
                     handleClick={() => router.push('/sounds')}
                 />
                 </div>

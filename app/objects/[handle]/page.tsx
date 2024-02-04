@@ -89,7 +89,7 @@ export default async function Product({
                   alt={"product image"}
                   width="600"
                   height="800"
-                  className="float-right mt-3 mb-7"
+                  className="float-right mt-3 mb-7 w-auto h-auto"
                 />
               </div>
             )
