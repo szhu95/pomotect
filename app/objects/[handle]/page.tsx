@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import parse from 'html-react-parser';
+import parse, { Element } from 'html-react-parser';
 import Carousel from "@/components/Carousel";
 
 const gql = String.raw;
@@ -68,9 +68,9 @@ export default async function Product({
 
   let product = response?.product;
 
-  let markup = parse(product.descriptionHtml);
+  let updatedHtml = product.descriptionHtml.replaceAll('<p', '<p className="minion-font"')
 
-  console.log("PRODUCT IS ****" + JSON.stringify(product));
+  let markup = parse(updatedHtml);
 
   return (
     <div>
@@ -124,7 +124,9 @@ export default async function Product({
             <div className="mb-2 font-bold minion-font">
               Description
             </div>
-            <div className="minion-font text-justify">{markup}</div>
+            <div className="minion-font text-justify">
+              {markup}
+            </div>
           </div>
         </div>
       </div>

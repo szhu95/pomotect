@@ -88,8 +88,8 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
       console.log("cart was created! response is " + JSON.stringify(data));
     }
     localStorage.setItem("checkoutId", data.checkoutCreate.checkout.id);
-    let checkoutBtn = document.getElementById("checkout-btn");
-    console.log("checkout button is " + checkoutBtn);
+    //let checkoutBtn = document.getElementById("checkout-btn");
+    //console.log("checkout button is " + checkoutBtn);
   }
 
 

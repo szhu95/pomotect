@@ -41,7 +41,12 @@ const Words = async () => {
         let postDate = new Date(postUtcTimeString)
         let formattedPostDate = formatUpdatedDate(postDate);
 
-        let parsedPost = parse(post.html);
+        let finalHtml = post.html.replaceAll('<p', '<p className="minion-font"')
+        .replaceAll('<li', '<li className="minion-font"')
+        .replaceAll('<strong', '<strong className="minion-font"')
+        .replaceAll('<em', '<em className="minion-font"');
+
+        let parsedPost = parse(finalHtml);
 
         return (
           <div key={post.id} className="mt-5">
