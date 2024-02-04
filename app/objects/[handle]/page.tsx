@@ -50,6 +50,7 @@ const singleProductQuery = gql`
           node {
             title
             id
+            quantityAvailable
           }
         }
       }

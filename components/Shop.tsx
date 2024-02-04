@@ -4,8 +4,6 @@ import Image from "next/image";
 
 export default function Shop({ response }: any) {
 
-  console.log("RESPONSE IS *+*+*+*" + JSON.stringify(response))
-
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
