@@ -79,7 +79,7 @@ export default async function Product({
         <Link href="/objects" scroll={false} className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
       </div>
       <div className="md:flex-row-reverse md:inline-flex md:align-top">
-        <div className="hidden md:block ml-10">
+        <div className="hidden md:block">
           {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
