@@ -142,11 +142,29 @@ const ProductCta = ({ variantName, options, quantity, variants }: any) => {
     setItemAdded(true);
   }
 
+
+
+  function checkStock(_size: string): boolean {
+    let result = variantArr.find(({ node }: any) => node.title === size)
+
+    if (result?.node.quantityAvailable == "0") {
+      return true;
+    }
+    return false;
+  }
+
   return (
     <div>
       <CustomDropdown selected={size} title={variantName} options={options} handleChange={setSize} />
 
-      {isLoading == false ? quantity == "0" ? <div className="mt-5 minion-font italic border-dashed border border-slate-400 text-center">SOLD OUT</div> : <CustomButton containerStyles="w-full group hover:bg-primary-blue border border-2 border-primary-blue font-medium mt-5 minion-font" textColor="group-hover:text-white minion-font text-primary-blue" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} /> : <LoadButton />}
+      {isLoading == false ? quantity == "0" || checkStock(size) ?
+        <div className="mt-5 minion-font italic border-dashed border border-slate-400 text-center">
+          SOLD OUT
+        </div>
+        :
+        <CustomButton containerStyles="w-full group hover:bg-primary-blue border border-2 border-primary-blue font-medium mt-5 minion-font" textColor="group-hover:text-white minion-font text-primary-blue" title={"ADD TO CART"} handleClick={() => mapVariants(variantArr, size)} />
+        :
+        <LoadButton />}
       {itemAdded ?
         <Link href='/cart'>
           <div className="mt-4 text-center minion-font animate-pulse border border-primary-blue border-dashed text-primary-blue transition-opacity ease-in-out duration-700 opacity-100">
