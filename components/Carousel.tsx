@@ -38,7 +38,7 @@ const Carousel = (response: any) => {
                     <button className="embla__prev text-primary-blue" onClick={scrollPrev}>
                         ⇠
                     </button>
-                    <button className="ml-[90%] embla__next text-primary-blue" onClick={scrollNext}>
+                    <button className="ml-[89%] embla__next text-primary-blue" onClick={scrollNext}>
                         ⇢
                     </button>
                 </div>
