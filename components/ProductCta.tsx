@@ -83,9 +83,9 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
       }
     })
 
-    if (data) {
-      console.log("cart was created! response is " + JSON.stringify(data));
-    }
+    // if (data) {
+    //   console.log("cart was created! response is " + JSON.stringify(data));
+    // }
     localStorage.setItem("checkoutId", data.checkoutCreate.checkout.id);
     //let checkoutBtn = document.getElementById("checkout-btn");
     //console.log("checkout button is " + checkoutBtn);
@@ -104,9 +104,9 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
       "quantity": 1
     }
   })
-    .then(response => {
-      console.log("cart was updated! response is " + JSON.stringify(response));
-    })
+    // .then(response => {
+    //   console.log("cart was updated! response is " + JSON.stringify(response));
+    // })
     .catch((error) => {
       console.error('Error:', error);
     });
@@ -121,7 +121,7 @@ const ProductCta = ({ variantName, options, quantity, variants }: any) => {
 
   let variantArr = variants.edges;
 
-  console.log("VARIANT ARR **********" + JSON.stringify(variantArr))
+  // console.log("VARIANT ARR **********" + JSON.stringify(variantArr))
 
   async function mapVariants(variantArr: any, searchKey: string) {
     setIsLoading(true);
