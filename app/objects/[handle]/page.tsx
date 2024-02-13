@@ -5,8 +5,9 @@ import Image from "next/image";
 import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import parse, { Element } from 'html-react-parser';
+import parse from 'html-react-parser';
 import Carousel from "@/components/Carousel";
+import { revalidatePath } from 'next/cache';
 
 const gql = String.raw;
 
@@ -64,6 +65,7 @@ export default async function Product({
   params: { handle: string };
 }) {
 
+  revalidatePath('/objects/[handle]', 'page');
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
 
