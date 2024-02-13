@@ -86,13 +86,13 @@ export default async function Product({
           {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
-              <div key={i} className="ml-8 md:mt-2">
+              <div key={i} className="ml-8 md:mt-2 overflow-hidden">
                 <Image
                   src={item.node?.transformedSrc}
                   alt={"product image"}
                   width="600"
                   height="800"
-                  className="float-right mt-3 mb-7 h-auto"
+                  className="float-right mt-3 mb-7 h-auto hover:scale-[2] transform transition duration-500"
                 />
               </div>
             )
