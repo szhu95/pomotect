@@ -24,7 +24,8 @@ module.exports = {
         },
         "grey": "#747A88",
         "terracotta": "#B84221",
-        "yellow": "#FFFF00"
+        "yellow": "#FFFF00",
+        "purple": "#551A8B"
       },
       backgroundImage: {
         'pattern': "url('/pattern.png')",
