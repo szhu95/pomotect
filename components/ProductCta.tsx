@@ -121,9 +121,8 @@ const ProductCta = ({ variantName, options, quantity, variants }: any) => {
 
   let variantArr = variants.edges;
 
-  console.log("VARIANT ARR **********" + JSON.stringify(variantArr))
-
-  console.log("QUANTITY IS *******" + JSON.stringify(quantity))
+  // console.log("VARIANT ARR **********" + JSON.stringify(variantArr));
+  // console.log("QUANTITY IS *******" + JSON.stringify(quantity));
 
   async function mapVariants(variantArr: any, searchKey: string) {
     setIsLoading(true);
