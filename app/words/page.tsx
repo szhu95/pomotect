@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDate, formatUpdatedDate, getPosts } from '@/utils';
+import { formatUpdatedDate, getPosts } from '@/utils';
 import Image from "next/image";
 import parse from 'html-react-parser';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
