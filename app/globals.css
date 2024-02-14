@@ -139,6 +139,8 @@
 }
 .embla__container {
   display: flex;
+  height: auto;
+  align-items: center;
 }
 .embla__slide {
   flex: 0 0 100%;
