@@ -128,8 +128,8 @@ export default function Cart() {
     let response = (await getCart()) as any;
     //console.log("data is " + JSON.stringify(response));
     setData(response ? response : '');
-    setCheckoutUrl(response.node.webUrl);
-    setTotal(response.node.totalPrice.amount)
+    setCheckoutUrl(response.node?.webUrl);
+    setTotal(response.node?.totalPrice.amount)
     setIsLoading(false);
   }, [])
 
