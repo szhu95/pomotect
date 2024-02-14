@@ -2,7 +2,7 @@
 import { storefront } from '@/utils';
 import React, { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image';
-import { CustomButton, LoadButton } from '.';
+import { CustomButton } from '.';
 import Link from 'next/link';
 
 const gql = String.raw;

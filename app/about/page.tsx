@@ -1,11 +1,8 @@
 
 import React from 'react'
-import { formatDate } from '@/utils';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const About = () => {
-
-    let lastUpdatedDate = formatDate();
 
     return (
         <div>
