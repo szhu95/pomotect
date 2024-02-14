@@ -66,6 +66,7 @@ export default async function Product({
 }) {
 
   revalidatePath('/objects/[handle]', 'page');
+  
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
 
