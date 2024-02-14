@@ -139,8 +139,6 @@
 }
 .embla__container {
   display: flex;
-  height: auto;
-  align-items: bottom;
   letter-spacing: 0;
   word-spacing: 0;
   font-size: 0;
