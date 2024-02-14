@@ -18,7 +18,7 @@ const Carousel = (response: any) => {
     return (
         <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
-                <div className="embla__container align-bottom">
+                <div className="embla__container">
                     {response.images?.edges.map((item: any, i: React.Key | null | undefined) => {
                         return (
                             <div key={i} className="embla__slide">
@@ -26,8 +26,8 @@ const Carousel = (response: any) => {
                                     src={item.node?.transformedSrc}
                                     alt={"product image"}
                                     width="600"
-                                    height="800"
-                                    className="float-right align-bottom"
+                                    height="600"
+                                    className="align-bottom"
                                 />
                             </div>
                         )
