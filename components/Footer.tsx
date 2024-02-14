@@ -21,6 +21,7 @@ const Footer = () => {
                         width={25}
                         height={25}
                         alt="instagram link"
+                        placeholder="blur"
                     />
                 </a>
             </div>

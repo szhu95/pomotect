@@ -28,6 +28,7 @@ export default function Shop({ response }: any) {
                       width={500}
                       height={500}
                       className="h-full w-full opacity-20 object-center"
+                      placeholder="blur"
                     />
                     <div>
                       <div className="absolute right-[0px] top-[0%] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
@@ -49,6 +50,7 @@ export default function Shop({ response }: any) {
                       width={500}
                       height={500}
                       className="h-full w-full hover:opacity-80 object-center"
+                      placeholder="blur"
                     />
                     <div>
                       <div className="absolute right-[0px] top-[0%] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>

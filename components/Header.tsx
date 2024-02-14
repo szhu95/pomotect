@@ -30,6 +30,7 @@ const Header = () => {
                         height={600}
                         alt="home page link"
                         className="w-auto h-auto"
+                        placeholder="blur"
                     />
                 </Link>
             </div>

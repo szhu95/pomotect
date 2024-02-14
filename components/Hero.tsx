@@ -41,6 +41,7 @@ const Hero = () => {
                     width={700}
                     height={300}
                     alt="landing page background image"
+                    placeholder="blur"
                 />
             </div>
         </div>
