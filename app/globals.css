@@ -140,11 +140,11 @@
 .embla__container {
   display: flex;
   height: auto;
-  align-items: center;
+  align-items: bottom;
 }
 .embla__slide {
   flex: 0 0 100%;
-  min-width: 0;
+  min-width: auto;
 }
 
 .product-info {

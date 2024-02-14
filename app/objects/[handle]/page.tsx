@@ -66,7 +66,7 @@ export default async function Product({
 }) {
 
   revalidatePath('/objects/[handle]', 'page');
-  
+
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
 
@@ -101,7 +101,7 @@ export default async function Product({
           }
         </div>
 
-        <div className="block md:hidden">
+        <div className="flex md:hidden">
           <Carousel images={product.images} />
         </div>
 
