@@ -163,7 +163,6 @@ export default function Cart() {
                     width={100}
                     height={250}
                     alt="product image"
-                    placeholder="blur"
                   />
                 </div>
                 <div className="font-['Minion']">{item.node.quantity}</div>

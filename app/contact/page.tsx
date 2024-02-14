@@ -15,7 +15,6 @@ const Contact = () => {
                         height={1000}
                         src={BusinessCard}
                         alt="business card"
-                        placeholder="blur"
                     />
 
                     <Image
@@ -24,7 +23,6 @@ const Contact = () => {
                         className='mt-[15%]'
                         src={BusinessCardBack}
                         alt="business card back"
-                        placeholder="blur"
                     />
                 </div>
             </div>
