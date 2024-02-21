@@ -8,6 +8,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import parse from 'html-react-parser';
 import Carousel from "@/components/Carousel";
 import { revalidatePath } from 'next/cache';
+import NotFound from "@/app/not-found";
 
 const gql = String.raw;
 
@@ -70,9 +71,13 @@ export default async function Product({
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
 
+  if (response.product == null) {
+    return NotFound();
+  }
+
   let product = response?.product;
 
-  let updatedHtml = product.descriptionHtml.replaceAll('<p', '<p className="minion-font"')
+  let updatedHtml = product?.descriptionHtml.replaceAll('<p', '<p className="minion-font"')
 
   let markup = parse(updatedHtml);
 
