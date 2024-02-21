@@ -7,7 +7,7 @@ const Terms = () => {
         <div>
             <div className="site-section">
                 <div className="about-section">
-                    <iframe className="border-2 border-primary-blue border-dashed w-full h-screen" src="terms.html"></iframe>
+                    <iframe className="border-2 border-primary-blue border-dashed w-full h-[100vh]" src="terms.html"></iframe>
                 </div>
             </div>
             <ScrollToTopButton />
