@@ -47,7 +47,7 @@ const About = () => {
                 </div>
 
                 <div className="about-section">
-                    <div className="minion-font font-bold">Events</div>
+                    <div className="minion-font font-bold">Sounds</div>
                     From time-to-time, we bring people together to dance, to listen more,
                     and to talk less — a temporary autonomous zone.
                 </div>
