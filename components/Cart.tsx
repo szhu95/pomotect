@@ -42,6 +42,9 @@ query getCheckoutLineItemsFromNode($id: ID!) {
     ... on Checkout {
       id
       webUrl
+      order {
+        id
+      }
       lineItems(first: 5) {
          edges {
            node {
@@ -126,10 +129,18 @@ export default function Cart() {
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
-    //console.log("data is " + JSON.stringify(response));
+    console.log("data is " + JSON.stringify(response));
+
+    if (response?.node.order?.id) {
+      setCart('');
+      setIsLoading(false);
+      if (localStorage.getItem("checkoutId"))
+        localStorage.removeItem("checkoutId");
+      return;
+    }
     setData(response ? response : '');
-    setCheckoutUrl(response.node?.webUrl);
-    setTotal(response.node?.totalPrice.amount)
+    setCheckoutUrl(response ? response.node.webUrl : '');
+    setTotal(response ? response.node?.totalPrice.amount : 0)
     setIsLoading(false);
   }, [])
 
