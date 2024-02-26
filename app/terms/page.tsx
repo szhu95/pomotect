@@ -2101,7 +2101,9 @@ const Terms = () => {
                                         NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS INITIATED OR COMPLETED BY
                                         US OR VIA THE SERVICES. You hereby waive any rights or requirements
                                         under any statutes, regulations, rules, ordinances, or other laws in any
-                                        jurisdiction which require an{" "}
+                                        jurisdiction which require an original signature or delivery or retention of non-electronic
+                                        records, or to payments or the granting of credits by any means
+                                        other than electronic means.
                                     </span>
                                 </p>
                                 <table
@@ -2121,19 +2123,6 @@ const Terms = () => {
                                                     padding: ".75pt .75pt .75pt .75pt"
                                                 }}
                                             >
-                                                <p className="MsoNormal">
-                                                    <span
-                                                        style={{
-                                                            fontSize: "7.0pt",
-                                                            fontFamily: '"ArialMT",serif',
-                                                            color: "#565656"
-                                                        }}
-                                                    >
-                                                        original signature or delivery or retention of non-electronic
-                                                        records, or to payments or the granting of credits by any means
-                                                        other than electronic means.{" "}
-                                                    </span>
-                                                </p>
                                                 <p className="MsoNormal">
                                                     <b>
                                                         <span
