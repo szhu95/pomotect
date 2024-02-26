@@ -137,6 +137,7 @@
 .embla {
   overflow: hidden;
 }
+
 .embla__container {
   display: flex;
   letter-spacing: 0;
@@ -144,10 +145,17 @@
   font-size: 0;
   max-height: 600px;
 }
+
 .embla__slide {
   flex: 0 0 100%;
   min-width: auto;
 }
+
+iframe {
+  display: block;
+  width: 100%;
+}
+
 
 .product-info {
   border-bottom: 1px solid gray;
@@ -281,7 +289,7 @@ body {
 
 @media (pointer: fine) {
   .projects li a:hover span:first-child {
-      text-decoration:underline
+    text-decoration: underline
   }
 }
 
@@ -292,7 +300,7 @@ body {
 
 @media (pointer: coarse) {
   .projects li.active+project-preview {
-      pointer-events:all
+    pointer-events: all
   }
 }
 
@@ -302,24 +310,24 @@ body {
 
 @media (pointer: coarse) {
   .projects li {
-      min-height:60vh
+    min-height: 60vh
   }
 }
 
 @media screen and (max-width: 800px) {
   .projects {
-      padding-top:6rem
+    padding-top: 6rem
   }
 
   .projects li:last-of-type {
-      margin-bottom: 3.3em
+    margin-bottom: 3.3em
   }
 }
 
 .project-preview {
   opacity: 0;
   transition: opacity .10s linear;
-  height: calc( calc(var(--col) * 4) / 5 * 4 );
+  height: calc(calc(var(--col) * 4) / 5 * 4);
   top: calc((100vh - (calc(var(--col) * 4) * 0.8)) / 2);
   margin-left: calc(var(--col) * 3);
   pointer-events: none
@@ -327,20 +335,21 @@ body {
 
 @media (pointer: coarse) and (max-width: 800px) {
   .project-preview {
-      top:calc((100vh - (calc(var(--col) * 10) * 0.8)) / 2)
+    top: calc((100vh - (calc(var(--col) * 10) * 0.8)) / 2)
   }
 }
 
 @media screen and (max-width: 800px) {
   .project-preview {
-      margin-left:var(--col);
-      height: calc( calc(var(--col) * 10) / 5 * 4 )
+    margin-left: var(--col);
+    height: calc(calc(var(--col) * 10) / 5 * 4)
   }
 
   .project-preview.absolute {
-      position: fixed
+    position: fixed
   }
 }
+
 .project-preview a:hover {
   text-decoration: none
 }
