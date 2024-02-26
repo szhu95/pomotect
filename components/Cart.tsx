@@ -140,7 +140,7 @@ export default function Cart() {
     }
     setData(response ? response : '');
     setCheckoutUrl(response ? response.node.webUrl : '');
-    setTotal(response ? response.node?.totalPrice.amount : 0)
+    setTotal(response ? response.node?.totalPrice.amount : '0.0');
     setIsLoading(false);
   }, [])
 
