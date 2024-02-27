@@ -8,7 +8,7 @@ const Terms = () => {
             <div className="site-section">
                 <div className="about-section">
                     <div className="border-2 p-3 border-primary-blue border-dashed w-full h-[100vh] overflow-y-auto">
-                        <>
+                        <div>
                             <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                             <meta name="Generator" content="Microsoft Word 15 (filtered)" />
                             <style
@@ -2259,7 +2259,7 @@ const Terms = () => {
                                 </table>
                                 <p className="MsoNormal">&nbsp;</p>
                             </div>
-                        </>
+                        </div>
                     </div>
                 </div>
             </div>
