@@ -40,7 +40,10 @@ export async function getPosts() {
         headers: {
             'Content-Type': 'application/json',
             'Accept-Version': 'v5.0',
-        }
+        },
+        next: {
+            revalidate: 10,
+          },
     })
 
     return response.json();
