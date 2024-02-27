@@ -3,6 +3,7 @@ import { formatUpdatedDate, getPosts } from '@/utils';
 import Image from "next/image";
 import parse from 'html-react-parser';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import { Posts } from '@/components';
 
 
 async function getData() {
@@ -36,7 +37,9 @@ const Words = async () => {
         <p><i>Most recently updated on {formattedDate}</i></p>
       </div>
 
-      {response.posts.map((post: any) => {
+      <Posts response={response}/>
+
+      {/* {response.posts.map((post: any) => {
 
         //console.log("POST IS +++++" + JSON.stringify(post.html))
         let postUtcTimeString = post.published_at;
@@ -72,7 +75,7 @@ const Words = async () => {
             </div>
           </div>
         )
-      })}
+      })} */}
       
       <ScrollToTopButton />
     </div>

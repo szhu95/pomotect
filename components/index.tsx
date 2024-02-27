@@ -8,6 +8,7 @@ import LoadButton from './LoadButton';
 import Cart from './Cart';
 import Soundcloud from './Soundcloud';
 import Footer from './Footer';
+import Posts from './Posts';
 
 export {
     Hero,
@@ -19,5 +20,6 @@ export {
     LoadButton,
     Cart,
     Soundcloud,
-    Footer
+    Footer,
+    Posts
 }
