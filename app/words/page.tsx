@@ -3,7 +3,6 @@ import { formatUpdatedDate, getPosts } from '@/utils';
 import Image from "next/image";
 import parse from 'html-react-parser';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import { revalidatePath } from 'next/cache';
 
 
 async function getData() {
