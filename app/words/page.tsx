@@ -28,7 +28,7 @@ const Words = async () => {
 
   let response = data.posts;
 
-  let utcTimeString = response.posts[0].created_at;
+  let utcTimeString = response.posts[0].published_at;
   const date = new Date(utcTimeString);
   let formattedDate = formatUpdatedDate(date)
 
@@ -40,7 +40,9 @@ const Words = async () => {
       </div>
 
       {response.posts.map((post: any) => {
-        let postUtcTimeString = post.created_at;
+
+        // console.log("POST IS +++++" + JSON.stringify(post))
+        let postUtcTimeString = post.published_at;
         let postDate = new Date(postUtcTimeString)
         let formattedPostDate = formatUpdatedDate(postDate);
 
@@ -55,7 +57,7 @@ const Words = async () => {
           <div key={post.id} className="mt-5">
             <div className='site-section words-header'>
               <div className="entry-number bg-black text-white font-['Minion']">{post.title? post.title : 'Title'}</div>
-              <div className="font-['Minion'] italic">On {formattedPostDate}, {post.primary_author.name} {'<' + post.custom_excerpt + '>'} wrote:</div>
+              <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
             </div>
             <div className="site-section ml-2 words-body max-h-96 overflow-y-auto">
               <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
