@@ -37,7 +37,6 @@ export function formatUpdatedDate(date) {
 export async function getPosts() {
     const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags", {
         method: 'GET',
-        cache: "no-cache",
         headers: {
             'Content-Type': 'application/json',
             'Accept-Version': 'v5.0',
