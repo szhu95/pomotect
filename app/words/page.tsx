@@ -22,8 +22,6 @@ async function getData() {
 
 const Words = async () => {
 
-  revalidatePath('/words', 'page');
-
   const data = await getData();
 
   let response = data.posts;
