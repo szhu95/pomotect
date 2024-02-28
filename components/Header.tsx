@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <div className="padding-y">
-            <div onClick={() => setIcon(false)} className="home-link">
+            <div onClick={() => setIcon(false)} className="home-link mb-8">
                 <Link href="/" className="padding-y">
                     <Image
                         src={homeLogo}

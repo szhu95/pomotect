@@ -39,7 +39,7 @@ const singleProductQuery = gql`
         name
         values
       }
-      images(first: 2) {
+      images(first: 5) {
         edges {
           node {
             transformedSrc
