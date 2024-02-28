@@ -19,7 +19,7 @@ const Header = () => {
             setCartFilled(true);
         }
     }, [])
-
+    
     return (
         <div className="padding-y">
             <div onClick={() => setIcon(false)} className="home-link">
