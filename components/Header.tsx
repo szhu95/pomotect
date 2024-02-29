@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <div className="padding-y">
-            <div onClick={() => setIcon(false)} className="home-link mb-8">
+            <div onClick={() => setIcon(false)} className="home-link mb-4">
                 <Link href="/" className="padding-y">
                     <Image
                         src={homeLogo}
@@ -30,7 +30,7 @@ const Header = () => {
                         width={500}
                         height={600}
                         alt="home page link"
-                        className="md:max-w-[120%] md:w-[120%] w-auto h-auto"
+                        className="w-auto h-auto"
                     />
                 </Link>
             </div>
