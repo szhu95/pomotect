@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
     "@netlify/plugin-nextjs": "^4.41.3",
+    "@next/font": "^14.1.0",
     "@shopify/hydrogen-react": "^2023.10.1",
     "@shopify/shopify-api": "^8.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",

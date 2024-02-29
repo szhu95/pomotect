@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Minion", "Inter", "sans-serif"],
+        minion: ["Minion", "sans-serif"],
+        bebas: ["Bebas", "sans"],
       },
       colors: {
         "black-100": "#2B2C35",

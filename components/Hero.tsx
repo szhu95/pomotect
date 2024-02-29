@@ -11,12 +11,12 @@ const Hero = () => {
 
     return (
         <div className="hero">
-            <div className="relative flex-1 pt-20 padding-x landing_page">
+            <div className="relative flex-1 pt-20 padding-x landing-page">
                 <div className="absolute right-[0px] top-[25%]">
                 <CustomButton
                     title="EXPLORE OBJECTS"
                     containerStyles="bg-black hover:bg-primary-blue"
-                    textColor="text-white font-semibold" 
+                    textColor="text-white font-semibold bebas-font" 
                     handleClick={() => router.push('/objects')}
                 />
                 </div>
@@ -24,7 +24,7 @@ const Hero = () => {
                 <CustomButton
                     title="EXPLORE WORDS"
                     containerStyles="bg-black hover:bg-primary-blue"
-                    textColor="text-white font-semibold"
+                    textColor="text-white font-semibold bebas-font"
                     handleClick={() => router.push('/words')}
                 />
                 </div>
@@ -32,7 +32,7 @@ const Hero = () => {
                 <CustomButton
                     title="EXPLORE SOUNDS"
                     containerStyles="bg-black hover:bg-primary-blue"
-                    textColor="text-white font-semibold" 
+                    textColor="text-white font-semibold bebas-font" 
                     handleClick={() => router.push('/sounds')}
                 />
                 </div>

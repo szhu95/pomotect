@@ -7,7 +7,7 @@ export default async function Posts({ response }: any) {
     return (
         response.posts.map((post: any) => {
 
-            console.log("POST IS +++++" + JSON.stringify(post.html))
+            // console.log("POST IS +++++" + JSON.stringify(post.html))
             let postUtcTimeString = post.published_at;
             let postDate = new Date(postUtcTimeString)
             let formattedPostDate = formatUpdatedDate(postDate);
@@ -21,7 +21,7 @@ export default async function Posts({ response }: any) {
                 .replaceAll('/p>', '/p><br>')
                 .replaceAll('/figure>', '/figure><br>');
 
-                console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
+                // console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
 
             let parsedPost = parse(finalHtml);
 

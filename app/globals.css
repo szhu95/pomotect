@@ -6,7 +6,12 @@
 
 @font-face {
   font-family: 'Minion';
-  src: local('Minion'), url(../fonts/minion.otf) format('otf');
+  src: local('Minion'), url(../fonts/minion.otf), format('otf');
+}
+
+@font-face {
+  font-family: "Bebas";
+  src: local('Bebas'), url(../fonts/Bebas.ttf), format('ttf');
 }
 
 * {
@@ -20,6 +25,10 @@
 
 .minion-font {
   font-family: "Minion";
+}
+
+.bebas-font {
+  font-family: "Bebas";
 }
 
 /* START: General styles */
@@ -180,7 +189,7 @@ iframe {
   font-style: italic;
 }
 
-.landing_page {
+.landing-page {
   justify-content: right;
 }
 
