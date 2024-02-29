@@ -27,10 +27,10 @@ const Header = () => {
                     <Image
                         src={homeLogo}
                         priority
-                        width={450}
+                        width={500}
                         height={600}
                         alt="home page link"
-                        className="w-auto h-auto"
+                        className="max-w-[120%] w-[120%] h-auto"
                     />
                 </Link>
             </div>
