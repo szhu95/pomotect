@@ -30,7 +30,7 @@ const Header = () => {
                         width={500}
                         height={600}
                         alt="home page link"
-                        className="max-w-[120%] w-[120%] h-auto"
+                        className="md:max-w-[120%] md:w-[120%] w-auto h-auto"
                     />
                 </Link>
             </div>
