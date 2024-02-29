@@ -5,13 +5,17 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Minion';
-  src: local('Minion'), url(../fonts/minion.otf), format('otf');
+  font-family: Minion;
+  src: local('Minion'), url('../fonts/minion.otf') format('otf');
 }
 
 @font-face {
-  font-family: "Bebas";
-  src: local('Bebas'), url(../fonts/Bebas.ttf), format('ttf');
+  font-family: 'Bebas Neue';
+  src: local('Bebas'), url('../fonts/Bebas.ttf') format('ttf');
+}
+
+.bebas-font {
+  font-family: 'Bebas Neue';
 }
 
 * {
@@ -25,10 +29,6 @@
 
 .minion-font {
   font-family: "Minion";
-}
-
-.bebas-font {
-  font-family: "Bebas";
 }
 
 /* START: General styles */
@@ -248,9 +248,9 @@ iframe {
   margin-top: 30px;
 }
 
-.html {
+/* .html {
   font-family: 'Minion';
-}
+} */
 
 .soundcloud_title {
   font-style: italic;
