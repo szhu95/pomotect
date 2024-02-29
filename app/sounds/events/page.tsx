@@ -13,7 +13,7 @@ const Events = () => {
         <div>
             <div className="site-section">
                 <h3 className="main_header">Sounds</h3>
-                <p><i>Most recently updated on February 01, 2024</i></p>
+                <p><i>Most recently updated on February 29, 2024</i></p>
             </div>
             <div className="site-section">
                 <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Mixes</Link>
@@ -21,6 +21,7 @@ const Events = () => {
             </div>
             <div className="flex px-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
+                    {/* <span>PAST</span> */}
                     <li className="border-b border-black -ml-2">
                         <span className="soundcloud_title ml-2 font-['Minion']">Out of the Blue</span>
                         <br></br>
