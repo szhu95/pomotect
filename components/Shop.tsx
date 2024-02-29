@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Shop({ response }: any) {
 
   return (
-    <div className="bg-white">
+    <div className="bg-transparent">
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
         <div className="grid grid-cols-1 col-auto gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
