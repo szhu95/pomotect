@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 // import homeLogo from '../assets/images/home-logo.png'
-import homeLogo from '../assets/images/logo-black-bg.png'
+import homeLogo from '../assets/images/logo-3.png'
 
 const Header = () => {
     const [cartFilled, setCartFilled] = useState(false)
