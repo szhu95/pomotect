@@ -15,7 +15,7 @@ const Hero = () => {
                 <div className="absolute right-[0px] top-[25%]">
                 <CustomButton
                     title="EXPLORE OBJECTS"
-                    containerStyles="bg-black hover:bg-primary-blue"
+                    containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
                     textColor="text-white font-semibold bebas-font" 
                     handleClick={() => router.push('/objects')}
                 />
@@ -23,7 +23,7 @@ const Hero = () => {
                 <div className="absolute left-[15%] top-[50%] md:top-[37%]">
                 <CustomButton
                     title="EXPLORE WORDS"
-                    containerStyles="bg-black hover:bg-primary-blue"
+                    containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
                     textColor="text-white font-semibold bebas-font"
                     handleClick={() => router.push('/words')}
                 />
@@ -31,7 +31,7 @@ const Hero = () => {
                 <div className="absolute left-[50%] md:left-[52%] top-[75%] md:top-[55%]">
                 <CustomButton
                     title="EXPLORE SOUNDS"
-                    containerStyles="bg-black hover:bg-primary-blue"
+                    containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
                     textColor="text-white font-semibold bebas-font" 
                     handleClick={() => router.push('/sounds')}
                 />
