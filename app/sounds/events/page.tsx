@@ -2,6 +2,7 @@ import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 import WinstonFlyer from '../../../assets/images/flyer-1.jpg'
+import FlashFlyer from '../../../assets/images/flash-flyer.jpg'
 import Image from 'next/image';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 
@@ -21,16 +22,30 @@ const Events = () => {
             </div>
             <div className="flex px-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
-                    {/* <span>PAST</span> */}
+                        <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-primary-blue -ml-2">UPCOMING</div>
+                        <li className="border-b border-black -ml-2">
+                            <span className="soundcloud_title ml-2 font-['Minion']">Flash Bar</span>
+                            <br></br>
+                            <p className="text-right text-primary-blue italic font-['Minion']">Flash, Washington D.C.</p>
+                        </li>
+                        <div className="mt-3 max-w-10 flex-col items-center center centered">
+                            <Image
+                                width={1000}
+                                height={1000}
+                                src={FlashFlyer}
+                                alt="Flash Flyer"
+                            />
+                    </div>
+                    <div className="text-right text-grey italic font-semibold font-['Minion'] border-b border-grey -ml-2">ARCHIVE</div>
                     <li className="border-b border-black -ml-2">
                         <span className="soundcloud_title ml-2 font-['Minion']">Out of the Blue</span>
                         <br></br>
                         <p className="text-right text-primary-blue italic font-['Minion']">Winston House, Los Angeles</p>
                     </li>
-                    <div className="mt-3 max-w-10 flex-col items-center center centered float-right">
+                    <div className="mt-3 max-w-10 flex-col items-center center centered">
                         <Image
-                            width={2831}
-                            height={2877}
+                            width={1000}
+                            height={1000}
                             src={WinstonFlyer}
                             alt="Winston Flyer"
                         />
