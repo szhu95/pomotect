@@ -22,7 +22,7 @@ const Events = () => {
             </div>
             <div className="flex px-2 w-1/8 max-w-12 site-section">
                 <ol className="relative">
-                        <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-primary-blue -ml-2">UPCOMING</div>
+                        <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div>
                         <li className="border-b border-black -ml-2">
                             <span className="soundcloud_title ml-2 font-['Minion']">Flash Bar</span>
                             <br></br>
@@ -36,7 +36,7 @@ const Events = () => {
                                 alt="Flash Flyer"
                             />
                     </div>
-                    <div className="text-right text-grey italic font-semibold font-['Minion'] border-b border-grey -ml-2">ARCHIVE</div>
+                    <div className="text-right text-grey italic font-semibold font-['Minion'] border-b border-grey border-dashed -ml-2">ARCHIVE</div>
                     <li className="border-b border-black -ml-2">
                         <span className="soundcloud_title ml-2 font-['Minion']">Out of the Blue</span>
                         <br></br>
