@@ -13,7 +13,7 @@ const Sounds = () => {
         <div>
             <div className="site-section">
                 <div className="main_header">Sounds</div>
-                <p><i>Most recently updated on February 29, 2024</i></p>
+                <p><i>Most recently updated on March 05, 2024</i></p>
             </div>
             <div className="site-section">
                 <Link href="/sounds" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Mixes</Link>
