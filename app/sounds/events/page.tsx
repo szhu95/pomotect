@@ -2,7 +2,7 @@ import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 import WinstonFlyer from '../../../assets/images/flyer-1.jpg'
-import FlashFlyer from '../../../assets/images/flash-flyer.png'
+import FlashFlyer from '../../../assets/images/flash-flyer.jpg'
 import Image from 'next/image';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 
