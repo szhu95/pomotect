@@ -14,7 +14,7 @@ const About = () => {
                 <div className="about-section">
                     <h3 className="about_header pr-6">Postmodern Tectonics </h3>
 
-                    <div className="about-section">Or, sometimes <b>POMO—TECT™</b> is a b2b (back-to-back) of ideas.</div>
+                    <div className="about-section">Or, sometimes <b><span className="minion-font">POMO—TECT™</span></b> is a b2b (back-to-back) of ideas.</div>
 
                     <div className="about-section">We talk about, research, and design tools and symbols for people who like to:</div>
 
