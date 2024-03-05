@@ -15,6 +15,7 @@ export default async function Posts({ response }: any) {
             let finalHtml = post.html.replaceAll('<p', '<p className="minion-font"')
                 .replaceAll('<li', '<li className="minion-font"')
                 .replaceAll('<strong', '<strong className="minion-font"')
+                .replaceAll('<a', '<a className="minion-font text-primary-blue"')
                 .replaceAll('<em', '<em className="minion-font"')
                 .replaceAll('class=\"italic\"', '')
                 .replaceAll('<span', '<span className="minion-font"')
