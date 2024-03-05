@@ -27,10 +27,9 @@ export function formatDate() {
 }
 
 export function formatUpdatedDate(date) {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = today.toLocaleString('default', { month: 'long' });
-    var yyyy = today.getFullYear();
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = date.toLocaleString('default', { month: 'long' });
+    var yyyy = date.getFullYear();
     let lastUpdatedDate = mm + ' ' + dd + ', ' + yyyy;
     return lastUpdatedDate
 }
@@ -41,7 +40,7 @@ export async function getPosts() {
         headers: {
             'Content-Type': 'application/json',
             'Accept-Version': 'v5.0',
-        }
+        },
     })
 
     return response.json();

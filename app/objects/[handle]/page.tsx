@@ -4,6 +4,11 @@ import React from "react";
 import Image from "next/image";
 import { ProductCta } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
+import ScrollToTopButton from "@/components/ScrollToTopButton";
+import parse from 'html-react-parser';
+import Carousel from "@/components/Carousel";
+import { revalidatePath } from 'next/cache';
+import NotFound from "@/app/not-found";
 
 const gql = String.raw;
 
@@ -24,6 +29,7 @@ const singleProductQuery = gql`
       descriptionHtml
       updatedAt
       tags
+      totalInventory
       priceRange {
         minVariantPrice {
           amount
@@ -33,7 +39,7 @@ const singleProductQuery = gql`
         name
         values
       }
-      images(first: 2) {
+      images(first: 5) {
         edges {
           node {
             transformedSrc
@@ -46,6 +52,7 @@ const singleProductQuery = gql`
           node {
             title
             id
+            quantityAvailable
           }
         }
       }
@@ -53,43 +60,63 @@ const singleProductQuery = gql`
   }
 `;
 
-function createMarkup(
-  description: string
-): { __html: string | TrustedHTML } | undefined {
-  return { __html: description };
-}
-
 export default async function Product({
   params,
 }: {
   params: { handle: string };
 }) {
 
+  revalidatePath('/objects/[handle]', 'page');
 
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
 
+  if (response.product == null) {
+    return NotFound();
+  }
+
   let product = response?.product;
 
-  let image = product.images.edges[0].node;
+  let updatedHtml = product?.descriptionHtml.replaceAll('<p', '<p className="minion-font"')
 
-  if (product) {
-    console.log("product is " + JSON.stringify(product));
-  }
-  
+  let markup = parse(updatedHtml);
+
   return (
     <div>
       <div className="site-section">
         <h3 className="product-details-header">Objects</h3>
-        <Link href="/objects" className="back-button focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
+        <Link href="/objects" scroll={false} className="back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to the previous page</Link>
       </div>
-      <div className="inline-flex">
+      <div className="md:flex-row-reverse md:inline-flex md:align-top">
+        <div className="hidden md:block">
+          {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
+
+            return (
+              // hover:scale-[2] transform transition duration-500
+              <div key={i} className="ml-8 md:mt-2 overflow-hidden">
+                <Image
+                  src={item.node?.transformedSrc}
+                  alt={"product image"}
+                  width="600"
+                  height="800"
+                  className="float-right mt-3 mb-7 h-auto"
+                />
+              </div>
+            )
+          })
+          }
+        </div>
+
+        <div className="flex md:hidden">
+          <Carousel images={product.images} />
+        </div>
+
         <div className="product-details">
           <div className="site-section product-info">
-            <div className="main_header mt-5 w-full">{product.title}</div>
-            <p className="text-sm mb-5">
-              <i>Most recently updated on {lastUpdatedDate}</i>
-            </p>
+            <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
+            <div className="text-sm mb-5 italic font-['Minion']">
+              Most recently updated on {lastUpdatedDate}
+            </div>
             <div className="inline-grid gap-2 grid-cols-2">
               <Image
                 src={BlueHandLogo}
@@ -97,29 +124,24 @@ export default async function Product({
                 width="50"
                 height="50"
               />
-              <b>{formatPrice(product.priceRange.minVariantPrice.amount)}</b>
+              <div className='font-bold minion-font ml-2 mt-4'>{formatPrice(product.priceRange.minVariantPrice.amount)}</div>
             </div>
           </div>
           <div className="site-section w-full product-cta">
-            <ProductCta variantName={product.options[0].name} options={product.options[0].values} variants={product.variants} />
+            <ProductCta variantName={product.options[0].name} options={product.options[0].values} quantity={product.totalInventory} variants={product.variants} />
           </div>
-          <div className="site-section">
-            <h1 className="mb-2">
-              <b>Description</b>
-            </h1>
-            <div dangerouslySetInnerHTML={createMarkup(product.descriptionHtml)} />
+          <div className="site-section minion-font">
+            <div className="mb-2 font-bold minion-font">
+              Description
+            </div>
+            <div className="minion-font text-justify">
+              {markup}
+            </div>
           </div>
         </div>
-        <div className="product-image">
-          <p className="float-right text-3xl font-light text-gray-300">[{params.handle}]</p>
-          <Image
-            src={image.transformedSrc}
-            alt={"test"}
-            width="600"
-            height="800"
-            className="float-right mt-12"
-          />
-        </div>
+      </div>
+      <div className="hidden md:block">
+        <ScrollToTopButton />
       </div>
     </div>
   );

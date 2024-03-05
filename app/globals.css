@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Minion;
+  src: local('Minion'), url('../fonts/minion.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas'), url('../fonts/Bebas.ttf') format('ttf');
+}
+
+.bebas-font {
+  font-family: 'Bebas Neue';
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +25,10 @@
   font-family: "Arial", sans-serif;
   max-width: 1200px;
   color: black;
+}
+
+.minion-font {
+  font-family: "Minion";
 }
 
 /* START: General styles */
@@ -39,7 +57,7 @@
 }
 
 .custom-btn {
-  @apply flex flex-row relative justify-center items-center py-1 px-6 outline-none;
+  @apply flex flex-row relative justify-center items-center py-0 px-6 font-medium outline-none;
 }
 
 .home-link {
@@ -53,9 +71,14 @@
   border-bottom: solid 1px black;
 }
 
-.product-details {
-  max-width: 35%;
+.checkout_btn {
+  margin: 0 0 0 auto;
 }
+
+.product-details {
+  @apply w-full md:w-[40%];
+}
+
 /* END: General styles */
 
 /* START: Header stylers */
@@ -67,8 +90,9 @@
 }
 
 .about-section {
+  font-family: 'Minion';
   margin-bottom: 30px;
-  text-align:justify;
+  text-align: justify;
 }
 
 .main_header {
@@ -77,7 +101,7 @@
   display: table;
   font-weight: bold;
   font-style: italic;
-  padding-right: 7.5%;
+  padding-right: 60px;
   padding-left: 1px;
 }
 
@@ -91,15 +115,56 @@
   padding-left: 1px;
 }
 
+.cart-header {
+  color: white;
+  background-color: #B84221;
+  display: inline-block;
+  font-weight: bold;
+  font-style: italic;
+  padding-right: 7.5%;
+  padding-left: 1px;
+}
+
+.cart-details-header {
+  color: white;
+  background-color: #B84221;
+  /* font-weight: bold; */
+  /* padding-right: 7.5%; */
+  padding-left: 1%;
+}
+
 .words-header {
   padding-bottom: 15px;
   border-bottom: solid 1px black;
 }
 
-.product-image {
-  margin-top: 100px;
-  margin-left: 20px;
+.words-body {
+  border: dashed 2px blue;
+  padding-right: 3px;
 }
+
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  letter-spacing: 0;
+  word-spacing: 0;
+  font-size: 0;
+  max-height: 600px;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: auto;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+}
+
 
 .product-info {
   border-bottom: 1px solid gray;
@@ -114,14 +179,20 @@
   min-width: 15%;
 }
 
+.product-tile {
+  border: dashed 2px blue;
+  /* border-2 border-blue-500 border-dotted */
+}
+
 .back-button {
   float: right;
   font-style: italic;
 }
 
-.landing_page {
+.landing-page {
   justify-content: right;
 }
+
 /* END: Header stylers */
 
 /* START: Hero styles */
@@ -137,17 +208,6 @@
   @apply text-[27px] text-black-100 font-light mt-5;
 }
 
-.hero__image-container {
-  @apply xl:flex-[1.5] flex justify-end items-end w-full xl:h-screen;
-}
-
-.hero__image {
-  @apply relative xl:w-full w-[90%] xl:h-full h-[590px] z-0;
-}
-
-.hero__image-overlay {
-  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
-}
 /* END: Hero styles */
 
 /* START: Home styles */
@@ -174,9 +234,8 @@
 
 .objects_link {
   font-style: italic;
+  @apply block mr-2 sm:mr-20 md:inline-block;
   padding-right: 30px;
-  padding-left: 1px;
-  margin-right: 40px;
 }
 
 .entry-number {
@@ -186,23 +245,138 @@
 }
 
 .soundcloud_link {
-  margin-top: 52x;
+  margin-top: 30px;
 }
+
+/* .html {
+  font-family: 'Minion';
+} */
 
 .soundcloud_title {
   font-style: italic;
   margin-top: 30px;
+  margin-bottom: 10px;
   background-color: black;
   color: white;
   padding-left: 5px;
   padding-right: 5px;
+  display: block;
 }
-/* END: Home styles */
 
+/* END: Home styles */
 
 body {
   color: black;
   background: white;
-  padding-left: 10%;
-  max-width: 70%;
+  @apply pl-[5%] md:pl-[10%];
+  @apply max-w-[90%] md:max-w-[80%];
+}
+
+.soundcloud-section {
+  border: dashed blue 2px;
+  padding: 10px;
+}
+
+.projects {
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative
+}
+
+.projects li {
+  line-height: 1em
+}
+
+.projects li a span:first-child {
+  display: inline-block;
+  padding-bottom: 0.2em
+}
+
+.projects li a span:last-child:not(.name) {
+  text-transform: lowercase
+}
+
+@media (pointer: fine) {
+  .projects li a:hover span:first-child {
+    text-decoration: underline
+  }
+}
+
+.projects li.active+project-preview {
+  opacity: 1;
+  z-index: 9
+}
+
+@media (pointer: coarse) {
+  .projects li.active+project-preview {
+    pointer-events: all
+  }
+}
+
+.projects li:last-of-type {
+  margin-bottom: 0
+}
+
+@media (pointer: coarse) {
+  .projects li {
+    min-height: 60vh
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .projects {
+    padding-top: 6rem
+  }
+
+  .projects li:last-of-type {
+    margin-bottom: 3.3em
+  }
+}
+
+.project-preview {
+  opacity: 0;
+  transition: opacity .10s linear;
+  height: calc(calc(var(--col) * 4) / 5 * 4);
+  top: calc((100vh - (calc(var(--col) * 4) * 0.8)) / 2);
+  margin-left: calc(var(--col) * 3);
+  pointer-events: none
+}
+
+@media (pointer: coarse) and (max-width: 800px) {
+  .project-preview {
+    top: calc((100vh - (calc(var(--col) * 10) * 0.8)) / 2)
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .project-preview {
+    margin-left: var(--col);
+    height: calc(calc(var(--col) * 10) / 5 * 4)
+  }
+
+  .project-preview.absolute {
+    position: fixed
+  }
+}
+
+.project-preview a:hover {
+  text-decoration: none
+}
+
+.project-preview figure {
+  width: 100%;
+  height: calc(calc(var(--col) * 4) / 5 * 4);
+  display: block;
+}
+
+.project-preview img {
+  display: block;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.projects li.active+project-preview {
+  opacity: 1;
+  z-index: 9;
 }

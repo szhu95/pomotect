@@ -11,16 +11,35 @@ const Hero = () => {
 
     return (
         <div className="hero">
-            <div className="flex-1 pt-20 padding-x landing_page">
+            <div className="relative flex-1 pt-20 padding-x landing-page">
+                <div className="absolute right-[0px] top-[25%]">
                 <CustomButton
-                    title="Explore Objects"
-                    containerStyles="bg-primary-blue text-white mt-10"
+                    title="EXPLORE OBJECTS"
+                    containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
+                    textColor="text-white font-semibold bebas-font" 
                     handleClick={() => router.push('/objects')}
                 />
-
+                </div>
+                <div className="absolute left-[15%] top-[50%] md:top-[37%]">
+                <CustomButton
+                    title="EXPLORE WORDS"
+                    containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
+                    textColor="text-white font-semibold bebas-font"
+                    handleClick={() => router.push('/words')}
+                />
+                </div>
+                <div className="absolute left-[50%] md:left-[52%] top-[75%] md:top-[55%]">
+                <CustomButton
+                    title="EXPLORE SOUNDS"
+                    containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
+                    textColor="text-white font-semibold bebas-font" 
+                    handleClick={() => router.push('/sounds')}
+                />
+                </div>
                 <Image
                     src={landingPageBackground}
                     width={700}
+                    priority
                     height={300}
                     alt="landing page background image"
                 />

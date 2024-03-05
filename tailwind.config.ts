@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        minion: ["Minion", "sans-serif"],
+        bebas: ["Bebas", "sans"],
       },
       colors: {
         "black-100": "#2B2C35",
@@ -22,7 +23,10 @@ module.exports = {
           DEFAULT: "rgba(59,60,152,0.03)",
           100: "rgba(59,60,152,0.02)",
         },
-        grey: "#747A88",
+        "grey": "#747A88",
+        "terracotta": "#B84221",
+        "yellow": "#FFFF00",
+        "purple": "#551A8B"
       },
       backgroundImage: {
         'pattern': "url('/pattern.png')",

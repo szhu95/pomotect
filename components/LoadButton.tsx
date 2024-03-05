@@ -5,7 +5,7 @@ const LoadButton = () => {
     return (
         <button
             type={"button"}
-            className={"custom-btn w-full bg-gray-300 text-white font-medium mt-5"}
+            className={"custom-btn w-full bg-primary-blue area-disabled pointer-events-none text-white font-medium mt-5 minion-font"}
             disabled={true}
         >
             <svg

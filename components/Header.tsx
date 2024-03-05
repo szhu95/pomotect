@@ -1,27 +1,80 @@
+"use client";
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import homeLogo from '../assets/images/home-logo.png'
+import React, { useEffect, useState } from 'react'
+// import homeLogo from '../assets/images/home-logo.png'
+import homeLogo from '../assets/images/logo-3.png'
 
 const Header = () => {
+    const [cartFilled, setCartFilled] = useState(false)
+    const [menuIcon, setIcon] = useState(false);
+
+    const handleSmallerScreensNavigation = () => {
+        setIcon(!menuIcon);
+    }
+
+    useEffect(() => {
+        let checkout = typeof window !== "undefined" ? localStorage.getItem("checkoutId") : null;
+        if (checkout) {
+            setCartFilled(true);
+        }
+    }, [])
+
     return (
         <div className="padding-y">
-            <div className="home-link">
+            <div onClick={() => setIcon(false)} className="home-link mb-4">
                 <Link href="/" className="padding-y">
                     <Image
                         src={homeLogo}
-                        width={550}
-                        height={500}
+                        priority
+                        width={650}
+                        height={600}
                         alt="home page link"
+                        className="w-auto h-auto"
                     />
                 </Link>
             </div>
-            <div className="header-link">
-                <Link href="/about" className="hover:bg-primary-blue hover:text-white">About</Link>
-                <Link href="/objects" className="margin-x hover:bg-primary-blue hover:text-white">Objects</Link>
-                <Link href="/words" className="margin-x hover:bg-primary-blue hover:text-white">Words</Link>
-                <Link href="/sounds" className="margin-x hover:bg-primary-blue hover:text-white">Sounds</Link>
-                <Link href="/cart" className="float-right mr-2 hover:bg-primary-blue hover:text-white">Cart</Link>
+            <div className="header-link hidden md:block">
+                <Link href="/about" scroll={false} className=" hover:bg-primary-blue px-2 hover:text-white">About</Link>
+                <Link href="/objects" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Objects</Link>
+                <Link href="/words" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Words</Link>
+                <Link href="/sounds" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Sounds</Link>
+                <Link href="/cart" scroll={false} id="checkout-btn" className="float-right px-2 mr-2 hover:bg-terracotta hover:text-white">[ Cart ]</Link>
+            </div>
+            <div className="header-link flex md:hidden cursor-pointer">
+                <div className="hover:bg-primary-blue hover:text-white" onClick={handleSmallerScreensNavigation}>
+                    {menuIcon ? "X" : "Menu"}
+                </div>
+                <div className="checkout_btn" onClick={() => setIcon(false)} >
+                    <Link href="/cart" scroll={false} id="checkout-btn" className="px-2 mr-2 hover:bg-terracotta hover:text-white">[ Cart ]</Link>
+                </div>
+            </div>
+
+            {/* Smaller Screen Navigation */}
+            <div className={menuIcon ?
+                'md:hidden top-[160px] z-50 right-0 bottom-0 italic left-0 flex justify-center items-center w-full h-[35%]'
+                :
+                'md:hidden absolute top-[160px] z-50 right-0 italic left-[-100%] flex justify-center items-center w-full h-[35%]'
+            }>
+                <div className="w-full border-b border-black">
+                    <ul>
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
+                            <Link href="/about" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">About</Link>
+                        </li>
+
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
+                            <Link href="/objects" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">Objects</Link>
+                        </li>
+
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
+                            <Link href="/words" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">Words</Link>
+                        </li>
+
+                        <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
+                            <Link href="/sounds" scroll={false} className=" hover:bg-primary-blue hover:text-white px-2">Sounds</Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     )
