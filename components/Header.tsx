@@ -27,7 +27,7 @@ const Header = () => {
                     <Image
                         src={homeLogo}
                         priority
-                        width={500}
+                        width={650}
                         height={600}
                         alt="home page link"
                         className="w-auto h-auto"

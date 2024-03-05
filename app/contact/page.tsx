@@ -26,7 +26,9 @@ const Contact = () => {
                     />
                 </div>
             </div>
-            <ScrollToTopButton />
+            <div className="hidden md:block">
+                <ScrollToTopButton />
+            </div>
         </div >
     )
 }

@@ -7,7 +7,9 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       <Hero />
-      <ScrollToTopButton />
+      <div className="hidden md:block">
+        <ScrollToTopButton />
+      </div>
     </main>
   )
 }

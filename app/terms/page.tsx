@@ -2263,7 +2263,9 @@ const Terms = () => {
                     </div>
                 </div>
             </div>
-            <ScrollToTopButton />
+            <div className="hidden md:block">
+                <ScrollToTopButton />
+            </div>
         </div >
     )
 }

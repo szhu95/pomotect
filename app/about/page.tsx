@@ -34,21 +34,21 @@ const About = () => {
                 </div>
                 <div className="about-section">
                     <div className="minion-font font-bold">Objects</div>
-                    Form and function and all that. A collection of things and garments that we make and sometimes 
-                    sell if we can figure out how to actually make them. Let us know if you want to 
+                    Form and function and all that. A collection of things and garments that we make and sometimes
+                    sell if we can figure out how to actually make them. Let us know if you want to
                     help with that last part. It’s hard.
                 </div>
 
                 <div className="about-section">
                     <div className="minion-font font-bold">Words</div>
-                    Here we explore general curiosities and questions. We quote. We clip things from the web. 
-                    Disciplined observation of the world is the source of all creative inspiration, 
+                    Here we explore general curiosities and questions. We quote. We clip things from the web.
+                    Disciplined observation of the world is the source of all creative inspiration,
                     so we try to keep an eye or ear out for goings-on worth capturing.
                 </div>
 
                 <div className="about-section">
                     <div className="minion-font font-bold">Sounds</div>
-                    From time-to-time, we bring people together to dance, to listen more, 
+                    From time-to-time, we bring people together to dance, to listen more,
                     and to talk less, in a temporary autonomous zone.
                 </div>
 
@@ -58,7 +58,9 @@ const About = () => {
                     Find us somewhere between New York & LA.
                 </div>
             </div>
-            <ScrollToTopButton />
+            <div className="hidden md:block">
+                <ScrollToTopButton />
+            </div>
         </div >
     )
 }

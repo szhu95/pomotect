@@ -65,7 +65,9 @@ const Objects = async () => {
       <div>
         <Shop response={response} />
       </div>
-      <ScrollToTopButton />
+      <div className="hidden md:block">
+        <ScrollToTopButton />
+      </div>
     </div>
   )
 }

@@ -140,7 +140,9 @@ export default async function Product({
           </div>
         </div>
       </div>
-      <ScrollToTopButton />
+      <div className="hidden md:block">
+        <ScrollToTopButton />
+      </div>
     </div>
   );
 }

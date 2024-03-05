@@ -37,9 +37,11 @@ const Words = async () => {
         <p><i>Most recently updated on {formattedDate}</i></p>
       </div>
 
-      <Posts response={response}/>
-      
-      <ScrollToTopButton />
+      <Posts response={response} />
+
+      <div className="hidden md:block">
+        <ScrollToTopButton />
+      </div>
     </div>
   )
 }

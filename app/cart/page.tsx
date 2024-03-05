@@ -15,7 +15,9 @@ const CartPage = async () => {
       <div className="site-section">
         <Cart />
       </div>
-      <ScrollToTopButton />
+      <div className="hidden md:block">
+        <ScrollToTopButton />
+      </div>
     </div>
 
   )
