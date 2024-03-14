@@ -176,7 +176,7 @@ export default function Cart() {
                     alt="product image"
                   />
                 </div>
-                <div className="font-['Minion']">{item.node.quantity}</div>
+                <div className="font-['Minion'] pl-1">{item.node.quantity}</div>
                 <div className="font-['Minion']">{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
                 <div className="font-['Minion']">
                   {item.node.title} <br></br>
