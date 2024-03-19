@@ -10,7 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         minion: ["Minion", "sans-serif"],
-        bebas: ["Bebas", "sans"],
+        bebas: ["BebasNeue-Regular"],
       },
       colors: {
         "black-100": "#2B2C35",

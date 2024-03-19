@@ -10,12 +10,19 @@
 }
 
 @font-face {
-  font-family: 'Bebas Neue';
-  src: local('Bebas'), url('../fonts/Bebas.ttf') format('ttf');
+  font-family: 'BebasNeue-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/BebasNeue-Regular.eot');
+  src: local('BebasNeue-Regular'),
+    url('../fonts/BebasNeue-Regular.ttf') format('ttf'),
+    url('../fonts/BebasNeue-Regular.otf') format('otf'),
+    url('../fonts/BebasNeue-Regular.woff') format('woff'),
+    url('../fonts/BebasNeue-Regular.woff2') format('woff2');
 }
 
 .bebas-font {
-  font-family: 'Bebas Neue';
+  font-family: 'BebasNeue-Regular';
 }
 
 * {
@@ -292,11 +299,35 @@ body {
   padding-bottom: 0.2em
 }
 
-body {
-  color: black;
-  background: white;
-  padding-left: 10%;
-  max-width: 70%;
+.projects li a span:last-child:not(.name) {
+  text-transform: lowercase
+}
+
+@media (pointer: fine) {
+  .projects li a:hover span:first-child {
+    text-decoration: underline
+  }
+}
+
+.projects li.active+project-preview {
+  opacity: 1;
+  z-index: 9
+}
+
+@media (pointer: coarse) {
+  .projects li.active+project-preview {
+    pointer-events: all
+  }
+}
+
+.projects li:last-of-type {
+  margin-bottom: 0
+}
+
+@media (pointer: coarse) {
+  .projects li {
+    min-height: 60vh
+  }
 }
 
 @media screen and (max-width: 800px) {
