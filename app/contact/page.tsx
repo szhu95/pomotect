@@ -10,10 +10,10 @@ const Contact = () => {
         <div>
             <div className="site-section">
                 <div className="mt-[10%] mx-[10%] center items-center">
-                    <img
+                    <Image
                         width={700}
                         height={1000}
-                        src={BusinessCard.src}
+                        src={BusinessCard}
                         alt="business card"
                     />
 
