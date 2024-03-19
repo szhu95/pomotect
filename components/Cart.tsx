@@ -59,6 +59,9 @@ query getCheckoutLineItemsFromNode($id: ID!) {
                 width
                 url
               }
+              product {
+                handle
+             }
               title
               price {
                 amount
@@ -129,7 +132,7 @@ export default function Cart() {
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
-    // console.log("data is " + JSON.stringify(response));
+    console.log("data is " + JSON.stringify(response));
 
     if (response?.node.order?.id) {
       setCart('');
@@ -168,13 +171,19 @@ export default function Cart() {
             return (
               <div key={i} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
                 <div>
-                  <Image
-                    className="border-2 border-dashed border-terracotta py-2 max-h-28"
-                    src={item.node.variant?.image.url}
-                    width={100}
-                    height={250}
-                    alt="product image"
-                  />
+                  <Link
+                    key={item.node.variant?.product.handle}
+                    href={`objects/${item.node.variant?.product.handle}`}
+                    className={"block w-[100px]"}
+                  >
+                    <Image
+                      className="border-2 border-dashed border-terracotta py-2 max-h-28"
+                      src={item.node.variant?.image.url}
+                      width={100}
+                      height={250}
+                      alt="product image"
+                    />
+                  </Link>
                 </div>
                 <div className="font-['Minion'] pl-1">{item.node.quantity}</div>
                 <div className="font-['Minion']">{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
