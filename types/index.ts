@@ -24,3 +24,11 @@ export interface SoundcloudProps {
     label?: string;
     src?: string;
 }
+
+export interface CustomImageProps {
+    src: string;
+    alt: string;
+    height: number;
+    width: number;
+    className: any;
+}

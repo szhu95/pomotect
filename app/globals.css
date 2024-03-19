@@ -71,6 +71,14 @@
   display: inline-block;
 }
 
+[data-rmiz-btn-unzoom] {
+  display: none !important;
+}
+
+[data-rmiz-btn-zoom] {
+  display: none !important;
+}
+
 .header-link {
   padding-left: 10px;
   font-style: italic;
