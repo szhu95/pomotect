@@ -28,7 +28,7 @@ const Hero = () => {
                     handleClick={() => router.push('/words')}
                 />
                 </div>
-                <div className="absolute left-[50%] md:left-[52%] top-[75%] md:top-[55%]">
+                <div className="absolute left-[35%] md:left-[52%] top-[75%] md:top-[55%]">
                 <CustomButton
                     title="EXPLORE SOUNDS"
                     containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
