@@ -9,6 +9,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "postmodern-tectonics.ghost.io",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
       }
     ]
   },
