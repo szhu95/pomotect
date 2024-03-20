@@ -174,7 +174,7 @@ export default function Cart() {
                   <Link
                     key={item.node.variant?.product.handle}
                     href={`objects/${item.node.variant?.product.handle}`}
-                    className={"block w-[100px]"}
+                    className={"block max-w-[100px]"}
                   >
                     <Image
                       className="border-2 border-dashed border-terracotta py-2 max-h-28"
