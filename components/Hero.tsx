@@ -26,7 +26,7 @@ const Hero = () => {
                         <CustomButton
                             title="EXPLORE OBJECTS"
                             containerStyles="bg-black hover:bg-primary-blue max-h-[20px]"
-                            textColor="text-white font-semibold bebas-font"
+                            textColor="text-white minion-font"
                             handleClick={() => router.push('/objects')}
                         />
                     </motion.div>
@@ -44,7 +44,7 @@ const Hero = () => {
                         <CustomButton
                             title="EXPLORE WORDS"
                             containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
-                            textColor="text-white font-semibold bebas-font"
+                            textColor="text-white minion-font"
                             handleClick={() => router.push('/words')}
                         />
                     </motion.div>
@@ -62,7 +62,7 @@ const Hero = () => {
                         <CustomButton
                             title="EXPLORE SOUNDS"
                             containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
-                            textColor="text-white font-semibold bebas-font"
+                            textColor="text-white minion-font"
                             handleClick={() => router.push('/sounds')}
                         />
                     </motion.div>
