@@ -121,7 +121,7 @@ export default async function Product({
           <div className="site-section product-info">
             <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
             <div className="text-sm mb-5 italic font-['Minion']">
-              Most recently updated on {lastUpdatedDate}
+              Most recently updated on March 05, 2024
             </div>
             <div className="inline-grid gap-2 grid-cols-2">
               <Image
