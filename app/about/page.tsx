@@ -12,7 +12,7 @@ const About = () => {
                     <p><i>Most recently updated on February 01, 2024</i></p>
                 </div>
                 <div className="about-section">
-                    <h3 className="about_header pr-6">Postmodern Tectonics </h3>
+                    <h3 className="about_header minion-font pl-1 pr-6">Postmodern Tectonics </h3>
 
                     <div className="about-section">Or, sometimes <b><span className="minion-font">POMO—TECT™</span></b> is a b2b (back-to-back) of ideas.</div>
 
@@ -53,7 +53,7 @@ const About = () => {
                 </div>
 
                 <div className="about-section">
-                    <h3 className="about_header pr-6">About the About</h3>
+                    <h3 className="about_header minion-font pl-1 pr-6">About the About</h3>
                     Founded in ©2024 by a few friends that play music together.<br></br>
                     Find us somewhere between New York & LA.
                 </div>
