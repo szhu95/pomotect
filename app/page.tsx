@@ -5,7 +5,7 @@ import ScrollToTopButton from '@/components/ScrollToTopButton'
 export default function Home() {
 
   return (
-    <main className="overflow-hidden">
+    <main>
       <Hero />
       <div className="hidden md:block">
         <ScrollToTopButton />

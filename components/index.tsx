@@ -10,6 +10,7 @@ import Soundcloud from './Soundcloud';
 import Footer from './Footer';
 import Posts from './Posts';
 import ZoomableImage from './ZoomableImage';
+import Post from './Post';
 
 export {
     Hero,
@@ -23,5 +24,6 @@ export {
     Soundcloud,
     Footer,
     Posts,
-    ZoomableImage
+    ZoomableImage,
+    Post
 }

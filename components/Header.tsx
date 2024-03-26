@@ -34,7 +34,7 @@ const Header = () => {
                 </Link>
             </div>
             <div className="header-link hidden md:block">
-                <Link href="/about" scroll={false} className=" hover:bg-primary-blue px-2 hover:text-white">About</Link>
+                <Link href="/about" scroll={false} className="hover:bg-primary-blue px-2 hover:text-white">About</Link>
                 <Link href="/objects" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Objects</Link>
                 <Link href="/words" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Words</Link>
                 <Link href="/sounds" scroll={false} className="margin-x px-2 hover:bg-primary-blue hover:text-white">Sounds</Link>
