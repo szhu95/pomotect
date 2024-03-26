@@ -46,6 +46,20 @@ export async function getPosts() {
     return response.json();
 }
 
+export async function getPost(slug) {
+    const slugId = slug;
+    const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts/slug/${slugId}?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Version': 'v5.0',
+        },
+    })
+
+    return response.json();
+}
+
+
 export function createMarkup(description) {
     return { __html: description };
 }

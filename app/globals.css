@@ -71,6 +71,14 @@
   display: inline-block;
 }
 
+[data-rmiz-btn-unzoom] {
+  display: none !important;
+}
+
+[data-rmiz-btn-zoom] {
+  display: none !important;
+}
+
 .header-link {
   padding-left: 10px;
   font-style: italic;
@@ -110,6 +118,7 @@
   font-style: italic;
   padding-right: 60px;
   padding-left: 1px;
+  min-width: 120px;
 }
 
 .product-details-header {
@@ -130,6 +139,7 @@
   font-style: italic;
   padding-right: 7.5%;
   padding-left: 1px;
+  min-width: 120px;
 }
 
 .cart-details-header {

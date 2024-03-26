@@ -2,7 +2,7 @@ import { formatDate, formatPrice, storefront } from "@/utils";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { ProductCta } from "@/components";
+import { ProductCta, ZoomableImage } from "@/components";
 import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import parse from 'html-react-parser';
@@ -94,13 +94,19 @@ export default async function Product({
             return (
               // hover:scale-[2] transform transition duration-500
               <div key={i} className="ml-8 md:mt-2 overflow-hidden">
-                <Image
+                <ZoomableImage
                   src={item.node?.transformedSrc}
                   alt={"product image"}
-                  width="600"
-                  height="800"
-                  className="float-right mt-3 mb-7 h-auto"
-                />
+                  width={600}
+                  height={800}
+                  className="float-right mt-3 mb-7 h-auto" />
+                  {/* <Image
+                    src={item.node?.transformedSrc}
+                    alt={"product image"}
+                    width="600"
+                    height="800"
+                    className="float-right mt-3 mb-7 h-auto"
+                  /> */}
               </div>
             )
           })
