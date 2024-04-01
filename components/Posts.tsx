@@ -30,12 +30,11 @@ export default async function Posts({ response }: any) {
             let parsedPost = parse(finalHtml);
 
             return (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    key={post.id}
-                >
-                    <div key={post.id} className="mt-5">
+                <div key={post.id} className="mt-5">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                    >
                         <div className='site-section words-header'>
                             <Link
                                 key={post.slug}
@@ -57,8 +56,8 @@ export default async function Posts({ response }: any) {
                                 />}
                             </div>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
             )
         })
     );

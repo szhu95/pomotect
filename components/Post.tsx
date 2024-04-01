@@ -30,12 +30,11 @@ export default async function Post({ response }: any) {
             let parsedPost = parse(finalHtml);
 
             return (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    key={post.id}
-                >
-                    <div key={post.id} className="mt-5">
+                <div key={post.id} className="mt-5">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                    >
                         <div className='site-section words-header'>
                             <div className="entry-number bg-black text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
                             <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
@@ -52,8 +51,8 @@ export default async function Post({ response }: any) {
                                 />}
                             </div>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div >
             )
         })
     );
