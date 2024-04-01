@@ -33,6 +33,7 @@ export default async function Post({ response }: any) {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
+                    key={post.id}
                 >
                     <div key={post.id} className="mt-5">
                         <div className='site-section words-header'>
