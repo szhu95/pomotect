@@ -1,6 +1,4 @@
-"use client";
 import { formatUpdatedDate } from "@/utils";
-import { motion } from "framer-motion";
 import parse from 'html-react-parser';
 import Image from "next/image";
 import Link from "next/link";
@@ -31,10 +29,6 @@ export default async function Posts({ response }: any) {
 
             return (
                 <div key={post.id} className="mt-5">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                    >
                         <div className='site-section words-header'>
                             <Link
                                 key={post.slug}
@@ -56,7 +50,6 @@ export default async function Posts({ response }: any) {
                                 />}
                             </div>
                         </div>
-                    </motion.div>
                 </div>
             )
         })
