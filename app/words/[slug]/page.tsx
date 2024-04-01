@@ -25,7 +25,7 @@ export default async function Article({
 
     const data = await getData();
 
-    console.log(JSON.stringify(data))
+    // console.log(JSON.stringify(data))
     let response = data.post;
 
     let utcTimeString = response.posts[0].published_at;

@@ -9,6 +9,10 @@
   src: local('Minion'), url('../fonts/minion.otf') format('otf');
 }
 
+.header:active {
+  background-color: blue;
+}
+
 @font-face {
   font-family: 'BebasNeue-Regular';
   font-style: normal;

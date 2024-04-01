@@ -3,8 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/logo-3.png'
+import { motion } from 'framer-motion';
 
-const Header = () => {
+const Header = ({ title, menuStatus }: any) => {
     const [cartFilled, setCartFilled] = useState(false)
     const [menuIcon, setIcon] = useState(false);
 
@@ -23,14 +24,14 @@ const Header = () => {
         <div className="padding-y">
             <div onClick={() => setIcon(false)} className="home-link mb-4">
                 <Link href="/" className="padding-y">
-                    <Image
-                        src={homeLogo}
-                        priority
-                        width={650}
-                        height={600}
-                        alt="home page link"
-                        className="w-auto h-auto"
-                    />
+                        <Image
+                            src={homeLogo}
+                            priority
+                            width={650}
+                            height={600}
+                            alt="home page link"
+                            className="w-auto h-auto"
+                        />
                 </Link>
             </div>
             <div className="header-link hidden md:block">
@@ -42,7 +43,7 @@ const Header = () => {
             </div>
             <div className="header-link flex md:hidden cursor-pointer">
                 <div className="hover:bg-primary-blue hover:text-white" onClick={handleSmallerScreensNavigation}>
-                    {menuIcon ? <div className="not-italic hover:text-white">ⓧ</div> : "Menu"}
+                    {menuIcon ? <div className="not-italic focus:text-white hover:text-white">ⓧ</div> : "Menu"}
                 </div>
                 <div className="checkout_btn" onClick={() => setIcon(false)} >
                     <Link href="/cart" scroll={false} id="checkout-btn-mobile" className="px-2 mr-2 hover:bg-terracotta hover:text-white">[ Cart ]</Link>

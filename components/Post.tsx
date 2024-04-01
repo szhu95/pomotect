@@ -1,4 +1,6 @@
+"use client";
 import { formatUpdatedDate } from "@/utils";
+import { motion } from "framer-motion";
 import parse from 'html-react-parser';
 import Image from "next/image";
 import Link from "next/link";
@@ -28,24 +30,29 @@ export default async function Post({ response }: any) {
             let parsedPost = parse(finalHtml);
 
             return (
-                <div key={post.id} className="mt-5">
-                    <div className='site-section words-header'>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                >
+                    <div key={post.id} className="mt-5">
+                        <div className='site-section words-header'>
                             <div className="entry-number bg-black text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
-                        <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
-                    </div>
-                    <div className={`site-section ml-2 words-body overflow-y-auto`}>
-                        <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
-                        <div className="pr-2 py-2">
-                            {post.feature_image && <Image
-                                src={post.feature_image}
-                                alt={"words-image"}
-                                width={500}
-                                height={500}
-                                className="h-full w-full object-cover object-center"
-                            />}
+                            <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
+                        </div>
+                        <div className={`site-section ml-2 words-body overflow-y-auto`}>
+                            <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
+                            <div className="pr-2 py-2">
+                                {post.feature_image && <Image
+                                    src={post.feature_image}
+                                    alt={"words-image"}
+                                    width={500}
+                                    height={500}
+                                    className="h-full w-full object-cover object-center"
+                                />}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )
         })
     );
