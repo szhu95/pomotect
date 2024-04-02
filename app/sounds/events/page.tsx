@@ -31,7 +31,7 @@ const Events = () => {
                     >
                         <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div>
                         <li className="border-b border-black -ml-2">
-                            <a target="_blank" href="https://www.flashdc.com/e/qPvOtumidy" rel="noopener noreferrer" className="hover:bg-terracotta hover:text-black soundcloud_title ml-2 font-['Minion']">Flash Nightclub</a>
+                            <a target="_blank" href="https://www.flashdc.com/e/qPvOtumidy" rel="noopener noreferrer" className="hover:bg-terracotta soundcloud_title ml-2 font-['Minion']">Flash Nightclub</a>
                             <br></br>
                             <p className="text-right text-primary-blue italic font-['Minion']">Flash, Washington D.C.</p>
                         </li>
