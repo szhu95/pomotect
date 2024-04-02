@@ -34,7 +34,7 @@ export default async function Posts({ response }: any) {
                                 key={post.slug}
                                 href={`words/${post.slug}`}
                             >
-                                <div className="hover:text-black hover:bg-terracotta entry-number bg-black text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
+                                <div className="hover:bg-terracotta entry-number bg-black text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
                             </Link>
                             <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                         </div>
