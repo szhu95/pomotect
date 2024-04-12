@@ -67,13 +67,19 @@ const Hero = () => {
                         />
                     </motion.div>
                 </div>
-                <Image
-                    src={landingPageBackground}
-                    width={700}
-                    priority
-                    height={300}
-                    alt="landing page background image"
-                />
+                <motion.div
+                    initial={{ opacity: 0, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5,  }}
+                >
+                    <Image
+                        src={landingPageBackground}
+                        width={700}
+                        priority
+                        height={300}
+                        alt="landing page background image"
+                    />
+                </motion.div>
             </div>
         </div >
     )

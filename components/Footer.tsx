@@ -7,10 +7,10 @@ const Footer = () => {
     return (
         <div className="flex border-t border-black mt-[250px]">
             <div className="site-section italic text-gray-700 py-1">
-                <Link href="/terms" className="mr-8 md:mr-10">
+                <Link href="/terms" className="mr-8 pr-2 md:mr-10 hover:bg-primary-blue hover:text-white">
                     Privacy & Terms of Use
                 </Link>
-                <Link href="/contact">
+                <Link href="/contact" className="hover:bg-primary-blue hover:text-white px-2">
                     Contact
                 </Link>
             </div>

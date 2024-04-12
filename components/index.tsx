@@ -11,6 +11,7 @@ import Footer from './Footer';
 import Posts from './Posts';
 import ZoomableImage from './ZoomableImage';
 import Post from './Post';
+import WordsTicker from './WordsTicker';
 
 export {
     Hero,
@@ -25,5 +26,6 @@ export {
     Footer,
     Posts,
     ZoomableImage,
-    Post
+    Post,
+    WordsTicker
 }
