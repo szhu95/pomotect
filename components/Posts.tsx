@@ -50,7 +50,7 @@ export default async function Posts({ response }: any) {
                                 />}
                             </div>
                         </div>
-                </div>
+                </div >
             )
         })
     );

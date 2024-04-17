@@ -47,6 +47,12 @@
   @apply max-w-[1440px] mx-auto;
 }
 
+.ticker-img-container {
+  width: 150px;
+  height:100%;
+  overflow: hidden;
+}
+
 .padding-x {
   padding-left: 15%;
 }

@@ -29,7 +29,8 @@ const Events = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                     >
-                        <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div>
+                        <div className="text-right text-grey italic font-semibold font-['Minion'] mt-4 border-b border-grey border-dashed -ml-2">ARCHIVE</div>
+                        {/* <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div> */}
                         <li className="border-b border-black -ml-2">
                             <a target="_blank" href="https://www.flashdc.com/e/qPvOtumidy" rel="noopener noreferrer" className="hover:bg-terracotta soundcloud_title ml-2 font-['Minion']">Flash Nightclub</a>
                             <br></br>
@@ -44,7 +45,6 @@ const Events = () => {
                                 className='mx-auto'
                             />
                         </div>
-                        <div className="text-right text-grey italic font-semibold font-['Minion'] mt-4 border-b border-grey border-dashed -ml-2">ARCHIVE</div>
                         <li className="border-b border-black -ml-2">
                             <span className="soundcloud_title ml-2 font-['Minion']">Out of the Blue</span>
                             <br></br>
