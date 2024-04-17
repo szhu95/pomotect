@@ -4,27 +4,27 @@ import { getPosts } from '@/utils';
 
 export default async function Home() {
 
-  async function getData() {
-    const posts = await getPosts()
+  // async function getData() {
+  //   const posts = await getPosts()
 
-    if (!posts) {
-      return {
-        notFound: true,
-      }
-    }
+  //   if (!posts) {
+  //     return {
+  //       notFound: true,
+  //     }
+  //   }
 
-    return {
-      posts
-    }
-  }
+  //   return {
+  //     posts
+  //   }
+  // }
 
-  const data = await getData();
+  // const data = await getData();
 
-  let response = data.posts
+  // let response = data.posts
 
   return (
     <main>
-      <WordsTicker response={response}/>
+      {/* <WordsTicker response={response}/> */}
       <Hero />
       <div className="hidden md:block">
         <ScrollToTopButton />
