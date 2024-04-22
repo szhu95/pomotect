@@ -132,7 +132,7 @@ export default function Cart() {
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
-    // console.log("data is " + JSON.stringify(response));
+    console.log("data is " + JSON.stringify(response));
 
     if (response?.node.order?.id) {
       setCart('');
@@ -147,12 +147,20 @@ export default function Cart() {
     setIsLoading(false);
   }, [])
 
+  function resetCart() {
+    setCart('');
+    setIsLoading(false);
+    if (localStorage.getItem("checkoutId"))
+      localStorage.removeItem("checkoutId");
+  }
+
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
       setIsLoading(true);
       checkout = localStorage.getItem("checkoutId");
       setCart(checkout ? checkout : '');
-      retrieveCart();
+      retrieveCart().catch(err =>
+        resetCart());
     }
   }, []);
 
