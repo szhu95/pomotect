@@ -26,7 +26,7 @@ export default async function Article({
 
   const data = await getData();
 
-  console.log(JSON.stringify(data.post))
+  // console.log(JSON.stringify(data.post))
   let response = data.post;
 
   if (response.errors) {
