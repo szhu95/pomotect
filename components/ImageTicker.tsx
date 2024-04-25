@@ -24,6 +24,7 @@ export default async function ImageTicker({ response }: any) {
                                 src={post.feature_image}
                                 alt={"pomo-text " + post.slug}
                                 width="150"
+                                height="150"
                                 className='group-hover:opacity-[50%] p-1'
                             />
                         </div>
