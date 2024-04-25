@@ -1,34 +1,74 @@
-import { Hero, WordsTicker } from '@/components'
+import { Hero, ImageTicker, WordsTicker } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
-import { getPosts } from '@/utils';
+import { getPosts, storefront } from '@/utils';
 
 export default async function Home() {
 
-  // async function getData() {
-  //   const posts = await getPosts()
+  async function getData() {
+    const posts = await getPosts()
 
-  //   if (!posts) {
-  //     return {
-  //       notFound: true,
-  //     }
-  //   }
+    if (!posts) {
+      return {
+        notFound: true,
+      }
+    }
 
-  //   return {
-  //     posts
-  //   }
-  // }
+    return {
+      posts
+    }
+  }
 
-  // const data = await getData();
+  const getProducts = async () => {
+    const { data } = await storefront(productsQuery);
+    return {
+      products: data.products,
+    };
+  };
+  
+  const gql = String.raw;
+  
+  const productsQuery = gql`
+      query Products {
+        products(first: 10) {
+          edges {
+            node {
+              title
+              handle
+              tags
+              totalInventory
+              priceRange {
+                minVariantPrice {
+                  amount
+                }
+              }
+              images(first: 10) {
+                edges {
+                  node {
+                    transformedSrc
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
 
-  // let response = data.posts
+  const data = await getData();
+
+  let response = data.posts
+
+  let objectsResponse = (await getProducts()) as any;
 
   return (
     <main>
-      {/* <WordsTicker response={response}/> */}
+      <ImageTicker response={response}/>
       <Hero />
       <div className="hidden md:block">
         <ScrollToTopButton />
       </div>
+      <WordsTicker response={response} objectsResponse={objectsResponse}/>
     </main>
   )
 }

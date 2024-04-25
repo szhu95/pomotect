@@ -12,6 +12,7 @@ import Posts from './Posts';
 import ZoomableImage from './ZoomableImage';
 import Post from './Post';
 import WordsTicker from './WordsTicker';
+import ImageTicker from './ImageTicker';
 
 export {
     Hero,
@@ -27,5 +28,6 @@ export {
     Posts,
     ZoomableImage,
     Post,
-    WordsTicker
+    WordsTicker,
+    ImageTicker
 }

@@ -34,13 +34,13 @@ export default async function Posts({ response }: any) {
                                 key={post.slug}
                                 href={`words/${post.slug}`}
                             >
-                                <div className="hover:bg-terracotta entry-number bg-black text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
+                                <div className="hover:bg-yellow hover:text-black entry-number bg-black text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
                             </Link>
                             <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                         </div>
                         <div className={`site-section ml-2 words-body max-h-[85vh] overflow-y-auto`}>
                             <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
-                            <div className="pr-2 py-2">
+                            {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
                                     src={post.feature_image}
                                     alt={"words-image"}
@@ -48,7 +48,7 @@ export default async function Posts({ response }: any) {
                                     height={500}
                                     className="h-full w-full object-cover object-center"
                                 />}
-                            </div>
+                            </div> */}
                         </div>
                 </div >
             )

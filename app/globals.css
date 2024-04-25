@@ -34,7 +34,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Arial", sans-serif;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   color: black;
 }
 
@@ -49,6 +49,11 @@
 
 .ticker-img-container {
   width: 150px;
+  height:100%;
+  overflow: hidden;
+}
+
+.ticker-words-container {
   height:100%;
   overflow: hidden;
 }
@@ -93,7 +98,7 @@
   padding-left: 10px;
   font-style: italic;
   padding-bottom: 10px;
-  border-bottom: solid 1px black;
+  border-bottom: solid 2px black;
 }
 
 .checkout_btn {
@@ -137,8 +142,9 @@
   display: inline-block;
   font-weight: bold;
   font-style: italic;
-  padding-right: 7.5%;
+  padding-right: 60px;
   padding-left: 1px;
+  min-width: 120px;
 }
 
 .cart-header {

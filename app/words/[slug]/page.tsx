@@ -3,50 +3,56 @@ import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { formatUpdatedDate, getPost } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
+import NotFound from "@/app/not-found";
 
 export default async function Article({
-    params,
+  params,
 }: {
-    params: { slug: string };
+  params: { slug: string };
 }) {
 
-    async function getData() {
-        const post = await getPost(params.slug)
-        if (!post) {
-            return {
-                notFound: true,
-            }
-        }
-
-        return {
-            post
-        }
+  async function getData() {
+    const post = await getPost(params.slug)
+    if (!post) {
+      return {
+        notFound: true,
+      }
     }
 
-    const data = await getData();
+    return {
+      post
+    }
+  }
 
-    // console.log(JSON.stringify(data))
-    let response = data.post;
+  const data = await getData();
 
-    let utcTimeString = response.posts[0].published_at;
-    const date = new Date(utcTimeString);
-    let formattedDate = formatUpdatedDate(date)
-  
-    return (
-      <div>
-        <div className="site-section">
-          <div className="main_header">Words</div>
-          <p><i>Most recently updated on {formattedDate}</i></p>
-        </div>
-  
-        <Post response={response} />
+  console.log(JSON.stringify(data.post))
+  let response = data.post;
 
-        <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more words ⇢</Link>
+  if (response.errors) {
+    return NotFound();
+  }
 
-  
-        <div className="hidden md:block">
-          <ScrollToTopButton />
-        </div>
+  let utcTimeString = response.posts[0].published_at;
+  const date = new Date(utcTimeString);
+  let formattedDate = formatUpdatedDate(date)
+
+  return (
+    <div>
+      <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more words ⇢</Link>
+      <div className="site-section">
+        <div className="main_header">Words</div>
+        <p><i>Most recently updated on {formattedDate}</i></p>
       </div>
-    )
+
+      <Post response={response} />
+
+      <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more words ⇢</Link>
+
+
+      <div className="hidden md:block">
+        <ScrollToTopButton />
+      </div>
+    </div>
+  )
 }

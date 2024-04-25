@@ -3,26 +3,36 @@ import Marquee from "react-fast-marquee";
 import Link from "next/link";
 
 
-export default async function WordsTicker({ response }: any) {
+export default async function WordsTicker({ response, objectsResponse }: any) {
 
     return (
         <Marquee
             pauseOnHover={true}
             pauseOnClick={true}
-            className="relative"
-            style={{ marginTop: 10 }}>
-
+            speed={55}
+            className="relative mt-[200px]"
+        >
             {response.posts.map((post: any) => {
                 return (
                     <Link
                         key={post.slug}
                         href={`words/${post.slug}`}>
-                        <img
-                            src={post.feature_image}
-                            alt={"pomo-text " + post.slug}
-                            width="150"
-                            className='hover:opacity-[50%] p-1'
-                        />
+                        <div className="ticker-words-container minion-font hover:opacity-[50%] bg-primary-blue text-white px-1">
+                            {" [" + post.title + "] "}
+                        </div>
+                    </Link>
+                )
+            })}
+
+            {objectsResponse.products.edges.map((item: any) => {
+
+                let product = item.node;
+
+                return (
+                    <Link
+                        key="object-1"
+                        href={`objects/` + product.handle}>
+                        <div className="ticker-words-container minion-font hover:opacity-[50%] bg-primary-blue text-white px-1">{product.title}</div>
                     </Link>
                 )
             })}

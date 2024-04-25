@@ -35,7 +35,7 @@ export default async function Post({ response }: any) {
                         </div>
                         <div className={`site-section ml-2 words-body overflow-y-auto`}>
                             <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
-                            <div className="pr-2 py-2">
+                            {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
                                     src={post.feature_image}
                                     alt={"words-image"}
@@ -43,7 +43,7 @@ export default async function Post({ response }: any) {
                                     height={500}
                                     className="h-full w-full object-cover object-center"
                                 />}
-                            </div>
+                            </div> */}
                         </div>
                 </div >
             )
