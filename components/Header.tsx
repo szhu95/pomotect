@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/header-logo-2.1.png'
+import mobileHomeLogo from '../assets/images/mobile-home-logo.png'
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
@@ -25,9 +26,19 @@ const Header = ({ title, menuStatus }: any) => {
     return (
         <div className="padding-y">
             <div onClick={() => setIcon(false)} className="home-link mb-4">
-                <Link href="/" className="padding-y">
+                <Link href="/" className="md:block hidden padding-y">
                     <Image
                         src={homeLogo}
+                        priority
+                        width={650}
+                        height={600}
+                        alt="home page link"
+                        className="w-auto h-auto"
+                    />
+                </Link>
+                <Link href="/" className="md:hidden block">
+                    <Image
+                        src={mobileHomeLogo}
                         priority
                         width={650}
                         height={600}

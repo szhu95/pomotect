@@ -230,15 +230,11 @@ iframe {
 
 /* START: Hero styles */
 .hero {
-  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
+  @apply flex flex-row md:gap-[7.25rem] relative z-0 max-w-[1440px];
 }
 
-.hero__title {
-  @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold;
-}
-
-.hero__subtitle {
-  @apply text-[27px] text-black-100 font-light mt-5;
+.hero-link {
+  @apply md:py-4
 }
 
 /* END: Hero styles */
