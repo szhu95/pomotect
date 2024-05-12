@@ -36,6 +36,7 @@ const Hero = () => {
                             <Link
                                 key="about"
                                 href={`about`}
+                                scroll={true}
                                 className="group">
                                 {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE OBJECTS</div> */}
                                 <Image
@@ -66,6 +67,7 @@ const Hero = () => {
                             <Link
                                 key="objects"
                                 href={`objects`}
+                                scroll={true}
                                 className="group">
                                 {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE OBJECTS</div> */}
                                 <Image
@@ -97,6 +99,7 @@ const Hero = () => {
                             <Link
                                 key="words"
                                 href={`words`}
+                                scroll={true}
                                 className="group">
                                 {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE WORDS</div> */}
                                 <Image
@@ -128,6 +131,7 @@ const Hero = () => {
                             <Link
                                 key="sounds"
                                 href={`sounds`}
+                                scroll={true}
                                 className="group">
                                 {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE SOUNDS</div> */}
                                 <Image
@@ -146,7 +150,7 @@ const Hero = () => {
                         </motion.div>
                     </div>
                 </div>
-                <div className="float-right">
+                <div className="float-right hidden md:block">
                     <motion.div
                         initial={{ opacity: 0, scale: 1 }}
                         animate={{ opacity: 1, scale: 1 }}

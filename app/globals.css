@@ -99,6 +99,7 @@
   font-style: italic;
   padding-bottom: 10px;
   border-bottom: solid 2px black;
+  justify-content:space-between
 }
 
 .checkout_btn {
@@ -176,6 +177,10 @@
   padding-right: 3px;
 }
 
+.post-body {
+  padding-right: 3px;
+}
+
 .embla {
   overflow: hidden;
 }
@@ -223,7 +228,8 @@ iframe {
 }
 
 .landing-page {
-  justify-content: right;
+  @apply md:flex-nowrap md:block flex flex-wrap;
+  justify-content: center;
 }
 
 /* END: Header stylers */

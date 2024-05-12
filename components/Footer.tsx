@@ -1,33 +1,66 @@
-"use client";
-import BlueHandLogo from "../assets/images/blue-hand-logo.png"
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from "next/navigation";
+import { DisplayedFooter } from '@/components';
+import { getPosts, storefront } from '@/utils';
 
-const Footer = () => {
-    const pathname = usePathname();
+export default async function Footer() {
+
+    async function getData() {
+        const posts = await getPosts()
+
+        if (!posts) {
+            return {
+                notFound: true,
+            }
+        }
+
+        return {
+            posts
+        }
+    }
+
+    const getProducts = async () => {
+        const { data } = await storefront(productsQuery);
+        return {
+            products: data.products,
+        };
+    };
+
+    const gql = String.raw;
+
+    const productsQuery = gql`
+          query Products {
+            products(first: 10) {
+              edges {
+                node {
+                  title
+                  handle
+                  tags
+                  totalInventory
+                  priceRange {
+                    minVariantPrice {
+                      amount
+                    }
+                  }
+                  images(first: 10) {
+                    edges {
+                      node {
+                        transformedSrc
+                        altText
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `;
+
+    const data = await getData();
+
+    let response = data.posts
+
+    let objectsResponse = (await getProducts()) as any;
+
     return (
-        <div className={pathname == "/" ? "flex border-t border-black mt-[10px]" : "flex border-t border-black mt-[250px]"}>
-            <div className="site-section italic text-gray-700 py-1">
-                <Link href="/terms" className={pathname.startsWith("/terms") ? "mr-8 pr-2 md:mr-10 bg-primary-blue text-white hover:bg-primary-blue hover:text-white" : "mr-8 pr-2 md:mr-10 hover:bg-primary-blue hover:text-white"}>
-                    Privacy & Terms of Use
-                </Link>
-                <Link href="/contact" className={pathname.startsWith("/contact") ? "bg-primary-blue text-white hover:bg-primary-blue hover:text-white px-2" : "hover:bg-primary-blue hover:text-white px-2"}>
-                    Contact
-                </Link>
-            </div>
-            <div className="site-section italic text-gray-700 checkout_btn">
-                <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer">
-                    <Image
-                        src={BlueHandLogo}
-                        width={25}
-                        height={25}
-                        alt="instagram link"
-                    />
-                </a>
-            </div>
-        </div>
+        <DisplayedFooter response={response} objectsResponse={objectsResponse}/>
     )
 }
-
-export default Footer

@@ -1,4 +1,4 @@
-import { Hero, ImageTicker, WordsTicker } from '@/components'
+import { Hero, ImageTicker } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { getPosts, storefront } from '@/utils';
 
@@ -68,7 +68,6 @@ export default async function Home() {
       <div className="hidden md:block">
         <ScrollToTopButton />
       </div>
-      <WordsTicker response={response} objectsResponse={objectsResponse}/>
     </main>
   )
 }

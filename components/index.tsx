@@ -13,6 +13,7 @@ import ZoomableImage from './ZoomableImage';
 import Post from './Post';
 import WordsTicker from './WordsTicker';
 import ImageTicker from './ImageTicker';
+import DisplayedFooter from './DisplayedFooter';
 
 export {
     Hero,
@@ -25,6 +26,7 @@ export {
     Cart,
     Soundcloud,
     Footer,
+    DisplayedFooter,
     Posts,
     ZoomableImage,
     Post,

@@ -19,7 +19,7 @@ export default async function ImageTicker({ response }: any) {
                         href={`words/${post.slug}`}>
 
                         <div className="group ticker-img-container">
-                            <div className='hidden minion-font z-40 group-hover:inline-block absolute pl-2 pt-1 w-[140px]'>{post.title}</div>
+                            <div className='hidden minion-font z-40 group-hover:inline-block group-hover:font-semibold absolute ml-2 mt-1 w-[140px]'>{post.title}</div>
                             <img
                                 src={post.feature_image}
                                 alt={"pomo-text " + post.slug}

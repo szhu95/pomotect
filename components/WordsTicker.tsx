@@ -2,8 +2,7 @@ import React from 'react'
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 
-
-export default async function WordsTicker({ response, objectsResponse }: any) {
+export default function WordsTicker({ response, objectsResponse }: any) {
 
     return (
         <Marquee
