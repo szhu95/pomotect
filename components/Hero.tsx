@@ -25,20 +25,31 @@ const Hero = () => {
                 <div className="pt-20 landing-page">
                     <div className="hero-link">
                         <motion.div
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0.0 }}
                             whileHover={{
                                 scale: 1.2,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1 }}
+                            whileInView={{ opacity: 1.0 }}
                         >
                             <Link
                                 key="about"
-                                href={`about`}
+                                href={`/about`}
                                 scroll={true}
-                                className="group">
-                                {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE OBJECTS</div> */}
+                                className="group md:hidden">
+                                <Image
+                                    src={aboutLinkImage}
+                                    alt={"about link image"}
+                                    width="150"
+                                    height="150"
+                                />
+                            </Link>
+                            <Link
+                                key="about"
+                                href={`/about`}
+                                scroll={true}
+                                className="group hidden md:block">
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"about link image"}
@@ -46,30 +57,35 @@ const Hero = () => {
                                     height="200"
                                 />
                             </Link>
-                            {/* <CustomButton
-                                title="EXPLORE OBJECTS"
-                                containerStyles="bg-black hover:bg-primary-blue max-h-[20px]"
-                                textColor="text-white minion-font"
-                                handleClick={() => router.push('/objects')}
-                            /> */}
                         </motion.div>
                     </div>
                     <div className="hero-link">
                         <motion.div
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0.0 }}
                             whileHover={{
                                 scale: 1.2,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1 }}
+                            whileInView={{ opacity: 1.0 }}
                         >
                             <Link
                                 key="objects"
-                                href={`objects`}
+                                href={`/objects`}
                                 scroll={true}
-                                className="group">
-                                {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE OBJECTS</div> */}
+                                className="group md:hidden">
+                                <Image
+                                    src={objectsLinkImage}
+                                    alt={"objects link image"}
+                                    width="150"
+                                    height="150"
+                                />
+                            </Link>
+                            <Link
+                                key="objects"
+                                href={`/objects`}
+                                scroll={true}
+                                className="group md:block hidden">
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"objects link image"}
@@ -77,31 +93,35 @@ const Hero = () => {
                                     height="200"
                                 />
                             </Link>
-                            {/* <CustomButton
-                                title="EXPLORE OBJECTS"
-                                containerStyles="bg-black hover:bg-primary-blue max-h-[20px]"
-                                textColor="text-white minion-font"
-                                handleClick={() => router.push('/objects')}
-                            /> */}
                         </motion.div>
                     </div>
                     <div className="hero-link">
-                        {/* <div className="absolute left-[15%] top-[50%] md:top-[40%]"> */}
                         <motion.div
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0.0 }}
                             whileHover={{
                                 scale: 1.2,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1 }}
+                            whileInView={{ opacity: 1.0 }}
                         >
                             <Link
                                 key="words"
-                                href={`words`}
+                                href={`/words`}
                                 scroll={true}
-                                className="group">
-                                {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE WORDS</div> */}
+                                className="group md:hidden">
+                                <Image
+                                    src={wordsLinkImage}
+                                    alt={"words link image"}
+                                    width="150"
+                                    height="150"
+                                />
+                            </Link>
+                            <Link
+                                key="words"
+                                href={`/words`}
+                                scroll={true}
+                                className="group md:block hidden">
                                 <Image
                                     src={wordsLinkImage}
                                     alt={"words link image"}
@@ -109,31 +129,35 @@ const Hero = () => {
                                     height="200"
                                 />
                             </Link>
-                            {/* <CustomButton
-                                title="EXPLORE WORDS"
-                                containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
-                                textColor="text-white minion-font"
-                                handleClick={() => router.push('/words')}
-                            /> */}
                         </motion.div>
                     </div>
-                    {/* <div className="absolute left-[40%] md:left-[47%] top-[75%] md:top-[75%]"> */}
                     <div className="hero-link">
                         <motion.div
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0.0 }}
                             whileHover={{
                                 scale: 1.2,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1 }}
+                            whileInView={{ opacity: 1.0 }}
                         >
                             <Link
                                 key="sounds"
-                                href={`sounds`}
+                                href={`/sounds`}
                                 scroll={true}
-                                className="group">
-                                {/* <div className='hidden minion-font z-40 group-hover:inline-block absolute px-2 mt-8 text-white bg-primary-blue'>EXPLORE SOUNDS</div> */}
+                                className="group md:hidden">
+                                <Image
+                                    src={soundsLinkImage}
+                                    alt={"sounds link image"}
+                                    width="150"
+                                    height="150"
+                                />
+                            </Link>
+                            <Link
+                                key="sounds"
+                                href={`/sounds`}
+                                scroll={true}
+                                className="group md:block hidden">
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"sounds link image"}
@@ -141,12 +165,6 @@ const Hero = () => {
                                     height="200"
                                 />
                             </Link>
-                            {/* <CustomButton
-                                title="EXPLORE SOUNDS"
-                                containerStyles="bg-black hover:bg-primary-blue max-h-[18px]"
-                                textColor="text-white minion-font"
-                                handleClick={() => router.push('/sounds')}
-                            /> */}
                         </motion.div>
                     </div>
                 </div>
