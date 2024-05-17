@@ -34,7 +34,7 @@ const Hero = () => {
                             whileInView={{ opacity: 1.0 }}
                         >
                             <Link
-                                key="about"
+                                key="about-mobile"
                                 href={`/about`}
                                 scroll={true}
                                 className="group md:hidden">
@@ -70,7 +70,7 @@ const Hero = () => {
                             whileInView={{ opacity: 1.0 }}
                         >
                             <Link
-                                key="objects"
+                                key="objects-mobile"
                                 href={`/objects`}
                                 scroll={true}
                                 className="group md:hidden">
@@ -118,7 +118,7 @@ const Hero = () => {
                                 />
                             </Link>
                             <Link
-                                key="words"
+                                key="words-mobile"
                                 href={`/words`}
                                 scroll={true}
                                 className="group md:block hidden">
@@ -142,7 +142,7 @@ const Hero = () => {
                             whileInView={{ opacity: 1.0 }}
                         >
                             <Link
-                                key="sounds"
+                                key="sounds-mobile"
                                 href={`/sounds`}
                                 scroll={true}
                                 className="group md:hidden">

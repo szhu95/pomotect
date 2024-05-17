@@ -77,6 +77,8 @@ export default async function Product({
 
   let product = response?.product;
 
+  // console.log("product is " + JSON.stringify(product))
+
   let updatedHtml = product?.descriptionHtml.replaceAll('<p', '<p className="minion-font"')
 
   let markup = parse(updatedHtml);

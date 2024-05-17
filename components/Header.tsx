@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/header-logo-2.4.png'
+import mobilehomeLogo from '../assets/images/mobile-logo-home.png'
 import aboutLinkImage from '../assets/images/about-link-image.png'
 import objectsLinkImage from '../assets/images/objects-link-image.png'
 import wordsLinkImage from '../assets/images/words-link-image.png'
@@ -49,7 +50,7 @@ const Header = ({ title, menuStatus }: any) => {
                 </Link>
                 <Link href="/" className="md:hidden block">
                     <Image
-                        src={homeLogo}
+                        src={mobilehomeLogo}
                         priority
                         width={650}
                         height={600}
@@ -100,7 +101,7 @@ const Header = ({ title, menuStatus }: any) => {
                 </Link>
             </div>
             {/* <div className="border border-b border-black border-dashed"/> */}
-            <div className="header-link flex md:hidden cursor-pointer">
+            <div className="mobile-header-link flex md:hidden cursor-pointer">
                 <div onClick={handleSmallerScreensNavigation}>
                     {menuIcon
                         ?
@@ -113,7 +114,7 @@ const Header = ({ title, menuStatus }: any) => {
                         </div>}
                 </div>
                 <div className="checkout_btn" onClick={() => setIcon(false)} >
-                    <Link href="/cart" scroll={false} id="checkout-btn-mobile" className={"px-2 mr-2"}>
+                    <Link href="/cart" scroll={false} id="checkout-btn-mobile">
                         {pathname.startsWith("/cart") ?
                             <Image src={cartLinkFocusImage} alt={'cart link focus image'} height={100} width={100} className='inline' />
                             :
@@ -132,7 +133,7 @@ const Header = ({ title, menuStatus }: any) => {
                 <div className="w-full border-b border-black">
                     <ul>
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/about" scroll={false} className={"px-2"}>
+                            <Link href="/about" scroll={false}>
                                 {pathname.startsWith("/about") ?
                                     <Image src={aboutLinkFocusImage} alt={'about link focus image'} height={100} width={100} className='inline' />
                                     :
@@ -141,7 +142,7 @@ const Header = ({ title, menuStatus }: any) => {
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/objects" scroll={false} className={"px-2"}>
+                            <Link href="/objects" scroll={false}>
                                 {pathname.startsWith("/objects") ?
                                     <Image src={objectsLinkFocusImage} alt={'objects link focus image'} height={100} width={100} className='inline' />
                                     :
@@ -150,7 +151,7 @@ const Header = ({ title, menuStatus }: any) => {
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/words" scroll={false} className={"px-2"}>
+                            <Link href="/words" scroll={false}>
                                 {pathname.startsWith("/words") ?
                                     <Image src={wordsLinkFocusImage} alt={'words link focus image'} height={100} width={100} className='inline' />
                                     :
@@ -159,7 +160,7 @@ const Header = ({ title, menuStatus }: any) => {
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/sounds" scroll={false} className={"px-2"}>
+                            <Link href="/sounds" scroll={false}>
                                 {pathname.startsWith("/sounds") ?
                                     <Image src={soundsLinkFocusImage} alt={'sounds link focus image'} height={100} width={100} className='inline' />
                                     :

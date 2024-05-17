@@ -18,52 +18,14 @@ export default async function Home() {
     }
   }
 
-  const getProducts = async () => {
-    const { data } = await storefront(productsQuery);
-    return {
-      products: data.products,
-    };
-  };
-  
-  const gql = String.raw;
-  
-  const productsQuery = gql`
-      query Products {
-        products(first: 10) {
-          edges {
-            node {
-              title
-              handle
-              tags
-              totalInventory
-              priceRange {
-                minVariantPrice {
-                  amount
-                }
-              }
-              images(first: 10) {
-                edges {
-                  node {
-                    transformedSrc
-                    altText
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `;
-
   const data = await getData();
 
   let response = data.posts
 
-  let objectsResponse = (await getProducts()) as any;
-
   return (
     <main>
       <ImageTicker response={response}/>
+      <div className='bg-[#d1d5db] font-semibold text-white minion-font pl-2'>IN THE CUE</div>
       <Hero />
       <div className="hidden md:block">
         <ScrollToTopButton />
