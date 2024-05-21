@@ -95,7 +95,7 @@ export default async function Product({
 
             return (
               // hover:scale-[2] transform transition duration-500
-              <div key={i} className="ml-8 md:mt-2 overflow-hidden">
+              <div key={i} className="ml-8 md:mt-2 mr-[10px] overflow-hidden">
                 <ZoomableImage
                   src={item.node?.transformedSrc}
                   alt={"product image"}
