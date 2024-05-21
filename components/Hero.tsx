@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from "framer-motion"
-import CustomButton from './CustomButton';
-import landingPageBackground from '../assets/images/landing-page-bg-2.jpg'
+import landingPageBackground from '../assets/images/landing-page-bg-3.png'
+import landingPageBackgroundMobile from '../assets/images/landing-page-mobile-bg.png'
 import aboutLinkImage from '../assets/images/about-part.png'
 import objectsLinkImage from '../assets/images/objects-part.png'
 import wordsLinkImage from '../assets/images/words-part.png'
@@ -22,153 +22,7 @@ const Hero = () => {
             viewport={{ once: true }}
         >
             <div className="hero">
-                <div className="pt-20 landing-page">
-                    <div className="hero-link">
-                        <motion.div
-                            initial={{ opacity: 0.0 }}
-                            whileHover={{
-                                scale: 1.2,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1.0 }}
-                        >
-                            <Link
-                                key="about-mobile"
-                                href={`/about`}
-                                scroll={true}
-                                className="group md:hidden">
-                                <Image
-                                    src={aboutLinkImage}
-                                    alt={"about link image"}
-                                    width="150"
-                                    height="150"
-                                />
-                            </Link>
-                            <Link
-                                key="about"
-                                href={`/about`}
-                                scroll={true}
-                                className="group hidden md:block">
-                                <Image
-                                    src={aboutLinkImage}
-                                    alt={"about link image"}
-                                    width="200"
-                                    height="200"
-                                />
-                            </Link>
-                        </motion.div>
-                    </div>
-                    <div className="hero-link">
-                        <motion.div
-                            initial={{ opacity: 0.0 }}
-                            whileHover={{
-                                scale: 1.2,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1.0 }}
-                        >
-                            <Link
-                                key="objects-mobile"
-                                href={`/objects`}
-                                scroll={true}
-                                className="group md:hidden">
-                                <Image
-                                    src={objectsLinkImage}
-                                    alt={"objects link image"}
-                                    width="150"
-                                    height="150"
-                                />
-                            </Link>
-                            <Link
-                                key="objects"
-                                href={`/objects`}
-                                scroll={true}
-                                className="group md:block hidden">
-                                <Image
-                                    src={objectsLinkImage}
-                                    alt={"objects link image"}
-                                    width="200"
-                                    height="200"
-                                />
-                            </Link>
-                        </motion.div>
-                    </div>
-                    <div className="hero-link">
-                        <motion.div
-                            initial={{ opacity: 0.0 }}
-                            whileHover={{
-                                scale: 1.2,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1.0 }}
-                        >
-                            <Link
-                                key="words"
-                                href={`/words`}
-                                scroll={true}
-                                className="group md:hidden">
-                                <Image
-                                    src={wordsLinkImage}
-                                    alt={"words link image"}
-                                    width="150"
-                                    height="150"
-                                />
-                            </Link>
-                            <Link
-                                key="words-mobile"
-                                href={`/words`}
-                                scroll={true}
-                                className="group md:block hidden">
-                                <Image
-                                    src={wordsLinkImage}
-                                    alt={"words link image"}
-                                    width="200"
-                                    height="200"
-                                />
-                            </Link>
-                        </motion.div>
-                    </div>
-                    <div className="hero-link">
-                        <motion.div
-                            initial={{ opacity: 0.0 }}
-                            whileHover={{
-                                scale: 1.2,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ scale: 1.0 }}
-                            whileInView={{ opacity: 1.0 }}
-                        >
-                            <Link
-                                key="sounds-mobile"
-                                href={`/sounds`}
-                                scroll={true}
-                                className="group md:hidden">
-                                <Image
-                                    src={soundsLinkImage}
-                                    alt={"sounds link image"}
-                                    width="150"
-                                    height="150"
-                                />
-                            </Link>
-                            <Link
-                                key="sounds"
-                                href={`/sounds`}
-                                scroll={true}
-                                className="group md:block hidden">
-                                <Image
-                                    src={soundsLinkImage}
-                                    alt={"sounds link image"}
-                                    width="200"
-                                    height="200"
-                                />
-                            </Link>
-                        </motion.div>
-                    </div>
-                </div>
-                <div className="float-right hidden md:block">
+                <div className="hidden w-[100%] md:inline">
                     <motion.div
                         initial={{ opacity: 0, scale: 1 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -176,12 +30,213 @@ const Hero = () => {
                     >
                         <Image
                             src={landingPageBackground}
-                            width={700}
                             priority
-                            height={300}
+                            height={1000}
+                            width={1000}
                             alt="landing page background image"
-                            className='z-0'
+                            className='z-0 w-[100%] absolute'
                         />
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="objects"
+                                href={`/objects`}
+                                scroll={true}
+                                className="group md:block absolute top-[6vw] left-[6vw] hidden">
+                                <Image
+                                    src={objectsLinkImage}
+                                    alt={"objects link image"}
+                                    width="150"
+                                    height="150"
+                                    className='w-[10vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="words"
+                                href={`/words`}
+                                scroll={true}
+                                className="group md:block absolute top-[13vw] left-[22vw] hidden">
+                                <Image
+                                    src={wordsLinkImage}
+                                    alt={"words link image"}
+                                    width="200"
+                                    height="200"
+                                    className='w-[10vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="sounds"
+                                href={`/sounds`}
+                                scroll={true}
+                                className="group md:block absolute top-[26vw] left-[6vw] hidden">
+                                <Image
+                                    src={soundsLinkImage}
+                                    alt={"sounds link image"}
+                                    width="200"
+                                    height="200"
+                                    className='w-[10vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="about"
+                                href={`/about`}
+                                scroll={true}
+                                className="group hidden absolute top-[36vw] left-[22vw] md:flex">
+                                <Image
+                                    src={aboutLinkImage}
+                                    alt={"about link image"}
+                                    width="200"
+                                    height="200"
+                                    className='w-[10vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                    </motion.div>
+                </div>
+                {/* **************MOBILE HOME PAGE LAYOUT**************** */}
+                <div className="inline w-[100%] md:hidden">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 1 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <Image
+                            src={landingPageBackgroundMobile}
+                            priority
+                            height={1000}
+                            width={1000}
+                            alt="landing page background mobile image"
+                            className='z-0 w-[100%] absolute'
+                        />
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="objects"
+                                href={`/objects`}
+                                scroll={true}
+                                className="group block absolute top-[12vw] left-[7vw] md:hidden">
+                                <Image
+                                    src={objectsLinkImage}
+                                    alt={"objects link image"}
+                                    width="150"
+                                    height="150"
+                                    className='w-[28vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="words"
+                                href={`/words`}
+                                scroll={true}
+                                className="group block absolute top-[35vw] left-[35vw] md:hidden">
+                                <Image
+                                    src={wordsLinkImage}
+                                    alt={"words link image"}
+                                    width="200"
+                                    height="200"
+                                    className='w-[28vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="sounds"
+                                href={`/sounds`}
+                                scroll={true}
+                                className="group block absolute top-[60vw] left-[6vw] md:hidden">
+                                <Image
+                                    src={soundsLinkImage}
+                                    alt={"sounds link image"}
+                                    width="200"
+                                    height="200"
+                                    className='w-[28vw]'
+                                />
+                            </Link>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
+                            animate={{ opacity: 1.0 }}
+                        >
+                            <Link
+                                key="about"
+                                href={`/about`}
+                                scroll={true}
+                                className="group md:hidden absolute top-[85vw] left-[35vw] block">
+                                <Image
+                                    src={aboutLinkImage}
+                                    alt={"about link image"}
+                                    width="200"
+                                    height="200"
+                                    className='w-[30vw]'
+                                />
+                            </Link>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>

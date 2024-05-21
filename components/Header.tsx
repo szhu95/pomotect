@@ -2,8 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import homeLogo from '../assets/images/header-logo-2.4.png'
-import mobilehomeLogo from '../assets/images/mobile-logo-home.png'
+import homeLogo from '../assets/images/header-logo-2.5.png'
 import aboutLinkImage from '../assets/images/about-link-image.png'
 import objectsLinkImage from '../assets/images/objects-link-image.png'
 import wordsLinkImage from '../assets/images/words-link-image.png'
@@ -50,7 +49,7 @@ const Header = ({ title, menuStatus }: any) => {
                 </Link>
                 <Link href="/" className="md:hidden block">
                     <Image
-                        src={mobilehomeLogo}
+                        src={homeLogo}
                         priority
                         width={650}
                         height={600}

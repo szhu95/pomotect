@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <main>
       <ImageTicker response={response}/>
-      <div className='bg-[#d1d5db] font-semibold text-white minion-font pl-2'>IN THE CUE</div>
+      <div className='bg-[#d1d5db] font-semibold text-white minion-font pl-1'>IN THE CUE</div>
       <Hero />
       <div className="hidden md:block">
         <ScrollToTopButton />
