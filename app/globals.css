@@ -123,6 +123,7 @@
 
 .site-section {
   padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 30px;
   @apply text-sm;
 }

@@ -28,13 +28,13 @@ export default async function Post({ response }: any) {
             let parsedPost = parse(finalHtml);
 
             return (
-                <div key={post.id} className="mt-5">
+                <div key={post.id} className="mt-5 border-b border-black mb-5">
                         <div className='site-section words-header'>
                             <div className="entry-number bg-primary-blue text-lg text-white font-['Minion']">{post.title ? post.title : 'Title'}</div>
                             <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                         </div>
-                        <div className={`site-section ml-2 post-body overflow-y-auto`}>
-                            <div className="pr-2 py-1 font-['Minion'] text-justify border-b border-black">{parsedPost}</div>
+                        <div className={`site-section mx-2 post-body overflow-y-auto`}>
+                            <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
                             {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
                                     src={post.feature_image}
