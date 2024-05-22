@@ -27,7 +27,7 @@ const Carousel = (response: any) => {
                                     alt={"product image"}
                                     width="600"
                                     height="600"
-                                    className="m-auto"
+                                    className="align-bottom"
                                 />
                             </div>
                         )

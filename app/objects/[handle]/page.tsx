@@ -89,7 +89,7 @@ export default async function Product({
         <h3 className="product-details-header">Objects</h3>
         <Link href="/objects" scroll={false} className="back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to all objects ⇢</Link>
       </div>
-      <div className="md:flex-row-reverse md:inline-flex md:align-top">
+      <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
         <div className="hidden md:block">
           {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
 
