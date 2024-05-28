@@ -41,7 +41,7 @@ const Header = ({ title, menuStatus }: any) => {
                     <Image
                         src={homeLogo}
                         priority
-                        width={650}
+                        width={600}
                         height={600}
                         alt="home page link"
                         className="w-auto h-auto"
