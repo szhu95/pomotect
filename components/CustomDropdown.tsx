@@ -9,7 +9,7 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdownProps) => {
+const CustomDropdown = ({selected, title, options, handleChange }: CustomDropdownProps) => {
 
     return (
         <div>
@@ -57,7 +57,7 @@ const CustomDropdown = ({ selected, title, options, handleChange }: CustomDropdo
                                                         <span
                                                             className={classNames('minion-font', 'ml-3 block truncate')}
                                                         >
-                                                            {size.toUpperCase()}
+                                                            {size.toUpperCase()} 
                                                         </span>
                                                     </div>
                                                 </>
