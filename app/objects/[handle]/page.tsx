@@ -123,7 +123,7 @@ export default async function Product({
 
         <div className="product-details">
           <div className="site-section product-info">
-            <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
+            <div className="main_header mt-5 w-full font-['Minion'] text-xs md:text-sm">{product.title}</div>
             <div className="text-sm mb-5 italic font-['Minion']">
               Most recently updated on {moment(product.updatedAt).format('MMMM DD, YYYY')}
             </div>
