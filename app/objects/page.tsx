@@ -49,6 +49,8 @@ const Objects = async () => {
 
   let response = (await getProducts()) as any;
 
+  // console.log("response is" + JSON.stringify(response))
+
   let lastUpdatedDate = formatDate();
   return (
     <div>
