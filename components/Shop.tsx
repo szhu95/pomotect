@@ -36,8 +36,8 @@ export default function Shop({ response }: any) {
                         className="h-full w-full opacity-20 object-center"
                       />
                       <div>
-                        <div className="absolute right-[0px] top-[0%] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
-                        <div className="absolute right-[0px] bottom-[0px] font-['Minion'] text-sm italic text-slate-400 font-semibold md:text-transparent group-hover:text-slate-400 group-focus:text-slate-400">
+                        <div className="absolute right-[0px] top-[0%] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
+                        <div className="absolute right-[0px] bottom-[0px] font-['Minion'] text-xs lg:text-sm italic text-slate-400 font-semibold md:text-transparent group-hover:text-slate-400 group-focus:text-slate-400">
                           SOLD OUT
                         </div>
                       </div>
@@ -57,8 +57,8 @@ export default function Shop({ response }: any) {
                         className="h-full w-full group-hover:opacity-80 object-center"
                       />
                       <div>
-                        <div className="absolute right-[0px] top-[0%] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
-                        <div className="absolute right-[0px] bottom-[0px] font-['Minion'] text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">
+                        <div className="absolute right-[0px] top-[0%] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
+                        <div className="absolute right-[0px] bottom-[0px] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">
                           {formatPrice(product.priceRange.minVariantPrice.amount)}
                         </div>
                       </div>
