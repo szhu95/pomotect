@@ -9,6 +9,7 @@ import parse from 'html-react-parser';
 import Carousel from "@/components/Carousel";
 import { revalidatePath } from 'next/cache';
 import NotFound from "@/app/not-found";
+import moment from 'moment';
 
 const gql = String.raw;
 
@@ -27,6 +28,7 @@ const singleProductQuery = gql`
     productByHandle(handle: $handle) {
       title
       descriptionHtml
+      createdAt
       updatedAt
       tags
       totalInventory
@@ -123,7 +125,7 @@ export default async function Product({
           <div className="site-section product-info">
             <div className="main_header mt-5 w-full font-['Minion']">{product.title}</div>
             <div className="text-sm mb-5 italic font-['Minion']">
-              Most recently updated on March 05, 2024
+              Most recently updated on {moment(product.updatedAt).format('MMMM DD, YYYY')}
             </div>
             <div className="inline-grid gap-2 grid-cols-2">
               <Image

@@ -54,7 +54,7 @@ const Objects = async () => {
     <div>
       <div className="site-section">
         <h3 className="main_header">Objects</h3>
-        <p><i>Most recently updated on March 05, 2024</i></p>
+        <p><i>Most recently updated on June 05, 2024</i></p>
       </div>
       <div className="site-section">
         <Link href="/objects" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">For Sale</Link>
