@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react'
 import WinstonFlyer from '../../../assets/images/flyer-1.jpg'
 import FlashFlyer from '../../../assets/images/flash-flyer.jpg'
+import CellarFlyer from '../../../assets/images/cellar.jpg'
 import Image from 'next/image';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { motion } from 'framer-motion';
@@ -29,8 +30,22 @@ const Events = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                     >
+                        <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div>
+                        <li className="border-b border-black">
+                            <span className="soundcloud_title font-['Minion']">Wine & Wax</span>
+                            <br></br>
+                            <p className="text-right text-primary-blue italic font-['Minion']">Cellar 36, New York</p>
+                        </li>
+                        <div className="mt-4 max-w-10 flex-col">
+                            <Image
+                                width={650}
+                                height={650}
+                                src={CellarFlyer}
+                                alt="Cellar Flyer"
+                                className='mx-auto'
+                            />
+                        </div>
                         <div className="text-right text-grey italic font-semibold font-['Minion'] mt-4 border-b border-grey border-dashed">ARCHIVE</div>
-                        {/* <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div> */}
                         <li className="border-b border-black">
                             <span className="soundcloud_title font-['Minion']">Flash Nightclub</span>
                             <br></br>
