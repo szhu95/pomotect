@@ -24,7 +24,7 @@ export default async function Posts({ response }: any) {
                 .replaceAll('/p>', '/p><br>')
                 .replaceAll('/figure>', '/figure><br>');
 
-            console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
+            // console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
 
             let parsedPost = parse(finalHtml);
 
