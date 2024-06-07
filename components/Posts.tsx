@@ -17,13 +17,14 @@ export default async function Posts({ response }: any) {
                 .replaceAll('<li', '<li className="minion-font"')
                 .replaceAll('<strong', '<strong className="minion-font"')
                 .replaceAll('<a', '<a className="minion-font text-primary-blue"')
+                .replaceAll('<u', '<u className="minion-font text-inherit"')
                 .replaceAll('<em', '<em className="minion-font"')
                 .replaceAll('class=\"italic\"', '')
                 .replaceAll('<span', '<span className="minion-font"')
                 .replaceAll('/p>', '/p><br>')
                 .replaceAll('/figure>', '/figure><br>');
 
-            // console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
+            console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
 
             let parsedPost = parse(finalHtml);
 
