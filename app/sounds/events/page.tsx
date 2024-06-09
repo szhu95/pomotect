@@ -30,7 +30,8 @@ const Events = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                     >
-                        <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div>
+                        {/* <div className="text-right text-primary-blue italic font-semibold font-['Minion'] border-b border-dashed border-primary-blue -ml-2">UPCOMING</div> */}
+                        <div className="text-right text-grey italic font-semibold font-['Minion'] mt-4 border-b border-grey border-dashed">ARCHIVE</div>
                         <li className="border-b border-black">
                             <span className="soundcloud_title font-['Minion']">Wine & Wax</span>
                             <br></br>
@@ -45,7 +46,6 @@ const Events = () => {
                                 className='mx-auto'
                             />
                         </div>
-                        <div className="text-right text-grey italic font-semibold font-['Minion'] mt-4 border-b border-grey border-dashed">ARCHIVE</div>
                         <li className="border-b border-black">
                             <span className="soundcloud_title font-['Minion']">Flash Nightclub</span>
                             <br></br>
