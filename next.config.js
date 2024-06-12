@@ -16,6 +16,20 @@ const nextConfig = {
       }
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: "/objects/:path",
+        destination: "/products/:path",
+        permanent: true,
+      },
+      {
+        source: "/objects",
+        destination: "/products",
+        permanent: true,
+      }
+    ];
+  },
 }
 
 module.exports = nextConfig
