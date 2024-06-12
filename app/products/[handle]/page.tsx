@@ -68,7 +68,7 @@ export default async function Product({
   params: { handle: string };
 }) {
 
-  revalidatePath('/objects/[handle]', 'page');
+  revalidatePath('/products/[handle]', 'page');
 
   let lastUpdatedDate = formatDate();
   let response = (await getSingleProduct(params)) as any;
@@ -89,7 +89,7 @@ export default async function Product({
     <div>
       <div className="site-section">
         <h3 className="product-details-header">Objects</h3>
-        <Link href="/objects" scroll={false} className="back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to all objects ⇢</Link>
+        <Link href="/products" scroll={false} className="back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to all objects ⇢</Link>
       </div>
       <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
         <div className="hidden md:block">

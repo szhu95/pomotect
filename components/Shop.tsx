@@ -24,7 +24,7 @@ export default function Shop({ response }: any) {
                 product.totalInventory == "0" ?
                   <Link
                     key={product.handle}
-                    href={`/objects/${product.handle}`}
+                    href={`/products/${product.handle}`}
                     className="group product-tile p-1"
                   >
                     <div className="relative w-full">
@@ -45,7 +45,7 @@ export default function Shop({ response }: any) {
                   </Link> :
                   <Link
                     key={product.handle}
-                    href={`/objects/${product.handle}`}
+                    href={`/products/${product.handle}`}
                     className="group product-tile p-1"
                   >
                     <div className="relative w-full">

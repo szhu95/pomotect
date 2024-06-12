@@ -181,7 +181,7 @@ export default function Cart() {
                 <div>
                   <Link
                     key={item.node.variant?.product.handle}
-                    href={`objects/${item.node.variant?.product.handle}`}
+                    href={`/products/${item.node.variant?.product.handle}`}
                     className={"block max-w-[100px]"}
                   >
                     <Image

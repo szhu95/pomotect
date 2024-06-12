@@ -30,7 +30,7 @@ export default function WordsTicker({ response, objectsResponse }: any) {
                 return (
                     <Link
                         key={"object-1" + product.handle}
-                        href={`/objects/` + product.handle}>
+                        href={`/products/` + product.handle}>
                         <div className="ticker-words-container minion-font hover:opacity-[50%] bg-primary-blue text-white px-1">{product.title}</div>
                     </Link>
                 )

@@ -67,8 +67,8 @@ const Header = ({ title, menuStatus }: any) => {
                         :
                         <Image src={aboutLinkImage} alt={'about link image'} height={100} width={100} className='inline' />}
                 </Link>
-                <Link href="/objects" scroll={false} className={"px-1"}>
-                    {pathname.startsWith("/objects")
+                <Link href="/products" scroll={false} className={"px-1"}>
+                    {pathname.startsWith("/products")
                         ?
                         <Image src={objectsLinkFocusImage} alt={'objects link focus image'} height={100} width={100} className='inline' />
                         :
@@ -141,8 +141,8 @@ const Header = ({ title, menuStatus }: any) => {
                         </li>
 
                         <li onClick={handleSmallerScreensNavigation} className="py-2 cursor-pointer text-black">
-                            <Link href="/objects" scroll={false}>
-                                {pathname.startsWith("/objects") ?
+                            <Link href="/products" scroll={false}>
+                                {pathname.startsWith("/products") ?
                                     <Image src={objectsLinkFocusImage} alt={'objects link focus image'} height={100} width={100} className='inline' />
                                     :
                                     <Image src={objectsLinkImage} alt={'objects link image'} height={100} width={100} className='inline' />}

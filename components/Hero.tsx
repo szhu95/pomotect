@@ -47,7 +47,7 @@ const Hero = () => {
                         >
                             <Link
                                 key="objects"
-                                href={`/objects`}
+                                href={`/products`}
                                 scroll={true}
                                 className="group md:block absolute top-[6vw] left-[6vw] hidden">
                                 <Image
@@ -156,7 +156,7 @@ const Hero = () => {
                         >
                             <Link
                                 key="objects"
-                                href={`/objects`}
+                                href={`/products`}
                                 scroll={true}
                                 className="group block absolute top-[12vw] left-[7vw] md:hidden">
                                 <Image
