@@ -15,12 +15,13 @@ const Contact = () => {
                         height={1000}
                         src={BusinessCard}
                         alt="business card"
+                        className="m-auto"
                     />
 
                     <Image
                         width={700}
                         height={1000}
-                        className='mt-[15%]'
+                        className='mt-[15%] mx-auto'
                         src={BusinessCardBack}
                         alt="business card back"
                     />
