@@ -35,7 +35,7 @@ export default async function Post({ response }: any) {
                             <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                         </div>
                         <div className={`site-section mx-2 post-body overflow-y-auto`}>
-                            <div className="pr-2 py-1 font-['Minion'] text-justify w-[50%]">{parsedPost}</div>
+                            <div className="pr-2 py-1 font-['Minion'] text-justify">{parsedPost}</div>
                             {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
                                     src={post.feature_image}
