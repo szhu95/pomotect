@@ -33,7 +33,7 @@ export default function Shop({ response }: any) {
                         alt={"product-image"}
                         width={500}
                         height={500}
-                        className="h-full w-full opacity-20 object-center"
+                        className="h-full w-full opacity-80 object-center"
                       />
                       <div>
                         <div className="absolute right-[0px] top-[0%] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
