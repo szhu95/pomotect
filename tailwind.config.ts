@@ -11,6 +11,7 @@ module.exports = {
       fontFamily: {
         minion: ["Minion", "sans-serif"],
         bebas: ["BebasNeue-Regular"],
+        analog: ["Analog"]
       },
       colors: {
         "black-100": "#2B2C35",

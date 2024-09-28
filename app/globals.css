@@ -9,6 +9,13 @@
   src: local('Minion'), url('../fonts/minion.otf') format('otf');
 }
 
+@font-face {
+  font-family: 'Analog';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Analog'), url('../fonts/analog.otf') format('opentype');
+}
+
 .header:active {
   background-color: blue;
 }
@@ -27,6 +34,10 @@
 
 .bebas-font {
   font-family: 'BebasNeue-Regular';
+}
+
+.analog-font {
+  font-family: 'Analog';
 }
 
 * {
@@ -173,11 +184,6 @@
   /* font-weight: bold; */
   /* padding-right: 7.5%; */
   padding-left: 1%;
-}
-
-.words-header {
-  padding-bottom: 15px;
-  border-bottom: solid 1px black;
 }
 
 .words-body {
