@@ -2,7 +2,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import homeLogo from '../assets/images/header-logo-2.5.png'
+import homeLogo from '../assets/images/header-logo-2.7.png'
+import mobileHomeLogo from '../assets/images/header-logo-2.5.png'
 import aboutLinkImage from '../assets/images/about-link-image.png'
 import objectsLinkImage from '../assets/images/objects-link-image.png'
 import wordsLinkImage from '../assets/images/words-link-image.png'
@@ -37,11 +38,11 @@ const Header = ({ title, menuStatus }: any) => {
     return (
         <div className="padding-y md:text-center">
             <div onClick={() => setIcon(false)} className="home-link mb-4">
-                <Link href="/" className="md:block hidden padding-y">
+                <Link href="/" className="md:block hidden">
                     <Image
                         src={homeLogo}
                         priority
-                        width={600}
+                        width={500}
                         height={600}
                         alt="home page link"
                         className="w-auto h-auto"
@@ -49,7 +50,7 @@ const Header = ({ title, menuStatus }: any) => {
                 </Link>
                 <Link href="/" className="md:hidden block">
                     <Image
-                        src={homeLogo}
+                        src={mobileHomeLogo}
                         priority
                         width={650}
                         height={600}
