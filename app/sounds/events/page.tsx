@@ -26,7 +26,7 @@ const Events = () => {
                 <Link href="/sounds/events" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Events</Link>
             </div>
 
-            <div className="flex px-2 w-1/8 max-w-12 site-section">
+            <div className="flex px-2 w-1/8 min-w-12 site-section">
                 <ol className="w-full">
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -39,7 +39,7 @@ const Events = () => {
                             <br></br>
                             <p className="text-right text-primary-blue italic font-['Minion']">Cellar 36, New York</p>
                         </li>
-                        <div className="mt-4 max-w-10 flex-col">
+                        <div className="mt-4 min-w-10 flex-col">
                             <Image
                                 width={650}
                                 height={650}
@@ -53,7 +53,7 @@ const Events = () => {
                             <br></br>
                             <p className="text-right text-primary-blue italic font-['Minion']">Million Goods, New York</p>
                         </li>
-                        <div className="mt-4 max-w-10 flex-col">
+                        <div className="mt-4 min-w-10 flex-col">
                             <Image
                                 width={650}
                                 height={650}
@@ -67,7 +67,7 @@ const Events = () => {
                             <br></br>
                             <p className="text-right text-primary-blue italic font-['Minion']">Cellar 36, New York</p>
                         </li>
-                        <div className="mt-4 max-w-10 flex-col">
+                        <div className="mt-4 min-w-10 flex-col">
                             <Image
                                 width={650}
                                 height={650}
@@ -81,7 +81,7 @@ const Events = () => {
                             <br></br>
                             <p className="text-right text-primary-blue italic font-['Minion']">Flash, Washington D.C.</p>
                         </li>
-                        <div className="mt-4 max-w-10 flex-col">
+                        <div className="mt-4 min-w-10 flex-col">
                             <Image
                                 width={650}
                                 height={650}
