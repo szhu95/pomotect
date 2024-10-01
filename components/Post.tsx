@@ -32,7 +32,7 @@ export default async function Post({ response }: any) {
             return (
                 <div key={post.id} className="mt-5 md:w-[75%] md:m-auto">
                         <div className='site-section words-header'>
-                            <div className="entry-number text-xl text-primary-blue font-black md:w-[60%] md:m-auto font-['Minion']">{post.title ? post.title : 'Title'}</div>
+                            <div className="entry-number text-3xl text-primary-blue font-black md:w-[60%] md:m-auto font-['Minion']">{post.title ? post.title : 'Title'}</div>
                             <div className="font-['Minion'] italic text-gray-400 md:w-[60%] md:m-auto">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                         </div>
                         <div className={`site-section post-body overflow-y-auto`}>
