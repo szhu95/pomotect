@@ -1,6 +1,8 @@
 import { Hero, ImageTicker } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { getPosts, storefront } from '@/utils';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 export default async function Home() {
 
@@ -24,12 +26,15 @@ export default async function Home() {
 
   return (
     <main>
-      <ImageTicker response={response}/>
-      <div className='bg-[#d1d5db] font-semibold text-white minion-font pl-1'>IN THE CUE</div>
-      <Hero />
-      <div className="hidden md:block">
-        <ScrollToTopButton />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <ImageTicker response={response} />
+        <div className='bg-[#d1d5db] font-semibold text-white minion-font pl-1'>IN THE CUE</div>
+        <Hero />
+        <div className="hidden md:block">
+          <ScrollToTopButton />
+        </div>
+      </Suspense>
     </main>
+
   )
 }

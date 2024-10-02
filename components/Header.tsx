@@ -38,7 +38,7 @@ const Header = ({ title, menuStatus }: any) => {
     return (
         <div className="padding-y md:text-center">
             <div onClick={() => setIcon(false)} className="home-link mb-4">
-                <Link href="/" className="md:block hidden">
+                <Link href="/" scroll={false} className="md:block hidden">
                     <Image
                         src={homeLogo}
                         priority
