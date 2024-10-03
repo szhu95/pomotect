@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Footer, Header } from '@/components'
 import { Suspense } from 'react'
-import Loading from './loading'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +18,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const Loading = dynamic(() => import('./loading'), {
+    ssr: false,
+  })
 
   return (
     <html lang="en">

@@ -2,9 +2,13 @@ import { Hero, ImageTicker } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { getPosts, storefront } from '@/utils';
 import { Suspense } from 'react';
-import Loading from './loading';
+import dynamic from 'next/dynamic'
 
 export default async function Home() {
+
+  const Loading = dynamic(() => import('./loading'), {
+    ssr: false,
+  })
 
   async function getData() {
     const posts = await getPosts()
