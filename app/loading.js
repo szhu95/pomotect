@@ -10,7 +10,6 @@ export default function Loading() {
                 alt="pomo-globe"
                 height={300}
                 width={300}
-                priority
             />
         </div>
     );
