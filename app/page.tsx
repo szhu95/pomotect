@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 export default async function Home() {
 
   const Loading = dynamic(() => import('./loading'), {
-    ssr: false,
+    ssr: true,
   })
 
   async function getData() {
