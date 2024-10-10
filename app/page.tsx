@@ -29,16 +29,15 @@ export default async function Home() {
   let response = data.posts
 
   return (
-    <main>
-      <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
+      <main>
         <ImageTicker response={response} />
-        <div className='bg-[#d1d5db] font-semibold text-white minion-font pl-1'>IN THE CUE</div>
+        <div className='bg-[#4e617d] font-semibold text-white minion-font pl-1'>IN THE CUE</div>
         <Hero />
         <div className="hidden md:block">
           <ScrollToTopButton />
         </div>
-      </Suspense>
-    </main>
-
+      </main>
+    </Suspense>
   )
 }
