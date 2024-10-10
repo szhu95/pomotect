@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
 
   const Loading = dynamic(() => import('./loading'), {
-    ssr: false,
+    ssr: true,
   })
 
   return (
