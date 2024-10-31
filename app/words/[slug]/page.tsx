@@ -4,6 +4,15 @@ import { formatUpdatedDate, getPost } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 import NotFound from "@/app/not-found";
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+  src: '../../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+  src: '../../../fonts/pomotect-analog-regular.otf',
+});
 
 export default async function Article({
   params,
@@ -41,8 +50,8 @@ export default async function Article({
     <div>
       <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more words ⇢</Link>
       <div className="site-section">
-        <div className="main_header">Words</div>
-        <p><i>Most recently updated on {formattedDate}</i></p>
+        <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
+        <p className={`${pomotectFont.className} italic`}>Most recently updated on {formattedDate}</p>
       </div>
 
       <Post response={response} />

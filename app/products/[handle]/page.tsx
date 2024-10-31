@@ -10,6 +10,11 @@ import Carousel from "@/components/Carousel";
 import { revalidatePath } from 'next/cache';
 import NotFound from "@/app/not-found";
 import moment from 'moment';
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+    src: '../../../fonts/pomotect-analog-bold.otf',
+});
 
 const gql = String.raw;
 
@@ -88,7 +93,7 @@ export default async function Product({
   return (
     <div>
       <div className="site-section">
-        <h3 className="product-details-header">Objects</h3>
+        <h3 className={`${pomotectBoldFont.className} product-details-header`}>Objects</h3>
         <Link href="/products" scroll={false} className="back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to all objects ⇢</Link>
       </div>
       <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">

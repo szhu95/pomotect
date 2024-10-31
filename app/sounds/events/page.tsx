@@ -10,6 +10,15 @@ import CellarFlyer2 from '../../../assets/images/cellar-2.jpg'
 import Image from 'next/image';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { motion } from 'framer-motion';
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+    src: '../../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+    src: '../../../fonts/pomotect-analog-regular.otf',
+});
 
 const Events = () => {
 
@@ -18,12 +27,12 @@ const Events = () => {
     return (
         <div>
             <div className="site-section">
-                <h3 className="main_header">Sounds</h3>
-                <p><i>Most recently updated on June 28, 2024</i></p>
+                <h3 className={`${pomotectBoldFont.className} main_header`}>Sounds</h3>
+                <p className={`${pomotectFont.className} italic`}>Most recently updated on June 28, 2024</p>
             </div>
             <div className="site-section">
-                <Link href="/sounds" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Mixes</Link>
-                <Link href="/sounds/events" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Events</Link>
+                <Link href="/sounds" scroll={false} className={`${pomotectFont.className} objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Mixes</Link>
+                <Link href="/sounds/events" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Events</Link>
             </div>
 
             <div className="flex px-2 w-1/8 min-w-12 site-section">

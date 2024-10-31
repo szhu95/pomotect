@@ -4,6 +4,15 @@ import { formatDate, storefront } from '@/utils';
 import { revalidatePath } from 'next/cache';
 import Link from 'next/link';
 import React from 'react'
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+    src: '../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+    src: '../../fonts/pomotect-analog-regular.otf',
+});
 
 
 const getProducts = async () => {
@@ -55,8 +64,8 @@ const Objects = async () => {
   return (
     <div>
       <div className="site-section">
-        <h3 className="main_header">Objects</h3>
-        <p><i>Most recently updated on September 18, 2024</i></p>
+        <h3 className={`${pomotectBoldFont.className} main_header`}>Objects</h3>
+        <p className={`${pomotectFont.className} italic`}>Most recently updated on September 18, 2024</p>
       </div>
       <div className="site-section">
         <Link href="/products" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">For Sale</Link>

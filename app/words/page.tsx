@@ -4,6 +4,15 @@ import Image from "next/image";
 import parse from 'html-react-parser';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { Posts } from '@/components';
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+    src: '../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+    src: '../../fonts/pomotect-analog-regular.otf',
+});
 
 
 async function getData() {
@@ -33,8 +42,8 @@ const Words = async () => {
   return (
     <div>
       <div className="site-section">
-        <div className="main_header">Words</div>
-        <p><i>Most recently updated on {formattedDate}</i></p>
+        <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
+        <p className={`${pomotectFont.className} italic`}>Most recently updated on {formattedDate}</p>
       </div>
 
         <Posts response={response} containerHeight={"max-h-[85vh]"} />

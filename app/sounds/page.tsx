@@ -5,6 +5,15 @@ import { formatDate } from '@/utils';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+    src: '../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+    src: '../../fonts/pomotect-analog-regular.otf',
+});
 
 
 const Sounds = () => {
@@ -14,12 +23,12 @@ const Sounds = () => {
     return (
         <div>
             <div className="site-section">
-                <div className="main_header">Sounds</div>
-                <p><i>Most recently updated on October 11, 2024</i></p>
+                <h3 className={`${pomotectBoldFont.className} main_header`}>Sounds</h3>
+                <p className={`${pomotectFont.className} italic`}>Most recently updated on October 11, 2024</p>
             </div>
             <div className="site-section">
-                <Link href="/sounds" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">Mixes</Link>
-                <Link href="/sounds/events" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">Events</Link>
+                <Link href="/sounds" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Mixes</Link>
+                <Link href="/sounds/events" scroll={false} className={`${pomotectFont.className} objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Events</Link>
             </div>
             <motion.div
                 initial={{ opacity: 0 }}

@@ -2,6 +2,16 @@
 import React from 'react'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { motion } from 'framer-motion';
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+    src: '../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+    src: '../../fonts/pomotect-analog-regular.otf',
+});
+
 
 const About = () => {
 
@@ -9,8 +19,8 @@ const About = () => {
         <div>
             <div className="site-section">
                 <div className="about-section">
-                    <h3 className="main_header">About</h3>
-                    <p><i>Most recently updated on May 28, 2024</i></p>
+                    <h3 className={`${pomotectBoldFont.className} main_header`}>About</h3>
+                    <p className={`${pomotectFont.className} italic`}>Most recently updated on May 28, 2024</p>
                 </div>
                 <motion.div
                     initial={{ opacity: 0 }}
