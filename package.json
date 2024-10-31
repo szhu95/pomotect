@@ -17,7 +17,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tryghost/content-api": "^1.11.20",
     "axios": "^1.7.4",
-    "cookie": "^0.6.0",
+    "cookie": "^0.7.0",
     "embla-carousel-react": "^8.0.0-rc22",
     "framer-motion": "^11.0.22",
     "html-react-parser": "^5.1.1",
