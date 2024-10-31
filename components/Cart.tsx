@@ -217,7 +217,7 @@ export default function Cart() {
       }
       <div className="text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta font-['Minion']">TOTAL BEFORE TAXES + SHIPPING</div>
       <div className="text-right pr-2 font-semibold pt-2 mb-2 font-['Minion']">{formatter.format(Number(total))}</div>
-      {total === "0" || isLoading ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold font-['Minion']" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold font-['Minion']">CHECKOUT</Link>}
+      {total === "0.0" || isLoading ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold font-['Minion']" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold font-['Minion']">CHECKOUT</Link>}
     </div>
   )
 }
