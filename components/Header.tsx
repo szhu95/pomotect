@@ -21,7 +21,7 @@ import { usePathname } from 'next/navigation';
 import localFont from 'next/font/local';
 
 const pomotectFont = localFont({
-    src: '../fonts/pomotect-analog-regular.otf',
+    src: '../fonts/pomotect-analog-bold.otf',
 });
 
 
@@ -72,7 +72,7 @@ const Header = ({ title, menuStatus }: any) => {
                             ?
                             <div className={`${pomotectFont.className} text-primary-blue`}>About</div>
                             :
-                            <div className={pomotectFont.className}>About</div>
+                            <div className={`${pomotectFont.className} font-bold`}>About</div>
                     }
                 </Link>
                 <Link href="/products" scroll={false} className={"px-1"}>
