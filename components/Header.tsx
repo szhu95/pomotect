@@ -70,7 +70,7 @@ const Header = ({ title, menuStatus }: any) => {
                     {
                         pathname.startsWith("/about")
                             ?
-                            <div className={`${pomotectFont.className} text-primary-blue`}>[About]</div>
+                            <div className={`${pomotectFont.className} text-primary-blue`}>About</div>
                             :
                             <div className={pomotectFont.className}>About</div>
                     }
@@ -79,7 +79,7 @@ const Header = ({ title, menuStatus }: any) => {
                     {
                         pathname.startsWith("/products")
                             ?
-                            <div className={`${pomotectFont.className} text-primary-blue`}>[Objects]</div>
+                            <div className={`${pomotectFont.className} text-primary-blue`}>Objects</div>
                             :
                             <div className={pomotectFont.className}>Objects</div>
                     }
@@ -88,7 +88,7 @@ const Header = ({ title, menuStatus }: any) => {
                     {
                         pathname.startsWith("/words")
                             ?
-                            <div className={`${pomotectFont.className} text-primary-blue`}>[Words]</div>
+                            <div className={`${pomotectFont.className} text-primary-blue`}>Words</div>
                             :
                             <div className={pomotectFont.className}>Words</div>
                     }
@@ -97,7 +97,7 @@ const Header = ({ title, menuStatus }: any) => {
                     {
                         pathname.startsWith("/sounds")
                             ?
-                            <div className={`${pomotectFont.className} text-primary-blue`}>[Sounds]</div>
+                            <div className={`${pomotectFont.className} text-primary-blue`}>Sounds</div>
                             :
                             <div className={pomotectFont.className}>Sounds</div>
                     }
