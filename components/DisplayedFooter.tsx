@@ -1,5 +1,5 @@
 "use client";
-import BlueHandLogo from "../assets/images/blue-hand-logo.png"
+import InstaLogo from "../assets/images/insta-logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from "next/navigation";
@@ -19,13 +19,13 @@ const DisplayedFooter = ({ response, objectsResponse }: any) => {
                         Contact
                     </Link>
                 </div>
-                <div className="site-section italic text-gray-700 checkout_btn">
+                <div className="site-section italic pt-1 text-primary-blue checkout_btn">
                     <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer">
                         <Image
-                            src={BlueHandLogo}
-                            width={25}
-                            height={25}
-                            alt="instagram link"
+                            src={InstaLogo}
+                            width={18}
+                            height={18}
+                            alt="postmodern tectonics instagram"
                         />
                     </a>
                 </div>
