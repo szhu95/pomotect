@@ -72,7 +72,7 @@ const Header = ({ title, menuStatus }: any) => {
                             ?
                             <div className={`${pomotectFont.className} text-primary-blue`}>About</div>
                             :
-                            <div className={`${pomotectFont.className} font-bold`}>About</div>
+                            <div className={`${pomotectFont.className} hover:text-primary-blue`}>About</div>
                     }
                 </Link>
                 <Link href="/products" scroll={false} className={"px-1"}>
@@ -81,7 +81,7 @@ const Header = ({ title, menuStatus }: any) => {
                             ?
                             <div className={`${pomotectFont.className} text-primary-blue`}>Objects</div>
                             :
-                            <div className={pomotectFont.className}>Objects</div>
+                            <div className={`${pomotectFont.className} hover:text-primary-blue`}>Objects</div>
                     }
                 </Link>
                 <Link href="/words" scroll={false} className={"px-1"}>
@@ -90,7 +90,7 @@ const Header = ({ title, menuStatus }: any) => {
                             ?
                             <div className={`${pomotectFont.className} text-primary-blue`}>Words</div>
                             :
-                            <div className={pomotectFont.className}>Words</div>
+                            <div className={`${pomotectFont.className} hover:text-primary-blue`}>Words</div>
                     }
                 </Link>
                 <Link href="/sounds" scroll={false} className={"px-1"}>
@@ -99,7 +99,7 @@ const Header = ({ title, menuStatus }: any) => {
                             ?
                             <div className={`${pomotectFont.className} text-primary-blue`}>Sounds</div>
                             :
-                            <div className={pomotectFont.className}>Sounds</div>
+                            <div className={`${pomotectFont.className} hover:text-primary-blue`}>Sounds</div>
                     }
                 </Link>
                 <Link href="/cart" scroll={false} id="checkout-btn" className={"px-2 mr-2"}>
@@ -108,7 +108,7 @@ const Header = ({ title, menuStatus }: any) => {
                             ?
                             <div className={`${pomotectFont.className} text-terracotta`}>[Cart]</div>
                             :
-                            <div className={pomotectFont.className}>[Cart]</div>
+                            <div className={`${pomotectFont.className} hover:text-terracotta`}>[Cart]</div>
                     }
                 </Link>
             </div>
