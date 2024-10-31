@@ -18,7 +18,7 @@ const DisplayedFooter = ({ response, objectsResponse }: any) => {
             {pathname == "/" || pathname == "/cart" ? <></> : <WordsTicker response={response} objectsResponse={objectsResponse} />}
             <div className={pathname == "/" ? "flex border-t border-black md:mt-[75%] mt-[140%]" : pathname == "/cart" ? "flex border-t border-black mt-[250px]" : "flex border-t border-black mt-[10px]"}>
                 <div className="site-section italic text-gray-700 py-1">
-                    <Link href="/terms" className={`${pomotectFont.className} ${pathname.startsWith("/terms") ? "mr-8 pr-2 md:mr-10 text-primary-blue hover:bg-primary-blue hover:text-white" : "mr-8 pr-2 md:mr-10 hover:bg-primary-blue hover:text-white"}`}>
+                    <Link href="/terms" className={`${pomotectFont.className} ${pathname.startsWith("/terms") ? "pr-2 md:mr-10 text-primary-blue hover:bg-primary-blue hover:text-white" : "pr-2 md:mr-10 hover:bg-primary-blue hover:text-white"}`}>
                         Privacy & Terms of Use
                     </Link>
                     <Link href="/contact" className={`${pomotectFont.className} ${pathname.startsWith("/contact") ? "text-primary-blue hover:bg-primary-blue hover:text-white px-2" : "hover:bg-primary-blue hover:text-white px-2"}`}>
