@@ -116,6 +116,7 @@ export default function Cart() {
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutUrl, setCheckoutUrl] = useState('');
   const [total, setTotal] = useState('');
+  const [checkoutButton, setCheckoutButton] = useState(0);
 
   async function removeItemFromCart(variantId: any) {
     if (localStorage.getItem("checkoutId")) {
@@ -132,7 +133,7 @@ export default function Cart() {
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
-    //console.log("data is " + JSON.stringify(response));
+    console.log("data is " + JSON.stringify(response));
 
     if (response?.node.order?.id) {
       setCart('');
@@ -144,6 +145,7 @@ export default function Cart() {
     setData(response ? response : '');
     setCheckoutUrl(response ? response.node.webUrl : '');
     setTotal(response ? response.node?.totalPrice.amount : '0.0');
+    setCheckoutButton(response ? response.node?.lineItems.edges.length : 0);
     setIsLoading(false);
   }, [])
 
@@ -173,7 +175,7 @@ export default function Cart() {
         <div className="text-white font-['Minion']">Product</div>
       </div>
       {
-        !cart || total === "0.0" ? <div className="py-6 text-center font-['Minion']">YOUR CART IS EMPTY</div> :
+        !cart || (!isLoading && data.node?.lineItems.edges.length === 0) ? <div className="py-6 text-center font-['Minion']">YOUR CART IS EMPTY</div> :
           (!isLoading && data ? data.node?.lineItems.edges.map((item: any, i: React.Key | null | undefined) => {
 
             return (
@@ -215,7 +217,7 @@ export default function Cart() {
       }
       <div className="text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta font-['Minion']">TOTAL BEFORE TAXES + SHIPPING</div>
       <div className="text-right pr-2 font-semibold pt-2 mb-2 font-['Minion']">{formatter.format(Number(total))}</div>
-      {total === "0.0" || isLoading ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold font-['Minion']" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold font-['Minion']">CHECKOUT</Link>}
+      {checkoutButton === 0 || isLoading ? <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold font-['Minion']" tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className="float-right px-4 bg-terracotta text-white italic font-semibold font-['Minion']">CHECKOUT</Link>}
     </div>
   )
 }

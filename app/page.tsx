@@ -3,6 +3,12 @@ import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { getPosts, storefront } from '@/utils';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic'
+import localFont from 'next/font/local';
+
+const pomotectFont = localFont({
+    src: '../fonts/pomotect-analog-regular.otf',
+});
+
 
 export default async function Home() {
 
@@ -32,7 +38,7 @@ export default async function Home() {
     <Suspense fallback={<Loading />}>
       <main>
         <ImageTicker response={response} />
-        <div className='bg-[#4e617d] font-semibold text-white minion-font pl-1'>IN THE CUE</div>
+        <div className={`${pomotectFont.className} bg-[#4e617d] font-semibold text-white pl-1`}>IN THE CUE</div>
         <Hero />
         <div className="hidden md:block">
           <ScrollToTopButton />

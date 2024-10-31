@@ -107,14 +107,12 @@
 
 .header-link {
   padding-left: 10px;
-  font-style: italic;
   padding-bottom: 10px;
   border-bottom: solid 1px black;
   justify-content:space-between
 }
 
 .mobile-header-link {
-  font-style: italic;
   padding-bottom: 10px;
   border-bottom: solid 1px black;
   justify-content:space-between
