@@ -52,7 +52,7 @@ const Hero = () => {
                                 className="group md:block absolute top-[6vw] left-[6vw] hidden">
                                 <Image
                                     src={objectsLinkImage}
-                                    alt={"objects link image"}
+                                    alt={"Objects"}
                                     width="150"
                                     height="150"
                                     className='w-[10vw]'
@@ -75,7 +75,7 @@ const Hero = () => {
                                 className="group md:block absolute top-[13vw] left-[22vw] hidden">
                                 <Image
                                     src={wordsLinkImage}
-                                    alt={"words link image"}
+                                    alt={"Words"}
                                     width="200"
                                     height="200"
                                     className='w-[10vw]'
@@ -98,7 +98,7 @@ const Hero = () => {
                                 className="group md:block absolute top-[26vw] left-[6vw] hidden">
                                 <Image
                                     src={soundsLinkImage}
-                                    alt={"sounds link image"}
+                                    alt={"Sounds"}
                                     width="200"
                                     height="200"
                                     className='w-[10vw]'
@@ -161,7 +161,7 @@ const Hero = () => {
                                 className="group block absolute top-[12vw] left-[7vw] md:hidden">
                                 <Image
                                     src={objectsLinkImage}
-                                    alt={"objects link image"}
+                                    alt={"Objects"}
                                     width="150"
                                     height="150"
                                     className='w-[28vw]'
@@ -184,7 +184,7 @@ const Hero = () => {
                                 className="group block absolute top-[35vw] left-[35vw] md:hidden">
                                 <Image
                                     src={wordsLinkImage}
-                                    alt={"words link image"}
+                                    alt={"Words"}
                                     width="200"
                                     height="200"
                                     className='w-[28vw]'
@@ -207,7 +207,7 @@ const Hero = () => {
                                 className="group block absolute top-[60vw] left-[6vw] md:hidden">
                                 <Image
                                     src={soundsLinkImage}
-                                    alt={"sounds link image"}
+                                    alt={"Sounds"}
                                     width="200"
                                     height="200"
                                     className='w-[28vw]'
