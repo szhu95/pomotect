@@ -121,7 +121,7 @@ const Hero = () => {
                                 className="group hidden absolute top-[36vw] left-[22vw] md:flex">
                                 <Image
                                     src={aboutLinkImage}
-                                    alt={"about link image"}
+                                    alt={"About"}
                                     width="200"
                                     height="200"
                                     className='w-[10vw]'
@@ -230,7 +230,7 @@ const Hero = () => {
                                 className="group md:hidden absolute top-[85vw] left-[35vw] block">
                                 <Image
                                     src={aboutLinkImage}
-                                    alt={"about link image"}
+                                    alt={"About"}
                                     width="200"
                                     height="200"
                                     className='w-[30vw]'
