@@ -38,7 +38,7 @@ export default async function Home() {
     <Suspense fallback={<Loading />}>
       <main>
         <ImageTicker response={response} />
-        <div className={`${pomotectFont.className} bg-primary-blue font-semibold text-white pl-1`}>IN THE CUE</div>
+        <div className={`${pomotectFont.className} bg-[#BCB7AD] font-semibold text-white pl-1`}>IN THE CUE</div>
         <Hero />
         <div className="hidden md:block">
           <ScrollToTopButton />
