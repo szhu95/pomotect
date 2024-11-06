@@ -204,12 +204,12 @@ export default function Cart() {
                     />
                   </Link>
                 </div>
-                <div className="font-['Minion'] pl-1">{item.node.quantity}</div>
-                <div className="font-['Minion']">{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
-                <div className="font-['Minion']">
+                <div className={`${pomotectFont.className} pl-1`}>{item.node.quantity}</div>
+                <div className={`${pomotectFont.className}`}>{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
+                <div className={`${pomotectFont.className}`}>
                   {item.node.title} <br></br>
-                  <div className="font-['Minion'] italic">{item.node.variant?.title}</div> <br></br>
-                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-7" textColor="text-white minion-font" handleClick={() => removeItemFromCart(item.node.id)} />
+                  <div className={`${pomotectFont.className} italic`}>{item.node.variant?.title}</div> <br></br>
+                  <CustomButton title={'REMOVE'} containerStyles="flex bg-terracotta py-0 float-right mt-7" textColor={`text-white ${pomotectFont.className}`} handleClick={() => removeItemFromCart(item.node.id)} />
                 </div>
               </div>
             )
