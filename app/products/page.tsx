@@ -68,7 +68,7 @@ const Objects = async () => {
         <p className={`${pomotectFont.className} italic`}>Most recently updated on September 18, 2024</p>
       </div>
       <div className="site-section">
-        <Link href="/products" scroll={false} className="objects_link bg-black text-white hover:bg-black hover:text-white">For Sale</Link>
+        <Link href="/products" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>For Sale</Link>
         {/* <Link href="/products/concepts" scroll={false} className="objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white">{`Stuff we don't know how to make yet`}</Link> */}
       </div>
 

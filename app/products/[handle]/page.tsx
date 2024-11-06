@@ -12,6 +12,10 @@ import NotFound from "@/app/not-found";
 import moment from 'moment';
 import localFont from 'next/font/local';
 
+const pomotectFont = localFont({
+  src: '../../../fonts/pomotect-analog-regular.otf',
+});
+
 const pomotectBoldFont = localFont({
     src: '../../../fonts/pomotect-analog-bold.otf',
 });
@@ -94,7 +98,7 @@ export default async function Product({
     <div>
       <div className="site-section">
         <h3 className={`${pomotectBoldFont.className} product-details-header`}>Objects</h3>
-        <Link href="/products" scroll={false} className="back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to all objects ⇢</Link>
+        <Link href="/products" scroll={false} className={`${pomotectBoldFont.className} back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
       </div>
       <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
         <div className="hidden md:block">
@@ -128,8 +132,8 @@ export default async function Product({
 
         <div className="product-details">
           <div className="site-section product-info">
-            <div className="main_header mt-5 w-full font-['Minion'] text-xs md:text-sm">{product.title}</div>
-            <div className="text-sm mb-5 italic font-['Minion']">
+            <div className={`${pomotectFont.className} main_header mt-5 w-full text-xs md:text-sm`}>{product.title}</div>
+            <div className={`${pomotectFont.className} text-sm mb-5 italic`}>
               Most recently updated on {moment(product.updatedAt).format('MMMM DD, YYYY')}
             </div>
             <div className="inline-grid gap-2 grid-cols-2">
@@ -149,7 +153,7 @@ export default async function Product({
             <div className="mb-2 font-bold minion-font">
               Description
             </div>
-            <div className="minion-font text-justify">
+            <div className={`${pomotectBoldFont.className} text-justify`}>
               {markup}
             </div>
           </div>
