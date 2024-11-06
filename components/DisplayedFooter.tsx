@@ -20,10 +20,10 @@ const DisplayedFooter = ({ response, objectsResponse }: any) => {
             <div className={
                 pathname == "/" ? "flex border-t border-black md:mt-[75%] mt-[140%]" : pathname == "/cart" ? "flex border-t border-black mt-[250px]" : "flex border-t border-black mt-[10px]"}>
                 <div className="site-section italic text-gray-700 py-1">
-                    <Link href="/terms" className={`${pomotectFont.className} ${pathname.startsWith("/terms") ? "pr-2 md:mr-10 text-primary-blue hover:bg-primary-blue hover:text-white" : "pr-2 md:mr-10 hover:bg-primary-blue hover:text-white"}`}>
+                    <Link href="/terms" className={`${pathname.startsWith("/terms") ? `${pomotectFont.className} pr-2 md:mr-10 text-primary-blue hover:bg-primary-blue hover:text-white` : `${pomotectFont.className} pr-2 md:mr-10 hover:bg-primary-blue hover:text-white`}`}>
                         Privacy & Terms of Use
                     </Link>
-                    <Link href="/contact" className={`${pomotectFont.className} ${pathname.startsWith("/contact") ? "text-primary-blue hover:bg-primary-blue hover:text-white px-2" : "hover:bg-primary-blue hover:text-white px-2"}`}>
+                    <Link href="/contact" className={`${pomotectFont.className} ${pathname.startsWith("/contact") ? `${pomotectFont.className} text-primary-blue hover:bg-primary-blue hover:text-white px-2` : `${pomotectFont.className} hover:bg-primary-blue hover:text-white px-2`}`}>
                         Contact
                     </Link>
                 </div>
