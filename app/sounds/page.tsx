@@ -24,7 +24,7 @@ const Sounds = () => {
         <div>
             <div className="site-section">
                 <h3 className={`${pomotectBoldFont.className} main_header`}>Sounds</h3>
-                <p className={`${pomotectFont.className} italic`}>Most recently updated on October 11, 2024</p>
+                <p className={`${pomotectFont.className} italic`}>Most recently updated on November 12, 2024</p>
             </div>
             <div className="site-section">
                 <Link href="/sounds" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Mixes</Link>
@@ -34,6 +34,7 @@ const Sounds = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
             >
+                <Soundcloud title_href="https://soundcloud.com/pomotect/detroit-locomotive" title="DETRIOT LOCOMOTIVE [8 of ?]" label="DETRIOT LOCOMOTIVE [8 of ?]" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1933063748&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
                 <Soundcloud title_href="https://soundcloud.com/pomotect/help-me-put-out-the-flames" title="HELP ME PUT OUT THE FLAMES [7 of ?]" label="HELP ME PUT OUT THE FLAMES [7 of ?]" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1932471983&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
                 <Soundcloud title_href="https://soundcloud.com/pomotect/cellar-36-set-062824" title="Cellar 36 Set 06.28.24" label="Cellar 36 Set 06.28.24" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1864662273&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
                 <Soundcloud title_href="https://soundcloud.com/pomotect/wine-vinyl" title="HAPPY ACCIDENTS [6 of ?]" label="HAPPY ACCIDENTS [6 of ?]" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1853273079&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />

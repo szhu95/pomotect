@@ -4,6 +4,7 @@ import { getPosts, storefront } from '@/utils';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic'
 import localFont from 'next/font/local';
+import EmailButton from '@/components/EmailButton';
 
 const pomotectFont = localFont({
     src: '../fonts/pomotect-analog-regular.otf',
@@ -36,7 +37,10 @@ export default async function Home() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <main>
+      <main>        
+        {/* <div className="md:block">
+          <EmailButton />
+        </div> */}
         <ImageTicker response={response} />
         <div className={`${pomotectFont.className} bg-[#BCB7AD] font-semibold text-white pl-1`}>IN THE CUE</div>
         <Hero />
