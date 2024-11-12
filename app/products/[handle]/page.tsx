@@ -132,7 +132,7 @@ export default async function Product({
 
         <div className="product-details">
           <div className="site-section product-info">
-            <div className={`${pomotectFont.className} main_header mt-5 w-full text-xs md:text-sm`}>{product.title}</div>
+            <div className={`minion-font main_header mt-5 w-full text-xs md:text-sm`}>{product.title}</div>
             <div className={`minion-font text-sm mb-5 italic`}>
               Most recently updated on {moment(product.updatedAt).format('MMMM DD, YYYY')}
             </div>
