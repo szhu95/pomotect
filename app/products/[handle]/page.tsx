@@ -98,7 +98,7 @@ export default async function Product({
     <div>
       <div className="site-section">
         <h3 className={`${pomotectBoldFont.className} product-details-header`}>Objects</h3>
-        <Link href="/products" scroll={false} className={`${pomotectBoldFont.className} back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
+        <Link href="/products" scroll={false} className={`$minion-font back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
       </div>
       <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
         <div className="hidden md:block">
