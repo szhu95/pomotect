@@ -233,7 +233,7 @@ export default function Cart() {
       <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta`}>TOTAL BEFORE TAXES + SHIPPING</div>
       <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>{formatter.format(Number(total))}</div>
       {
-        !cart || (!isLoading && data.node?.totalPrice.amount === '0.0') ? <></> : <div>
+        !cart || isLoading || (!isLoading && data.node?.totalPrice.amount === '0.0') ? <></> : <div>
           <div className={`text-right pr-2 font-semibold pt-2 mb-2 text-primary-blue ${pomotectFont.className} border-b-2 border-primary-blue`}>SALE DISCOUNT: -{formatter.format(Number(total) - Number(salePrice))}</div>
           <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>{formatter.format(Number(salePrice))}</div>
         </div> 
