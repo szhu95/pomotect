@@ -77,6 +77,10 @@ query getCheckoutLineItemsFromNode($id: ID!) {
            }
          }
        }
+      lineItemsSubtotalPrice {
+        amount
+        currencyCode
+      },
       subtotalPrice {
         amount
         currencyCode
@@ -122,6 +126,7 @@ export default function Cart() {
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutUrl, setCheckoutUrl] = useState('');
   const [total, setTotal] = useState('');
+  const [salePrice, setSalePrice] = useState('');
   const [quantity, setQuantity] = useState(0);
 
   async function removeItemFromCart(variantId: any) {
@@ -139,7 +144,7 @@ export default function Cart() {
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
-    console.log("data is " + JSON.stringify(response));
+    // console.log("data is " + JSON.stringify(response));
 
     if (response?.node.order?.id) {
       setCart('');
@@ -150,11 +155,12 @@ export default function Cart() {
     }
     setData(response ? response : '');
     setCheckoutUrl(response ? response.node.webUrl : '');
-    setTotal(response ? response.node?.totalPrice.amount : '0.0');
+    setTotal(response ? response.node?.lineItemsSubtotalPrice.amount : '0.0');
     setQuantity(response ? response.node?.lineItems.edges.length : 0);
-    console.log(response.node?.lineItems.edges.length);
-    console.log("checkouturl is " + checkoutUrl);
-    console.log("quantity is " + quantity);
+    setSalePrice(response ? response.node?.totalPrice.amount : '0.0');
+    // console.log(response.node?.lineItems.edges.length);
+    // console.log("checkouturl is " + checkoutUrl);
+    // console.log("quantity is " + quantity);
     setIsLoading(false);
   }, [])
 
@@ -226,6 +232,12 @@ export default function Cart() {
       }
       <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta`}>TOTAL BEFORE TAXES + SHIPPING</div>
       <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>{formatter.format(Number(total))}</div>
+      {
+        !cart || (!isLoading && data.node?.totalPrice.amount === '0.0') ? <></> : <div>
+          <div className={`text-right pr-2 font-semibold pt-2 mb-2 text-primary-blue ${pomotectFont.className} border-b-2 border-primary-blue`}>SALE DISCOUNT: -{formatter.format(Number(total) - Number(salePrice))}</div>
+          <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>{formatter.format(Number(salePrice))}</div>
+        </div> 
+      }
       {quantity === 0 || isLoading ? <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold`} tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-terracotta text-white italic font-semibold`}>CHECKOUT</Link>}
     </div>
   )
