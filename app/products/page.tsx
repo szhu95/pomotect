@@ -27,7 +27,7 @@ const gql = String.raw;
 
 const productsQuery = gql`
     query Products {
-      products(first: 20) {
+      products(first: 20, sortKey: PRODUCT_TYPE) {
         edges {
           node {
             title
