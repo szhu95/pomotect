@@ -17,6 +17,7 @@ const pomotectFont = localFont({
 
 const getProducts = async () => {
   const { data } = await storefront(productsQuery);
+  // console.log("data is" + JSON.stringify(data))
   return {
     products: data.products,
   };
@@ -26,7 +27,7 @@ const gql = String.raw;
 
 const productsQuery = gql`
     query Products {
-      products(first: 10) {
+      products(first: 20, sortKey: PRODUCT_TYPE) {
         edges {
           node {
             title
