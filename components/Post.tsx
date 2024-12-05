@@ -8,7 +8,7 @@ export default async function Post({ response }: any) {
     return (
         response.posts.map((post: any) => {
 
-            //console.log("POST IS +++++" + JSON.stringify(post))
+            // console.log("POST IS +++++" + JSON.stringify(post))
             let postUtcTimeString = post.published_at;
             let postDate = new Date(postUtcTimeString)
             let formattedPostDate = formatUpdatedDate(postDate);
