@@ -232,12 +232,12 @@ export default function Cart() {
       }
       <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta`}>TOTAL BEFORE TAXES + SHIPPING</div>
       <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>{formatter.format(Number(total))}</div>
-      {
+      {/* {
         !cart || isLoading || (!isLoading && data.node?.totalPrice.amount === '0.0') ? <></> : <div>
           <div className={`text-right pr-2 font-semibold pt-2 mb-2 text-primary-blue ${pomotectFont.className} border-b-2 border-primary-blue`}>SALE DISCOUNT: -{formatter.format(Number(total) - Number(salePrice))}</div>
           <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>SUBTOTAL: {formatter.format(Number(salePrice))}</div>
         </div> 
-      }
+      } */}
       {quantity === 0 || isLoading ? <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold`} tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-terracotta text-white italic font-semibold`}>CHECKOUT</Link>}
     </div>
   )

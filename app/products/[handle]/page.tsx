@@ -17,7 +17,7 @@ const pomotectFont = localFont({
 });
 
 const pomotectBoldFont = localFont({
-    src: '../../../fonts/pomotect-analog-bold.otf',
+  src: '../../../fonts/pomotect-analog-bold.otf',
 });
 
 const gql = String.raw;
@@ -50,7 +50,7 @@ const singleProductQuery = gql`
         name
         values
       }
-      images(first: 5) {
+      images(first: 10) {
         edges {
           node {
             transformedSrc
@@ -90,7 +90,10 @@ export default async function Product({
 
   // console.log("product is " + JSON.stringify(product))
 
-  let updatedHtml = product?.descriptionHtml.replaceAll('<p', '<p className="minion-font"')
+  let updatedHtml = product?.descriptionHtml
+    .replaceAll('<p', '<p className="minion-font"')
+    .replaceAll('<b', '<b className="minion-font"')
+    .replaceAll('<em', '<em className="minion-font"')
 
   let markup = parse(updatedHtml);
 
@@ -113,7 +116,7 @@ export default async function Product({
                   width={600}
                   height={800}
                   className="float-right mt-3 mb-7 h-auto" />
-                  {/* <Image
+                {/* <Image
                     src={item.node?.transformedSrc}
                     alt={"product image"}
                     width="600"

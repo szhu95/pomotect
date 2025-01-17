@@ -20,7 +20,7 @@ const About = () => {
             <div className="site-section">
                 <div className={`${pomotectFont.className} about-section`}>
                     <h3 className={`${pomotectBoldFont.className} main_header`}>About</h3>
-                    <p className={`${pomotectFont.className} italic`}>Most recently updated on May 28, 2024</p>
+                    <p className={`${pomotectFont.className} italic`}>Most recently updated on January 11, 2025</p>
                 </div>
                 <motion.div
                     initial={{ opacity: 0 }}
