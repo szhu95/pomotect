@@ -33,9 +33,9 @@ const Words = async () => {
 
   const data = await getData();
 
-  let response = data.posts;
+  let response = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name !== "Projects") });;
 
-  let utcTimeString = response.posts[0].published_at;
+  let utcTimeString = response[0].published_at;
   const date = new Date(utcTimeString);
   let formattedDate = formatUpdatedDate(date)
 

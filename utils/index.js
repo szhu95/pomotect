@@ -59,7 +59,6 @@ export async function getPost(slug) {
     return response.json();
 }
 
-
 export function createMarkup(description) {
     return { __html: description };
 }

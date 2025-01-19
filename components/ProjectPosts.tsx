@@ -3,12 +3,12 @@ import parse from 'html-react-parser';
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Posts({ response }: any) {
+export default async function ProjectPosts({ response }: any) {
 
     return (
         response.map((post: any) => {
 
-            // console.log("POST IS +++++" + JSON.stringify(post))
+            //console.log("POST IS +++++" + JSON.stringify(post))
             let postUtcTimeString = post.published_at;
             let postDate = new Date(postUtcTimeString)
             let formattedPostDate = formatUpdatedDate(postDate);
@@ -34,13 +34,13 @@ export default async function Posts({ response }: any) {
                         <div className='site-section words-header border-b border-black pb-4'>
                             <Link
                                 key={post.slug}
-                                href={`/words/${post.slug}`}
+                                href={`projects/${post.slug}`}
                             >
                                 <div className="hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
                             </Link>
-                            <div className="font-['Minion'] italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
+                            <div className="font-['Minion'] italic">{formattedPostDate}</div>
                         </div>
-                        <div className={`site-section words-body max-h-[85vh] overflow-y-auto`}>
+                        <div className={`site-section words-body overflow-y-auto`}>
                             <div className="pr-2 py-1 font-['Minion'] text-justify md:w-[90%] md:m-auto">{parsedPost}</div>
                             {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
