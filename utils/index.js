@@ -59,6 +59,45 @@ export async function getPost(slug) {
     return response.json();
 }
 
+export default async function emailHandler(req, res) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: 'Method Not Allowed' });
+    }
+
+    const { email } = req.body;
+    if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+    }
+    const API_URL = `https://pomotect.myshopify.com/admin/api/2024-01/customers.json`;
+
+    const data = {
+        customer: {
+            email,
+            accepts_marketing: true, // Ensures the user is subscribed to marketing emails
+        },
+    };
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Shopify-Access-Token': NEXT_PUBLIC_ACCESS_TOKEN,
+            },
+            body: JSON.stringify(data),
+        });
+
+        const responseData = await response.json();
+        if (!response.ok) {
+            throw new Error(responseData.errors || 'Error subscribing user');
+        }
+
+        res.status(200).json({ message: 'Successfully subscribed!' });
+    } catch (error) {
+        res.status(500).json({ message: error.message || 'Something went wrong' });
+    }
+}
+
 export function createMarkup(description) {
     return { __html: description };
 }

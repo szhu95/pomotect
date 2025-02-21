@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import localFont from 'next/font/local';
 import EmailButton from '@/components/EmailButton';
 import Link from 'next/link';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const pomotectFont = localFont({
   src: '../fonts/pomotect-analog-regular.otf',
@@ -39,15 +40,15 @@ export default async function Home() {
   return (
     <Suspense fallback={<Loading />}>
       <main>
-        {/* <div className="md:block">
-          <EmailButton />
+        {/* <div className="md:flex">
+          Subscribe to our newsletter <NewsletterForm />
         </div> */}
         <Link
-        href="/products"
-        scroll={false}
-        className="group"
+          href="/products"
+          scroll={false}
+          className="group"
         >
-        <div className={`${pomotectFont.className} group-hover:text-opacity-45 bg-[black] font-semibold text-center text-white mt-1 pl-1`}>SALE UP TO <span className={`${pomotectFont.className} text-primary-blue group-hover:text-terracotta`}>50% OFF</span> ON SELECT ITEMS ENDS SOON - CODE AUTOMATICALLY APPLIES AT CHECKOUT</div>
+          <div className={`${pomotectFont.className} group-hover:text-opacity-45 bg-[black] font-semibold text-center text-white mt-1 pl-1`}>SALE UP TO <span className={`${pomotectFont.className} text-primary-blue group-hover:text-terracotta`}>50% OFF</span> ON SELECT ITEMS ENDS SOON - CODE AUTOMATICALLY APPLIES AT CHECKOUT</div>
         </Link>
         <ImageTicker response={response} />
         <div className={`${pomotectFont.className} bg-[#BCB7AD] font-semibold text-white pl-1`}>IN THE CUE</div>

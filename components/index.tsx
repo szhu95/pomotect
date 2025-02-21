@@ -16,6 +16,7 @@ import ImageTicker from './ImageTicker';
 import DisplayedFooter from './DisplayedFooter';
 import ProjectPosts from './ProjectPosts';
 import ProjectPost from './ProjectPost';
+import NewsletterForm from './NewsletterForm';
 
 export {
     Hero,
@@ -35,5 +36,6 @@ export {
     WordsTicker,
     ImageTicker,
     ProjectPosts,
-    ProjectPost
+    ProjectPost,
+    NewsletterForm
 }
