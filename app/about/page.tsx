@@ -35,7 +35,7 @@ const About = () => {
 
                             <div className={`${pomotectBoldFont.className} about-section`}>We exist to help emerging artists and designers actualize their visions for new creations in the physical world through creative joint ventures.</div>
 
-                            <div className={`${pomotectBoldFont.className} about-section italic hover:text-primary-blue hover:cursor-pointer`} onClick={(e) => {window.open('mailto:office@pomotect.com?subject=Project%20Inquiry%20-%20[name%20here]&body=Hello%20Postmodern%20Tectonics%20Team,');}}>
+                            <div className={`${pomotectBoldFont.className} about-section italic hover:text-primary-blue hover:cursor-pointer text-primary-blue md:text-black`} onClick={(e) => {window.open('mailto:office@pomotect.com?subject=Project%20Inquiry%20-%20[name%20here]&body=Hello%20Postmodern%20Tectonics%20Team,');}}>
                                 [We welcome artist, designer, or misc. project submissions here]
                             </div>
 
@@ -55,19 +55,19 @@ const About = () => {
                             Currently, the Label is focused on — but never limited to — four human art forms:
                         </div>
 
-                        <div className={`${pomotectFont.className} hover:text-primary-blue hover:cursor-pointer`}>
+                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
                             <Link href="/products/projects" className={`${pomotectBoldFont.className}`}> Architecture,</Link>
                         </div>
 
-                        <div className={`${pomotectFont.className} hover:text-primary-blue hover:cursor-pointer`}>
+                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
                             <Link href="/products" className={`${pomotectBoldFont.className}`}> Objects,</Link>
                         </div>
 
-                        <div className={`${pomotectFont.className} hover:text-primary-blue hover:cursor-pointer`}>
+                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
                             <Link href="/words" className={`${pomotectBoldFont.className}`}> Words,</Link>
                         </div>
 
-                        <div className={`${pomotectFont.className} hover:text-primary-blue hover:cursor-pointer mb-6`}>
+                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer mb-6`}>
                             <Link href="/sounds" className={`${pomotectBoldFont.className}`}> and Sounds.</Link>
                         </div>
 

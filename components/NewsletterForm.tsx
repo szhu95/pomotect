@@ -1,10 +1,13 @@
 "use client"
 import emailHandler from '@/utils';
 import { useState } from 'react';
+import localFont from 'next/font/local';
+
+const pomotectFont = localFont({
+  src: '../fonts/pomotect-analog-regular.otf',
+});
 
 export default function NewsletterForm() {
-    const [firstName, setFirstName] = useState<string>('');
-    const [lastName, setLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [message, setMessage] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -18,14 +21,12 @@ export default function NewsletterForm() {
             const res = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email }),
+                body: JSON.stringify({ email }),
             });
 
             const data = await res.json();
             if (res.ok) {
                 setMessage('Thank you for subscribing!');
-                setFirstName('');
-                setLastName('');
                 setEmail('');
             } else {
                 setMessage(data.message || 'Something went wrong.');
@@ -38,21 +39,7 @@ export default function NewsletterForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="newsletter-form">
-            <input
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-            />
+        <form onSubmit={handleSubmit} className={`${pomotectFont.className} newsletter-form`}>
             <input
                 type="email"
                 placeholder="Email"
@@ -61,9 +48,9 @@ export default function NewsletterForm() {
                 required
             />
             <button type="submit" disabled={loading}>
-                {loading ? 'Submitting...' : 'Subscribe'}
+                {loading ? 'Submitting...' : 'Join'}
             </button>
-            {message && <p>{message}</p>}
+            {message && <p className={`${pomotectFont.className}`}>{message}</p>}
         </form>
     );
 }
