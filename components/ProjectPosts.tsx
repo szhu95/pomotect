@@ -45,7 +45,7 @@ export default async function ProjectPosts({ response }: any) {
                             </Link>
                             <div className="font-['Minion'] italic">{formattedPostDate}</div>
                         </div>
-                        <div className={`site-section words-body overflow-y-auto`}>
+                        <div className={`site-section words-body max-h-[85vh] overflow-y-auto`}>
                             <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:w-[90%] md:m-auto`}>{parsedPost}</div>
                             {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
