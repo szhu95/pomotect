@@ -14,6 +14,10 @@ const pomotectFont = localFont({
     src: '../../fonts/pomotect-analog-regular.otf',
 });
 
+const garamondFont = localFont({
+  src: '../../fonts/garamond.ttf'
+})
+
 
 async function getData() {
   const posts = await getPosts()

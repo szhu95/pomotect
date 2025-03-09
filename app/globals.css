@@ -10,6 +10,11 @@
 }
 
 @font-face {
+  font-family: Garamond;
+  src: local('Garamond'), url('../fonts/garamond.ttf') format('ttf');
+}
+
+@font-face {
   font-family: 'Analog';
   font-style: normal;
   font-weight: normal;
@@ -51,6 +56,10 @@
 
 .minion-font {
   font-family: "Minion";
+}
+
+.garamond-font {
+  font-family: "Garamond";
 }
 
 /* START: General styles */
