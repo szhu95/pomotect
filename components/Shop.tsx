@@ -19,7 +19,9 @@ export default function Shop({ response }: any) {
 
               let product = item.node;
               let image = product.images.edges[0].node;
+              let tag = item.node.tags;
 
+              //console.log(tag);
               return (
                 product.totalInventory == "0" ?
                   <Link
@@ -65,7 +67,7 @@ export default function Shop({ response }: any) {
                     </div>
                   </Link>
               );
-            }).reverse()}
+            })}
           </div>
         </div>
       </div>
