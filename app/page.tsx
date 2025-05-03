@@ -40,12 +40,12 @@ export default async function Home() {
   return (
     <Suspense fallback={<Loading />}>
       <main>
-        {/* <div className='md:flex'>
+        <div className='md:flex'>
           <span className={`${pomotectFont.className} mr-4`}>
             Subscribe to our newsletter
           </span>
           <NewsletterForm />
-        </div> */}
+        </div>
         <Link
           href="/products"
           scroll={false}

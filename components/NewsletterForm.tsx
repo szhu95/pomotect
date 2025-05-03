@@ -16,22 +16,27 @@ export default function NewsletterForm() {
         e.preventDefault();
         setLoading(true);
         setMessage('');
+        console.log("email is: ", email);
 
         try {
             const res = await fetch('/api/subscribe', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    accept: 'application/json'
+                },
                 body: JSON.stringify({ email }),
             });
 
             const data = await res.json();
             if (res.ok) {
-                setMessage('Thank you for subscribing!');
+                setMessage(data.message);
                 setEmail('');
             } else {
                 setMessage(data.message || 'Something went wrong.');
             }
         } catch (error) {
+            console.log("error is: ", error)
             setMessage('Error subscribing. Please try again.');
         }
 
@@ -48,7 +53,7 @@ export default function NewsletterForm() {
                 required
             />
             <button type="submit" disabled={loading}>
-                {loading ? 'Submitting...' : 'Join'}
+                {loading ? 'Submitting...' : ' Join '}
             </button>
             {message && <p className={`${pomotectFont.className}`}>{message}</p>}
         </form>
