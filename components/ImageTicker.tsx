@@ -27,6 +27,7 @@ export default async function ImageTicker({ response }: any) {
                                 height="150"
                                 className="group-hover:opacity-[50%] p-1"
                                 loading="lazy"
+                                decoding="async"
                             />
                         </div>
                     </Link>

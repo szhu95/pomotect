@@ -34,7 +34,9 @@ const Hero = () => {
                             width={1000}
                             alt="landing page background image"
                             className='z-0 w-[100%] absolute'
-                            loading="lazy" 
+                            priority
+                            decoding="async"
+                            placeholder="blur"
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -143,7 +145,9 @@ const Hero = () => {
                             width={1000}
                             alt="landing page background mobile image"
                             className='z-0 w-[100%] absolute'
-                            loading="lazy" 
+                            priority
+                            placeholder="blur"
+                            decoding="async"
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
