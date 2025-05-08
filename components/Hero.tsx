@@ -36,7 +36,6 @@ const Hero = () => {
                             className='z-0 w-[100%] absolute'
                             priority
                             decoding="async"
-                            placeholder="blur"
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -146,7 +145,6 @@ const Hero = () => {
                             alt="landing page background mobile image"
                             className='z-0 w-[100%] absolute'
                             priority
-                            placeholder="blur"
                             decoding="async"
                         />
                         <motion.div
