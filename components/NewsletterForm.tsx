@@ -35,7 +35,7 @@ export default function NewsletterForm() {
                 setMessage(data.message || 'Something went wrong.');
             }
         } catch (error) {
-            console.error('Subscription error:', error);
+            //console.error('Subscription error:', error);
             setMessage('Error subscribing. Please try again.');
         }
 
