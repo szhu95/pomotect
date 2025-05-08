@@ -30,11 +30,11 @@ const Hero = () => {
                     >
                         <Image
                             src={landingPageBackground}
-                            priority
                             height={1000}
                             width={1000}
                             alt="landing page background image"
                             className='z-0 w-[100%] absolute'
+                            loading="lazy" 
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -139,11 +139,11 @@ const Hero = () => {
                     >
                         <Image
                             src={landingPageBackgroundMobile}
-                            priority
                             height={1000}
                             width={1000}
                             alt="landing page background mobile image"
                             className='z-0 w-[100%] absolute'
+                            loading="lazy" 
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
