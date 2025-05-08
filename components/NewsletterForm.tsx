@@ -1,10 +1,9 @@
 "use client"
-import emailHandler from '@/utils';
 import { useState } from 'react';
 import localFont from 'next/font/local';
 
 const pomotectFont = localFont({
-  src: '../fonts/pomotect-analog-regular.otf',
+    src: '../fonts/pomotect-analog-regular.otf',
 });
 
 export default function NewsletterForm() {
@@ -16,27 +15,27 @@ export default function NewsletterForm() {
         e.preventDefault();
         setLoading(true);
         setMessage('');
-        console.log("email is: ", email);
 
         try {
-            const res = await fetch('/api/subscribe', {
+            const response = await fetch('/api/subscribe', {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
-                    accept: 'application/json'
+                    Accept: 'application/json',
                 },
                 body: JSON.stringify({ email }),
             });
+        
 
-            const data = await res.json();
-            if (res.ok) {
+            const data = await response.json();
+            if (response.ok) {
                 setMessage(data.message);
                 setEmail('');
             } else {
                 setMessage(data.message || 'Something went wrong.');
             }
         } catch (error) {
-            console.log("error is: ", error)
+            console.error('Subscription error:', error);
             setMessage('Error subscribing. Please try again.');
         }
 
@@ -44,7 +43,7 @@ export default function NewsletterForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={`${pomotectFont.className} newsletter-form`}>
+        <form onSubmit={handleSubmit} className={`${pomotectFont.className} newsletter-form md:flex md:text-center`}>
             <input
                 type="email"
                 placeholder="Email"
@@ -52,10 +51,10 @@ export default function NewsletterForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
             />
-            <button type="submit" disabled={loading}>
+            <button type="submit" disabled={loading} className="text-primary-blue ml-2">
                 {loading ? 'Submitting...' : ' Join '}
             </button>
-            {message && <p className={`${pomotectFont.className}`}>{message}</p>}
+            {message && <p className={`${pomotectFont.className} ml-2`}>{message}</p>}
         </form>
     );
 }
