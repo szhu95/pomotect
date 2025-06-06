@@ -1,5 +1,3 @@
-
-
 export async function storefront(query, variables = {}) {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL, {
         method: 'POST',
@@ -35,7 +33,7 @@ export function formatUpdatedDate(date) {
 }
 
 export async function getPosts() {
-    const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags", {
+    const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=all", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
