@@ -71,7 +71,8 @@ const Rsvp = () => {
                     <div className="mb-8 relative w-full aspect-square">
                         <div className="w-full h-full block items-center justify-center text-center">
                             <div className={`${pomotectBoldFont.className} text-black`}>- Ysasi Gallery - Saturday, June 21 -</div>
-                            <div className={`${pomotectBoldFont.className} text-black`}>5104 W Adams Blvd, Los Angeles, CA 90016</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>- 4 to 8 PM -</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>_ 5104 W Adams Blvd, Los Angeles, CA 90016 _</div>
                         </div>
                     </div>
 
