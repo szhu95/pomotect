@@ -6,8 +6,8 @@ import localFont from "next/font/local";
 
 const garamondFont = localFont({
     src: '../fonts/garamond.ttf'
-  })
-  
+})
+
 
 export default async function Posts({ response }: any) {
 
@@ -37,27 +37,26 @@ export default async function Posts({ response }: any) {
 
             return (
                 <div key={post.id} className="mt-5 md:w-[75%] md:m-auto">
-                        <div className='site-section words-header border-b border-black pb-4'>
-                            <Link
-                                key={post.slug}
-                                href={`/words/${post.slug}`}
-                            >
-                                <div className="hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
-                            </Link>
-                            <div className="minion-font italic">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
+                    <div className='site-section words-header md:border-b border-black md:pb-4'>
+                        <div className="flex justify-between items-center md:hidden mb-2 border-b border-black">
+                            <div className="minion-font italic">
+                                {(post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com")}
+                            </div>
+                            <div className="minion-font italic">
+                                {formattedPostDate}
+                            </div>
                         </div>
-                        <div className={`site-section words-body max-h-[85vh] overflow-y-auto`}>
-                            <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:w-[90%] md:m-auto`}>{parsedPost}</div>
-                            {/* <div className="pr-2 py-2">
-                                {post.feature_image && <Image
-                                    src={post.feature_image}
-                                    alt={"words-image"}
-                                    width={500}
-                                    height={500}
-                                    className="h-full w-full object-cover object-center"
-                                />}
-                            </div> */}
-                        </div>
+                        <Link
+                            key={post.slug}
+                            href={`/words/${post.slug}`}
+                        >
+                            <div className="hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font border border-primary-blue border-dashed border-2 md:border-none">{post.title ? post.title : 'Title'}</div>
+                        </Link>
+                        <div className="minion-font italic md:block hidden">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
+                    </div>
+                    <div className={`site-section words-body max-h-[85vh] overflow-y-auto md:border md:border-primary-blue md:border-dashed md:border-2`}>
+                        <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:w-[90%] md:m-auto md:block hidden`}>{parsedPost}</div>
+                    </div>
                 </div >
             )
         })
