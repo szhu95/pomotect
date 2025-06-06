@@ -4,6 +4,7 @@ import './globals.css'
 import { Footer, Header } from '@/components'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import SplashScreen from '@/components/SplashScreen'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,13 +13,11 @@ export const metadata: Metadata = {
   description: 'A b2b of ideas...',
 }
 
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-
   const Loading = dynamic(() => import('./loading'), {
     ssr: true,
   })
@@ -26,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <SplashScreen />
         <Suspense fallback={<Loading />}>
           <div className="site-layout">
             <Header />
