@@ -36,7 +36,7 @@ const Rsvp = () => {
             });
 
             const data = await response.json();
-            
+
             if (response.ok) {
                 setMessage(data.message);
                 setMessageType('success');
@@ -68,6 +68,13 @@ const Rsvp = () => {
                     animate={{ opacity: 1 }}
                     className="w-full max-w-md"
                 >
+                    <div className="mb-8 relative w-full aspect-square">
+                        <div className="w-full h-full block items-center justify-center text-center">
+                            <div className={`${pomotectBoldFont.className} text-black`}>- Ysasi Gallery - Saturday, June 21 -</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>5104 W Adams Blvd, Los Angeles, CA 90016</div>
+                        </div>
+                    </div>
+
                     <div className="mb-8 relative w-full">
                         <Image
                             src={MsFlyer}
@@ -78,8 +85,9 @@ const Rsvp = () => {
                     </div>
 
                     <div className="mb-8 relative w-full aspect-square">
-                        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                            <span className={`${pomotectFont.className} text-gray-500`}>Short blurb</span>
+                        <div className="w-full h-full flex items-center justify-center">
+                            <span className={`${pomotectFont.className} text-black`}>Join us at Casa Ysasi for a listening session — an afternoon and evening of wide-ranging vinyl-only programming — to celebrate the release of Musical Furniture [Case Study 001].
+                            </span>
                         </div>
                     </div>
 
@@ -107,9 +115,8 @@ const Rsvp = () => {
                             />
                         </div>
                         {message && (
-                            <div className={`${pomotectFont.className} text-center ${
-                                messageType === 'success' ? 'text-green-600' : 'text-red-600'
-                            }`}>
+                            <div className={`${pomotectFont.className} text-center ${messageType === 'success' ? 'text-green-600' : 'text-red-600'
+                                }`}>
                                 {message}
                             </div>
                         )}
