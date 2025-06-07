@@ -137,7 +137,7 @@ const Carousel = (response: any) => {
                         </div>
                         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[20rem] flex items-center justify-center">
                             <div className="relative w-full flex items-center justify-center">
-                                <span className={`${pomotectFont.className} text-xl text-black select-none absolute -left-6 -top-6`} style={{ opacity: 0.40 }}>x</span>
+                                <span className={`${pomotectFont.className} text-xl text-black select-none absolute -left-6 -bottom-6`} style={{ opacity: 0.75 }}>x</span>
                                 {/* Crossfader cross */}
                                 <span
                                   className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
@@ -180,7 +180,7 @@ const Carousel = (response: any) => {
                                     onChange={e => setModalZoom(Number(e.target.value))}
                                     className="dj-mixer-slider flex-1 mx-4"
                                 />
-                                <span className={`${pomotectFont.className} text-xl text-black select-none absolute -right-6 -top-6`} style={{ opacity: 0.40 }}>y</span>
+                                <span className={`${pomotectFont.className} text-xl text-black select-none absolute -right-6 -bottom-6`} style={{ opacity: 0.75 }}>y</span>
                             </div>
                         </div>
                         <button
