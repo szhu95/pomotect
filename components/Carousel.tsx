@@ -76,7 +76,10 @@ const Carousel = (response: any) => {
 
     const closeModal = () => {
         setModalOpen(false);
-        setTimeout(() => setModalVisible(false), 300); // match transition duration
+        setTimeout(() => {
+            setModalVisible(false);
+            setModalZoom(1); // Reset slider to 1 (minimum value)
+        }, 300); // match transition duration
     };
 
     return (
