@@ -1,10 +1,11 @@
 import { Shop } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { formatDate, storefront } from '@/utils';
-import { revalidatePath } from 'next/cache';
 import Link from 'next/link';
 import React from 'react'
 import localFont from 'next/font/local';
+
+export const revalidate = 0;
 
 const pomotectBoldFont = localFont({
     src: '../../fonts/pomotect-analog-bold.otf',
@@ -54,8 +55,6 @@ const productsQuery = gql`
   `;
 
 const Objects = async () => {
-
-  revalidatePath('/products/[handle]', 'page');
 
   let response = (await getProducts()) as any;
 
