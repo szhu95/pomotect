@@ -499,7 +499,7 @@ body {
 }
 
 .dj-mixer-slider:focus::-webkit-slider-thumb {
-  outline: 2px solid #0070f3 !important;
+  outline: none !important;
 }
 
 .dj-mixer-slider::-moz-range-thumb {
@@ -514,7 +514,7 @@ body {
 }
 
 .dj-mixer-slider:focus::-moz-range-thumb {
-  outline: 2px solid #0070f3 !important;
+  outline: none !important;
 }
 
 .dj-mixer-slider::-ms-thumb {
@@ -529,7 +529,7 @@ body {
 }
 
 .dj-mixer-slider:focus::-ms-thumb {
-  outline: 2px solid #0070f3 !important;
+  outline: none !important;
 }
 
 input[type="range"].dj-mixer-slider {
@@ -562,7 +562,7 @@ input[type="range"].dj-mixer-slider::-webkit-slider-runnable-track {
 }
 
 input[type="range"].dj-mixer-slider:focus::-webkit-slider-thumb {
-  outline: 2px solid #0070f3 !important;
+  outline: none !important;
 }
 
 input[type="range"].dj-mixer-slider::-ms-fill-lower,
@@ -583,7 +583,7 @@ input[type="range"].dj-mixer-slider::-moz-range-thumb {
 }
 
 input[type="range"].dj-mixer-slider:focus::-moz-range-thumb {
-  outline: 2px solid #0070f3 !important;
+  outline: none !important;
 }
 
 input[type="range"].dj-mixer-slider::-ms-thumb {
@@ -598,7 +598,7 @@ input[type="range"].dj-mixer-slider::-ms-thumb {
 }
 
 input[type="range"].dj-mixer-slider:focus::-ms-thumb {
-  outline: 2px solid #0070f3 !important;
+  outline: none !important;
 }
 
 .modal-fade {
