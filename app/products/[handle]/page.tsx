@@ -7,7 +7,6 @@ import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import parse from 'html-react-parser';
 import Carousel from "@/components/Carousel";
-import { revalidatePath } from 'next/cache';
 import NotFound from "@/app/not-found";
 import moment from 'moment';
 import localFont from 'next/font/local';
@@ -21,6 +20,8 @@ const pomotectBoldFont = localFont({
 });
 
 const gql = String.raw;
+
+export const revalidate = 0;
 
 const getSingleProduct = async (params: { handle: string }) => {
   const { data } = await storefront(singleProductQuery, {
@@ -71,16 +72,11 @@ const singleProductQuery = gql`
   }
 `;
 
-export default async function Product({
-  params,
-}: {
-  params: { handle: string };
-}) {
-
-  revalidatePath('/products/[handle]', 'page');
+export default async function Product({ params }: any) {
+  const awaitedParams = await params;
 
   let lastUpdatedDate = formatDate();
-  let response = (await getSingleProduct(params)) as any;
+  let response = (await getSingleProduct(awaitedParams)) as any;
 
   if (response.product == null) {
     return NotFound();
@@ -104,35 +100,12 @@ export default async function Product({
         <Link href="/products" scroll={false} className={`$minion-font back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
       </div>
       <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
-        <div className="hidden md:block">
-          {product.images.edges.map((item: any, i: React.Key | null | undefined) => {
-
-            return (
-              // hover:scale-[2] transform transition duration-500
-              <div key={i} className="ml-8 md:mt-2 mr-[10px] overflow-hidden">
-                <ZoomableImage
-                  src={item.node?.transformedSrc}
-                  alt={"product image"}
-                  width={600}
-                  height={800}
-                  className="float-right mt-3 mb-7 h-auto" />
-                {/* <Image
-                    src={item.node?.transformedSrc}
-                    alt={"product image"}
-                    width="600"
-                    height="800"
-                    className="float-right mt-3 mb-7 h-auto"
-                  /> */}
-              </div>
-            )
-          })
-          }
+        <div className="md:w-1/2 w-full md:block hidden">
+          <Carousel images={product.images} />
         </div>
-
         <div className="flex md:hidden">
           <Carousel images={product.images} />
         </div>
-
         <div className="product-details">
           <div className="site-section product-info">
             <div className={`minion-font main_header mt-5 w-full text-xs md:text-sm`}>{product.title}</div>

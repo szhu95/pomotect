@@ -14,14 +14,11 @@ const pomotectFont = localFont({
   src: '../../../fonts/pomotect-analog-regular.otf',
 });
 
-export default async function Article({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function Article({ params }: any) {
+  const awaitedParams = await params;
 
   async function getData() {
-    const post = await getPost(params.slug)
+    const post = await getPost(awaitedParams.slug)
     if (!post) {
       return {
         notFound: true,

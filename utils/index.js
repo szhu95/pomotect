@@ -1,14 +1,20 @@
-export async function storefront(query, variables = {}) {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Shopify-Storefront-Access-Token': process.env.NEXT_PUBLIC_ACCESS_TOKEN,
-        },
-        body: JSON.stringify({ query, variables }),
-    })
-
-    return response.json();
+export async function storefront(query, variables = {}, retries = 3) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(process.env.NEXT_PUBLIC_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Shopify-Storefront-Access-Token': process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+                },
+                body: JSON.stringify({ query, variables }),
+            })
+            return await response.json();
+        } catch (error) {
+            if (i === retries - 1) throw error; // rethrow if last attempt
+            await new Promise(res => setTimeout(res, 1000)); // wait 1s before retry
+        }
+    }
 }
 
 export function formatPrice(number) {
