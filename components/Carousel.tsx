@@ -3,6 +3,11 @@ import React, { useCallback, useState, useRef, useEffect } from 'react'
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from "next/image";
 import ZoomableImage from './ZoomableImage';
+import localFont from 'next/font/local';
+
+const pomotectFont = localFont({
+  src: '../fonts/pomotect-analog-regular.otf',
+});
 
 const Carousel = (response: any) => {
 
@@ -130,15 +135,54 @@ const Carousel = (response: any) => {
                                 onTouchStart={handleModalTouchStart}
                             />
                         </div>
-                        <input
-                            type="range"
-                            min={1}
-                            max={3}
-                            step={0.01}
-                            value={modalZoom}
-                            onChange={e => setModalZoom(Number(e.target.value))}
-                            className="dj-mixer-slider absolute bottom-8 left-1/2 -translate-x-1/2"
-                        />
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[20rem] flex items-center justify-center">
+                            <div className="relative w-full flex items-center justify-center">
+                                <span className={`${pomotectFont.className} text-xl text-black select-none absolute -left-6 -top-6`} style={{ opacity: 0.40 }}>x</span>
+                                {/* Crossfader cross */}
+                                <span
+                                  className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+                                  style={{
+                                    width: '16px',
+                                    height: '16px',
+                                    display: 'inline-block',
+                                    position: 'absolute',
+                                    zIndex: 10,
+                                    pointerEvents: 'none'
+                                  }}
+                                >
+                                  <span style={{
+                                    position: 'absolute',
+                                    left: '50%',
+                                    top: 0,
+                                    width: '2px',
+                                    height: '16px',
+                                    background: '#222',
+                                    borderRadius: '1px',
+                                    transform: 'translateX(-50%)'
+                                  }} />
+                                  <span style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: 0,
+                                    width: '16px',
+                                    height: '2px',
+                                    background: '#222',
+                                    borderRadius: '1px',
+                                    transform: 'translateY(-50%)'
+                                  }} />
+                                </span>
+                                <input
+                                    type="range"
+                                    min={1}
+                                    max={3}
+                                    step={0.01}
+                                    value={modalZoom}
+                                    onChange={e => setModalZoom(Number(e.target.value))}
+                                    className="dj-mixer-slider flex-1 mx-4"
+                                />
+                                <span className={`${pomotectFont.className} text-xl text-black select-none absolute -right-6 -top-6`} style={{ opacity: 0.40 }}>y</span>
+                            </div>
+                        </div>
                         <button
                             onClick={closeModal}
                             className="absolute top-4 right-4 text-black text-3xl bg-transparent border-none shadow-none p-0 m-0"
