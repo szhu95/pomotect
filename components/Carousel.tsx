@@ -113,10 +113,12 @@ const Carousel = (response: any) => {
                             onTouchMove={handleModalTouchMove}
                             onTouchEnd={handleModalTouchEnd}
                         >
-                            <img
+                            <Image
                                 ref={modalImgRef}
                                 src={modalImg.src}
                                 alt={modalImg.alt}
+                                width={800}
+                                height={800}
                                 style={{
                                     transform: `scale(${modalZoom}) translate(${modalX / modalZoom}px, ${modalY / modalZoom}px)`,
                                     transition: modalDragging ? 'none' : 'transform 0.2s',
