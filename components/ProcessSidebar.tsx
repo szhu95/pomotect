@@ -19,42 +19,34 @@ interface Post {
 
 export default function ProcessSidebar({ posts }: { posts: Post[] }) {
     const pathname = usePathname();
-    const [scrollPosition, setScrollPosition] = useState(0);
     const [isCondensed, setIsCondensed] = useState(false);
-    const [opacity, setOpacity] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         const handleScroll = () => {
-            const position = window.scrollY;
-            setScrollPosition(position);
+            const scrollPosition = window.scrollY;
+            const threshold = 100; // Adjust this value to change when the sidebar becomes invisible
 
-            // Fade in effect between 100px and 300px scroll
-            const newOpacity = Math.min(1, Math.max(0, (position - 100) / 200));
-            setOpacity(newOpacity);
+            if (scrollPosition < threshold) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initial call to set initial opacity
-        return () => window.removeEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial scroll position
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
-    // Calculate top position based on scroll
-    const topPosition = scrollPosition > 200
-        ? '50%' // Center vertically when scrolled
-        : '300px'; // Initial position below header
-
-    const transform = scrollPosition > 200
-        ? 'translateY(-50%)' // Center adjustment when scrolled
-        : 'none';
-
     return (
-        <div
-            className="hidden md:block fixed h-[500px] overflow-hidden w-[240px] max-[1130px]:w-[200px] max-[890px]:w-[180px] max-[1130px]:right-4 max-[890px]:right-2 right-8"
+        <div className={`hidden md:block fixed h-[500px] overflow-hidden w-[240px] max-[1130px]:w-[200px] max-[890px]:w-[180px] max-[1130px]:right-4 max-[890px]:right-2 right-8 transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
             style={{
-                top: topPosition,
-                transform: transform,
-                opacity: opacity,
-                transition: 'top 0.3s ease, transform 0.3s ease, opacity 0.3s ease-in-out'
+                top: '50%',
+                transform: 'translateY(-50%)'
             }}
         >
             <div className="h-full flex flex-col border-2 border-primary-blue border-dashed bg-white">
