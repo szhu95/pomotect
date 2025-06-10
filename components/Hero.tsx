@@ -30,8 +30,8 @@ const Hero = () => {
                     >
                         <Image
                             src={landingPageBackground}
-                            height={1000}
-                            width={1000}
+                            height={2000}
+                            width={2000}
                             alt="landing page background image"
                             className='z-0 w-[100%] absolute'
                             priority
