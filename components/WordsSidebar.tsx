@@ -45,11 +45,11 @@ export default function WordsSidebar({ posts }: { posts: Post[] }) {
 
   const transform = scrollPosition > 200 
     ? 'translateY(-50%)' // Center adjustment when scrolled
-    : 'none'; // No transform needed initially
+    : 'none';
 
   return (
     <div 
-      className="hidden md:block w-64 fixed right-4 h-[500px] overflow-hidden"
+      className="hidden md:block fixed h-[500px] overflow-hidden w-[240px] max-[1130px]:w-[200px] max-[890px]:w-[180px] max-[1130px]:right-4 max-[890px]:right-2 right-8"
       style={{ 
         top: topPosition,
         transform: transform,
