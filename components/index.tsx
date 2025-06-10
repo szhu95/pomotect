@@ -19,6 +19,7 @@ import ProjectPost from './ProjectPost';
 import NewsletterForm from './NewsletterForm';
 import InquiryForm from './InquiryForm';
 import ProductDetailsClient from './ProductDetailsClient';
+import ProcessSidebar from './ProcessSidebar';
 
 export {
     Hero,
@@ -41,5 +42,6 @@ export {
     ProjectPost,
     NewsletterForm,
     InquiryForm,
-    ProductDetailsClient
+    ProductDetailsClient,
+    ProcessSidebar
 }

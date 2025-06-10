@@ -299,8 +299,8 @@ iframe {
 
 .objects_link {
   font-style: italic;
-  @apply block mr-2 sm:mr-20 md:inline-block;
-  padding-right: 30px;
+  @apply inline-block;
+  padding: 0 15px;
 }
 
 .entry-number {

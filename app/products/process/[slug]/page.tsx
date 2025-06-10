@@ -45,15 +45,15 @@ export default async function ProjectPage({ params }: any) {
 
   return (
     <div>
-      <Link href="/products/projects" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more projects ⇢</Link>
+      <Link href="/products/process" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to process ⇢</Link>
       <div className="site-section">
-        <h3 className={`${pomotectBoldFont.className} main_header`}>Projects</h3>
+        <h3 className={`${pomotectBoldFont.className} main_header`}>Process</h3>
         <p className={`${pomotectFont.className} italic`}>Most recently updated on {formattedDate}</p>
       </div>
 
       <ProjectPost response={response} />
 
-      <Link href="/products/projects" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more projects ⇢</Link>
+      <Link href="/products/process" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to process ⇢</Link>
 
 
       <div className="hidden md:block">

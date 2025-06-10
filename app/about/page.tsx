@@ -31,7 +31,7 @@ const About = () => {
                         <div className={`${pomotectFont.className} about-section`}>
                             <h3 className={`${pomotectFont.className} about_header pl-1 pr-6`}>Postmodern Tectonics </h3>
 
-                            <div className={`${pomotectBoldFont.className} about-section`}><b><span className={`${pomotectBoldFont.className} italic`}>Postmodern Tectonics LLC</span></b>  is the world’s first <span className={`${pomotectBoldFont.className} text-primary-blue italic`}>Creative Label™</span>. </div>
+                            <div className={`${pomotectBoldFont.className} about-section`}><b><span className={`${pomotectBoldFont.className} italic`}>Postmodern Tectonics LLC</span></b>  is the world's first <span className={`${pomotectBoldFont.className} text-primary-blue italic`}>Creative Label™</span>. </div>
 
                             <div className={`${pomotectBoldFont.className} about-section`}>We exist to help emerging artists and designers actualize their visions for new creations in the physical world through creative joint ventures.</div>
 
@@ -56,7 +56,7 @@ const About = () => {
                         </div>
 
                         <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
-                            <Link href="/products/projects" className={`${pomotectBoldFont.className}`}> Architecture,</Link>
+                            <Link href="/products/process" className={`${pomotectBoldFont.className}`}> Architecture,</Link>
                         </div>
 
                         <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>

@@ -48,7 +48,7 @@ export default async function Article({ params }: any) {
   let formattedDate = formatUpdatedDate(date);
 
   // Get all posts for sidebar, filtering out projects
-  const sidebarPosts = data.allPosts.posts.filter((post: any) => post.primary_tag?.name !== "Projects");
+  const sidebarPosts = data.allPosts.posts.filter((post: any) => post.primary_tag?.name !== "Process");
 
   return (
     <div className="relative">

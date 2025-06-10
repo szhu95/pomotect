@@ -36,7 +36,7 @@ async function getData() {
 
 const Words = async () => {
   const data = await getData();
-  let response = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name !== "Projects") });
+  let response = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name !== "Process") });
 
   let utcTimeString = response[0].published_at;
   const date = new Date(utcTimeString);

@@ -72,9 +72,9 @@ export default async function Page() {
         <h3 className={`${pomotectBoldFont.className} main_header`}>Objects</h3>
         <p className={`${pomotectFont.className} italic`}>Most recently updated on {currentDate}</p>
       </div>
-      <div className="site-section">
+      <div className="site-section flex justify-center items-center gap-16 -ml-6">
         <span className={`${pomotectFont.className} objects_link bg-black text-white`}>For Sale</span>
-        <Link href="/products/projects" className={`${pomotectFont.className} objects_link hover:bg-black hover:text-white`}>Projects</Link>
+        <Link href="/products/process" className={`${pomotectFont.className} objects_link hover:bg-black hover:text-white`}>Process</Link>
       </div>
 
       <div>
