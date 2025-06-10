@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import { motion } from "framer-motion"
-import landingPageBackground from '../assets/images/landing-page-bg-3.png'
-import landingPageBackgroundMobile from '../assets/images/landing-page-mobile-bg.png'
-import aboutLinkImage from '../assets/images/about-part.png'
-import objectsLinkImage from '../assets/images/objects-part.png'
-import wordsLinkImage from '../assets/images/words-part.png'
-import soundsLinkImage from '../assets/images/sounds-part.png'
+import landingPageBackground from '../assets/images/landing-page-bg-3.webp'
+import landingPageBackgroundMobile from '../assets/images/landing-page-mobile-bg.webp'
+import aboutLinkImage from '../assets/images/about-part.webp'
+import objectsLinkImage from '../assets/images/objects-part.webp'
+import wordsLinkImage from '../assets/images/words-part.webp'
+import soundsLinkImage from '../assets/images/sounds-part.webp'
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
@@ -36,6 +36,9 @@ const Hero = () => {
                             className='z-0 w-[100%] absolute'
                             priority
                             decoding="async"
+                            quality={75}
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQrJyEkKSM6Mjw4ODY2PTVBPT09QTU4RkFFS1NWW1xbMkFtcnNBRVtbW1v/2wBDARUXFx4aHR4eW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1v/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -57,6 +60,8 @@ const Hero = () => {
                                     width="150"
                                     height="150"
                                     className='w-[10vw]'
+                                    loading="lazy"
+                                    quality={80}
                                 />
                             </Link>
                         </motion.div>
@@ -80,6 +85,8 @@ const Hero = () => {
                                     width="200"
                                     height="200"
                                     className='w-[10vw]'
+                                    loading="lazy"
+                                    quality={80}
                                 />
                             </Link>
                         </motion.div>
@@ -103,6 +110,8 @@ const Hero = () => {
                                     width="200"
                                     height="200"
                                     className='w-[10vw]'
+                                    loading="lazy"
+                                    quality={80}
                                 />
                             </Link>
                         </motion.div>
@@ -126,6 +135,8 @@ const Hero = () => {
                                     width="200"
                                     height="200"
                                     className='w-[10vw]'
+                                    loading="lazy"
+                                    quality={80}
                                 />
                             </Link>
                         </motion.div>
@@ -146,6 +157,9 @@ const Hero = () => {
                             className='z-0 w-[100%] absolute'
                             priority
                             decoding="async"
+                            quality={75}
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQrJyEkKSM6Mjw4ODY2PTVBPT09QTU4RkFFS1NWW1xbMkFtcnNBRVtbW1v/2wBDARUXFx4aHR4eW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1v/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
