@@ -187,7 +187,7 @@ export default function Cart() {
       retrieveCart().catch(err =>
         resetCart());
     }
-  }, []);
+  }, [retrieveCart]);
 
   return (
     <div>
