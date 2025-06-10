@@ -4,22 +4,11 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/header-logo-2.7.png'
 import mobileHomeLogo from '../assets/images/header-logo-2.5.png'
-import aboutLinkImage from '../assets/images/about-link-image.png'
-import objectsLinkImage from '../assets/images/objects-link-image.png'
-import wordsLinkImage from '../assets/images/words-link-image.png'
-import soundsLinkImage from '../assets/images/sounds-link-image.png'
-import cartLinkImage from '../assets/images/cart-link-image.png'
-import menuLinkImage from '../assets/images/menu-link-image.png'
-import aboutLinkFocusImage from '../assets/images/about-link-focus-image.png'
-import objectsLinkFocusImage from '../assets/images/objects-link-focus-image.png'
-import wordsLinkFocusImage from '../assets/images/words-link-focus-image.png'
-import soundsLinkFocusImage from '../assets/images/sounds-link-focus-image.png'
-import cartLinkFocusImage from '../assets/images/cart-link-focus-image.png'
-import closeIcon from '../assets/images/close-menu-image.png'
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
+import Cart from './Cart';
 
 const pomotectFont = localFont({
     src: '../fonts/pomotect-analog-bold.otf',
@@ -46,7 +35,7 @@ const Header = ({ title, menuStatus }: any) => {
     const CartCount = () => {
         if (cartItemCount > 0) {
             return (
-                <span className={`absolute -right-6 text-terracotta ${pomotectFont.className}`}>
+                <span className={`md:absolute -right-6 text-terracotta ${pomotectFont.className}`}>
                     ({cartItemCount})
                 </span>
             );
@@ -150,11 +139,13 @@ const Header = ({ title, menuStatus }: any) => {
                         {
                             pathname.startsWith("/cart") ?
                                 <div className={`${pomotectFont.className} text-terracotta inline-flex items-center relative min-w-[50px]`}>
-                                    [Cart]<CartCount />
+                                    <CartCount />
+                                    <div className={`${pomotectFont.className} text-terracotta ml-1`}>[Cart]</div>
                                 </div>
                                 :
                                 <div className={`${pomotectFont.className} inline-flex items-center relative min-w-[50px]`}>
-                                    Cart<CartCount />
+                                    <CartCount />
+                                    <div className={`${pomotectFont.className} ml-1`}>Cart</div>
                                 </div>
                         }
                     </Link>
