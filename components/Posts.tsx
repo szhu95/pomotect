@@ -41,10 +41,10 @@ export default function Posts({ response }: any) {
                         <div className="md:hidden px-0">
                             <div className="flex justify-between items-center mb-4 border-b border-black">
                                 <div className="minion-font italic">
-                                    {(post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com")}
+                                    {formattedPostDate}
                                 </div>
                                 <div className="minion-font italic">
-                                    {formattedPostDate}
+                                    {(post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com")}
                                 </div>
                             </div>
                             <Link

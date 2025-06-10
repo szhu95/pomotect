@@ -95,12 +95,18 @@ export default async function Page({ params, searchParams }: PageProps) {
         // Add blue color and underline for links
         if (domNode.name === 'a') {
           newClassName = `${newClassName} text-primary-blue underline`;
+          domNode.attribs = {
+            ...domNode.attribs,
+            className: newClassName,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          };
+        } else {
+          domNode.attribs = {
+            ...domNode.attribs,
+            className: newClassName
+          };
         }
-        
-        domNode.attribs = {
-          ...domNode.attribs,
-          className: newClassName
-        };
       }
     }
   };

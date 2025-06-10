@@ -35,6 +35,7 @@ interface ShopProps {
               };
             }>;
           };
+          tags?: string[];
         };
       }>;
     };
@@ -47,6 +48,12 @@ export default function Shop({ response }: ShopProps) {
     return !product.variants.edges.some((edge: any) => edge.node.availableForSale);
   };
 
+  // Move furniture-tagged products to the front
+  const sortedProducts = [
+    ...response.products.edges.filter(item => item.node.tags && item.node.tags.includes('furniture')),
+    ...response.products.edges.filter(item => !item.node.tags || !item.node.tags.includes('furniture')),
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -56,10 +63,11 @@ export default function Shop({ response }: ShopProps) {
         <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="sr-only">Products</h2>
           <div className="grid grid-cols-1 col-auto gap-x-10 gap-y-10 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
-            {response.products.edges.map((item) => {
+            {sortedProducts.map((item) => {
               const product = item.node;
               const image = product.images.edges[0].node;
               const isSoldOut = isProductSoldOut(product);
+              const isFurniture = product.tags && product.tags.includes('furniture');
 
               return isSoldOut ? (
                 <Link
@@ -84,7 +92,7 @@ export default function Shop({ response }: ShopProps) {
                     </div>
                   </div>
                 </Link>
-              ) : (
+              ) :
                 <Link
                   key={product.handle}
                   href={`/products/${product.handle}`}
@@ -102,12 +110,12 @@ export default function Shop({ response }: ShopProps) {
                     <div>
                       <div className="absolute right-[0px] top-[0%] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
                       <div className="absolute right-[0px] bottom-[0px] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">
-                        {formatPrice(product.priceRange.minVariantPrice.amount)}
+                        {isFurniture ? 'INQUIRE' : formatPrice(product.priceRange.minVariantPrice.amount)}
                       </div>
                     </div>
                   </div>
                 </Link>
-              );
+              ;
             })}
           </div>
         </div>
