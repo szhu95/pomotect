@@ -4,6 +4,32 @@ import { sendConfirmationEmail } from '@/lib/email';
 const SHOPIFY_DOMAIN = '3d9909-43.myshopify.com';
 const SHOPIFY_ADMIN_API = `https://${SHOPIFY_DOMAIN}/admin/api/2024-04/graphql.json`;
 
+async function fetchWithRetry(url: string, options: RequestInit, retries = 3) {
+    const timeout = 15000; // 15 seconds timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url, { ...options, signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response;
+        } catch (error: unknown) {
+            console.error(`Attempt ${i + 1} failed:`, error);
+            if (i === retries - 1) {
+                throw new Error(`Failed to fetch after ${retries} attempts: ${error instanceof Error ? error.message : String(error)}`);
+            }
+            clearTimeout(timeoutId);
+            const backoffMs = Math.min(1000 * Math.pow(2, i) + Math.random() * 1000, 10000);
+            console.log(`Retrying in ${backoffMs}ms...`);
+            await new Promise(res => setTimeout(res, backoffMs));
+        }
+    }
+}
+
 export async function POST(req: NextRequest) {
     try {
         const { name, email } = await req.json();
@@ -30,7 +56,7 @@ export async function POST(req: NextRequest) {
             }
         `;
 
-        const lookupResponse = await fetch(SHOPIFY_ADMIN_API, {
+        const lookupResponse = await fetchWithRetry(SHOPIFY_ADMIN_API, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +68,7 @@ export async function POST(req: NextRequest) {
                     query: `email:${email}`,
                 },
             }),
-        });
+        }) as Response;
 
         const lookupResult = await lookupResponse.json();
         const existingCustomer = lookupResult.data?.customers?.edges?.[0]?.node;
@@ -73,7 +99,7 @@ export async function POST(req: NextRequest) {
                 }
             `;
 
-            const updateResponse = await fetch(SHOPIFY_ADMIN_API, {
+            const updateResponse = await fetchWithRetry(SHOPIFY_ADMIN_API, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +114,7 @@ export async function POST(req: NextRequest) {
                         },
                     },
                 }),
-            });
+            }) as Response;
 
             const updateResult = await updateResponse.json();
             if (updateResult.data?.customerUpdate?.userErrors?.length > 0) {
@@ -111,7 +137,7 @@ export async function POST(req: NextRequest) {
                 }
             `;
 
-            const createResponse = await fetch(SHOPIFY_ADMIN_API, {
+            const createResponse = await fetchWithRetry(SHOPIFY_ADMIN_API, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -132,7 +158,7 @@ export async function POST(req: NextRequest) {
                         },
                     },
                 }),
-            });
+            }) as Response;
 
             const createResult = await createResponse.json();
             if (createResult.data?.customerCreate?.userErrors?.length > 0) {

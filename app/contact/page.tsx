@@ -78,8 +78,8 @@ const Contact = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid md:grid-cols-2 md:gap-8">
-                            <div>
+                        <div className="grid md:grid-cols-2 md:gap-8 mb-2">
+                            <div className='mb-4 md:mb-0'>
                                 <label htmlFor="name" className={`${pomotectFont.className} block text-sm mb-2`}>Name</label>
                                 <input
                                     type="text"

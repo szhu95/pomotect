@@ -1,15 +1,12 @@
 import { formatDate, formatPrice, storefront } from "@/utils";
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
-import { ProductCta, ZoomableImage } from "@/components";
-import BlueHandLogo from "../../../assets/images/blue-hand-logo.png"
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import parse from 'html-react-parser';
 import Carousel from "@/components/Carousel";
 import NotFound from "@/app/not-found";
-import moment from 'moment';
 import localFont from 'next/font/local';
+import ProductDetailsClient from '@/components/ProductDetailsClient';
 
 const pomotectFont = localFont({
   src: '../../../fonts/pomotect-analog-regular.otf',
@@ -89,12 +86,34 @@ export default async function Page({ params, searchParams }: PageProps) {
   }
 
   const product = response.product;
-  const updatedHtml = product.descriptionHtml
-    .replaceAll('<p', '<p className="minion-font"')
-    .replaceAll('<b', '<b className="minion-font"')
-    .replaceAll('<em', '<em className="minion-font"');
+  const options = {
+    replace: (domNode: any) => {
+      if (domNode.type === 'tag' && domNode.name) {
+        const className = domNode.attribs?.className || '';
+        let newClassName = `minion-font ${className}`.trim();
+        
+        // Add blue color and underline for links
+        if (domNode.name === 'a') {
+          newClassName = `${newClassName} text-primary-blue underline`;
+          domNode.attribs = {
+            ...domNode.attribs,
+            className: newClassName,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          };
+        } else {
+          domNode.attribs = {
+            ...domNode.attribs,
+            className: newClassName
+          };
+        }
+      }
+    }
+  };
 
-  const markup = parse(updatedHtml);
+  const markup = parse(product.descriptionHtml, options);
+
+  const isFurniture = handle.toLowerCase().includes('furniture');
 
   return (
     <div>
@@ -110,32 +129,7 @@ export default async function Page({ params, searchParams }: PageProps) {
           <Carousel images={product.images} />
         </div>
         <div className="product-details">
-          <div className="site-section product-info">
-            <div className={`minion-font main_header mt-5 w-full text-xs md:text-sm`}>{product.title}</div>
-            <div className={`minion-font text-sm mb-5 italic`}>
-              Most recently updated on {moment(product.updatedAt).format('MMMM DD, YYYY')}
-            </div>
-            <div className="inline-grid gap-2 grid-cols-2">
-              <Image
-                src={BlueHandLogo}
-                alt={"blue hand logo"}
-                width="50"
-                height="50"
-              />
-              <div className='font-bold minion-font ml-2 mt-4'>{formatPrice(product.priceRange.minVariantPrice.amount)}</div>
-            </div>
-          </div>
-          <div className="site-section w-full product-cta">
-            <ProductCta variantName={product.options[0].name} options={product.options[0].values} quantity={product.totalInventory} variants={product.variants} />
-          </div>
-          <div className="site-section minion-font">
-            <div className="mb-2 font-bold minion-font">
-              Description
-            </div>
-            <div className={`${pomotectBoldFont.className} text-justify`}>
-              {markup}
-            </div>
-          </div>
+          <ProductDetailsClient product={product} isFurniture={isFurniture} markup={markup} />
         </div>
       </div>
       <div className="hidden md:block">

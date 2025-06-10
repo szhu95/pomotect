@@ -71,28 +71,36 @@ export function formatUpdatedDate(date) {
 }
 
 export async function getPosts() {
-    const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=all", {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept-Version': 'v5.0',
-        },
-    })
-
-    return response.json();
+    try {
+        const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=all", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept-Version': 'v5.0',
+            },
+        })
+        return await response.json();
+    } catch (error) {
+        console.error('getPosts fetch failed:', error);
+        return null;
+    }
 }
 
 export async function getPost(slug) {
     const slugId = slug;
-    const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts/slug/${slugId}?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept-Version': 'v5.0',
-        },
-    })
-
-    return response.json();
+    try {
+        const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts/slug/${slugId}?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept-Version': 'v5.0',
+            },
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('getPost fetch failed:', error);
+        return null;
+    }
 }
 
 export function createMarkup(description) {

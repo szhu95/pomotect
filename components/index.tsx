@@ -17,6 +17,8 @@ import DisplayedFooter from './DisplayedFooter';
 import ProjectPosts from './ProjectPosts';
 import ProjectPost from './ProjectPost';
 import NewsletterForm from './NewsletterForm';
+import InquiryForm from './InquiryForm';
+import ProductDetailsClient from './ProductDetailsClient';
 
 export {
     Hero,
@@ -37,5 +39,7 @@ export {
     ImageTicker,
     ProjectPosts,
     ProjectPost,
-    NewsletterForm
+    NewsletterForm,
+    InquiryForm,
+    ProductDetailsClient
 }
