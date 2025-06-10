@@ -1,10 +1,11 @@
 import { ProjectPost } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import { formatUpdatedDate, getPost } from '@/utils';
+import { formatUpdatedDate, getPost, getPosts } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 import NotFound from "@/app/not-found";
 import localFont from 'next/font/local';
+import ProcessSidebar from '@/components/ProcessSidebar';
 
 const pomotectBoldFont = localFont({
   src: '../../../../fonts/pomotect-analog-bold.otf',
@@ -18,7 +19,11 @@ export default async function ProjectPage({ params }: any) {
   const awaitedParams = await params;
 
   async function getData() {
-    const post = await getPost(awaitedParams.slug)
+    const [post, allPostsData] = await Promise.all([
+      getPost(awaitedParams.slug),
+      getPosts()
+    ]);
+
     if (!post) {
       return {
         notFound: true,
@@ -26,26 +31,28 @@ export default async function ProjectPage({ params }: any) {
     }
 
     return {
-      post
+      post,
+      allPosts: allPostsData
     }
   }
 
   const data = await getData();
 
-  // console.log(JSON.stringify(data.post))
-  let response = data.post;
-
-  if (response.errors) {
+  if (data.post.errors) {
     return NotFound();
   }
 
+  let response = data.post;
   let utcTimeString = response.posts[0].published_at;
   const date = new Date(utcTimeString);
-  let formattedDate = formatUpdatedDate(date)
+  let formattedDate = formatUpdatedDate(date);
+
+  // Get all process posts for sidebar
+  const processPosts = data.allPosts.posts.filter((post: any) => post.primary_tag?.name === "Process");
 
   return (
-    <div>
-      <Link href="/products/process" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to process ⇢</Link>
+    <div className="relative">
+      <Link href="/products/process" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to Process ⇢</Link>
       <div className="site-section">
         <h3 className={`${pomotectBoldFont.className} main_header`}>Process</h3>
         <p className={`${pomotectFont.className} italic`}>Most recently updated on {formattedDate}</p>
@@ -53,8 +60,9 @@ export default async function ProjectPage({ params }: any) {
 
       <ProjectPost response={response} />
 
-      <Link href="/products/process" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to process ⇢</Link>
+      <Link href="/products/process" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white mt-24 md:mt-32 block">Back to Process ⇢</Link>
 
+      <ProcessSidebar posts={processPosts} />
 
       <div className="hidden md:block">
         <ScrollToTopButton />

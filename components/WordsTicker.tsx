@@ -11,7 +11,7 @@ export default function WordsTicker({ response, objectsResponse }: any) {
             speed={55}
             className="relative mt-[200px]"
         >
-            {response.posts.map((post: any) => {
+            {response.posts.filter((post: any) => post.primary_tag?.name !== "Process").map((post: any) => {
                 return (
                     <Link
                         key={post.slug}

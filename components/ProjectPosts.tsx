@@ -39,7 +39,7 @@ export default async function ProjectPosts({ response }: any) {
                         <div className='site-section words-header border-b border-black pb-4'>
                             <Link
                                 key={post.slug}
-                                href={`projects/${post.slug}`}
+                                href={`/products/process/${post.slug}`}
                             >
                                 <div className="hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
                             </Link>

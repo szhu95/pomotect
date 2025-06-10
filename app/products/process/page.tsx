@@ -14,10 +14,6 @@ const pomotectFont = localFont({
     src: '../../../fonts/pomotect-analog-regular.otf',
 });
 
-const garamondFont = localFont({
-    src: '../../../fonts/garamond.ttf'
-});
-
 async function getData() {
     const posts = await getPosts()
 
@@ -35,7 +31,7 @@ async function getData() {
 const Process = async () => {
     const data = await getData();
 
-    let projects = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name === "Projects") });
+    let projects = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name === "Process") });
 
     return (
         <div className="relative">

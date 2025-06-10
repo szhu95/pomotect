@@ -1,8 +1,6 @@
 import { formatUpdatedDate } from "@/utils";
 import parse from 'html-react-parser';
 import localFont from "next/font/local";
-import Image from "next/image";
-import Link from "next/link";
 
 const garamondFont = localFont({
     src: '../fonts/garamond.ttf'
