@@ -15,14 +15,12 @@ const pomotectFont = localFont({
     src: '../../fonts/pomotect-analog-regular.otf',
 });
 
-
-const getProducts = async () => {
+async function getProducts() {
   const { data } = await storefront(productsQuery);
-  // console.log("data is" + JSON.stringify(data))
   return {
     products: data.products,
   };
-};
+}
 
 const gql = String.raw;
 
@@ -35,9 +33,19 @@ const productsQuery = gql`
             handle
             tags
             totalInventory
+            availableForSale
             priceRange {
               minVariantPrice {
                 amount
+              }
+            }
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                  availableForSale
+                  quantityAvailable
+                }
               }
             }
             images(first: 10) {
@@ -54,25 +62,20 @@ const productsQuery = gql`
     }
   `;
 
-const Objects = async () => {
+export default async function Page() {
+  const response = await getProducts();
+  const currentDate = formatDate();
 
-  let response = (await getProducts()) as any;
-
-  //console.log("response is" + JSON.stringify(response))
-
-  let lastUpdatedDate = formatDate();
   return (
     <div>
       <div className="site-section">
         <h3 className={`${pomotectBoldFont.className} main_header`}>Objects</h3>
-        <p className={`${pomotectFont.className} italic`}>Most recently updated on April 30, 2025</p>
+        <p className={`${pomotectFont.className} italic`}>Most recently updated on {currentDate}</p>
       </div>
       <div className="site-section">
-        <Link href="/products" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>For Sale</Link>
-        <Link href="/products/projects" scroll={false} className={`${pomotectFont.className} objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Projects</Link>
-        
+        <span className={`${pomotectFont.className} objects_link bg-black text-white`}>For Sale</span>
+        <Link href="/products/projects" className={`${pomotectFont.className} objects_link hover:bg-black hover:text-white`}>Projects</Link>
       </div>
-
 
       <div>
         <Shop response={response} />
@@ -81,7 +84,5 @@ const Objects = async () => {
         <ScrollToTopButton />
       </div>
     </div>
-  )
+  );
 }
-
-export default Objects;

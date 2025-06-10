@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CustomDropdown from "@/components/CustomDropdown";
 import { CustomButton, LoadButton } from "@/components";
 import Link from "next/link";
+import { useCart } from '@/context/CartContext';
 
 async function addToCart(variant_id: string) {
   const gql = String.raw;
@@ -17,6 +18,7 @@ mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInp
         edges {
           node {
             id
+            quantity
             variant {
               ... on ProductVariant {
                 id
@@ -83,73 +85,65 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
       }
     })
 
-    // if (data) {
-    //   console.log("cart was created! response is " + JSON.stringify(data));
-    // }
     localStorage.setItem("checkoutId", data.checkoutCreate.checkout.id);
-    // let checkoutBtn = document.getElementById("checkout-btn");
-    // console.log("checkout button is " + checkoutBtn);
+    return data.checkoutCreate.checkout;
   }
 
 
   if (!localStorage.getItem("checkoutId")) {
-    await createCheckout();
-    return;
+    const checkout = await createCheckout();
+    return checkout;
   }
 
-  await storefront(addToCheckoutQuery, {
+  const response = await storefront(addToCheckoutQuery, {
     "checkoutId": localStorage.getItem("checkoutId"),
     "lineItems": {
       "variantId": variant_id,
       "quantity": 1
     }
   })
-    // .then(response => {
-    //   console.log("cart was updated! response is " + JSON.stringify(response));
-    // })
     .catch((error) => {
       console.error('Error:', error);
     });
+  
+  return response?.data?.checkoutLineItemsAdd?.checkout;
 }
 
 
 const ProductCta = ({ variantName, options, quantity, variants }: any) => {
-
+  const { cartItemCount, updateCartItemCount } = useCart();
   const [size, setSize] = useState(options[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [itemAdded, setItemAdded] = useState(false);
 
   let variantArr = variants.edges;
 
-  //  console.log("VARIANT ARR **********" + JSON.stringify(variantArr));
-  //  console.log("QUANTITY IS *******" + JSON.stringify(quantity));
-
   async function mapVariants(variantArr: any, searchKey: string) {
     setIsLoading(true);
     setItemAdded(false);
-    if (variantArr) {
-    }
     let variantId = "";
     variantArr.filter((obj: any) => {
       if (obj.node?.title === searchKey) {
         variantId = obj.node.id;
       }
     });
-    await addToCart(variantId);
-
-    //update cart count
+    const checkout = await addToCart(variantId);
+    
+    // Update cart count immediately with total quantity
+    if (checkout?.lineItems?.edges) {
+      const totalQuantity = checkout.lineItems.edges.reduce((sum: number, edge: any) => {
+        return sum + (edge.node.quantity || 0);
+      }, 0);
+      updateCartItemCount(totalQuantity);
+    }
 
     setIsLoading(false);
     setItemAdded(true);
   }
 
-
-
   function checkStock(_size: string): number {
     let result = variantArr.find(({ node }: any) => node.title === size)
-
     return result?.node.quantityAvailable
-
   }
 
   return (

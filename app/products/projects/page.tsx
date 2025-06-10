@@ -32,12 +32,9 @@ async function getData() {
 }
 
 const Projects = async () => {
-
     const data = await getData();
 
     let projects = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name === "Projects") });
-
-    //console.log(projects)
 
     return (
         <div>
@@ -46,8 +43,8 @@ const Projects = async () => {
                 <p className={`${pomotectFont.className} italic`}>Most recently updated on February 12, 2025</p>
             </div>
             <div className="site-section">
-                <Link href="/products" scroll={false} className={`${pomotectFont.className} objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white`}>For Sale</Link>
-                <Link href="/products/concepts" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Projects</Link>
+                <Link href="/products" className={`${pomotectFont.className} objects_link hover:bg-black hover:text-white`}>For Sale</Link>
+                <span className={`${pomotectFont.className} objects_link bg-black text-white`}>Projects</span>
             </div>
 
             <ProjectPosts response={projects} containerHeight={"max-h-[85vh]"} />

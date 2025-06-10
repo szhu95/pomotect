@@ -1,4 +1,8 @@
 export async function storefront(query, variables = {}, retries = 3) {
+    const timeout = 15000; // 15 seconds timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
     for (let i = 0; i < retries; i++) {
         try {
             const response = await fetch(process.env.NEXT_PUBLIC_API_URL, {
@@ -8,11 +12,39 @@ export async function storefront(query, variables = {}, retries = 3) {
                     'X-Shopify-Storefront-Access-Token': process.env.NEXT_PUBLIC_ACCESS_TOKEN,
                 },
                 body: JSON.stringify({ query, variables }),
-            })
-            return await response.json();
+                signal: controller.signal,
+                // Add keepalive to maintain connection
+                keepalive: true,
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            if (data.errors) {
+                throw new Error(data.errors.map(err => err.message).join(', '));
+            }
+
+            return data;
         } catch (error) {
-            if (i === retries - 1) throw error; // rethrow if last attempt
-            await new Promise(res => setTimeout(res, 1000)); // wait 1s before retry
+            console.error(`Attempt ${i + 1} failed:`, error);
+            
+            // If it's the last retry, throw the error
+            if (i === retries - 1) {
+                throw new Error(`Failed to fetch after ${retries} attempts: ${error.message}`);
+            }
+
+            // Clear the timeout before waiting
+            clearTimeout(timeoutId);
+            
+            // Exponential backoff with jitter
+            const backoffMs = Math.min(1000 * Math.pow(2, i) + Math.random() * 1000, 10000);
+            console.log(`Retrying in ${backoffMs}ms...`);
+            await new Promise(res => setTimeout(res, backoffMs));
         }
     }
 }

@@ -1,10 +1,11 @@
 "use client";
 import { storefront } from '@/utils';
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 import Image from 'next/image';
 import { CustomButton } from '.';
 import Link from 'next/link';
 import localFont from 'next/font/local';
+import { useCart } from '@/context/CartContext';
 
 const pomotectFont = localFont({
   src: '../fonts/pomotect-analog-regular.otf',
@@ -113,8 +114,8 @@ async function getCart() {
 
 
 export default function Cart() {
-
-  let checkout;
+  const checkoutRef = useRef<string | null>(null);
+  const { updateCartItemCount } = useCart();
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -144,25 +145,32 @@ export default function Cart() {
 
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
-    // console.log("data is " + JSON.stringify(response));
 
     if (response?.node.order?.id) {
       setCart('');
       setIsLoading(false);
-      if (localStorage.getItem("checkoutId"))
+      if (localStorage.getItem("checkoutId")) {
         localStorage.removeItem("checkoutId");
+      }
+      // Also remove cartItemCount from localStorage when checkout is complete
+      localStorage.removeItem("cartItemCount");
+      updateCartItemCount(0);
       return;
     }
     setData(response ? response : '');
     setCheckoutUrl(response ? response.node.webUrl : '');
     setTotal(response ? response.node?.lineItemsSubtotalPrice.amount : '0.0');
-    setQuantity(response ? response.node?.lineItems.edges.length : 0);
+    
+    // Calculate total quantity across all line items
+    const totalQuantity = response?.node?.lineItems.edges.reduce((sum: number, edge: any) => {
+      return sum + (edge.node.quantity || 0);
+    }, 0) || 0;
+    
+    setQuantity(totalQuantity);
+    updateCartItemCount(totalQuantity);
     setSalePrice(response ? response.node?.totalPrice.amount : '0.0');
-    // console.log(response.node?.lineItems.edges.length);
-    // console.log("checkouturl is " + checkoutUrl);
-    // console.log("quantity is " + quantity);
     setIsLoading(false);
-  }, [])
+  }, [updateCartItemCount])
 
   function resetCart() {
     setCart('');
@@ -174,8 +182,8 @@ export default function Cart() {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
       setIsLoading(true);
-      checkout = localStorage.getItem("checkoutId");
-      setCart(checkout ? checkout : '');
+      checkoutRef.current = localStorage.getItem("checkoutId");
+      setCart(checkoutRef.current ? checkoutRef.current : '');
       retrieveCart().catch(err =>
         resetCart());
     }

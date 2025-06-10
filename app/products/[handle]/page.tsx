@@ -23,15 +23,15 @@ const gql = String.raw;
 
 export const revalidate = 0;
 
-const getSingleProduct = async (params: { handle: string }) => {
+async function getSingleProduct(handle: string) {
   const { data } = await storefront(singleProductQuery, {
-    handle: params.handle,
+    handle,
   });
 
   return {
     product: data.productByHandle,
   };
-};
+}
 
 const singleProductQuery = gql`
   query SingleProduct($handle: String!) {
@@ -72,26 +72,28 @@ const singleProductQuery = gql`
   }
 `;
 
-export default async function Product({ params }: any) {
-  const awaitedParams = await params;
+interface PageProps {
+  params: Promise<{
+    handle: string;
+  }>;
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-  let lastUpdatedDate = formatDate();
-  let response = (await getSingleProduct(awaitedParams)) as any;
+export default async function Page({ params, searchParams }: PageProps) {
+  const { handle } = await params;
+  const response = await getSingleProduct(handle);
 
-  if (response.product == null) {
+  if (!response?.product) {
     return NotFound();
   }
 
-  let product = response?.product;
-
-  // console.log("product is " + JSON.stringify(product))
-
-  let updatedHtml = product?.descriptionHtml
+  const product = response.product;
+  const updatedHtml = product.descriptionHtml
     .replaceAll('<p', '<p className="minion-font"')
     .replaceAll('<b', '<b className="minion-font"')
-    .replaceAll('<em', '<em className="minion-font"')
+    .replaceAll('<em', '<em className="minion-font"');
 
-  let markup = parse(updatedHtml);
+  const markup = parse(updatedHtml);
 
   return (
     <div>

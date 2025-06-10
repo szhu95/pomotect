@@ -5,6 +5,7 @@ import { Footer, Header } from '@/components'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import SplashScreen from '@/components/SplashScreen'
+import { CartProvider } from '@/context/CartContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,11 +28,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <SplashScreen />
         <Suspense fallback={<Loading />}>
-          <div className="site-layout">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <CartProvider>
+            <div className="site-layout">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </CartProvider>
         </Suspense>
       </body>
     </html>

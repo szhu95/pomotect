@@ -19,6 +19,7 @@ import closeIcon from '../assets/images/close-menu-image.png'
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import localFont from 'next/font/local';
+import { useCart } from '@/context/CartContext';
 
 const pomotectFont = localFont({
     src: '../fonts/pomotect-analog-bold.otf',
@@ -29,6 +30,8 @@ const Header = ({ title, menuStatus }: any) => {
     const [cartFilled, setCartFilled] = useState(false)
     const [menuIcon, setIcon] = useState(false);
     const pathname = usePathname();
+    const { cartItemCount } = useCart();
+
     const handleSmallerScreensNavigation = () => {
         setIcon(!menuIcon);
     }
@@ -39,6 +42,17 @@ const Header = ({ title, menuStatus }: any) => {
             setCartFilled(true);
         }
     }, [])
+
+    const CartCount = () => {
+        if (cartItemCount > 0) {
+            return (
+                <span className={`absolute -right-6 text-terracotta ${pomotectFont.className}`}>
+                    ({cartItemCount})
+                </span>
+            );
+        }
+        return null;
+    };
 
     return (
         <div className="padding-y md:text-center">
@@ -102,13 +116,17 @@ const Header = ({ title, menuStatus }: any) => {
                             <div className={`${pomotectFont.className} hover:text-primary-blue`}>Sounds</div>
                     }
                 </Link>
-                <Link href="/cart" scroll={false} id="checkout-btn" className={"px-2 mr-2"}>
+                <Link href="/cart" scroll={false} id="checkout-btn" className={"px-2 mr-8"}>
                     {
                         pathname.startsWith("/cart")
                             ?
-                            <div className={`${pomotectFont.className} text-terracotta`}>[Cart]</div>
+                            <div className={`${pomotectFont.className} text-terracotta inline-flex items-center relative min-w-[50px]`}>
+                                [Cart]<CartCount />
+                            </div>
                             :
-                            <div className={`${pomotectFont.className} hover:text-terracotta`}>[Cart]</div>
+                            <div className={`${pomotectFont.className} hover:text-terracotta inline-flex items-center relative min-w-[50px]`}>
+                                [Cart]<CartCount />
+                            </div>
                     }
                 </Link>
             </div>
@@ -127,13 +145,17 @@ const Header = ({ title, menuStatus }: any) => {
                             </div>
                     }
                 </div>
-                <div className="checkout_btn" onClick={() => setIcon(false)} >
+                <div className="checkout_btn mr-6" onClick={() => setIcon(false)} >
                     <Link href="/cart" scroll={false} id="checkout-btn-mobile">
                         {
                             pathname.startsWith("/cart") ?
-                                <div className={`${pomotectFont.className} text-terracotta`}>[Cart]</div>
+                                <div className={`${pomotectFont.className} text-terracotta inline-flex items-center relative min-w-[50px]`}>
+                                    [Cart]<CartCount />
+                                </div>
                                 :
-                                <div className={pomotectFont.className}>Cart</div>
+                                <div className={`${pomotectFont.className} inline-flex items-center relative min-w-[50px]`}>
+                                    Cart<CartCount />
+                                </div>
                         }
                     </Link>
                 </div>

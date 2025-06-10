@@ -1,6 +1,7 @@
 import { Post, Posts } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import { formatUpdatedDate, getPost } from '@/utils';
+import WordsSidebar from '@/components/WordsSidebar';
+import { formatUpdatedDate, getPost, getPosts } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 import NotFound from "@/app/not-found";
@@ -18,33 +19,39 @@ export default async function Article({ params }: any) {
   const awaitedParams = await params;
 
   async function getData() {
-    const post = await getPost(awaitedParams.slug)
-    if (!post) {
+    const [post, allPostsData] = await Promise.all([
+      getPost(awaitedParams.slug),
+      getPosts()
+    ]);
+
+    if (!post || !allPostsData) {
       return {
         notFound: true,
       }
     }
 
     return {
-      post
+      post,
+      allPosts: allPostsData
     }
   }
 
   const data = await getData();
 
-  // console.log(JSON.stringify(data.post))
-  let response = data.post;
-
-  if (response.errors) {
+  if (data.post.errors) {
     return NotFound();
   }
 
+  let response = data.post;
   let utcTimeString = response.posts[0].published_at;
   const date = new Date(utcTimeString);
-  let formattedDate = formatUpdatedDate(date)
+  let formattedDate = formatUpdatedDate(date);
+
+  // Get all posts for sidebar, filtering out projects
+  const sidebarPosts = data.allPosts.posts.filter((post: any) => post.primary_tag?.name !== "Projects");
 
   return (
-    <div>
+    <div className="relative">
       <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more words ⇢</Link>
       <div className="site-section">
         <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
@@ -53,11 +60,11 @@ export default async function Article({ params }: any) {
 
       <Post response={response} />
 
-      <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white">Back to more words ⇢</Link>
-
+      <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white mt-24 md:mt-32 block">Back to more words ⇢</Link>
 
       <div className="hidden md:block">
         <ScrollToTopButton />
+        <WordsSidebar posts={sidebarPosts} />
       </div>
     </div>
   )
