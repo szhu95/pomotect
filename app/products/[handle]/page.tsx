@@ -76,11 +76,12 @@ interface PageProps {
   params: Promise<{
     handle: string;
   }>;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
   const { handle } = await params;
+  const resolvedSearchParams = await searchParams;
   const response = await getSingleProduct(handle);
 
   if (!response?.product) {
