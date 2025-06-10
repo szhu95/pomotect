@@ -35,8 +35,10 @@ const About = () => {
 
                             <div className={`${pomotectBoldFont.className} about-section`}>We exist to help emerging artists and designers actualize their visions for new creations in the physical world through creative joint ventures.</div>
 
-                            <div className={`${pomotectBoldFont.className} about-section italic hover:text-yellow hover:bg-black hover:cursor-pointer text-primary-blue`} onClick={(e) => {window.open('mailto:office@pomotect.com?subject=Project%20Inquiry%20-%20[name%20here]&body=Hello%20Postmodern%20Tectonics%20Team,');}}>
-                                [We welcome artist, designer, or misc. project submissions here]
+                            <div className="mb-8">
+                                <Link className={`${pomotectBoldFont.className} about-section italic hover:text-yellow hover:bg-black hover:cursor-pointer text-primary-blue`} href={'/contact'}>
+                                    [We welcome artist, designer, or misc. project submissions here]
+                                </Link>
                             </div>
 
                             <div className={`${pomotectBoldFont.className} about-section`}>
