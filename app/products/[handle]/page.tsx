@@ -73,14 +73,14 @@ const singleProductQuery = gql`
 `;
 
 interface PageProps {
-  params: {
+  params: Promise<{
     handle: string;
-  };
+  }>;
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
-  const { handle } = await Promise.resolve(params);
+  const { handle } = await params;
   const response = await getSingleProduct(handle);
 
   if (!response?.product) {
