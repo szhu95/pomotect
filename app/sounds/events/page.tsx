@@ -2,11 +2,11 @@
 import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
-import WinstonFlyer from '../../../assets/images/flyer-1.jpg'
-import FlashFlyer from '../../../assets/images/flash-flyer.jpg'
-import CellarFlyer from '../../../assets/images/cellar.jpg'
-import MillionGoodsFlyer from '../../../assets/images/million-goods.jpg'
-import CellarFlyer2 from '../../../assets/images/cellar-2.jpg'
+import WinstonFlyer from '../../../assets/images/flyer-1.webp'
+import FlashFlyer from '../../../assets/images/flash-flyer.webp'
+import CellarFlyer from '../../../assets/images/cellar.webp'
+import MillionGoodsFlyer from '../../../assets/images/million-goods.webp'
+import CellarFlyer2 from '../../../assets/images/cellar-2.webp'
 import Image from 'next/image';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { motion } from 'framer-motion';
