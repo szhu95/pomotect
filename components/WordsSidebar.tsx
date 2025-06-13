@@ -20,30 +20,41 @@ interface Post {
 export default function WordsSidebar({ posts }: { posts: Post[] }) {
   const pathname = usePathname();
   const [isCondensed, setIsCondensed] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isNearBottom, setIsNearBottom] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const threshold = 100; // Adjust this value to change when the sidebar becomes invisible
+      const threshold = 200;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const bottomThreshold = 20; // pixels from bottom to trigger height adjustment
 
       if (scrollPosition < threshold) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
+
+      // Check if we're near the bottom of the page
+      if (windowHeight + scrollPosition >= documentHeight - bottomThreshold) {
+        setIsNearBottom(true);
+      } else {
+        setIsNearBottom(false);
+      }
     };
 
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial scroll position
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div className={`hidden md:block fixed h-[500px] overflow-hidden w-[240px] max-[1130px]:w-[200px] max-[890px]:w-[180px] max-[1130px]:right-4 max-[890px]:right-2 right-8 transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+    <div className={`hidden md:block fixed ${isNearBottom ? 'h-[70vh]' : 'h-[80vh]'} overflow-hidden w-[240px] max-[1130px]:w-[200px] max-[890px]:w-[180px] max-[1130px]:right-4 max-[890px]:right-2 right-8 transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       style={{
         top: '50%',
         transform: 'translateY(-50%)'

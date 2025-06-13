@@ -60,8 +60,6 @@ export default async function Article({ params }: any) {
 
       <Post response={response} />
 
-      <Link href="/words" className="back-button minion-font text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white mt-24 md:mt-32 block">Back to more words ⇢</Link>
-
       <div className="hidden md:block">
         <ScrollToTopButton />
         <WordsSidebar posts={sidebarPosts} />
