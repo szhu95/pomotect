@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import localFont from 'next/font/local';
 import Image from 'next/image';
-import MsFlyer from '../../assets/images/ms-flyer.png';
+import MsFlyer from '../../assets/images/ms-flyer.webp';
 
 const pomotectBoldFont = localFont({
     src: '../../fonts/pomotect-analog-bold.otf',
@@ -59,7 +59,7 @@ const Rsvp = () => {
             <div className="site-section">
                 <div className={`${pomotectFont.className} about-section`}>
                     <h3 className={`${pomotectBoldFont.className} main_header`}>RSVP</h3>
-                    <p className={`${pomotectFont.className} italic`}>Most recently updated on June 05, 2025</p>
+                    <p className={`${pomotectFont.className} italic`}>Most recently updated on {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                 </div>
             </div>
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
@@ -70,9 +70,13 @@ const Rsvp = () => {
                 >
                     <div className="mb-8 relative w-full aspect-square">
                         <div className="w-full h-full block items-center justify-center text-center">
-                            <div className={`${pomotectBoldFont.className} text-black`}>- Ysasi Gallery - Saturday, June 21 -</div>
-                            <div className={`${pomotectBoldFont.className} text-black`}>- 4 to 8 PM -</div>
-                            <div className={`${pomotectBoldFont.className} text-black`}>_ 5104 W Adams Blvd, Los Angeles, CA 90016 _</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>Ysasi Gallery</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>Saturday, June 21</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>5 to 9 PM</div>
+                            <div className={`${pomotectBoldFont.className} text-black`}>
+                                <span className={`block md:inline ${pomotectBoldFont.className}`}>5104 W Adams Blvd,</span>
+                                <span className={`block md:inline ${pomotectBoldFont.className}`}> Los Angeles, CA 90016</span>
+                            </div>
                         </div>
                     </div>
 
