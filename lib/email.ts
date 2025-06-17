@@ -12,10 +12,10 @@ function capitalizeWords(str: string) {
 
 export async function sendConfirmationEmail(name: string, email: string) {
     try {
-        
+
         // Send confirmation to attendee
         const attendeeEmail = await resend.emails.send({
-            from: 'Postmodern Tectonics <test@pomotect.com>',
+            from: 'Postmodern Tectonics <office@pomotect.com>',
             to: email,
             subject: 'RSVP Confirmation - Postmodern Tectonics & Casa Ysasi: Musical Furniture',
             html: `
