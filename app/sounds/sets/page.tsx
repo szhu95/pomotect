@@ -32,7 +32,7 @@ const Events = () => {
             </div>
             <div className="site-section flex justify-center items-center gap-16 -ml-6">
                 <Link href="/sounds" scroll={false} className={`${pomotectFont.className} objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Mixes</Link>
-                <Link href="/sounds/events" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Events</Link>
+                <Link href="/sounds/sets" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Sets</Link>
             </div>
 
             <div className="flex px-2 w-1/8 min-w-12 site-section">

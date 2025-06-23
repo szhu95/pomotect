@@ -6,7 +6,7 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import SplashScreen from '@/components/SplashScreen'
 import { CartProvider } from '@/context/CartContext'
-import RSVPLink from '@/components/RSVPLink'
+// import RSVPLink from '@/components/RSVPLink'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <RSVPLink />
+        {/* <RSVPLink /> */}
         <SplashScreen />
         <Suspense fallback={<Loading />}>
           <CartProvider>

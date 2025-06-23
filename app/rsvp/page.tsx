@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import localFont from 'next/font/local';
 import Image from 'next/image';
+import Link from 'next/link';
 import MsFlyer from '../../assets/images/ms-flyer.webp';
 
 const pomotectBoldFont = localFont({
@@ -14,6 +15,8 @@ const pomotectFont = localFont({
 });
 
 const Rsvp = () => {
+    // TEMPLATE CODE - COMMENTED OUT FOR FUTURE USE
+    /*
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -53,6 +56,7 @@ const Rsvp = () => {
 
         setLoading(false);
     };
+    */
 
     return (
         <div>
@@ -62,6 +66,29 @@ const Rsvp = () => {
                     <p className={`${pomotectFont.className} italic`}>Most recently updated on {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                 </div>
             </div>
+            <div className="min-h-screen flex flex-col items-center justify-center">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="w-full max-w-md text-center"
+                >
+                    <div className={`${pomotectBoldFont.className} text-2xl mb-4`}>
+                        Thank you for coming to our listening session.
+                    </div>
+                    <div className={`${pomotectFont.className} text-lg mb-8`}>
+                        We hope you enjoyed the event!
+                    </div>
+                    <div className={`${pomotectFont.className} text-sm text-gray-600`}>
+                        For inquiries about [CASE STUDY - 01] and other upcoming events, please{' '}
+                        <Link href="/contact" className={`${pomotectFont.className} text-primary-blue hover:underline`}>
+                            contact us directly
+                        </Link>.
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* TEMPLATE CODE - COMMENTED OUT FOR FUTURE USE */}
+            {/*
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -135,6 +162,7 @@ const Rsvp = () => {
                     </form>
                 </motion.div>
             </div>
+            */}
         </div>
     );
 };
