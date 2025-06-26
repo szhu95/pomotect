@@ -34,7 +34,7 @@ const Terms = () => {
                                                 color: "#565656"
                                             }}
                                         >
-                                            Last updated January 31, 2024{" "}
+                                            Last updated June, 2025{" "}
                                         </span>
                                     </b>
                                 </p>
@@ -133,8 +133,7 @@ const Terms = () => {
                                             color: "#565656"
                                         }}
                                     >
-                                        "), a company registered in California, United States at 4419 Highland
-                                        Ave Manhattan Beach, Los Angeles, CA 90266.{" "}
+                                        "), a company registered in California, United States at 4354 Coolidge Avenue, Los Angeles CA, 90066, United States.{" "}
                                     </span>
                                 </p>
                                 <p className="MsoNormal">
@@ -235,9 +234,7 @@ const Terms = () => {
                                             color: "#565656"
                                         }}
                                     >
-                                        You can contact us by phone at 4344666774, email at office@pomotect.com,
-                                        or by mail to 4419 Highland Ave Manhattan Beach, Los Angeles, CA 90266,
-                                        United States.{" "}
+                                        You can contact us by phone at +1 (646) 599-4407, email at office@pomotect.com, or by mail to 4354 Coolidge Avenue, Los Angeles CA, 90066, United States.{" "}
                                     </span>
                                 </p>
                                 <p className="MsoNormal">
@@ -1016,7 +1013,15 @@ const Terms = () => {
                                             color: "#565656"
                                         }}
                                     >
-                                        All sales are final and no refund will be issued.{" "}
+                                        We offer a 14-day return policy. If you are not satisfied with your purchase, you may return the item(s) within 14 days of receipt for a full refund. To be eligible for a return, your item must be unused and in the same condition that you received it, with all original tags and packaging intact.
+                                        <br />
+                                        To initiate a return, please contact us at office@pomotect.com.
+                                        <br />
+                                        You will be responsible for the shipping costs associated with returning your item.
+                                        <br />
+                                        Once your return is received and inspected, we will send you an email to notify you that we have received your returned item and will also notify you of the approval or rejection of your refund.
+                                        <br />
+                                        If approved, your refund will be processed, and a credit will automatically be applied to your original method of payment, within as few days as possible depending on the provider.
                                     </span>
                                 </p>
                                 <p className="MsoNormal" style={{ background: "white" }}>
@@ -2231,13 +2236,11 @@ const Terms = () => {
                                                                 color: "#565656"
                                                             }}
                                                         >
-                                                            POSTMODERN TECTONICS
+                                                            © POSTMODERN TECTONICS
                                                             <br />
-                                                            4419 Highland Ave Manhattan Beach Los Angeles, CA 90266
+                                                            4354 Coolidge Avenue, Los Angeles CA, 90066, United States.
                                                             <br />
-                                                            United States
-                                                            <br />
-                                                            Phone: 4344666774 office@pomotect.com{" "}
+                                                            office@pomotect.com
                                                         </span>
                                                     </b>
                                                 </p>
