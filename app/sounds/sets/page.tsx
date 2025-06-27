@@ -22,7 +22,7 @@ const pomotectFont = localFont({
 
 const Events = () => {
     let lastUpdatedDate = formatDate();
-    
+
     // Event data with flyer images
     const events = [
         {
@@ -81,12 +81,14 @@ const Events = () => {
                     <div className="space-y-8">
                         {events.map((event) => (
                             <div key={event.id} className="border-b border-primary-blue pb-6">
-                                <div className="text-center mb-4">
-                                    <div className="soundcloud_title font-['Minion'] text-2xl mb-2">
-                                        {event.title}
-                                    </div>
-                                    <div className="text-primary-blue italic font-['Minion'] text-lg">
+                                <div className="soundcloud_title text-center mb-4">
+                                    <div className="flex justify-between items-center">
+                                        <div className="font-['Minion'] text-white text-sm">
+                                            {event.title}
+                                        </div>
+                                        <div className="text-white italic font-['Minion'] text-sm">
                                         {event.location}
+                                    </div>
                                     </div>
                                 </div>
                                 <div className="flex justify-center">
@@ -106,7 +108,7 @@ const Events = () => {
                 {/* Desktop: Hover functionality */}
                 <div className="hidden md:flex w-full md:flex-row min-h-screen">
                     {/* Left Sidebar */}
-                    <div 
+                    <div
                         className="w-full md:w-1/3 pr-0 md:pr-8 mb-8 md:mb-0"
                         style={{ cursor: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'%230000ff\' stroke=\'none\'><rect x=\'3\' y=\'11\' width=\'16\' height=\'2\' fill=\'%230066cc\'/><path d=\'m12 5 7 7-7 7\'/></svg>") 12 12, auto' }}
                     >
@@ -145,7 +147,7 @@ const Events = () => {
                                     {(() => {
                                         const event = events.find(e => e.id === hoveredEvent);
                                         if (!event) return null;
-                                        
+
                                         return (
                                             <>
                                                 <Image
@@ -168,7 +170,7 @@ const Events = () => {
                     </div>
                 </div>
             </div>
-            
+
             <div className="hidden md:block">
                 <ScrollToTopButton />
             </div>
