@@ -1,0 +1,6 @@
+# Proxy downloads to Shopify
+/a/downloads/* https://pomotect.myshopify.com/a/downloads/:splat 200
+
+# Existing redirects (if any)
+/objects/* /products/:splat 301
+/objects /products 301 
