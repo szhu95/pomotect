@@ -22,7 +22,7 @@ const CartPage = async () => {
         <p className={`${pomotectFont.className} italic`}>Most recently updated on {lastUpdatedDate}</p>
       </div>
       <div className="site-section">
-        <Cart />
+        <Cart variantId={undefined} variants={undefined} />
       </div>
       <div className="hidden md:block">
         <ScrollToTopButton />
