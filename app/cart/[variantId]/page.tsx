@@ -13,13 +13,13 @@ const pomotectFont = localFont({
 });
 
 interface CartVariantPageProps {
-  params: {
+  params: Promise<{
     variantId: string;
-  };
+  }>;
 }
 
 const CartVariantPage = async ({ params }: CartVariantPageProps) => {
-  const { variantId } = params;
+  const { variantId } = await params;
   
   // Decode the URL parameter first, then parse multiple variants
   const decodedVariantId = decodeURIComponent(variantId);
