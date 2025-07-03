@@ -63,8 +63,7 @@ export default function Posts({ response }: any) {
                                     className="block group w-full"
                                 >
                                     <div className={`
-                                        relative w-full border border-primary-blue border-dashed overflow-hidden transform transition-all duration-300 ease-in-out group-hover:scale-[1.02] md:hidden
-                                        h-48
+                                        relative w-full h-48 bg-gray-50 border border-primary-blue border-dashed overflow-hidden transform transition-all duration-300 ease-in-out group-hover:scale-[1.02] md:hidden
                                         [opacity:calc(1-var(--is-mobile-condensed,0))]
                                         [margin-bottom:calc(0px*var(--is-mobile-condensed,0))]
                                     `}>
@@ -72,7 +71,8 @@ export default function Posts({ response }: any) {
                                             src={post.feature_image}
                                             alt={post.title || 'Article image'}
                                             fill
-                                            className="object-cover transition-opacity duration-200 ease-in-out group-hover:opacity-80"
+                                            className="object-cover transition-opacity duration-200 ease-in-out group-hover:opacity-80 bg-gray-50"
+                                            placeholder="empty"
                                         />
                                     </div>
                                 </Link>

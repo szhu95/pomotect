@@ -109,7 +109,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                 <Link
                                     key={`${post.slug}-${currentIndex}`}
                                     href={`/words/${post.slug}`}
-                                    className="relative group cursor-pointer rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:rounded-none bg-gray-100"
+                                    className="relative group cursor-pointer rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:rounded-none bg-gray-50"
                                     style={{ 
                                         width: isMobile ? 100 : 150, 
                                         height: isMobile ? 100 : 150 
@@ -120,12 +120,11 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                         alt={`pomo-text ${post.slug}`}
                                         width={isMobile ? 100 : 150}
                                         height={isMobile ? 100 : 150}
-                                        className="object-cover w-full h-full"
+                                        className="object-cover w-full h-full bg-gray-50"
                                         loading="lazy"
                                         sizes={isMobile ? "100px" : "150px"}
                                         quality={85}
-                                        placeholder="blur"
-                                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                                        placeholder="empty"
                                     />
                                     {/* Title overlay - always visible on mobile, hover on desktop */}
                                     <div className="absolute bottom-0 left-0 w-full bg-black/30 md:bg-black/50 text-white text-[8px] md:text-xs minion-font px-1 md:px-2 py-0.5 md:py-1 text-center break-words opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 leading-tight md:leading-normal">
