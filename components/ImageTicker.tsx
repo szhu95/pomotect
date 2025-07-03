@@ -31,11 +31,11 @@ export default function ImageTicker({ response }: ImageTickerProps) {
 
     // Auto-rotation interval (paused on hover)
     useInterval(() => {
-        if (!isHovered) {
+        if (!isMobile && !isHovered) {
             setDirection('right');
             setCurrentIndex((prev) => (prev + visibleCount) % posts.length);
         }
-    }, isHovered ? null : 5000); // Pause when hovered, resume every 5 seconds when not hovered
+    }, isMobile || isHovered ? null : 5000); // Only auto-rotate on desktop, pause on hover
 
     // Check screen size on mount and resize
     useEffect(() => {
@@ -117,7 +117,8 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                 </button>
                 
                 {/* Images Container */}
-                <div className="overflow-x-auto flex-1 mx-0 flex justify-center flex-nowrap scrollbar-hide"
+                <div className="flex-1 mx-0 flex justify-center flex-nowrap scrollbar-hide"
+                    style={{ touchAction: 'pan-x' }}
                     onTouchStart={handleTouchStart}
                     onTouchEnd={handleTouchEnd}
                 >
@@ -177,15 +178,6 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                         <path d="M9 5l7 7-7 7"/>
                     </svg>
                 </button>
-                {/* Dot Indicator */}
-                <div className="absolute bottom-2 right-4 flex gap-1 z-20 block md:hidden">
-                    {Array.from({ length: Math.ceil(posts.length / visibleCount) }).map((_, i) => (
-                        <span
-                            key={i}
-                            className={`inline-block w-1 h-1 rounded-full ${Math.floor(currentIndex / visibleCount) === i ? 'bg-primary-blue' : 'bg-gray-300'}`}
-                        />
-                    ))}
-                </div>
             </div>
         </div>
     );
