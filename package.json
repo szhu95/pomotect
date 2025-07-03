@@ -33,7 +33,8 @@
     "sharp": "^0.33.5",
     "shopify-buy": "^2.21.1",
     "tw-elements": "^1.1.0",
-    "undici": "^6.21.2"
+    "undici": "^6.21.2",
+    "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

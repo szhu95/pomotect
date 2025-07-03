@@ -39,7 +39,16 @@ export default function Posts({ response }: any) {
                 <div key={post.id} className="mt-5 w-full md:w-[100%] md:m-auto">
                     <div className='site-section words-header md:border-b border-black md:pb-4'>
                         <div className="md:hidden px-0">
-                            <div className="flex justify-between items-center mb-4 border-b border-black">
+                            <Link
+                                key={`${post.slug}-title`}
+                                href={`/words/${post.slug}`}
+                                className="block group w-full"
+                            >
+                                <div className={`hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font [padding-top:calc(4px*var(--is-mobile-condensed,0))] [padding-bottom:calc(4px*var(--is-mobile-condensed,0))]`}>
+                                    {post.title ? post.title : 'Title'}
+                                </div>
+                            </Link>
+                            <div className="flex justify-between items-center mt-4 mb-4 border-b border-black">
                                 <div className="minion-font italic">
                                     {formattedPostDate}
                                 </div>
@@ -47,15 +56,15 @@ export default function Posts({ response }: any) {
                                     {(post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com")}
                                 </div>
                             </div>
-                            <Link
-                                key={post.slug}
-                                href={`/words/${post.slug}`}
-                                className="flex flex-col gap-2 group w-full"
-                            >
-                                {post.feature_image && (
+                            {post.feature_image && (
+                                <Link
+                                    key={`${post.slug}-image`}
+                                    href={`/words/${post.slug}`}
+                                    className="block group w-full"
+                                >
                                     <div className={`
                                         relative w-full border border-primary-blue border-dashed overflow-hidden transform transition-all duration-300 ease-in-out group-hover:scale-[1.02] md:hidden
-                                        [height:calc(192px*(1-var(--is-mobile-condensed,0)))]
+                                        h-48
                                         [opacity:calc(1-var(--is-mobile-condensed,0))]
                                         [margin-bottom:calc(0px*var(--is-mobile-condensed,0))]
                                     `}>
@@ -66,11 +75,8 @@ export default function Posts({ response }: any) {
                                             className="object-cover transition-opacity duration-200 ease-in-out group-hover:opacity-80"
                                         />
                                     </div>
-                                )}
-                                <div className={`hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font [padding-top:calc(4px*var(--is-mobile-condensed,0))] [padding-bottom:calc(4px*var(--is-mobile-condensed,0))]`}>
-                                    {post.title ? post.title : 'Title'}
-                                </div>
-                            </Link>
+                                </Link>
+                            )}
                         </div>
                         <Link
                             key={post.slug}
@@ -84,9 +90,7 @@ export default function Posts({ response }: any) {
                     <div className={`site-section words-body hidden md:block max-h-[85vh] overflow-y-auto md:border md:border-primary-blue md:border-dashed md:border-2`}>
                         <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:w-[90%] md:m-auto`}>{parsedPost}</div>
                     </div>
-                    {index < response.length - 1 && (
-                        <div className="w-1/2 mx-auto mt-2 mb-3 border-b border-primary-blue border-dashed opacity-50 transition-opacity duration-200 ease-in-out md:hidden"></div>
-                    )}
+
                 </div>
             )
         })
