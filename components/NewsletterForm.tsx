@@ -50,7 +50,7 @@ export default function NewsletterForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="border-0 border-b-2 border-primary-blue/40 border-dashed focus:outline-none focus:border-primary-blue text-sm"
+                className="border-0 border-b border-gray-300 bg-white rounded-none focus:outline-none focus:border-primary-blue text-sm md:border-b-2 md:border-primary-blue/40 md:border-dashed"
             />
             <button type="submit" disabled={loading} className="ml-2 text-sm transition-colors duration-200 text-primary-blue hover:text-terracotta">
                 {loading ? 'Submitting...' : ' Join '}

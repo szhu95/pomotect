@@ -50,6 +50,30 @@ export default function ImageTicker({ response }: ImageTickerProps) {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
+    // Swipe gesture state
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        touchStartX = e.changedTouches[0].screenX;
+    };
+    const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (!isMobile) return;
+        const delta = touchEndX - touchStartX;
+        if (Math.abs(delta) > 50) {
+            if (delta < 0) {
+                // Swipe left: next 3
+                setDirection('right');
+                setCurrentIndex((prev) => (prev + visibleCount) % posts.length);
+            } else {
+                // Swipe right: prev 3
+                setDirection('left');
+                setCurrentIndex((prev) => (prev - visibleCount + posts.length) % posts.length);
+            }
+        }
+    };
+
     const handleArrow = (dir: 'left' | 'right') => {
         setDirection(dir);
         setCurrentIndex((prev) =>
@@ -94,6 +118,8 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                 
                 {/* Images Container */}
                 <div className="overflow-x-auto flex-1 mx-0 flex justify-center flex-nowrap scrollbar-hide"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
                 >
                     <AnimatePresence mode="wait">
                         <motion.div 
