@@ -57,11 +57,11 @@ export default function Posts({ response }: any) {
                                 </div>
                             </div>
                             {post.feature_image && (
-                                <Link
+                            <Link
                                     key={`${post.slug}-image`}
-                                    href={`/words/${post.slug}`}
+                                href={`/words/${post.slug}`}
                                     className="block group w-full"
-                                >
+                            >
                                     <div className={`
                                         relative w-full h-48 bg-gray-50 border border-primary-blue border-dashed overflow-hidden transform transition-all duration-300 ease-in-out group-hover:scale-[1.02] md:hidden
                                         [opacity:calc(1-var(--is-mobile-condensed,0))]
@@ -76,7 +76,7 @@ export default function Posts({ response }: any) {
                                         />
                                     </div>
                                 </Link>
-                            )}
+                                )}
                         </div>
                         <Link
                             key={post.slug}

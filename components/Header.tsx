@@ -4,13 +4,16 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/header-logo-2.7.png'
 import mobileHomeLogo from '../assets/images/header-logo-2.5.png'
-import { motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
-import Cart from './Cart';
+import globeAnimation from '../assets/images/globe-animation.gif';
 
 const pomotectFont = localFont({
+    src: '../fonts/pomotect-analog-regular.otf',
+});
+
+const pomotectBoldFont = localFont({
     src: '../fonts/pomotect-analog-bold.otf',
 });
 
@@ -18,8 +21,10 @@ const pomotectFont = localFont({
 const Header = ({ title, menuStatus }: any) => {
     const [cartFilled, setCartFilled] = useState(false)
     const [menuIcon, setIcon] = useState(false);
+    const [loading, setLoading] = useState(false);
     const pathname = usePathname();
     const { cartItemCount } = useCart();
+    const router = useRouter();
 
     const handleSmallerScreensNavigation = () => {
         setIcon(!menuIcon);
@@ -31,6 +36,19 @@ const Header = ({ title, menuStatus }: any) => {
             setCartFilled(true);
         }
     }, [])
+
+    useEffect(() => {
+        if (loading) {
+            setLoading(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname]);
+
+    const handleMobileNavClick = (href: string) => {
+        setLoading(true);
+        setIcon(false);
+        router.push(href);
+    };
 
     const CartCount = () => {
         if (cartItemCount > 0) {
@@ -46,7 +64,7 @@ const Header = ({ title, menuStatus }: any) => {
     return (
         <div className="padding-y md:text-center">
             <div onClick={() => setIcon(false)} className="home-link mb-4">
-                <Link href="/" scroll={false} className="md:block hidden">
+                <Link href="/" scroll={true} className="md:block hidden" onClick={() => setTimeout(() => window.scrollTo(0, 0), 0)}>
                     <Image
                         src={homeLogo}
                         priority
@@ -56,7 +74,7 @@ const Header = ({ title, menuStatus }: any) => {
                         className="w-auto h-auto"
                     />
                 </Link>
-                <Link href="/" className="md:hidden block">
+                <Link href="/" scroll={true} className="md:hidden block" onClick={() => setTimeout(() => window.scrollTo(0, 0), 0)}>
                     <Image
                         src={mobileHomeLogo}
                         priority
@@ -126,11 +144,11 @@ const Header = ({ title, menuStatus }: any) => {
                         menuIcon
                             ?
                             <div className="not-italic focus:text-white hover:text-white">
-                                <div className={pomotectFont.className}>[ x ]</div>
+                                <div className={pomotectBoldFont.className}>[ x ]</div>
                             </div>
                             :
                             <div>
-                                <div className={pomotectFont.className}>Menu</div>
+                                <div className={pomotectBoldFont.className}>Menu</div>
                             </div>
                     }
                 </div>
@@ -138,14 +156,14 @@ const Header = ({ title, menuStatus }: any) => {
                     <Link href="/cart" scroll={false} id="checkout-btn-mobile">
                         {
                             pathname.startsWith("/cart") ?
-                                <div className={`${pomotectFont.className} text-terracotta inline-flex items-center relative min-w-[50px]`}>
+                                <div className={`${pomotectBoldFont.className} text-terracotta inline-flex items-center relative min-w-[50px]`}>
                                     <CartCount />
-                                    <div className={`${pomotectFont.className} text-terracotta ml-1`}>[Cart]</div>
+                                    <div className={`${pomotectBoldFont.className} text-terracotta ml-1`}>[Cart]</div>
                                 </div>
                                 :
-                                <div className={`${pomotectFont.className} inline-flex items-center relative min-w-[50px]`}>
+                                <div className={`${pomotectBoldFont.className} inline-flex items-center relative min-w-[50px]`}>
                                     <CartCount />
-                                    <div className={`${pomotectFont.className} ml-1`}>Cart</div>
+                                    <div className={`${pomotectBoldFont.className} ml-1`}>Cart</div>
                                 </div>
                         }
                     </Link>
@@ -153,14 +171,10 @@ const Header = ({ title, menuStatus }: any) => {
             </div>
 
             {/* Smaller Screen Navigation */}
-            <div className={menuIcon ?
-                'md:hidden top-[160px] z-50 right-0 bottom-0 left-0 flex justify-center items-center w-full h-[35%]'
-                :
-                'md:hidden absolute top-[160px] z-50 right-0 left-[-100%] flex justify-center items-center w-full h-[35%]'
-            }>
+            <div className={`md:hidden w-full transition-all duration-300 overflow-hidden ${menuIcon ? 'max-h-[400px]' : 'max-h-0'}`}>
                 <div className="w-full border-b border-black">
                     <ul>
-                        <li onClick={handleSmallerScreensNavigation} className="py-4 cursor-pointer text-black">
+                        <li onClick={() => handleMobileNavClick('/about')} className="py-4 cursor-pointer text-black">
                             <Link href="/about" scroll={false}>
                                 {
                                     pathname.startsWith("/about") ?
@@ -171,7 +185,7 @@ const Header = ({ title, menuStatus }: any) => {
                             </Link>
                         </li>
 
-                        <li onClick={handleSmallerScreensNavigation} className="py-4 cursor-pointer text-black">
+                        <li onClick={() => handleMobileNavClick('/products')} className="py-4 cursor-pointer text-black">
                             <Link href="/products" scroll={false}>
                                 {
                                     pathname.startsWith("/products") ?
@@ -182,7 +196,7 @@ const Header = ({ title, menuStatus }: any) => {
                             </Link>
                         </li>
 
-                        <li onClick={handleSmallerScreensNavigation} className="py-4 cursor-pointer text-black">
+                        <li onClick={() => handleMobileNavClick('/words')} className="py-4 cursor-pointer text-black">
                             <Link href="/words" scroll={false}>
                                 {
                                     pathname.startsWith("/words") ?
@@ -193,7 +207,7 @@ const Header = ({ title, menuStatus }: any) => {
                             </Link>
                         </li>
 
-                        <li onClick={handleSmallerScreensNavigation} className="py-4 cursor-pointer text-black">
+                        <li onClick={() => handleMobileNavClick('/sounds')} className="py-4 cursor-pointer text-black">
                             <Link href="/sounds" scroll={false}>
                                 {
                                 pathname.startsWith("/sounds") ?
@@ -206,6 +220,13 @@ const Header = ({ title, menuStatus }: any) => {
                     </ul>
                 </div>
             </div>
+
+            {/* Globe animation overlay for mobile loading */}
+            {loading && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white bg-opacity-80 md:hidden">
+                    <Image src={globeAnimation} alt="Loading..." width={220} height={220} className="animate-spin-slow" />
+                </div>
+            )}
         </div >
     )
 }

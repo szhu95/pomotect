@@ -41,7 +41,7 @@ export default async function Home() {
     <Suspense fallback={<Loading />}>
       <main>
         <div className='md:flex text-center'>
-          <span className={`${pomotectFont.className} text-primary-blue md:mr-4`}>
+          <span className={`${pomotectFont.className} text-primary-blue md:mr-4 text-sm`}>
             Subscribe to our newsletter
           </span>
           <NewsletterForm />

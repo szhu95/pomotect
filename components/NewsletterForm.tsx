@@ -43,18 +43,19 @@ export default function NewsletterForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={`${pomotectFont.className} newsletter-form md:flex md:text-center`}>
+        <form onSubmit={handleSubmit} className={`${pomotectFont.className} newsletter-form md:flex md:text-center text-sm`}>
             <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="border-0 border-b-2 border-primary-blue/40 border-dashed focus:outline-none focus:border-primary-blue text-sm"
             />
-            <button type="submit" disabled={loading} className="text-primary-blue ml-2">
+            <button type="submit" disabled={loading} className="ml-2 text-sm transition-colors duration-200 text-primary-blue hover:text-terracotta">
                 {loading ? 'Submitting...' : ' Join '}
             </button>
-            {message && <p className={`${pomotectFont.className} ml-2`}>{message}</p>}
+            {message && <p className={`${pomotectFont.className} ml-2 text-sm`}>{message}</p>}
         </form>
     );
 }
