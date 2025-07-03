@@ -126,9 +126,9 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                         <motion.div 
                             key={currentIndex}
                             className="flex gap-4 w-full justify-center flex-nowrap"
-                            initial={{ x: direction === 'right' ? 100 : -100, opacity: 0 }}
+                            initial={{ x: isMobile ? (direction === 'right' ? -100 : 100) : (direction === 'right' ? 100 : -100), opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: direction === 'right' ? -100 : 100, opacity: 0 }}
+                            exit={{ x: isMobile ? (direction === 'right' ? 100 : -100) : (direction === 'right' ? -100 : 100), opacity: 0 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
                         >
                             {getVisiblePosts().map((post, idx) => (
