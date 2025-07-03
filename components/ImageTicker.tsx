@@ -87,7 +87,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     className="transition-colors duration-200 left-0 top-1/2 -translate-y-1/2 absolute md:static z-10 md:z-0 md:translate-y-0 md:top-auto md:left-auto hidden md:block"
                     aria-label="Previous"
                 >
-                    <svg width="32" height="32" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
+                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M15 19l-7-7 7-7"/>
                     </svg>
                 </button>
@@ -147,7 +147,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     className="transition-colors duration-200 right-0 top-1/2 -translate-y-1/2 absolute md:static z-10 md:z-0 md:translate-y-0 md:top-auto md:right-auto hidden md:block"
                     aria-label="Next"
                 >
-                    <svg width="32" height="32" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
+                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M9 5l7 7-7 7"/>
                     </svg>
                 </button>
