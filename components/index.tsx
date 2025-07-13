@@ -20,6 +20,7 @@ import NewsletterForm from './NewsletterForm';
 import InquiryForm from './InquiryForm';
 import ProductDetailsClient from './ProductDetailsClient';
 import ProcessSidebar from './ProcessSidebar';
+import QuantityAdjuster from './QuantityAdjuster';
 
 export {
     Hero,
@@ -43,5 +44,6 @@ export {
     NewsletterForm,
     InquiryForm,
     ProductDetailsClient,
-    ProcessSidebar
+    ProcessSidebar,
+    QuantityAdjuster
 }

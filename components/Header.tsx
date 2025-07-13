@@ -31,8 +31,8 @@ const Header = ({ title, menuStatus }: any) => {
     }
 
     useEffect(() => {
-        let checkout = typeof window !== "undefined" ? localStorage.getItem("checkoutId") : null;
-        if (checkout) {
+        let cart = typeof window !== "undefined" ? localStorage.getItem("cartId") : null;
+        if (cart) {
             setCartFilled(true);
         }
     }, [])

@@ -2,7 +2,7 @@
 import { storefront } from '@/utils';
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import Image from 'next/image';
-import { CustomButton } from '.';
+import { CustomButton, QuantityAdjuster } from '.';
 import Link from 'next/link';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
@@ -70,17 +70,17 @@ query searchVariant($query: String!) {
 `;
 
 const removeLineItemFromCartQuery = gql`
-mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
-  checkoutLineItemsRemove(checkoutId: $checkoutId, lineItemIds: $lineItemIds) {
-    checkout {
+mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+  cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+    cart {
       id
-      webUrl
-      lineItems(first: 10) {
+      checkoutUrl
+      lines(first: 10) {
         edges {
           node {
             id
             quantity
-            variant {
+            merchandise {
               ... on ProductVariant {
                 id
               }
@@ -88,8 +88,8 @@ mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
           }
         }
       }
-  }
-  checkoutUserErrors {
+    }
+    userErrors {
       field
       message
     }
@@ -97,24 +97,77 @@ mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
 }
 `
 
-const getCheckoutLineItemsQuery = gql`
-query getCheckoutLineItemsFromNode($id: ID!) {
-  node(id: $id) {
-    id
-    ... on Checkout {
+const updateCartLineQuery = gql`
+mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  cartLinesUpdate(cartId: $cartId, lines: $lines) {
+    cart {
       id
-      webUrl
-      order {
-        id
+      checkoutUrl
+      lines(first: 10) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                image {
+                  altText
+                  height
+                  width
+                  url
+                }
+                product {
+                  handle
+                  title
+                }
+                price {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
       }
-      lineItems(first: 5) {
-         edges {
-           node {
-             id
-             title
-             quantity
-             variant {
+      cost {
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`
+
+const getCartQuery = gql`
+query getCart($id: ID!) {
+  cart(id: $id) {
+    id
+    checkoutUrl
+    lines(first: 10) {
+      edges {
+        node {
+          id
+          quantity
+          merchandise {
+            ... on ProductVariant {
               id
+              title
               image {
                 altText
                 height
@@ -123,47 +176,48 @@ query getCheckoutLineItemsFromNode($id: ID!) {
               }
               product {
                 handle
-             }
-              title
+                title
+              }
               price {
                 amount
                 currencyCode
               }
             }
-           }
-         }
-       }
-      lineItemsSubtotalPrice {
-        amount
-        currencyCode
-      },
-      subtotalPrice {
-        amount
-        currencyCode
-      },
-      totalTax {
-        amount
-        currencyCode
-      },
-      totalPrice {
-        amount
-        currencyCode
-      },
-      updatedAt
+          }
+        }
+      }
     }
+    cost {
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+      totalAmount {
+        amount
+        currencyCode
+      }
+      totalTaxAmount {
+        amount
+        currencyCode
+      }
+    }
+    updatedAt
   }
 }
-  `;
+`;
 
 async function getCart() {
-  if (localStorage.getItem("checkoutId")) {
-    let id = localStorage.getItem("checkoutId");
-    const { data } = await storefront(getCheckoutLineItemsQuery, {
+  if (localStorage.getItem("cartId")) {
+    let id = localStorage.getItem("cartId");
+
+    const { data } = await storefront(getCartQuery, {
       "id": id
     })
 
     return data;
   }
+  
+  return null;
 }
 
 async function getVariant(variantId: string) {
@@ -175,7 +229,7 @@ async function getVariant(variantId: string) {
       formattedVariantId = `gid://shopify/ProductVariant/${variantId}`;
     }
     
-    console.log('Trying to fetch variant with formatted ID:', formattedVariantId);
+
     
     const { data } = await storefront(getVariantQuery, {
       "id": formattedVariantId
@@ -186,7 +240,7 @@ async function getVariant(variantId: string) {
     }
     
     // If direct lookup fails, try searching by the original variantId
-    console.log('Direct lookup failed, trying search with:', variantId);
+
     const searchData = await storefront(searchVariantQuery, {
       "query": variantId
     });
@@ -203,7 +257,7 @@ async function getVariant(variantId: string) {
     
     // Try fallback search if direct lookup fails
     try {
-      console.log('Trying fallback search with:', variantId);
+  
       const searchData = await storefront(searchVariantQuery, {
         "query": variantId
       });
@@ -230,18 +284,18 @@ async function addToCart(variant_id: string, providedQuantity: number) {
     formattedVariantId = `gid://shopify/ProductVariant/${variant_id}`;
   }
 
-  const addToCheckoutQuery = gql`
-mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
-  checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
-    checkout {
+  const addToCartQuery = gql`
+mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  cartLinesAdd(cartId: $cartId, lines: $lines) {
+    cart {
       id
-      webUrl
-      lineItems(first: 10) {
+      checkoutUrl
+      lines(first: 10) {
         edges {
           node {
             id
             quantity
-            variant {
+            merchandise {
               ... on ProductVariant {
                 id
               }
@@ -249,24 +303,22 @@ mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInp
           }
         }
       }
-      paymentDue {
-        amount
-        currencyCode
-      }
-      subtotalPrice {
-        amount
-        currencyCode
-      }
-      totalTax {
-        amount
-        currencyCode
-      }
-      totalPrice {
+      cost {
+        subtotalAmount {
           amount
           currencyCode
+        }
+        totalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
       }
     }
-    checkoutUserErrors {
+    userErrors {
       field
       message
     }
@@ -274,22 +326,26 @@ mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInp
 }
 `;
 
-  const createCheckoutQuery = gql`
-mutation checkoutCreate($input: CheckoutCreateInput!) {
-  checkoutCreate(input: $input) {
-    checkout {
+  const createCartQuery = gql`
+mutation cartCreate($input: CartInput!) {
+  cartCreate(input: $input) {
+    cart {
       id
-      webUrl
-      lineItems(first: 5) {
+      checkoutUrl
+      lines(first: 5) {
          edges {
            node {
-             title
              quantity
+             merchandise {
+               ... on ProductVariant {
+                 title
+               }
+             }
            }
          }
        }
     }
-    checkoutUserErrors {
+    userErrors {
       field
       message
     }
@@ -297,37 +353,40 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
 }
   `;
 
-  async function createCheckout() {
-    const { data } = await storefront(createCheckoutQuery, {
+  async function createCart() {
+
+    const { data } = await storefront(createCartQuery, {
       "input": {
-        "lineItems": {
-          "variantId": formattedVariantId,
+        "lines": [{
+          "merchandiseId": formattedVariantId,
           "quantity": providedQuantity
-        }
+        }]
       }
     })
 
-    localStorage.setItem("checkoutId", data.checkoutCreate.checkout.id);
-    return data.checkoutCreate.checkout;
+    localStorage.setItem("cartId", data.cartCreate.cart.id);
+    return data.cartCreate.cart;
   }
 
-  if (!localStorage.getItem("checkoutId")) {
-    const checkout = await createCheckout();
-    return checkout;
+  if (!localStorage.getItem("cartId")) {
+    const cart = await createCart();
+    return cart;
   }
 
-  const response = await storefront(addToCheckoutQuery, {
-    "checkoutId": localStorage.getItem("checkoutId"),
-    "lineItems": {
-      "variantId": formattedVariantId,
+  
+  const response = await storefront(addToCartQuery, {
+    "cartId": localStorage.getItem("cartId"),
+    "lines": [{
+      "merchandiseId": formattedVariantId,
       "quantity": providedQuantity
-    }
+    }]
   })
     .catch((error) => {
-      console.error('Error:', error);
+      console.error('Error adding to cart:', error);
     });
   
-  return response?.data?.checkoutLineItemsAdd?.checkout;
+  
+  return response?.data?.cartLinesAdd?.cart;
 }
 
 interface CartProps {
@@ -356,46 +415,89 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
   const [total, setTotal] = useState('');
   const [salePrice, setSalePrice] = useState('');
   const [quantity, setQuantity] = useState(0);
+  const [updatingItemId, setUpdatingItemId] = useState<string | null>(null);
+  const [isTotalFlashing, setIsTotalFlashing] = useState(false);
 
   async function removeItemFromCart(variantId: any) {
-    if (localStorage.getItem("checkoutId")) {
+    if (localStorage.getItem("cartId")) {
       setIsLoading(true);
-      let id = localStorage.getItem("checkoutId");
+      let id = localStorage.getItem("cartId");
       await storefront(removeLineItemFromCartQuery, {
-        "checkoutId": id,
-        "lineItemIds": [
+        "cartId": id,
+        "lineIds": [
           variantId
         ]
       }).then(retrieveCart)
     }
   }
 
+  async function updateCartLineQuantity(lineId: string, quantity: number) {
+    if (localStorage.getItem("cartId") && quantity > 0) {
+      setIsLoading(true);
+      let id = localStorage.getItem("cartId");
+  
+      
+      const response = await storefront(updateCartLineQuery, {
+        "cartId": id,
+        "lines": [{
+          "id": lineId,
+          "quantity": quantity
+        }]
+      }).catch((error) => {
+        console.error('Error updating cart line:', error);
+        setIsLoading(false);
+      });
+      
+  
+      
+      if (response?.data?.cartLinesUpdate?.cart) {
+        // Update the cart data directly instead of refetching
+        setData({ cart: response.data.cartLinesUpdate.cart });
+        setCheckoutUrl(response.data.cartLinesUpdate.cart.checkoutUrl);
+        setTotal(response.data.cartLinesUpdate.cart.cost?.subtotalAmount.amount || '0.0');
+        setSalePrice(response.data.cartLinesUpdate.cart.cost?.totalAmount.amount || '0.0');
+        
+        // Calculate total quantity across all line items
+        const totalQuantity = response.data.cartLinesUpdate.cart.lines.edges.reduce((sum: number, edge: any) => {
+          return sum + (edge.node.quantity || 0);
+        }, 0);
+        
+        setQuantity(totalQuantity);
+        updateCartItemCount(totalQuantity);
+        
+        // Trigger flash animation for total price
+        setIsTotalFlashing(true);
+        setTimeout(() => setIsTotalFlashing(false), 300);
+      }
+      
+      setIsLoading(false);
+    } else if (quantity === 0) {
+      // If quantity is 0, remove the item
+      await removeItemFromCart(lineId);
+    }
+  }
+
   const retrieveCart = useCallback(async () => {
     let response = (await getCart()) as any;
 
-    if (response?.node.order?.id) {
+    // Check if cart exists and has items
+    if (!response?.cart) {
       setCart('');
       setIsLoading(false);
-      if (localStorage.getItem("checkoutId")) {
-        localStorage.removeItem("checkoutId");
-      }
-      // Also remove cartItemCount from localStorage when checkout is complete
-      localStorage.removeItem("cartItemCount");
-      updateCartItemCount(0);
       return;
     }
     setData(response ? response : '');
-    setCheckoutUrl(response ? response.node.webUrl : '');
-    setTotal(response ? response.node?.lineItemsSubtotalPrice.amount : '0.0');
+    setCheckoutUrl(response ? response.cart.checkoutUrl : '');
+    setTotal(response ? response.cart?.cost?.subtotalAmount.amount : '0.0');
     
     // Calculate total quantity across all line items
-    const totalQuantity = response?.node?.lineItems.edges.reduce((sum: number, edge: any) => {
+    const totalQuantity = response?.cart?.lines.edges.reduce((sum: number, edge: any) => {
       return sum + (edge.node.quantity || 0);
     }, 0) || 0;
     
     setQuantity(totalQuantity);
     updateCartItemCount(totalQuantity);
-    setSalePrice(response ? response.node?.totalPrice.amount : '0.0');
+    setSalePrice(response ? response.cart?.cost?.totalAmount.amount : '0.0');
     setIsLoading(false);
   }, [updateCartItemCount])
 
@@ -404,8 +506,8 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
       setIsLoading(true);
       
       // Clear any existing checkout for variant-only view
-      if (localStorage.getItem("checkoutId")) {
-        localStorage.removeItem("checkoutId");
+      if (localStorage.getItem("cartId")) {
+        localStorage.removeItem("cartId");
       }
       
       const variantResponse = await getVariant(variantId);
@@ -413,9 +515,9 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
       
       // Create checkout and store in localStorage for single variant
       if (variantResponse?.node?.id) {
-        const checkout = await addToCart(variantResponse.node.id, providedQuantity);
-        if (checkout?.id) {
-          localStorage.setItem("checkoutId", checkout.id);
+        const cart = await addToCart(variantResponse.node.id, providedQuantity);
+        if (cart?.id) {
+          localStorage.setItem("cartId", cart.id);
           // Update cart count in header
           updateCartItemCount(providedQuantity);
         }
@@ -439,8 +541,8 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
       setIsLoading(true);
       
       // Clear any existing checkout for variant-only view
-      if (localStorage.getItem("checkoutId")) {
-        localStorage.removeItem("checkoutId");
+      if (localStorage.getItem("cartId")) {
+        localStorage.removeItem("cartId");
       }
       
       const variantsResponses = await Promise.all(
@@ -458,18 +560,18 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
       // Create checkout and store in localStorage for multiple variants
       if (variantsResponses.length > 0 && variantsResponses[0].data?.node?.id) {
         const firstVariant = variantsResponses[0];
-        let checkout = await addToCart(firstVariant.variantId, firstVariant.quantity);
+        let cart = await addToCart(firstVariant.variantId, firstVariant.quantity);
         
         // Add remaining variants to the same checkout
         for (let i = 1; i < variantsResponses.length; i++) {
           const variant = variantsResponses[i];
           if (variant.data?.node?.id) {
-            checkout = await addToCart(variant.data.node.id, variant.quantity);
+            cart = await addToCart(variant.data.node.id, variant.quantity);
           }
         }
         
-        if (checkout?.id) {
-          localStorage.setItem("checkoutId", checkout.id);
+        if (cart?.id) {
+          localStorage.setItem("cartId", cart.id);
           // Update cart count in header - sum of all quantities
           const totalQuantity = validVariants.reduce((sum, variant) => sum + variant.quantity, 0);
           updateCartItemCount(totalQuantity);
@@ -483,14 +585,14 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
   function resetCart() {
     setCart('');
     setIsLoading(false);
-    if (localStorage.getItem("checkoutId"))
-      localStorage.removeItem("checkoutId");
+    if (localStorage.getItem("cartId"))
+      localStorage.removeItem("cartId");
   }
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
       setIsLoading(true);
-      checkoutRef.current = localStorage.getItem("checkoutId");
+      checkoutRef.current = localStorage.getItem("cartId");
       setCart(checkoutRef.current ? checkoutRef.current : '');
       
       // If variants array is provided, fetch multiple variants
@@ -555,7 +657,19 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
                       />
                     </Link>
                   </div>
-                  <div className={`${pomotectFont.className} pl-1`}>{variant.quantity}</div>
+                  <div className={`${pomotectFont.className} pl-1`}>
+                    <QuantityAdjuster
+                      quantity={variant.quantity}
+                      onQuantityChange={(newQuantity) => {
+                        // For multiple variants view, we need to update the specific variant
+                        if (variant.data?.node?.id) {
+                          // This would need to be implemented for multiple variants
+                      
+                        }
+                      }}
+                      isLoading={updatingItemId === variant.data?.node?.id}
+                    />
+                  </div>
                   <div className={`${pomotectFont.className}`}>{formatter.format(Number(variantNode.price.amount) * variant.quantity)}</div>
                   <div className={`${pomotectFont.className}`}>
                     {variantNode.product.title} <br></br>
@@ -602,7 +716,18 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
                   />
                 </Link>
               </div>
-              <div className={`${pomotectFont.className} pl-1`}>{providedQuantity}</div>
+              <div className={`${pomotectFont.className} pl-1`}>
+                <QuantityAdjuster
+                  quantity={providedQuantity}
+                  onQuantityChange={(newQuantity) => {
+                    // For single variant view, we need to update the cart
+                    if (variantData?.node?.id) {
+                      updateCartLineQuantity(localStorage.getItem("cartId") || "", newQuantity);
+                    }
+                  }}
+                  isLoading={updatingItemId === localStorage.getItem("cartId")}
+                />
+              </div>
               <div className={`${pomotectFont.className}`}>{formatter.format(Number(variantData.node.price.amount) * providedQuantity)}</div>
               <div className={`${pomotectFont.className}`}>
                 {variantData.node.product.title} <br></br>
@@ -625,12 +750,12 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
           )
         ) : (
           // Original cart logic for when no variantId is provided
-          !cart || (!isLoading && data.node?.lineItems.edges.length === 0) ? <div className={`${pomotectFont.className} py-6 text-center`}>YOUR CART IS EMPTY</div> :
-            (!isLoading && data ? (() => {
-              const filteredItems = data.node?.lineItems.edges.filter((item: any) => {
+          !cart || (data?.cart?.lines?.edges?.length === 0) ? <div className={`${pomotectFont.className} py-6 text-center`}>YOUR CART IS EMPTY</div> :
+            (data ? (() => {
+              const filteredItems = data.cart?.lines.edges.filter((item: any) => {
                 // If variantId is provided, only show items that match
                 if (variantId) {
-                  return item.node.variant?.id === variantId;
+                  return item.node.merchandise?.id === variantId;
                 }
                 return true; // Show all items if no variantId
               });
@@ -640,7 +765,7 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               }
               
               return filteredItems.map((item: any, i: React.Key | null | undefined) => {
-                const isHighlighted = variantId && item.node.variant?.id === variantId;
+                const isHighlighted = variantId && item.node.merchandise?.id === variantId;
                 
                 return (
                   <div 
@@ -651,24 +776,30 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
                   >
                     <div>
                       <Link
-                        key={item.node.variant?.product.handle}
-                        href={`/products/${item.node.variant?.product.handle}`}
+                        key={item.node.merchandise?.product.handle}
+                        href={`/products/${item.node.merchandise?.product.handle}`}
                         className={"block max-w-[100px]"}
                       >
                         <Image
                           className="border-2 border-dashed border-terracotta py-2 max-h-28"
-                          src={item.node.variant?.image.url}
+                          src={item.node.merchandise?.image.url}
                           width={100}
                           height={250}
                           alt="product image"
                         />
                       </Link>
                     </div>
-                    <div className={`${pomotectFont.className} pl-1`}>{item.node.quantity}</div>
-                    <div className={`${pomotectFont.className}`}>{formatter.format(Number(item.node.variant?.price.amount) * Number(item.node.quantity))}</div>
+                    <div className={`${pomotectFont.className} pl-1`}>
+                      <QuantityAdjuster
+                        quantity={item.node.quantity}
+                        onQuantityChange={(newQuantity) => updateCartLineQuantity(item.node.id, newQuantity)}
+                        isLoading={updatingItemId === item.node.id}
+                      />
+                    </div>
+                    <div className={`${pomotectFont.className}`}>{formatter.format(Number(item.node.merchandise?.price.amount) * Number(item.node.quantity))}</div>
                     <div className={`${pomotectFont.className}`}>
-                      {item.node.title} <br></br>
-                      <div className={`${pomotectFont.className} italic`}>{item.node.variant?.title}</div> <br></br>
+                      {item.node.merchandise?.product.title} <br></br>
+                      <div className={`${pomotectFont.className} italic`}>{item.node.merchandise?.title}</div> <br></br>
                       {isHighlighted && (
                         <div className={`${pomotectFont.className} text-xs text-yellow-600 mb-1`}>
                           ★ Highlighted Variant
@@ -692,7 +823,9 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
         )
       }
       <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta`}>TOTAL BEFORE TAXES + SHIPPING</div>
-      <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className}`}>
+      <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className} transition-all duration-300 ease-out ${
+        isTotalFlashing ? 'text-terracotta' : ''
+      }`}>
         {variants && variants.length > 0 ? 
           formatter.format(
             variantsData.reduce((sum, variant) => {
@@ -721,12 +854,12 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               setIsAddingToCart(true);
               
               // Get the existing checkout URL from localStorage
-              const existingCheckoutId = localStorage.getItem("checkoutId");
-              if (existingCheckoutId) {
-                // Fetch the checkout to get the webUrl
-                const checkout = await getCart();
-                if (checkout?.node?.webUrl) {
-                  window.location.href = checkout.node.webUrl;
+              const existingCartId = localStorage.getItem("cartId");
+              if (existingCartId) {
+                // Fetch the cart to get the checkoutUrl
+                const cart = await getCart();
+                if (cart?.cart?.checkoutUrl) {
+                  window.location.href = cart.cart.checkoutUrl;
                 } else {
                   window.location.href = '/cart';
                 }
@@ -747,12 +880,12 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               setIsAddingToCart(true);
               
               // Get the existing checkout URL from localStorage
-              const existingCheckoutId = localStorage.getItem("checkoutId");
-              if (existingCheckoutId) {
-                // Fetch the checkout to get the webUrl
-                const checkout = await getCart();
-                if (checkout?.node?.webUrl) {
-                  window.location.href = checkout.node.webUrl;
+              const existingCartId = localStorage.getItem("cartId");
+              if (existingCartId) {
+                // Fetch the cart to get the checkoutUrl
+                const cart = await getCart();
+                if (cart?.cart?.checkoutUrl) {
+                  window.location.href = cart.cart.checkoutUrl;
                 } else {
                   window.location.href = '/cart';
                 }
@@ -767,7 +900,7 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
         </button>
       ) : (
         // Original cart logic
-        quantity === 0 || isLoading ? <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold`} tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-terracotta text-white italic font-semibold`}>CHECKOUT</Link>
+        quantity === 0 ? <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold`} tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-terracotta text-white italic font-semibold`}>CHECKOUT</Link>
       )}
     </div>
   )

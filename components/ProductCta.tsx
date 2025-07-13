@@ -9,17 +9,17 @@ import { useCart } from '@/context/CartContext';
 async function addToCart(variant_id: string) {
   const gql = String.raw;
 
-  const addToCheckoutQuery = gql`
-mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
-  checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
-    checkout {
+  const addToCartQuery = gql`
+mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  cartLinesAdd(cartId: $cartId, lines: $lines) {
+    cart {
       id
-      lineItems(first: 10) {
+      lines(first: 10) {
         edges {
           node {
             id
             quantity
-            variant {
+            merchandise {
               ... on ProductVariant {
                 id
               }
@@ -27,24 +27,22 @@ mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInp
           }
         }
       }
-      paymentDue {
-        amount
-        currencyCode
-      }
-      subtotalPrice {
-        amount
-        currencyCode
-      }
-      totalTax {
-        amount
-        currencyCode
-      }
-      totalPrice {
+      cost {
+        subtotalAmount {
           amount
           currencyCode
+        }
+        totalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
       }
     }
-    checkoutUserErrors {
+    userErrors {
       field
       message
     }
@@ -52,22 +50,26 @@ mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInp
 }
 `;
 
-  const createCheckoutQuery = gql`
-mutation checkoutCreate($input: CheckoutCreateInput!) {
-  checkoutCreate(input: $input) {
-    checkout {
+  const createCartQuery = gql`
+mutation cartCreate($input: CartInput!) {
+  cartCreate(input: $input) {
+    cart {
       id
-      webUrl
-      lineItems(first: 5) {
+      checkoutUrl
+      lines(first: 5) {
          edges {
            node {
-             title
              quantity
+             merchandise {
+               ... on ProductVariant {
+                 title
+               }
+             }
            }
          }
        }
     }
-    checkoutUserErrors {
+    userErrors {
       field
       message
     }
@@ -75,38 +77,41 @@ mutation checkoutCreate($input: CheckoutCreateInput!) {
 }
   `;
 
-  async function createCheckout() {
-    const { data } = await storefront(createCheckoutQuery, {
+  async function createCart() {
+
+    const { data } = await storefront(createCartQuery, {
       "input": {
-        "lineItems": {
-          "variantId": variant_id,
+        "lines": [{
+          "merchandiseId": variant_id,
           "quantity": 1
-        }
+        }]
       }
     })
 
-    localStorage.setItem("checkoutId", data.checkoutCreate.checkout.id);
-    return data.checkoutCreate.checkout;
+    localStorage.setItem("cartId", data.cartCreate.cart.id);
+    return data.cartCreate.cart;
   }
 
 
-  if (!localStorage.getItem("checkoutId")) {
-    const checkout = await createCheckout();
-    return checkout;
+  if (!localStorage.getItem("cartId")) {
+    const cart = await createCart();
+    return cart;
   }
 
-  const response = await storefront(addToCheckoutQuery, {
-    "checkoutId": localStorage.getItem("checkoutId"),
-    "lineItems": {
-      "variantId": variant_id,
+  
+  const response = await storefront(addToCartQuery, {
+    "cartId": localStorage.getItem("cartId"),
+    "lines": [{
+      "merchandiseId": variant_id,
       "quantity": 1
-    }
+    }]
   })
     .catch((error) => {
-      console.error('Error:', error);
+      console.error('ProductCta: Error adding to cart:', error);
     });
   
-  return response?.data?.checkoutLineItemsAdd?.checkout;
+  
+  return response?.data?.cartLinesAdd?.cart;
 }
 
 
@@ -127,13 +132,16 @@ const ProductCta = ({ variantName, options, quantity, variants }: any) => {
         variantId = obj.node.id;
       }
     });
-    const checkout = await addToCart(variantId);
+
+    const cart = await addToCart(variantId);
+
     
     // Update cart count immediately with total quantity
-    if (checkout?.lineItems?.edges) {
-      const totalQuantity = checkout.lineItems.edges.reduce((sum: number, edge: any) => {
+    if (cart?.lines?.edges) {
+      const totalQuantity = cart.lines.edges.reduce((sum: number, edge: any) => {
         return sum + (edge.node.quantity || 0);
       }, 0);
+  
       updateCartItemCount(totalQuantity);
     }
 
