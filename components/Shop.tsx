@@ -48,11 +48,21 @@ export default function Shop({ response }: ShopProps) {
     return !product.variants.edges.some((edge: any) => edge.node.availableForSale);
   };
 
-  // Move furniture-tagged products to the front
-  const sortedProducts = [
-    ...response.products.edges.filter(item => item.node.tags && item.node.tags.includes('furniture')),
-    ...response.products.edges.filter(item => !item.node.tags || !item.node.tags.includes('furniture')),
-  ];
+  // Separate products by category
+  const furnitureProducts = response.products.edges.filter(item => 
+    item.node.tags && item.node.tags.includes('furniture')
+  );
+  
+  const latestProducts = response.products.edges.filter(item => 
+    item.node.tags && item.node.tags.includes('latest')
+  );
+  
+  const otherProducts = response.products.edges.filter(item => 
+    !item.node.tags || (!item.node.tags.includes('furniture') && !item.node.tags.includes('latest'))
+  );
+
+  // Combine: furniture first, then books, then everything else
+  const sortedProducts = [...furnitureProducts, ...latestProducts, ...otherProducts];
 
   return (
     <motion.div

@@ -642,7 +642,7 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               if (!variantNode) return null;
               
               return (
-                <div key={index} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
+                <div key={index} className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2 transition-all duration-300 ease-in-out">
                   <div>
                     <Link
                       href={`/products/${variantNode.product.handle}`}
@@ -679,14 +679,16 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               );
             })
           ) : (
-            <div className={`${pomotectFont.className} py-6 text-center`}>
-              <div className={`${pomotectFont.className} text-center`}>YOUR CART IS EMPTY</div>
-              <Link 
-                href="/products" 
-                className={`${pomotectFont.className} text-sm text-blue-600 hover:text-blue-800 underline mt-4 block`}
-              >
-                Browse All Products
-              </Link>
+            <div className="grid grid-cols-4 my-2 py-6">
+              <div className="col-span-4 text-center">
+                <div className={`${pomotectFont.className} py-6 text-center`}>YOUR CART IS EMPTY</div>
+                <Link 
+                  href="/products" 
+                  className={`${pomotectFont.className} text-sm text-blue-600 hover:text-blue-800 underline mt-4 block`}
+                >
+                  Browse All Products
+                </Link>
+              </div>
             </div>
           )
         ) : variantId ? (
@@ -701,7 +703,7 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           ) : variantData?.node ? (
-            <div className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2">
+            <div className="grid grid-cols-4 border-y border-black my-2 py-2 pl-2 transition-all duration-300 ease-in-out">
               <div>
                 <Link
                   href={`/products/${variantData.node.product.handle}`}
@@ -735,22 +737,32 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               </div>
             </div>
           ) : (
-            <div className={`${pomotectFont.className} py-6 text-center`}>
-              <div>VARIANT NOT FOUND: {variantId}</div>
-              <div className="text-sm text-gray-600 mt-2">
-                The variant ID "{variantId}" could not be found in the store.
+            <div className="grid grid-cols-4 my-2 py-6">
+              <div className="col-span-4 text-center">
+                <div className={`${pomotectFont.className} py-6 text-center`}>
+                  <div>VARIANT NOT FOUND: {variantId}</div>
+                  <div className="text-sm text-gray-600 mt-2">
+                    The variant ID "{variantId}" could not be found in the store.
+                  </div>
+                  <Link 
+                    href="/products" 
+                    className={`${pomotectFont.className} text-sm text-blue-600 hover:text-blue-800 underline mt-4 block`}
+                  >
+                    Browse All Products
+                  </Link>
+                </div>
               </div>
-              <Link 
-                href="/products" 
-                className={`${pomotectFont.className} text-sm text-blue-600 hover:text-blue-800 underline mt-4 block`}
-              >
-                Browse All Products
-              </Link>
             </div>
           )
         ) : (
           // Original cart logic for when no variantId is provided
-          !cart || (data?.cart?.lines?.edges?.length === 0) ? <div className={`${pomotectFont.className} py-6 text-center`}>YOUR CART IS EMPTY</div> :
+          !cart || (data?.cart?.lines?.edges?.length === 0) ? (
+            <div className="grid grid-cols-4 my-2 py-6 animate-slideUp">
+              <div className="col-span-4 text-center">
+                <div className={`${pomotectFont.className} py-6 text-center`}>YOUR CART IS EMPTY</div>
+              </div>
+            </div>
+          ) :
             (data ? (() => {
               const filteredItems = data.cart?.lines.edges.filter((item: any) => {
                 // If variantId is provided, only show items that match
@@ -770,7 +782,7 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
                 return (
                   <div 
                     key={i} 
-                    className={`grid grid-cols-4 border-y border-black my-2 py-2 pl-2 ${
+                    className={`grid grid-cols-4 border-y border-black my-2 py-2 pl-2 transition-all duration-300 ease-in-out ${
                       isHighlighted ? 'bg-yellow-50 border-2 border-yellow-400' : ''
                     }`}
                   >
@@ -822,7 +834,7 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
             )
         )
       }
-      <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta`}>TOTAL BEFORE TAXES + SHIPPING</div>
+      <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta transition-all duration-300 ease-in-out`}>TOTAL BEFORE TAXES + SHIPPING</div>
       <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className} transition-all duration-300 ease-out ${
         isTotalFlashing ? 'text-terracotta' : ''
       }`}>
