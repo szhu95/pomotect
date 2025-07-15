@@ -487,7 +487,13 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
       return;
     }
     setData(response ? response : '');
-    setCheckoutUrl(response ? response.cart.checkoutUrl : '');
+          let checkoutUrl = response ? response.cart.checkoutUrl : '';
+      if (checkoutUrl) {
+        checkoutUrl = checkoutUrl
+          .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
+          .replace(/\?key=[^&]+$/, '');
+      }
+    setCheckoutUrl(checkoutUrl);
     setTotal(response ? response.cart?.cost?.subtotalAmount.amount : '0.0');
     
     // Calculate total quantity across all line items
@@ -870,13 +876,22 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               if (existingCartId) {
                 // Fetch the cart to get the checkoutUrl
                 const cart = await getCart();
-                if (cart?.cart?.checkoutUrl) {
-                  window.location.href = cart.cart.checkoutUrl;
+                let checkoutUrl = cart?.cart?.checkoutUrl;
+
+                if (checkoutUrl) {
+                  // Force the URL to use Shopify domain and correct path
+                  checkoutUrl = checkoutUrl
+                    .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
+                    .replace(/\?key=[^&]+$/, '');
+                  
+                  window.location.href = checkoutUrl;
                 } else {
-                  window.location.href = '/cart';
+                  console.error('No checkout URL available, redirecting to Shopify store');
+                  window.location.href = 'https://pomotect.myshopify.com/';
                 }
               } else {
-                window.location.href = '/cart';
+                console.error('No cart ID, redirecting to Shopify store');
+                window.location.href = 'https://pomotect.myshopify.com/';
               }
             }
           }}
@@ -896,13 +911,22 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
               if (existingCartId) {
                 // Fetch the cart to get the checkoutUrl
                 const cart = await getCart();
-                if (cart?.cart?.checkoutUrl) {
-                  window.location.href = cart.cart.checkoutUrl;
+                let checkoutUrl = cart?.cart?.checkoutUrl;
+
+                if (checkoutUrl) {
+                  // Force the URL to use Shopify domain and correct path
+                  checkoutUrl = checkoutUrl
+                    .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
+                    .replace(/\?key=[^&]+$/, '');
+                  
+                  window.location.href = checkoutUrl;
                 } else {
-                  window.location.href = '/cart';
+                  console.error('No checkout URL available, redirecting to Shopify store');
+                  window.location.href = 'https://pomotect.myshopify.com/';
                 }
               } else {
-                window.location.href = '/cart';
+                console.error('No cart ID, redirecting to Shopify store');
+                window.location.href = 'https://pomotect.myshopify.com/';
               }
             }
           }}
@@ -912,7 +936,61 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
         </button>
       ) : (
         // Original cart logic
-        quantity === 0 ? <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-slate-300 aria-disabled pointer-events-none text-white italic font-semibold`} tabIndex={-1}>CHECKOUT</Link> : <Link href={checkoutUrl} scroll={false} className={`${pomotectFont.className} float-right px-4 bg-terracotta text-white italic font-semibold`}>CHECKOUT</Link>
+        !data?.cart?.lines?.edges?.length || data?.cart?.lines?.edges?.length === 0 ? (
+          <button 
+            disabled
+            className={`${pomotectFont.className} float-right px-4 bg-slate-300 text-white italic font-semibold cursor-not-allowed`}
+          >
+            CHECKOUT
+          </button>
+        ) : (
+          <button 
+            onClick={async () => {
+              if (data?.cart?.checkoutUrl) {
+                let checkoutUrl = data.cart.checkoutUrl;
+
+                if (checkoutUrl) {
+                  // Force the URL to use Shopify domain and correct path
+                  checkoutUrl = checkoutUrl
+                    .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
+                    .replace(/\?key=[^&]+$/, '');
+                  
+                  window.location.href = checkoutUrl;
+                } else {
+                  // Fallback: try to get fresh cart data
+                  const cart = await getCart();
+                  let fallbackUrl = cart?.cart?.checkoutUrl;
+                  if (fallbackUrl) {
+                    // Force the URL to use Shopify domain and correct path
+                    fallbackUrl = fallbackUrl
+                      .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
+                      .replace(/\?key=[^&]+$/, '');
+                    window.location.href = fallbackUrl;
+                  } else {
+                    window.location.href = 'https://pomotect.myshopify.com/';
+                  }
+                }
+              } else {
+                // Fallback: try to get fresh cart data
+                const cart = await getCart();
+                let fallbackUrl = cart?.cart?.checkoutUrl;
+                if (fallbackUrl) {
+                  fallbackUrl = fallbackUrl
+                    .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
+                    .replace(/\?key=[^&]+$/, '');
+                }
+                if (fallbackUrl) {
+                  window.location.href = fallbackUrl;
+                } else {
+                  window.location.href = 'https://pomotect.myshopify.com/';
+                }
+              }
+            }}
+            className={`${pomotectFont.className} float-right px-4 bg-terracotta text-white italic font-semibold`}
+          >
+            CHECKOUT
+          </button>
+        )
       )}
     </div>
   )
