@@ -1,9 +1,7 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInterval } from '@/hooks/useInterval';
 
 interface Post {
     slug: string;
@@ -20,28 +18,31 @@ interface ImageTickerProps {
 }
 
 export default function ImageTicker({ response }: ImageTickerProps) {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [direction, setDirection] = useState<'left' | 'right'>('right');
     const [isMobile, setIsMobile] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
+    const [screenSize, setScreenSize] = useState<'mobile' | 'desktop' | 'xl'>('desktop');
     const posts = response.posts || [];
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
     
     // Responsive visible count
-    const visibleCount = isMobile ? 3 : 6; // Show 3 on mobile, 6 on desktop
-
-    // Auto-rotation interval (paused on hover)
-    useInterval(() => {
-        if (!isMobile && !isHovered) {
-            setDirection('right');
-            setCurrentIndex((prev) => (prev + visibleCount) % posts.length);
-        }
-    }, isMobile || isHovered ? null : 5000); // Only auto-rotate on desktop, pause on hover
+    const getVisibleCount = () => {
+        if (isMobile) return 3;
+        if (screenSize === 'xl') return 8;
+        return 6; // desktop
+    };
+    const visibleCount = getVisibleCount();
 
     // Check screen size on mount and resize
     useEffect(() => {
         const checkScreenSize = () => {
             const width = window.innerWidth;
             setIsMobile(width < 768); // md breakpoint
+            if (width >= 1280) { // xl breakpoint
+                setScreenSize('xl');
+            } else if (width >= 768) {
+                setScreenSize('desktop');
+            } else {
+                setScreenSize('mobile');
+            }
         };
         
         checkScreenSize();
@@ -50,134 +51,81 @@ export default function ImageTicker({ response }: ImageTickerProps) {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
-    // Swipe gesture state
-    let touchStartX = 0;
-    let touchEndX = 0;
+    // Handle endless scroll
+    useEffect(() => {
+        const scrollContainer = scrollContainerRef.current;
+        if (!scrollContainer) return;
 
-    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-        touchStartX = e.changedTouches[0].screenX;
-    };
-    const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (!isMobile) return;
-        const delta = touchEndX - touchStartX;
-        if (Math.abs(delta) > 50) {
-            if (delta < 0) {
-                // Swipe left: next 3
-                setDirection('right');
-                setCurrentIndex((prev) => (prev + visibleCount) % posts.length);
-            } else {
-                // Swipe right: prev 3
-                setDirection('left');
-                setCurrentIndex((prev) => (prev - visibleCount + posts.length) % posts.length);
+        const handleScroll = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+            const singleSetWidth = scrollWidth / 3; // Since we have 3 sets of posts
+            
+            // If we're near the end of the second set, jump to the beginning of the second set
+            if (scrollLeft >= singleSetWidth * 2) {
+                scrollContainer.scrollLeft = singleSetWidth;
             }
-        }
-    };
+            // If we're near the beginning of the first set, jump to the beginning of the second set
+            else if (scrollLeft <= singleSetWidth * 0.1) {
+                scrollContainer.scrollLeft = singleSetWidth;
+            }
+        };
 
-    const handleArrow = (dir: 'left' | 'right') => {
-        setDirection(dir);
-        setCurrentIndex((prev) =>
-            dir === 'right'
-                ? (prev + visibleCount) % posts.length
-                : (prev - visibleCount + posts.length) % posts.length
-        );
-    };
+        scrollContainer.addEventListener('scroll', handleScroll);
+        return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }, []);
 
-    // Get visible images
-    const getVisiblePosts = () => {
-        const arr = [];
-        for (let i = 0; i < visibleCount; i++) {
-            arr.push(posts[(currentIndex + i) % posts.length]);
-        }
-        return arr;
+
+
+    // Get all posts for horizontal scrolling with endless loop
+    const getAllPosts = () => {
+        // Duplicate the posts array to create seamless endless scroll
+        return [...posts, ...posts, ...posts];
     };
 
     return (
-        <div 
-            className="relative w-full flex flex-col items-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onTouchStart={() => setIsHovered(true)}
-            onTouchEnd={() => {
-                // Add a delay before resuming to allow for tap interactions
-                setTimeout(() => setIsHovered(false), 2000);
-            }}
-        >
-            {/* Carousel */}
-            <div className="w-full flex items-center justify-between py-6 md:px-0 relative">
-                {/* Left Arrow */}
-                <button
-                    onClick={() => handleArrow('left')}
-                    className="transition-colors duration-200 left-0 top-1/2 -translate-y-1/2 absolute md:static z-10 md:z-0 md:translate-y-0 md:top-auto md:left-auto hidden md:block"
-                    aria-label="Previous"
-                >
-                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M15 19l-7-7 7-7"/>
-                    </svg>
-                </button>
-                
-                {/* Images Container */}
-                <div className="flex-1 mx-0 flex justify-center flex-nowrap scrollbar-hide"
-                    style={{ touchAction: 'pan-x' }}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                >
-                    <AnimatePresence mode="wait">
-                        <motion.div 
-                            key={currentIndex}
-                            className="flex gap-4 w-full justify-center flex-nowrap"
-                            initial={{ x: isMobile ? (direction === 'right' ? -100 : 100) : (direction === 'right' ? 100 : -100), opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: isMobile ? (direction === 'right' ? 100 : -100) : (direction === 'right' ? -100 : 100), opacity: 0 }}
-                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+        <div className="relative w-full flex flex-col items-center">
+            {/* Horizontal Scroll Container */}
+            <div 
+                ref={scrollContainerRef} 
+                className="w-full overflow-x-auto py-6 hide-scrollbar"
+                style={{
+                    scrollbarWidth: 'none', /* Firefox */
+                    msOverflowStyle: 'none' /* IE and Edge */
+                }}
+            >
+                <div className="flex gap-4 px-4 md:px-0" style={{ minWidth: 'max-content' }}>
+                    {getAllPosts().map((post, idx) => (
+                        <Link
+                            key={`${post.slug}-${idx}`}
+                            href={`/words/${post.slug}`}
+                            className="relative group cursor-pointer overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 bg-gray-50 rounded-lg hover:rounded-none flex-shrink-0"
+                            style={{ 
+                                width: isMobile ? 112 : 150,
+                                height: isMobile ? 112 : 150,
+                                aspectRatio: '1 / 1',
+                            }}
                         >
-                            {getVisiblePosts().map((post, idx) => (
-                                <Link
-                                    key={`${post.slug}-${currentIndex}`}
-                                    href={`/words/${post.slug}`}
-                                    className="relative group cursor-pointer overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 bg-gray-50 md:rounded-lg md:hover:rounded-none"
-                                    style={{ 
-                                        width: isMobile ? 112 : 150,
-                                        height: isMobile ? 112 : 150,
-                                        minWidth: isMobile ? 112 : 150,
-                                        minHeight: isMobile ? 112 : 150,
-                                        aspectRatio: '1 / 1',
-                                    }}
-                                >
-                                    <Image
-                                        src={post.feature_image}
-                                        alt={`pomo-text ${post.slug}`}
-                                        width={150}
-                                        height={150}
-                                        className="object-cover w-full h-full bg-gray-50"
-                                        loading="lazy"
-                                        sizes={isMobile ? "112px" : "150px"}
-                                        quality={85}
-                                        placeholder="empty"
-                                    />
-                                    {/* Title overlay - always visible on mobile, hover on desktop */}
-                                    <div className="absolute bottom-0 left-0 w-full bg-black/30 md:bg-black/50 text-white text-sm minion-font px-1 md:px-2 py-0.5 md:py-1 text-center break-words opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 leading-tight md:leading-normal">
-                                        {post.title.length > 50 && isMobile ? 
-                                            `${post.title.substring(0, 50)}...` : 
-                                            post.title
-                                        }
-                                    </div>
-                                </Link>
-                            ))}
-                        </motion.div>
-                    </AnimatePresence>
+                            <Image
+                                src={post.feature_image}
+                                alt={`pomo-text ${post.slug}`}
+                                width={isMobile ? 112 : 150}
+                                height={isMobile ? 112 : 150}
+                                className="object-cover w-full h-full bg-gray-50"
+                                loading="lazy"
+                                sizes={isMobile ? "112px" : "150px"}
+                                quality={85}
+                                placeholder="empty"
+                            />
+                            {/* Title overlay */}
+                            <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white text-sm minion-font px-2 py-1 text-center break-words opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-tight">
+                                {post.title.length > 50 ? 
+                                    `${post.title.substring(0, 50)}...` : 
+                                    post.title
+                                }
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-                
-                {/* Right Arrow */}
-                <button
-                    onClick={() => handleArrow('right')}
-                    className="transition-colors duration-200 right-0 top-1/2 -translate-y-1/2 absolute md:static z-10 md:z-0 md:translate-y-0 md:top-auto md:right-auto hidden md:block"
-                    aria-label="Next"
-                >
-                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M9 5l7 7-7 7"/>
-                    </svg>
-                </button>
             </div>
         </div>
     );
