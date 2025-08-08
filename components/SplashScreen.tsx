@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import headerLogo from "@/assets/images/header-logo-2.7.png";
+import globeImage from "@/assets/images/globe-animation.gif";
 
 export default function SplashScreen() {
     const [isLoading, setIsLoading] = useState(true);
@@ -31,21 +32,35 @@ export default function SplashScreen() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <video
-                            src="/globe-animation.webm"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            width={300}
-                            height={300}
-                            className="w-[300px] h-[300px]"
-                            style={{
-                                WebkitUserSelect: 'none',
-                                WebkitTouchCallout: 'none',
-                                WebkitTapHighlightColor: 'transparent',
-                            }}
-                        />
+                        {/* Desktop: Show video */}
+                        <div className="hidden md:block">
+                            <video
+                                src="/globe-animation.webm"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                width={300}
+                                height={300}
+                                className="w-[300px] h-[300px]"
+                                style={{
+                                    WebkitUserSelect: 'none',
+                                    WebkitTouchCallout: 'none',
+                                    WebkitTapHighlightColor: 'transparent',
+                                }}
+                            />
+                        </div>
+                        {/* Mobile: Show static globe image */}
+                        <div className="block md:hidden">
+                            <Image
+                                src={globeImage}
+                                alt="Globe"
+                                width={300}
+                                height={300}
+                                className="w-[300px] h-[300px]"
+                                priority
+                            />
+                        </div>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
