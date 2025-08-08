@@ -51,10 +51,10 @@ export default function ImageTicker({ response }: ImageTickerProps) {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
-    // Handle endless scroll - only for desktop
+    // Handle endless scroll for both mobile and desktop
     useEffect(() => {
         const scrollContainer = scrollContainerRef.current;
-        if (!scrollContainer || isMobile) return;
+        if (!scrollContainer) return;
 
         const handleScroll = () => {
             const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
@@ -77,7 +77,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
 
         scrollContainer.addEventListener('scroll', handleScroll);
         return () => scrollContainer.removeEventListener('scroll', handleScroll);
-    }, [isMobile]);
+    }, []);
 
 
 
