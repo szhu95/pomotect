@@ -159,13 +159,14 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                             href={`/words/${post.slug}`}
                             className={`relative cursor-pointer overflow-hidden shadow-lg bg-gray-50 rounded-lg flex-shrink-0 ${
                                 isMobile 
-                                    ? '' 
+                                    ? 'select-none' 
                                     : 'group transition-all duration-300 hover:scale-105 hover:rounded-none'
                             }`}
                             style={{ 
                                 width: isMobile ? 112 : 150,
                                 height: isMobile ? 112 : 150,
                                 aspectRatio: '1 / 1',
+                                WebkitTapHighlightColor: isMobile ? 'transparent' : undefined,
                             }}
                         >
                             <Image
@@ -205,11 +206,20 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     onTouchStart={canScrollLeft ? startScrollLeft : undefined}
                     onTouchEnd={canScrollLeft ? stopScroll : undefined}
                     disabled={!canScrollLeft}
-                    className={`flex items-center justify-center h-8 transition-all duration-300 ${
+                    className={`flex items-center justify-center h-8 ${
+                        isMobile 
+                            ? 'select-none' 
+                            : 'transition-all duration-300'
+                    } ${
                         canScrollLeft 
-                            ? 'opacity-100 hover:opacity-70 cursor-pointer' 
+                            ? isMobile 
+                                ? 'opacity-100 cursor-pointer' 
+                                : 'opacity-100 hover:opacity-70 cursor-pointer'
                             : 'opacity-0 pointer-events-none'
                     }`}
+                    style={{
+                        WebkitTapHighlightColor: isMobile ? 'transparent' : undefined,
+                    }}
                     aria-label="Scroll left"
                 >
                     <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
@@ -225,7 +235,14 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     onMouseLeave={stopScroll}
                     onTouchStart={startScrollRight}
                     onTouchEnd={stopScroll}
-                    className="flex items-center justify-center h-8 transition-colors duration-200 hover:opacity-70"
+                    className={`flex items-center justify-center h-8 ${
+                        isMobile 
+                            ? 'select-none' 
+                            : 'transition-colors duration-200 hover:opacity-70'
+                    }`}
+                    style={{
+                        WebkitTapHighlightColor: isMobile ? 'transparent' : undefined,
+                    }}
                     aria-label="Scroll right"
                 >
                     <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">

@@ -13,6 +13,15 @@ export default function Loading() {
                 width={300}
                 height={300}
                 className="w-[300px] h-[300px]"
+                onError={(e) => {
+                    console.log('Video failed to load:', e);
+                }}
+                onLoadStart={() => {
+                    console.log('Video loading started');
+                }}
+                onCanPlay={() => {
+                    console.log('Video can play');
+                }}
             />
         </div>
     );
