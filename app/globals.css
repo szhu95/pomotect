@@ -637,3 +637,23 @@ input[type="range"].dj-mixer-slider:focus::-ms-thumb {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Mobile video optimizations */
+video {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: none;
+}
+
+/* Mobile touch optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
