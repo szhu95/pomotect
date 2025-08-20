@@ -1,6 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import localFont from "next/font/local";
+
+const pomotectFont = localFont({
+    src: '../fonts/pomotect-analog-regular.otf',
+});
 
 export default function CookieConsent() {
     const [showConsent, setShowConsent] = useState(false);
@@ -55,22 +60,22 @@ export default function CookieConsent() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 100, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="fixed bottom-3 left-3 right-3 md:left-auto md:right-3 md:w-80 z-50"
+                    className="fixed bottom-2 left-2 right-2 md:left-auto md:right-2 md:w-64 z-50"
                 >
-                    <div className="bg-white border-2 border-primary-blue border-dashed shadow-lg p-4 site-section">
-                        <p className="minion-font text-black mb-3 leading-relaxed text-sm">
+                    <div className="bg-white border-2 border-primary-blue border-dashed shadow-lg p-2" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+                        <p className={`${pomotectFont.className} text-black mb-2 leading-tight text-xs`}>
                             We use cookies to enhance your experience.
                         </p>
-                        <div className="flex gap-3">
+                        <div className="flex gap-2">
                             <button
                                 onClick={acceptCookies}
-                                className="pomotect-font px-4 py-2 bg-primary-blue text-white font-medium hover:bg-black transition-colors duration-200 text-sm"
+                                className={`${pomotectFont.className} px-3 py-1.5 bg-primary-blue text-white font-medium hover:bg-black transition-colors duration-200 text-xs`}
                             >
                                 Accept
                             </button>
                             <button
                                 onClick={declineCookies}
-                                className="pomotect-font px-4 py-2 bg-white text-black border border-gray-300 font-medium hover:bg-gray-100 hover:border-primary-blue transition-colors duration-200 text-sm"
+                                className={`${pomotectFont.className} px-3 py-1.5 bg-white text-black border border-gray-300 font-medium hover:bg-gray-100 hover:border-primary-blue transition-colors duration-200 text-xs`}
                             >
                                 Decline
                             </button>
