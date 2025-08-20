@@ -41,12 +41,12 @@ export default async function ProjectPosts({ response }: any) {
                                 key={post.slug}
                                 href={`/products/process/${post.slug}`}
                             >
-                                <div className="hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
+                                <div className="hover:bg-black hover:text-yellow entry-number text-xl md:text-2xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
                             </Link>
                             <div className="font-['Minion'] italic">{formattedPostDate}</div>
                         </div>
                         <div className={`site-section words-body max-h-[85vh] overflow-y-auto`}>
-                            <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:w-[90%] md:m-auto`}>{parsedPost}</div>
+                            <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:text-lg md:w-[90%] md:m-auto`}>{parsedPost}</div>
                             {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
                                     src={post.feature_image}

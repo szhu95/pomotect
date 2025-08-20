@@ -21,6 +21,7 @@ import InquiryForm from './InquiryForm';
 import ProductDetailsClient from './ProductDetailsClient';
 import ProcessSidebar from './ProcessSidebar';
 import QuantityAdjuster from './QuantityAdjuster';
+import CookieConsent from './CookieConsent';
 
 export {
     Hero,
@@ -45,5 +46,6 @@ export {
     InquiryForm,
     ProductDetailsClient,
     ProcessSidebar,
-    QuantityAdjuster
+    QuantityAdjuster,
+    CookieConsent
 }

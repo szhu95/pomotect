@@ -29,6 +29,20 @@
   src: local('Analog'), url('../fonts/analog.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'Pomotect';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Pomotect'), url('../fonts/pomotect-analog-regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Pomotect';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Pomotect'), url('../fonts/pomotect-analog-bold.otf') format('opentype');
+}
+
 .header:active {
   background-color: blue;
 }
@@ -51,6 +65,10 @@
 
 .analog-font {
   font-family: 'Analog';
+}
+
+.pomotect-font {
+  font-family: 'Pomotect';
 }
 
 * {

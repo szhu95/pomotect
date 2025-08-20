@@ -44,15 +44,15 @@ export default function Posts({ response }: any) {
                                 href={`/words/${post.slug}`}
                                 className="block group w-full"
                             >
-                                <div className={`hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font [padding-top:calc(4px*var(--is-mobile-condensed,0))] [padding-bottom:calc(4px*var(--is-mobile-condensed,0))]`}>
+                                <div className={`hover:bg-black hover:text-yellow entry-number text-xl md:text-2xl text-primary-blue font-black minion-font [padding-top:calc(4px*var(--is-mobile-condensed,0))] [padding-bottom:calc(4px*var(--is-mobile-condensed,0))]`}>
                                     {post.title ? post.title : 'Title'}
                                 </div>
                             </Link>
                             <div className="flex justify-between items-center mt-4 mb-4 border-b border-black">
-                                <div className="minion-font italic">
+                                <div className="minion-font italic md:text-lg">
                                     {formattedPostDate}
                                 </div>
-                                <div className="minion-font italic">
+                                <div className="minion-font italic md:text-lg">
                                     {(post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com")}
                                 </div>
                             </div>
@@ -83,12 +83,12 @@ export default function Posts({ response }: any) {
                             href={`/words/${post.slug}`}
                             className="hidden md:block group"
                         >
-                            <div className="hover:bg-black hover:text-yellow entry-number text-xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
+                            <div className="hover:bg-black hover:text-yellow entry-number text-xl md:text-2xl text-primary-blue font-black minion-font">{post.title ? post.title : 'Title'}</div>
                         </Link>
                         <div className="minion-font italic hidden md:block">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                     </div>
                     <div className={`site-section words-body hidden md:block max-h-[85vh] overflow-y-auto md:border md:border-primary-blue md:border-dashed md:border-2`}>
-                        <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:w-[90%] md:m-auto`}>{parsedPost}</div>
+                        <div className={`pr-2 py-1 ${garamondFont.className} text-justify md:text-lg md:w-[90%] md:m-auto`}>{parsedPost}</div>
                     </div>
 
                 </div>

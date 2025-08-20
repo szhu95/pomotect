@@ -39,11 +39,11 @@ export default async function Post({ response }: any) {
             return (
                 <div key={post.id} className="mt-5 md:w-[75%] md:m-auto">
                         <div className='site-section words-header'>
-                            <div className="minion-font entry-number text-3xl text-primary-blue font-black md:w-[60%] md:m-auto">{post.title ? post.title : 'Title'}</div>
+                            <div className="minion-font entry-number text-3xl md:text-4xl text-primary-blue font-black md:w-[60%] md:m-auto">{post.title ? post.title : 'Title'}</div>
                             <div className="minion-font italic text-gray-400 md:w-[60%] md:m-auto">On {formattedPostDate}, {(post.primary_author.name ? post.primary_author.name : "Anonymous")} {'<' + (post.custom_excerpt ? post.custom_excerpt : "office@pomotect.com") + '>'} wrote:</div>
                         </div>
                         <div className={`site-section post-body overflow-y-auto`}>
-                            <div className={`minion-font pr-2 py-1 text-justify md:w-[60%] md:m-auto`}>{parsedPost}</div>
+                            <div className={`minion-font pr-2 py-1 text-justify md:text-lg md:w-[60%] md:m-auto`}>{parsedPost}</div>
                             {/* <div className="pr-2 py-2">
                                 {post.feature_image && <Image
                                     src={post.feature_image}

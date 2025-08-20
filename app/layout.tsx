@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Footer, Header } from '@/components'
+import { Footer, Header, CookieConsent } from '@/components'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import SplashScreen from '@/components/SplashScreen'
@@ -38,6 +38,7 @@ export default function RootLayout({
             </div>
           </CartProvider>
         </Suspense>
+        <CookieConsent />
       </body>
     </html>
   )
