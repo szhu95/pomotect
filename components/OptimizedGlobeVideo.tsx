@@ -18,12 +18,18 @@ export default function OptimizedGlobeVideo({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoError, setIsVideoError] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
 
+  // Ensure we're on the client side before rendering video
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Fallback to GIF if video doesn't load within 2 seconds
   useEffect(() => {
-    if (showOnMobile) return; // Skip timeout for mobile (uses GIF directly)
+    if (showOnMobile || !isClient) return; // Skip timeout for mobile or SSR
     
     timeoutRef.current = setTimeout(() => {
       if (!isVideoLoaded) {
@@ -37,7 +43,7 @@ export default function OptimizedGlobeVideo({
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [isVideoLoaded, showOnMobile]);
+  }, [isVideoLoaded, showOnMobile, isClient]);
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
@@ -51,8 +57,8 @@ export default function OptimizedGlobeVideo({
     setShowFallback(true);
   };
 
-  // For mobile, always show GIF
-  if (showOnMobile) {
+  // Always show GIF during SSR or for mobile
+  if (!isClient || showOnMobile) {
     return (
       <Image
         src="/globe-animation.gif"
