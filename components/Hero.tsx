@@ -28,6 +28,7 @@ const Hero = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
+            className="relative"
         >
             <div className="hero">
                 <div className="hidden w-[100%] md:inline">
@@ -51,19 +52,20 @@ const Hero = () => {
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
                         >
                             <Link
                                 key="objects"
                                 href={`/products`}
                                 className="group md:block absolute top-[6vw] left-[6vw] hidden"
-                                scroll={false}>
+                                scroll={false}
+                                tabIndex={0}>
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"Objects"}
@@ -77,18 +79,19 @@ const Hero = () => {
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             <Link
                                 key="words"
                                 href={`/words`}
-                                className="group md:block absolute top-[13vw] left-[22vw] hidden">
+                                className="group md:block absolute top-[13vw] left-[22vw] hidden"
+                                tabIndex={0}>
                                 <Image
                                     src={wordsLinkImage}
                                     alt={"Words"}
@@ -102,19 +105,15 @@ const Hero = () => {
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
-                            whileHover={{
-                                scale: 1.02,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.6 }}
                         >
                             <Link
                                 key="sounds"
                                 href={`/sounds`}
                                 className="group md:block absolute top-[26vw] left-[6vw] hidden"
-                                scroll={false}>
+                                scroll={false}
+                                tabIndex={0}>
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"Sounds"}
@@ -128,19 +127,15 @@ const Hero = () => {
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
-                            whileHover={{
-                                scale: 1.02,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.5 }}
                         >
                             <Link
                                 key="about"
                                 href={`/about`}
                                 className="group hidden absolute top-[36vw] left-[22vw] md:flex"
-                                scroll={false}>
+                                scroll={false}
+                                tabIndex={0}>
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"About"}
@@ -176,19 +171,20 @@ const Hero = () => {
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
                         >
                             <Link
                                 key="objects"
                                 href={`/products`}
                                 className="group block absolute top-[12vw] left-[7vw] md:hidden"
-                                scroll={false}>
+                                scroll={false}
+                                tabIndex={0}>
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"Objects"}
@@ -200,18 +196,19 @@ const Hero = () => {
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             <Link
                                 key="words"
                                 href={`/words`}
-                                className="group block absolute top-[35vw] left-[35vw] md:hidden">
+                                className="group block absolute top-[35vw] left-[35vw] md:hidden"
+                                tabIndex={0}>
                                 <Image
                                     src={wordsLinkImage}
                                     alt={"Words"}
@@ -228,13 +225,14 @@ const Hero = () => {
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
+                            animate={{ opacity: 1 }}
                         >
                             <Link
                                 key="sounds"
                                 href={`/sounds`}
                                 className="group block absolute top-[60vw] left-[6vw] md:hidden"
-                                scroll={false}>
+                                scroll={false}
+                                tabIndex={0}>
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"Sounds"}
@@ -251,13 +249,14 @@ const Hero = () => {
                                 transition: { duration: 0.25 },
                             }}
                             whileTap={{ scale: 1.0 }}
-                            animate={{ opacity: 1.0 }}
+                            animate={{ opacity: 1 }}
                         >
                             <Link
                                 key="about"
                                 href={`/about`}
                                 className="group md:hidden absolute top-[85vw] left-[35vw] block"
-                                scroll={false}>
+                                scroll={false}
+                                tabIndex={0}>
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"About"}
