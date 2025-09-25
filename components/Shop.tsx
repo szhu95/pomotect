@@ -3,6 +3,7 @@ import { formatPrice, storefront } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect } from 'react';
 
 interface ShopProps {
   response: {
@@ -47,6 +48,21 @@ export default function Shop({ response }: ShopProps) {
     // Check if any variant is available for sale
     return !product.variants.edges.some((edge: any) => edge.node.availableForSale);
   };
+
+  // Preload all product images
+  useEffect(() => {
+    response.products.edges.forEach(item => {
+      const product = item.node;
+      if (product.images.edges.length > 0) {
+        const image = product.images.edges[0].node;
+        if (image.transformedSrc) {
+          // Create a new image element to preload
+          const img = new window.Image();
+          img.src = image.transformedSrc;
+        }
+      }
+    });
+  }, [response.products.edges]);
 
   // Separate products by category
   const furnitureProducts = response.products.edges.filter(item => 

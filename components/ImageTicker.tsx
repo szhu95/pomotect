@@ -22,6 +22,17 @@ export default function ImageTicker({ response }: ImageTickerProps) {
     const [screenSize, setScreenSize] = useState<'mobile' | 'desktop' | 'xl'>('desktop');
     const posts = response.posts || [];
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    // Preload all ticker images
+    useEffect(() => {
+        posts.forEach(post => {
+            if (post.feature_image) {
+                // Create a new image element to preload
+                const img = new window.Image();
+                img.src = post.feature_image;
+            }
+        });
+    }, [posts]);
     
     // Responsive visible count
     const getVisibleCount = () => {

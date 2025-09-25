@@ -22,6 +22,19 @@ const Carousel = (response: any) => {
     const [modalImg, setModalImg] = useState<{src: string, alt: string} | null>(null);
     const modalImgRef = useRef<HTMLImageElement>(null);
 
+    // Preload all carousel images
+    useEffect(() => {
+        if (response.images?.edges) {
+            response.images.edges.forEach((item: any) => {
+                if (item.node?.transformedSrc) {
+                    // Create a new image element to preload
+                    const img = new window.Image();
+                    img.src = item.node.transformedSrc;
+                }
+            });
+        }
+    }, [response.images?.edges]);
+
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
     }, [emblaApi])
