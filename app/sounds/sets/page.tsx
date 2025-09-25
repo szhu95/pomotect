@@ -94,12 +94,13 @@ const Events = () => {
                                 </div>
                                 <div className="flex justify-center">
                                     <ShimmerImage
-                                        width={400}
-                                        height={400}
+                                        width={300}
+                                        height={300}
                                         src={event.flyer}
                                         alt={event.alt}
                                         className="mx-auto shadow-lg max-w-full h-auto"
-                                        priority={event.id <= 2} // Priority for first 2 images
+                                        priority={event.id === 1} // Only priority for first image on mobile
+                                        sizes="(max-width: 768px) 300px, 400px"
                                     />
                                 </div>
                             </div>
@@ -158,7 +159,8 @@ const Events = () => {
                                                     src={event.flyer}
                                                     alt={event.alt}
                                                     className="mx-auto shadow-lg max-w-full h-auto"
-                                                    priority={event.id <= 2} // Priority for first 2 images
+                                                    priority={false} // No priority on desktop since images load on hover
+                                                    sizes="(min-width: 768px) 500px, 300px"
                                                 />
                                             </>
                                         );

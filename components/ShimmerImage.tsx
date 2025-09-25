@@ -46,7 +46,7 @@ export default function ShimmerImage({
 
     const observer = new IntersectionObserver(handleIntersection, {
       threshold: 0.1,
-      rootMargin: '100px' // Start loading 100px before image comes into view
+      rootMargin: '50px' // Reduced margin for better mobile performance
     });
 
     const currentElement = containerRef.current;

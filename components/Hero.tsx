@@ -45,9 +45,9 @@ const Hero = () => {
                             width={2000}
                             alt="landing page background image"
                             className='z-0 w-[100%] absolute'
-                            priority
+                            priority={true}
                             decoding="async"
-                            quality={85}
+                            quality={75}
                             fadeDuration={1.2}
                             delay={0}
                         />
@@ -169,10 +169,10 @@ const Hero = () => {
                             width={1000}
                             alt="landing page background mobile image"
                             className='z-0 w-[100%] absolute'
-                            priority
+                            priority={true}
                             decoding="async"
-                            quality={85}
-                            fadeDuration={1.2}
+                            quality={75}
+                            fadeDuration={0.8}
                             delay={0}
                         />
                         <motion.div

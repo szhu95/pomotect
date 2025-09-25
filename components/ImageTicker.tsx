@@ -69,16 +69,16 @@ export default function ImageTicker({ response }: ImageTickerProps) {
             const singleSetWidth = scrollWidth / 3; // Since we have 3 sets of posts
             
             // Enable left button when user scrolls past the initial position
-            if (scrollLeft > singleSetWidth * 0.5) {
+            if (scrollLeft > singleSetWidth * 0.3) {
                 setCanScrollLeft(true);
             }
             
             // If we're near the end of the third set, jump to the beginning of the second set
-            if (scrollLeft >= singleSetWidth * 2.5) {
+            if (scrollLeft >= singleSetWidth * 2.2) {
                 scrollContainer.scrollLeft = singleSetWidth;
             }
             // If we're near the beginning of the first set, jump to the beginning of the second set
-            else if (scrollLeft <= singleSetWidth * 0.5) {
+            else if (scrollLeft <= singleSetWidth * 0.2) {
                 scrollContainer.scrollLeft = singleSetWidth;
             }
         };
@@ -211,7 +211,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                 height={isMobile ? 112 : 150}
                                 className="object-cover w-full h-full bg-gray-50"
                                 sizes={isMobile ? "112px" : "150px"}
-                                priority={idx < (isMobile ? 3 : 6)} // Priority for first visible images
+                                priority={idx < (isMobile ? 1 : 3)} // Only first image priority on mobile
                             />
                             {/* Title overlay */}
                             <div className={`absolute bottom-0 left-0 w-full text-white text-sm minion-font px-2 py-1 text-center break-words leading-tight ${

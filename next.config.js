@@ -67,13 +67,13 @@ const nextConfig = {
         hostname: "**",
       }
     ],
-    qualities: [75, 80, 85, 90, 95, 100],
+    qualities: [60, 70, 75, 80, 85, 90, 95, 100], // Lower quality options for mobile
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 112, 150], // Include ticker sizes
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 300, 384, 112, 150], // Include ticker and flyer sizes
   },
   async redirects() {
     return [
