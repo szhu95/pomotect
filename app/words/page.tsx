@@ -7,6 +7,15 @@ import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { Posts } from '@/components';
 import WordsSidebar from '@/components/WordsSidebar';
 import MobileViewToggle from '@/components/MobileViewToggle';
+import localFont from 'next/font/local';
+
+const pomotectBoldFont = localFont({
+  src: '../../fonts/pomotect-analog-bold.otf',
+});
+
+const pomotectFont = localFont({
+  src: '../../fonts/pomotect-analog-regular.otf',
+});
 
 const Words = () => {
   const [posts, setPosts] = useState<any>(null);

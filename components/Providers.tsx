@@ -6,6 +6,7 @@ import { CartProvider } from '@/context/CartContext';
 import NavigationLoadingOverlay from '@/components/NavigationLoadingOverlay';
 import ScrollToTopOnMount from '@/components/ScrollToTopOnMount';
 import SplashScreen from '@/components/SplashScreen';
+import CookieConsent from '@/components/CookieConsent';
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export default function Providers({ children }: ProvidersProps) {
           {children}
         </CartProvider>
       </ImageLoadingProvider>
+      <CookieConsent />
     </NavigationProvider>
   );
 }

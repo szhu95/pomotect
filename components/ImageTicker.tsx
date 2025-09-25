@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import LoadingLink from "./LoadingLink";
-// import Link from "next/link";
+// import LoadingLink from "./LoadingLink";
+import Link from "next/link";
 import Image from "next/image";
 import FadeInImage from './FadeInImage';
 
@@ -167,7 +167,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
             >
                 <div className="flex gap-4 px-4 md:px-0" style={{ minWidth: 'max-content' }}>
                     {getAllPosts().map((post, idx) => (
-                        <LoadingLink
+                        <Link
                             key={`${post.slug}-${idx}`}
                             href={`/words/${post.slug}`}
                             className={`relative cursor-pointer overflow-hidden shadow-lg bg-gray-50 rounded-lg flex-shrink-0 ${
@@ -203,7 +203,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                     post.title
                                 }
                             </div>
-                        </LoadingLink>
+                        </Link>
                     ))}
                 </div>
             </div>
