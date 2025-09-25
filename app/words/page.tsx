@@ -38,7 +38,8 @@ const Words = async () => {
   const data = await getData();
   let response = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name !== "Process") });
 
-  let utcTimeString = response[0].published_at;
+  // Check if we have posts before accessing the first one
+  const utcTimeString = response.length > 0 ? response[0].published_at : new Date().toISOString();
   const date = new Date(utcTimeString);
   let formattedDate = formatUpdatedDate(date)
 

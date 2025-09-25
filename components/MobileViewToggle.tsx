@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import localFont from 'next/font/local';
 
 const pomotectBoldFont = localFont({
@@ -10,12 +10,30 @@ const pomotectBoldFont = localFont({
 
 export default function MobileViewToggle() {
     const [isCondensed, setIsCondensed] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+
+    // Ensure component is mounted before manipulating DOM
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     // Update global state for condensed view
     const toggleView = () => {
-        setIsCondensed(!isCondensed);
-        document.documentElement.style.setProperty('--is-mobile-condensed', isCondensed ? '0' : '1');
+        if (!isMounted) return;
+        
+        const newCondensed = !isCondensed;
+        setIsCondensed(newCondensed);
+        document.documentElement.style.setProperty('--is-mobile-condensed', newCondensed ? '1' : '0');
     };
+
+    // Don't render until mounted to prevent hydration mismatch
+    if (!isMounted) {
+        return (
+            <div className="md:hidden">
+                <div className="h-6 w-6"></div>
+            </div>
+        );
+    }
 
     return (
         <div className="md:hidden">

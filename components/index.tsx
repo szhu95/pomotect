@@ -22,6 +22,7 @@ import ProductDetailsClient from './ProductDetailsClient';
 import ProcessSidebar from './ProcessSidebar';
 import QuantityAdjuster from './QuantityAdjuster';
 import CookieConsent from './CookieConsent';
+import FadeInImage from './FadeInImage';
 
 export {
     Hero,
@@ -47,5 +48,6 @@ export {
     ProductDetailsClient,
     ProcessSidebar,
     QuantityAdjuster,
-    CookieConsent
+    CookieConsent,
+    FadeInImage
 }

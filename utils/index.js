@@ -70,14 +70,16 @@ export function formatUpdatedDate(date) {
     return lastUpdatedDate
 }
 
-export async function getPosts() {
+export async function getPosts(limit = 50) {
     try {
-        const response = await fetch("https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=all", {
+        const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=${limit}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept-Version': 'v5.0',
             },
+            // Add caching for better performance
+            next: { revalidate: 300 }, // Revalidate every 5 minutes
         })
         return await response.json();
     } catch (error) {
@@ -95,6 +97,8 @@ export async function getPost(slug) {
                 'Content-Type': 'application/json',
                 'Accept-Version': 'v5.0',
             },
+            // Add caching for better performance
+            next: { revalidate: 300 }, // Revalidate every 5 minutes
         });
         return await response.json();
     } catch (error) {

@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import Link from "next/link";
+import LoadingLink from "./LoadingLink";
 import Image from "next/image";
+import FadeInImage from './FadeInImage';
 
 interface Post {
     slug: string;
@@ -165,7 +166,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
             >
                 <div className="flex gap-4 px-4 md:px-0" style={{ minWidth: 'max-content' }}>
                     {getAllPosts().map((post, idx) => (
-                        <Link
+                        <LoadingLink
                             key={`${post.slug}-${idx}`}
                             href={`/words/${post.slug}`}
                             className={`relative cursor-pointer overflow-hidden shadow-lg bg-gray-50 rounded-lg flex-shrink-0 ${
@@ -185,11 +186,10 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                 alt={`pomo-text ${post.slug}`}
                                 width={isMobile ? 112 : 150}
                                 height={isMobile ? 112 : 150}
-                                className="object-cover w-full h-full bg-gray-50"
+                                className="object-cover w-full h-full bg-gray-50 transition-opacity duration-500"
                                 loading="lazy"
                                 sizes={isMobile ? "112px" : "150px"}
                                 quality={85}
-                                placeholder="empty"
                             />
                             {/* Title overlay */}
                             <div className={`absolute bottom-0 left-0 w-full text-white text-sm minion-font px-2 py-1 text-center break-words leading-tight ${
@@ -202,7 +202,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                     post.title
                                 }
                             </div>
-                        </Link>
+                        </LoadingLink>
                     ))}
                 </div>
             </div>

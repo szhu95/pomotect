@@ -3,6 +3,7 @@
 import { formatUpdatedDate } from "@/utils";
 import parse from 'html-react-parser';
 import Image from "next/image";
+import LoadingLink from "./LoadingLink";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
@@ -39,7 +40,7 @@ export default function Posts({ response }: any) {
                 <div key={post.id} className="mt-5 w-full md:w-[100%] md:m-auto">
                     <div className='site-section words-header md:border-b border-black md:pb-4'>
                         <div className="md:hidden px-0">
-                            <Link
+                            <LoadingLink
                                 key={`${post.slug}-title`}
                                 href={`/words/${post.slug}`}
                                 className="block group w-full"
@@ -47,7 +48,7 @@ export default function Posts({ response }: any) {
                                 <div className={`hover:bg-black hover:text-yellow entry-number text-xl md:text-2xl text-primary-blue font-black minion-font [padding-top:calc(4px*var(--is-mobile-condensed,0))] [padding-bottom:calc(4px*var(--is-mobile-condensed,0))]`}>
                                     {post.title ? post.title : 'Title'}
                                 </div>
-                            </Link>
+                            </LoadingLink>
                             <div className="flex justify-between items-center mt-4 mb-4 border-b border-black">
                                 <div className="minion-font italic md:text-lg">
                                     {formattedPostDate}

@@ -26,9 +26,10 @@ const Hero = () => {
 
     return (
         <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
         >
             <div className="hero">
                 <div className="hidden w-[100%] md:inline">
@@ -55,6 +56,7 @@ const Hero = () => {
                             }}
                             whileTap={{ scale: 1.0 }}
                             animate={{ opacity: 1.0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
                         >
                             <Link
                                 key="objects"
@@ -80,6 +82,7 @@ const Hero = () => {
                             }}
                             whileTap={{ scale: 1.0 }}
                             animate={{ opacity: 1.0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             <Link
                                 key="words"
@@ -105,6 +108,7 @@ const Hero = () => {
                             }}
                             whileTap={{ scale: 1.0 }}
                             animate={{ opacity: 1.0 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
                         >
                             <Link
                                 key="sounds"
@@ -130,6 +134,7 @@ const Hero = () => {
                             }}
                             whileTap={{ scale: 1.0 }}
                             animate={{ opacity: 1.0 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
                         >
                             <Link
                                 key="about"
@@ -174,6 +179,7 @@ const Hero = () => {
                             }}
                             whileTap={{ scale: 1.0 }}
                             animate={{ opacity: 1.0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
                         >
                             <Link
                                 key="objects"
@@ -197,6 +203,7 @@ const Hero = () => {
                             }}
                             whileTap={{ scale: 1.0 }}
                             animate={{ opacity: 1.0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             <Link
                                 key="words"

@@ -7,7 +7,6 @@ import mobileHomeLogo from '../assets/images/header-logo-2.5.png'
 import { usePathname, useRouter } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
-import globeAnimation from '../assets/images/globe-animation.gif';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 const pomotectFont = localFont({
@@ -30,7 +29,6 @@ const Header = ({ title, menuStatus }: any) => {
     // Preload header images
     useImagePreloader(homeLogo.src);
     useImagePreloader(mobileHomeLogo.src);
-    useImagePreloader(globeAnimation.src);
 
     const handleSmallerScreensNavigation = () => {
         setIcon(!menuIcon);
@@ -56,6 +54,7 @@ const Header = ({ title, menuStatus }: any) => {
         router.push(href);
     };
 
+
     const CartCount = () => {
         if (cartItemCount > 0) {
             return (
@@ -70,7 +69,7 @@ const Header = ({ title, menuStatus }: any) => {
     return (
         <div className="padding-y md:text-center">
             <div onClick={() => setIcon(false)} className="home-link mb-4">
-                <Link href="/" scroll={true} className="md:block hidden" onClick={() => setTimeout(() => window.scrollTo(0, 0), 0)}>
+                <Link href="/" scroll={true} className="md:block hidden">
                     <Image
                         src={homeLogo}
                         priority
@@ -80,7 +79,7 @@ const Header = ({ title, menuStatus }: any) => {
                         className="w-auto h-auto"
                     />
                 </Link>
-                <Link href="/" scroll={true} className="md:hidden block" onClick={() => setTimeout(() => window.scrollTo(0, 0), 0)}>
+                <Link href="/" scroll={true} className="md:hidden block">
                     <Image
                         src={mobileHomeLogo}
                         priority
@@ -159,7 +158,7 @@ const Header = ({ title, menuStatus }: any) => {
                     }
                 </div>
                 <div className="checkout_btn mr-6" onClick={() => setIcon(false)} >
-                    <Link href="/cart" scroll={false} id="checkout-btn-mobile">
+                    <Link href="/cart" scroll={false} id="checkout-btn-mobile" onClick={() => handleMobileNavClick('/cart')}>
                         {
                             pathname.startsWith("/cart") ?
                                 <div className={`${pomotectBoldFont.className} text-terracotta inline-flex items-center relative min-w-[50px]`}>
@@ -229,8 +228,25 @@ const Header = ({ title, menuStatus }: any) => {
 
             {/* Globe animation overlay for mobile loading */}
             {loading && (
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white bg-opacity-80 md:hidden">
-                    <Image src={globeAnimation} alt="Loading..." width={220} height={220} className="animate-spin-slow" />
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white md:hidden">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        width={300}
+                        height={300}
+                        className="w-[300px] h-[300px]"
+                        style={{
+                            WebkitUserSelect: 'none',
+                            WebkitTouchCallout: 'none',
+                            WebkitTapHighlightColor: 'transparent',
+                        }}
+                    >
+                        <source src="/globe-animation.webm" type="video/webm" />
+                        <source src="/globe-animation.mp4" type="video/mp4" />
+                        <img src="/globe-animation.gif" alt="Loading..." className="w-[300px] h-[300px]" />
+                    </video>
                 </div>
             )}
         </div >
