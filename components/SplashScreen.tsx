@@ -8,25 +8,33 @@ import { useImageLoading } from "@/context/ImageLoadingContext";
 
 export default function SplashScreen() {
     const [isLoading, setIsLoading] = useState(true);
-    const { isAllImagesLoaded, loadedImages, imagesToLoad } = useImageLoading();
+    const { isAllImagesLoaded } = useImageLoading();
 
     useEffect(() => {
-        // Wait for both minimum time and all images to load
-        const timer = setTimeout(() => {
+        // In development, just show for 2 seconds
+        if (process.env.NODE_ENV === 'development') {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+
+        // In production, wait for images to load
+        const minTimer = setTimeout(() => {
             setIsLoading(false);
         }, 2000);
 
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
-        // Hide loading when images are loaded (but still respect minimum time)
         if (isAllImagesLoaded) {
-            const timer = setTimeout(() => {
+            const imageTimer = setTimeout(() => {
                 setIsLoading(false);
-            }, 100); // Small delay to ensure smooth transition
-            return () => clearTimeout(timer);
+            }, 100);
+            return () => {
+                clearTimeout(minTimer);
+                clearTimeout(imageTimer);
+            };
         }
+
+        return () => clearTimeout(minTimer);
     }, [isAllImagesLoaded]);
 
     return (
