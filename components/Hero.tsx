@@ -28,7 +28,6 @@ const Hero = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
-            className="relative"
         >
             <div className="hero">
                 <div className="hidden w-[100%] md:inline">
@@ -39,13 +38,13 @@ const Hero = () => {
                     >
                         <FadeInImage
                             src={landingPageBackground}
-                            height={1200}
-                            width={1200}
+                            height={2000}
+                            width={2000}
                             alt="landing page background image"
                             className='z-0 w-[100%] absolute'
                             priority={true}
                             decoding="async"
-                            quality={60}
+                            quality={75}
                             fadeDuration={0.6}
                             delay={0}
                             sizes="100vw"
@@ -158,13 +157,13 @@ const Hero = () => {
                     >
                         <FadeInImage
                             src={landingPageBackgroundMobile}
-                            height={800}
-                            width={800}
+                            height={1000}
+                            width={1000}
                             alt="landing page background mobile image"
                             className='z-0 w-[100%] absolute'
                             priority={true}
                             decoding="async"
-                            quality={60}
+                            quality={75}
                             fadeDuration={0.5}
                             delay={0}
                             sizes="100vw"
