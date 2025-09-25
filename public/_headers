@@ -7,7 +7,3 @@
 
 /globe-animation.gif
   Cache-Control: public, max-age=31536000, immutable
-
-# Enable compression for all assets
-/*
-  Content-Encoding: gzip
