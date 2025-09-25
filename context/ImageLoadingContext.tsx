@@ -32,14 +32,18 @@ export const ImageLoadingProvider: React.FC<ImageLoadingProviderProps> = ({ chil
   const addImageToLoad = useCallback((src: string) => {
     setImagesToLoad(prev => {
       if (prev.has(src)) return prev;
-      return new Set([...prev, src]);
+      const newSet = new Set(prev);
+      newSet.add(src);
+      return newSet;
     });
   }, []);
 
   const markImageAsLoaded = useCallback((src: string) => {
     setLoadedImages(prev => {
       if (prev.has(src)) return prev;
-      return new Set([...prev, src]);
+      const newSet = new Set(prev);
+      newSet.add(src);
+      return newSet;
     });
   }, []);
 
