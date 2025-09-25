@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from "framer-motion"
+import FadeInImage from './FadeInImage'
 import landingPageBackground from '../assets/images/landing-page-bg-3.webp'
 import landingPageBackgroundMobile from '../assets/images/landing-page-mobile-bg.webp'
 import aboutLinkImage from '../assets/images/about-part.webp'
@@ -38,7 +39,7 @@ const Hero = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <Image
+                        <FadeInImage
                             src={landingPageBackground}
                             height={2000}
                             width={2000}
@@ -47,6 +48,8 @@ const Hero = () => {
                             priority
                             decoding="async"
                             quality={85}
+                            fadeDuration={1.2}
+                            delay={0}
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -160,7 +163,7 @@ const Hero = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <Image
+                        <FadeInImage
                             src={landingPageBackgroundMobile}
                             height={1000}
                             width={1000}
@@ -169,6 +172,8 @@ const Hero = () => {
                             priority
                             decoding="async"
                             quality={85}
+                            fadeDuration={1.2}
+                            delay={0}
                         />
                         <motion.div
                             initial={{ opacity: 0 }}

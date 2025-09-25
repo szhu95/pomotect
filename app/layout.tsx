@@ -21,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical assets */}
-        <link rel="preload" href="/globe-animation.webm" as="video" type="video/webm" />
-        <link rel="preload" href="/globe-animation.mp4" as="video" type="video/mp4" />
+        {/* Preload critical video assets for faster loading */}
+        <link rel="preload" href="/globe-animation.webm" as="fetch" type="video/webm" />
+        <link rel="preload" href="/globe-animation.gif" as="image" type="image/gif" />
       </head>
       <body className={inter.className}>
         {/* <RSVPLink /> */}

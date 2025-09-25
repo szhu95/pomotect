@@ -23,6 +23,7 @@ import ProcessSidebar from './ProcessSidebar';
 import QuantityAdjuster from './QuantityAdjuster';
 import CookieConsent from './CookieConsent';
 import FadeInImage from './FadeInImage';
+import OptimizedGlobeVideo from './OptimizedGlobeVideo';
 
 export {
     Hero,
@@ -49,5 +50,6 @@ export {
     ProcessSidebar,
     QuantityAdjuster,
     CookieConsent,
-    FadeInImage
+    FadeInImage,
+    OptimizedGlobeVideo
 }

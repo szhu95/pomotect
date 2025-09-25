@@ -182,15 +182,17 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                 WebkitTapHighlightColor: isMobile ? 'transparent' : undefined,
                             }}
                         >
-                            <Image
+                            <FadeInImage
                                 src={post.feature_image}
                                 alt={`pomo-text ${post.slug}`}
                                 width={isMobile ? 112 : 150}
                                 height={isMobile ? 112 : 150}
-                                className="object-cover w-full h-full bg-gray-50 transition-opacity duration-500"
+                                className="object-cover w-full h-full bg-gray-50"
                                 loading="lazy"
                                 sizes={isMobile ? "112px" : "150px"}
                                 quality={85}
+                                fadeDuration={0.6}
+                                delay={idx * 0.1}
                             />
                             {/* Title overlay */}
                             <div className={`absolute bottom-0 left-0 w-full text-white text-sm minion-font px-2 py-1 text-center break-words leading-tight ${

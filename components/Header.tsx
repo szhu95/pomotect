@@ -8,6 +8,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
+import OptimizedGlobeVideo from './OptimizedGlobeVideo';
 
 const pomotectFont = localFont({
     src: '../fonts/pomotect-analog-regular.otf',
@@ -229,24 +230,7 @@ const Header = ({ title, menuStatus }: any) => {
             {/* Globe animation overlay for mobile loading */}
             {loading && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white md:hidden">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        width={300}
-                        height={300}
-                        className="w-[300px] h-[300px]"
-                        style={{
-                            WebkitUserSelect: 'none',
-                            WebkitTouchCallout: 'none',
-                            WebkitTapHighlightColor: 'transparent',
-                        }}
-                    >
-                        <source src="/globe-animation.webm" type="video/webm" />
-                        <source src="/globe-animation.mp4" type="video/mp4" />
-                        <img src="/globe-animation.gif" alt="Loading..." className="w-[300px] h-[300px]" />
-                    </video>
+                    <OptimizedGlobeVideo showOnMobile={true} />
                 </div>
             )}
         </div >
