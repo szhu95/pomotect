@@ -9,6 +9,7 @@ import MillionGoodsFlyer from '../../../assets/images/million-goods.webp'
 import CellarFlyer2 from '../../../assets/images/cellar-2.webp'
 import Image from 'next/image';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import ShimmerImage from '@/components/ShimmerImage';
 import { motion } from 'framer-motion';
 import localFont from 'next/font/local';
 
@@ -92,12 +93,13 @@ const Events = () => {
                                     </div>
                                 </div>
                                 <div className="flex justify-center">
-                                    <Image
+                                    <ShimmerImage
                                         width={400}
                                         height={400}
                                         src={event.flyer}
                                         alt={event.alt}
                                         className="mx-auto shadow-lg max-w-full h-auto"
+                                        priority={event.id <= 2} // Priority for first 2 images
                                     />
                                 </div>
                             </div>
@@ -150,12 +152,13 @@ const Events = () => {
 
                                         return (
                                             <>
-                                                <Image
+                                                <ShimmerImage
                                                     width={500}
                                                     height={500}
                                                     src={event.flyer}
                                                     alt={event.alt}
                                                     className="mx-auto shadow-lg max-w-full h-auto"
+                                                    priority={event.id <= 2} // Priority for first 2 images
                                                 />
                                             </>
                                         );
