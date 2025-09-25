@@ -11,7 +11,6 @@ import soundsLinkImage from '../assets/images/sounds-part.webp'
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
-import LoadingLink from './LoadingLink';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 const Hero = () => {
@@ -205,7 +204,7 @@ const Hero = () => {
                             animate={{ opacity: 1.0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            <LoadingLink
+                            <Link
                                 key="words"
                                 href={`/words`}
                                 className="group block absolute top-[35vw] left-[35vw] md:hidden">
@@ -216,7 +215,7 @@ const Hero = () => {
                                     height="200"
                                     className='w-[28vw]'
                                 />
-                            </LoadingLink>
+                            </Link>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}

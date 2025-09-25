@@ -15,7 +15,7 @@ interface ProvidersProps {
 export default function Providers({ children }: ProvidersProps) {
   return (
     <NavigationProvider>
-      <NavigationLoadingOverlay />
+      {/* <NavigationLoadingOverlay /> */}
       <ImageLoadingProvider>
         <ScrollToTopOnMount />
         <SplashScreen />
