@@ -24,6 +24,7 @@ import QuantityAdjuster from './QuantityAdjuster';
 import CookieConsent from './CookieConsent';
 import FadeInImage from './FadeInImage';
 import OptimizedGlobeVideo from './OptimizedGlobeVideo';
+import ShimmerImage from './ShimmerImage';
 
 export {
     Hero,
@@ -51,5 +52,6 @@ export {
     QuantityAdjuster,
     CookieConsent,
     FadeInImage,
-    OptimizedGlobeVideo
+    OptimizedGlobeVideo,
+    ShimmerImage
 }
