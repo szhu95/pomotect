@@ -4,11 +4,12 @@ import Image, { ImageProps } from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useImageLoading } from '@/context/ImageLoadingContext';
 
-interface FadeInImageProps extends Omit<ImageProps, 'onLoad'> {
+interface FadeInImageProps extends Omit<ImageProps, 'onLoad' | 'sizes'> {
   className?: string;
   fadeDuration?: number;
   delay?: number;
   priority?: boolean;
+  sizes?: string;
 }
 
 export default function FadeInImage({
@@ -18,6 +19,7 @@ export default function FadeInImage({
   fadeDuration = 0.6,
   delay = 0,
   priority = false,
+  sizes = "100vw",
   ...props
 }: FadeInImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -109,6 +111,7 @@ export default function FadeInImage({
           alt={alt}
           onLoad={handleLoad}
           priority={priority}
+          sizes={sizes}
           {...props}
         />
       </motion.div>

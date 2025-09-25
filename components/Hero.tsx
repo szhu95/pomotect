@@ -12,25 +12,22 @@ import soundsLinkImage from '../assets/images/sounds-part.webp'
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 const Hero = () => {
     const router = useRouter()
 
-    // Preload all critical images
+    // Preload only the most critical images for faster initial load
     useImagePreloader(landingPageBackground.src);
     useImagePreloader(landingPageBackgroundMobile.src);
-    useImagePreloader(aboutLinkImage.src);
-    useImagePreloader(objectsLinkImage.src);
-    useImagePreloader(wordsLinkImage.src);
-    useImagePreloader(soundsLinkImage.src);
 
     return (
         <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.2 }}
         >
             <div className="hero">
                 <div className="hidden w-[100%] md:inline">
@@ -41,15 +38,16 @@ const Hero = () => {
                     >
                         <FadeInImage
                             src={landingPageBackground}
-                            height={2000}
-                            width={2000}
+                            height={1200}
+                            width={1200}
                             alt="landing page background image"
                             className='z-0 w-[100%] absolute'
                             priority={true}
                             decoding="async"
-                            quality={75}
-                            fadeDuration={1.2}
+                            quality={60}
+                            fadeDuration={0.6}
                             delay={0}
+                            sizes="100vw"
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -165,15 +163,16 @@ const Hero = () => {
                     >
                         <FadeInImage
                             src={landingPageBackgroundMobile}
-                            height={1000}
-                            width={1000}
+                            height={800}
+                            width={800}
                             alt="landing page background mobile image"
                             className='z-0 w-[100%] absolute'
                             priority={true}
                             decoding="async"
-                            quality={75}
-                            fadeDuration={0.8}
+                            quality={60}
+                            fadeDuration={0.5}
                             delay={0}
+                            sizes="100vw"
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
