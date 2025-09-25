@@ -70,18 +70,36 @@ export function formatUpdatedDate(date) {
     return lastUpdatedDate
 }
 
-export async function getPosts(limit = 50) {
+export async function getPosts(limit = 50, isClient = false) {
     try {
-        const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=${limit}`, {
+        const fetchOptions = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept-Version': 'v5.0',
             },
-            // Add caching for better performance
-            next: { revalidate: 300 }, // Revalidate every 5 minutes
-        })
-        return await response.json();
+        };
+
+        // Only add Next.js caching options for server-side requests
+        if (!isClient) {
+            fetchOptions.next = { revalidate: 300 }; // Revalidate every 5 minutes
+        }
+
+        const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=${limit}`, fetchOptions);
+        
+        if (!response.ok) {
+            console.error(`Ghost API responded with status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!data || !data.posts) {
+            console.error('Invalid response from Ghost API:', data);
+            throw new Error('Invalid response format from Ghost API');
+        }
+        
+        return data;
     } catch (error) {
         console.error('getPosts fetch failed:', error);
         return null;

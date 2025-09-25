@@ -17,7 +17,7 @@ export default function LoadingLink({
   href, 
   children, 
   className, 
-  scroll = true,
+  scroll = false,
   onClick,
   style
 }: LoadingLinkProps) {
@@ -25,21 +25,26 @@ export default function LoadingLink({
   const { setLoading } = useNavigation();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Call custom onClick if provided
-    if (onClick) {
-      onClick();
-    }
+    try {
+      // Call custom onClick if provided
+      if (onClick) {
+        onClick();
+      }
 
-    // Set loading state
-    setLoading(true);
+      // Set loading state
+      setLoading(true);
 
-    // Navigate to the new page
-    router.push(href);
-
-    // Clear loading state after a short delay
-    setTimeout(() => {
+      // Use router.push for all pages now that words page is client-rendered
+      router.push(href);
+      
+      // Clear loading state after a short delay
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Error in LoadingLink navigation:', error);
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

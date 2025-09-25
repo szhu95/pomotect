@@ -1,5 +1,6 @@
 "use client";
-import LoadingLink from './LoadingLink';
+// import LoadingLink from './LoadingLink';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import localFont from 'next/font/local';
@@ -76,7 +77,7 @@ export default function WordsSidebar({ posts }: { posts: Post[] }) {
         <nav className="flex-1 overflow-y-auto px-4 pt-2">
           {posts.map((post, index) => (
             <div key={post.slug} className="group">
-              <LoadingLink
+              <Link
                 href={`/words/${post.slug}`}
                 className="block mb-2 transition-all duration-200 ease-in-out"
               >
@@ -110,7 +111,7 @@ export default function WordsSidebar({ posts }: { posts: Post[] }) {
                 } group-hover:text-primary-blue ${isCondensed ? 'py-1' : ''}`}>
                   {post.title}
                 </div>
-              </LoadingLink>
+              </Link>
               {index < posts.length - 1 && (
                 <div className="w-1/2 mx-auto mb-3 border-b border-primary-blue border-dashed opacity-50 group-hover:opacity-100 transition-all duration-200 ease-in-out"></div>
               )}

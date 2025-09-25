@@ -1,6 +1,7 @@
 import React from 'react'
 import Marquee from "react-fast-marquee";
-import LoadingLink from "./LoadingLink";
+// import LoadingLink from "./LoadingLink";
+import Link from "next/link";
 
 export default function WordsTicker({ response, objectsResponse }: any) {
 
@@ -13,13 +14,13 @@ export default function WordsTicker({ response, objectsResponse }: any) {
         >
             {response.posts.filter((post: any) => post.primary_tag?.name !== "Process").map((post: any) => {
                 return (
-                    <LoadingLink
+                    <Link
                         key={post.slug}
                         href={`/words/${post.slug}`}>
                         <div className="ticker-words-container minion-font hover:opacity-[50%] bg-primary-blue text-white px-1">
                             {" [" + post.title + "] "}
                         </div>
-                    </LoadingLink>
+                    </Link>
                 )
             })}
 
@@ -28,11 +29,11 @@ export default function WordsTicker({ response, objectsResponse }: any) {
                 let product = item.node;
 
                 return (
-                    <LoadingLink
+                    <Link
                         key={"object-1" + product.handle}
                         href={`/products/` + product.handle}>
                         <div className="ticker-words-container minion-font hover:opacity-[50%] bg-primary-blue text-white px-1">{product.title}</div>
-                    </LoadingLink>
+                    </Link>
                 )
             })}
         </Marquee>

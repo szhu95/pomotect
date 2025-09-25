@@ -3,7 +3,7 @@
 import { formatUpdatedDate } from "@/utils";
 import parse from 'html-react-parser';
 import Image from "next/image";
-import LoadingLink from "./LoadingLink";
+// import LoadingLink from "./LoadingLink";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
@@ -37,19 +37,19 @@ export default function Posts({ response }: any) {
             let parsedPost = parse(finalHtml);
 
             return (
-                <div key={post.id} className="mt-5 w-full md:w-[100%] md:m-auto">
+                <div key={post.id} className={`w-full md:w-[100%] md:m-auto [margin-top:calc(20px-12px*var(--is-mobile-condensed,0))]`}>
                     <div className='site-section words-header md:border-b border-black md:pb-4'>
                         <div className="md:hidden px-0">
-                            <LoadingLink
+                            <Link
                                 key={`${post.slug}-title`}
                                 href={`/words/${post.slug}`}
                                 className="block group w-full"
                             >
-                                <div className={`hover:bg-black hover:text-yellow entry-number text-xl md:text-2xl text-primary-blue font-black minion-font [padding-top:calc(4px*var(--is-mobile-condensed,0))] [padding-bottom:calc(4px*var(--is-mobile-condensed,0))]`}>
+                                <div className={`hover:bg-black hover:text-yellow entry-number text-xl md:text-2xl text-primary-blue font-black minion-font [padding-top:calc(8px-8px*var(--is-mobile-condensed,0))] [padding-bottom:calc(8px-8px*var(--is-mobile-condensed,0))]`}>
                                     {post.title ? post.title : 'Title'}
                                 </div>
-                            </LoadingLink>
-                            <div className="flex justify-between items-center mt-4 mb-4 border-b border-black">
+                            </Link>
+                            <div className={`flex justify-between items-center border-b border-black [margin-top:calc(16px-8px*var(--is-mobile-condensed,0))] [margin-bottom:calc(16px-8px*var(--is-mobile-condensed,0))]`}>
                                 <div className="minion-font italic md:text-lg">
                                     {formattedPostDate}
                                 </div>
@@ -64,9 +64,10 @@ export default function Posts({ response }: any) {
                                     className="block group w-full"
                             >
                                     <div className={`
-                                        relative w-full h-48 bg-gray-50 border border-primary-blue border-dashed overflow-hidden transform transition-all duration-300 ease-in-out group-hover:scale-[1.02] md:hidden
+                                        relative w-full bg-gray-50 border border-primary-blue border-dashed overflow-hidden transform transition-all duration-300 ease-in-out group-hover:scale-[1.02] md:hidden
                                         [opacity:calc(1-var(--is-mobile-condensed,0))]
-                                        [margin-bottom:calc(0px*var(--is-mobile-condensed,0))]
+                                        [height:calc(192px-192px*var(--is-mobile-condensed,0))]
+                                        [margin-bottom:calc(16px-16px*var(--is-mobile-condensed,0))]
                                     `}>
                                         <Image
                                             src={post.feature_image}

@@ -11,6 +11,7 @@ import soundsLinkImage from '../assets/images/sounds-part.webp'
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+import LoadingLink from './LoadingLink';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 const Hero = () => {
@@ -46,7 +47,7 @@ const Hero = () => {
                             className='z-0 w-[100%] absolute'
                             priority
                             decoding="async"
-                            quality={75}
+                            quality={85}
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -61,8 +62,8 @@ const Hero = () => {
                             <Link
                                 key="objects"
                                 href={`/products`}
-                                scroll={true}
-                                className="group md:block absolute top-[6vw] left-[6vw] hidden">
+                                className="group md:block absolute top-[6vw] left-[6vw] hidden"
+                                scroll={false}>
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"Objects"}
@@ -87,7 +88,6 @@ const Hero = () => {
                             <Link
                                 key="words"
                                 href={`/words`}
-                                scroll={true}
                                 className="group md:block absolute top-[13vw] left-[22vw] hidden">
                                 <Image
                                     src={wordsLinkImage}
@@ -113,8 +113,8 @@ const Hero = () => {
                             <Link
                                 key="sounds"
                                 href={`/sounds`}
-                                scroll={true}
-                                className="group md:block absolute top-[26vw] left-[6vw] hidden">
+                                className="group md:block absolute top-[26vw] left-[6vw] hidden"
+                                scroll={false}>
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"Sounds"}
@@ -139,8 +139,8 @@ const Hero = () => {
                             <Link
                                 key="about"
                                 href={`/about`}
-                                scroll={true}
-                                className="group hidden absolute top-[36vw] left-[22vw] md:flex">
+                                className="group hidden absolute top-[36vw] left-[22vw] md:flex"
+                                scroll={false}>
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"About"}
@@ -169,7 +169,7 @@ const Hero = () => {
                             className='z-0 w-[100%] absolute'
                             priority
                             decoding="async"
-                            quality={75}
+                            quality={85}
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -184,8 +184,8 @@ const Hero = () => {
                             <Link
                                 key="objects"
                                 href={`/products`}
-                                scroll={true}
-                                className="group block absolute top-[12vw] left-[7vw] md:hidden">
+                                className="group block absolute top-[12vw] left-[7vw] md:hidden"
+                                scroll={false}>
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"Objects"}
@@ -205,10 +205,9 @@ const Hero = () => {
                             animate={{ opacity: 1.0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            <Link
+                            <LoadingLink
                                 key="words"
                                 href={`/words`}
-                                scroll={true}
                                 className="group block absolute top-[35vw] left-[35vw] md:hidden">
                                 <Image
                                     src={wordsLinkImage}
@@ -217,7 +216,7 @@ const Hero = () => {
                                     height="200"
                                     className='w-[28vw]'
                                 />
-                            </Link>
+                            </LoadingLink>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -231,8 +230,8 @@ const Hero = () => {
                             <Link
                                 key="sounds"
                                 href={`/sounds`}
-                                scroll={true}
-                                className="group block absolute top-[60vw] left-[6vw] md:hidden">
+                                className="group block absolute top-[60vw] left-[6vw] md:hidden"
+                                scroll={false}>
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"Sounds"}
@@ -254,8 +253,8 @@ const Hero = () => {
                             <Link
                                 key="about"
                                 href={`/about`}
-                                scroll={true}
-                                className="group md:hidden absolute top-[85vw] left-[35vw] block">
+                                className="group md:hidden absolute top-[85vw] left-[35vw] block"
+                                scroll={false}>
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"About"}

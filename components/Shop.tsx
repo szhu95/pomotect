@@ -1,9 +1,8 @@
 "use client";
 import { formatPrice, storefront } from "@/utils";
 import Link from "next/link";
-import Image from "next/image";
+import FadeInImage from "./FadeInImage";
 import { motion } from "framer-motion";
-import { useEffect } from 'react';
 
 interface ShopProps {
   response: {
@@ -49,20 +48,6 @@ export default function Shop({ response }: ShopProps) {
     return !product.variants.edges.some((edge: any) => edge.node.availableForSale);
   };
 
-  // Preload all product images
-  useEffect(() => {
-    response.products.edges.forEach(item => {
-      const product = item.node;
-      if (product.images.edges.length > 0) {
-        const image = product.images.edges[0].node;
-        if (image.transformedSrc) {
-          // Create a new image element to preload
-          const img = new window.Image();
-          img.src = image.transformedSrc;
-        }
-      }
-    });
-  }, [response.products.edges]);
 
   // Separate products by category
   const furnitureProducts = response.products.edges.filter(item => 
@@ -89,11 +74,12 @@ export default function Shop({ response }: ShopProps) {
         <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="sr-only">Products</h2>
           <div className="grid grid-cols-1 col-auto gap-x-10 gap-y-10 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
-            {sortedProducts.map((item) => {
+            {sortedProducts.map((item, index) => {
               const product = item.node;
               const image = product.images.edges[0].node;
               const isSoldOut = isProductSoldOut(product);
               const isFurniture = product.tags && product.tags.includes('furniture');
+              const staggeredDelay = index * 0.1; // Stagger each image by 100ms
 
               return isSoldOut ? (
                 <Link
@@ -103,12 +89,14 @@ export default function Shop({ response }: ShopProps) {
                   prefetch={true}
                 >
                   <div className="relative w-full">
-                    <Image
+                    <FadeInImage
                       src={image.transformedSrc}
                       alt={"product-image"}
                       width={500}
                       height={500}
                       className="h-full w-full opacity-80 object-center"
+                      priority={false}
+                      delay={staggeredDelay}
                     />
                     <div>
                       <div className="absolute right-[0px] top-[0%] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>
@@ -126,12 +114,14 @@ export default function Shop({ response }: ShopProps) {
                   prefetch={true}
                 >
                   <div className="relative w-full">
-                    <Image
+                    <FadeInImage
                       src={image.transformedSrc}
                       alt={"product-image"}
                       width={500}
                       height={500}
                       className="h-full w-full group-hover:opacity-80 object-center"
+                      priority={false}
+                      delay={staggeredDelay}
                     />
                     <div>
                       <div className="absolute right-[0px] top-[0%] font-['Minion'] text-xs lg:text-sm text-primary-blue font-semibold md:text-transparent group-hover:text-primary-blue group-focus:text-primary-blue">{product.title}</div>

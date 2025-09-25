@@ -2,14 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Footer, Header, CookieConsent } from '@/components'
-import ScrollToTopOnMount from '@/components/ScrollToTopOnMount'
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
-import SplashScreen from '@/components/SplashScreen'
-import { CartProvider } from '@/context/CartContext'
-import { ImageLoadingProvider } from '@/context/ImageLoadingContext'
-import { NavigationProvider } from '@/context/NavigationContext'
-import NavigationLoadingOverlay from '@/components/NavigationLoadingOverlay'
+import Providers from '@/components/Providers'
 // import RSVPLink from '@/components/RSVPLink'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,31 +17,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const Loading = dynamic(() => import('./loading'), {
-    ssr: true,
-  })
 
   return (
     <html lang="en">
+      <head>
+        {/* Preload critical assets */}
+        <link rel="preload" href="/globe-animation.webm" as="video" type="video/webm" />
+        <link rel="preload" href="/globe-animation.mp4" as="video" type="video/mp4" />
+      </head>
       <body className={inter.className}>
         {/* <RSVPLink /> */}
-        <NavigationProvider>
-          <NavigationLoadingOverlay />
-          <ImageLoadingProvider>
-            <ScrollToTopOnMount />
-            <SplashScreen />
-            <Suspense fallback={<Loading />}>
-              <CartProvider>
-                <div className="site-layout">
-                  <Header />
-                  {children}
-                  <Footer />
-                </div>
-              </CartProvider>
-            </Suspense>
-            <CookieConsent />
-          </ImageLoadingProvider>
-        </NavigationProvider>
+        <Providers>
+          <div className="site-layout">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+          <CookieConsent />
+        </Providers>
       </body>
     </html>
   )

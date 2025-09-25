@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import LoadingLink from "./LoadingLink";
+// import Link from "next/link";
 import Image from "next/image";
 import FadeInImage from './FadeInImage';
 

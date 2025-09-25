@@ -4,38 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import headerLogo from "@/assets/images/header-logo-2.7.png";
 import globeImage from "@/assets/images/globe-animation.gif";
-import { useImageLoading } from "@/context/ImageLoadingContext";
 
 export default function SplashScreen() {
     const [isLoading, setIsLoading] = useState(true);
-    const { isAllImagesLoaded } = useImageLoading();
 
     useEffect(() => {
-        // In development, just show for 2 seconds
-        if (process.env.NODE_ENV === 'development') {
-            const timer = setTimeout(() => {
-                setIsLoading(false);
-            }, 2000);
-            return () => clearTimeout(timer);
-        }
-
-        // In production, wait for images to load
-        const minTimer = setTimeout(() => {
+        // Show splash screen for 2 seconds, then hide
+        const timer = setTimeout(() => {
             setIsLoading(false);
         }, 2000);
 
-        if (isAllImagesLoaded) {
-            const imageTimer = setTimeout(() => {
-                setIsLoading(false);
-            }, 100);
-            return () => {
-                clearTimeout(minTimer);
-                clearTimeout(imageTimer);
-            };
-        }
-
-        return () => clearTimeout(minTimer);
-    }, [isAllImagesLoaded]);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <AnimatePresence mode="wait">
