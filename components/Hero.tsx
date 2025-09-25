@@ -11,9 +11,18 @@ import soundsLinkImage from '../assets/images/sounds-part.webp'
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 const Hero = () => {
     const router = useRouter()
+
+    // Preload all critical images
+    useImagePreloader(landingPageBackground.src);
+    useImagePreloader(landingPageBackgroundMobile.src);
+    useImagePreloader(aboutLinkImage.src);
+    useImagePreloader(objectsLinkImage.src);
+    useImagePreloader(wordsLinkImage.src);
+    useImagePreloader(soundsLinkImage.src);
 
     return (
         <motion.div

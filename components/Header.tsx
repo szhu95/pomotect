@@ -8,6 +8,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
 import globeAnimation from '../assets/images/globe-animation.gif';
+import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 const pomotectFont = localFont({
     src: '../fonts/pomotect-analog-regular.otf',
@@ -25,6 +26,11 @@ const Header = ({ title, menuStatus }: any) => {
     const pathname = usePathname();
     const { cartItemCount } = useCart();
     const router = useRouter();
+
+    // Preload header images
+    useImagePreloader(homeLogo.src);
+    useImagePreloader(mobileHomeLogo.src);
+    useImagePreloader(globeAnimation.src);
 
     const handleSmallerScreensNavigation = () => {
         setIcon(!menuIcon);
