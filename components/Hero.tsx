@@ -106,6 +106,11 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.6 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
                         >
                             <Link
                                 key="sounds"
@@ -128,6 +133,11 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.5 }}
+                            whileHover={{
+                                scale: 1.02,
+                                transition: { duration: 0.25 },
+                            }}
+                            whileTap={{ scale: 1.0 }}
                         >
                             <Link
                                 key="about"
