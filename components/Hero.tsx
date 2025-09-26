@@ -55,7 +55,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.3 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ 
                                 opacity: 0.8,
@@ -85,7 +85,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -111,7 +111,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -138,7 +138,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.5 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -187,7 +187,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.3 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ 
                                 opacity: 0.8,
@@ -215,7 +215,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -239,7 +239,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ 
                                 opacity: 0.8,
@@ -267,7 +267,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.5 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2, ease: "easeOut" },
+                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ 
                                 opacity: 0.8,
