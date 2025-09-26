@@ -53,11 +53,6 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                         >
                             <Link
                                 key="objects"
@@ -80,11 +75,6 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                         >
                             <Link
                                 key="words"
@@ -106,11 +96,6 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.6 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                         >
                             <Link
                                 key="sounds"
@@ -133,11 +118,6 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.5 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                         >
                             <Link
                                 key="about"
@@ -182,11 +162,6 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                         >
                             <Link
                                 key="objects"
@@ -207,11 +182,6 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                         >
                             <Link
                                 key="words"
@@ -229,11 +199,6 @@ const Hero = () => {
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                             animate={{ opacity: 1 }}
                         >
                             <Link
@@ -253,11 +218,6 @@ const Hero = () => {
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0 }}
-                            whileHover={{
-                                opacity: 0.8,
-                                transition: { duration: 0.25 },
-                            }}
-                            whileTap={{ opacity: 0.9 }}
                             animate={{ opacity: 1 }}
                         >
                             <Link
