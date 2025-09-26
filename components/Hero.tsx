@@ -52,10 +52,13 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ 
+                                default: { duration: 0.6, delay: 0.3 },
+                                hover: { duration: 0.2, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" }
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -82,7 +85,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
+                                transition: { duration: 0.2, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -108,7 +111,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
+                                transition: { duration: 0.2, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -135,7 +138,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.5 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
+                                transition: { duration: 0.2, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -181,10 +184,13 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ 
+                                default: { duration: 0.6, delay: 0.3 },
+                                hover: { duration: 0.2, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" }
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -209,7 +215,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
+                                transition: { duration: 0.2, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -232,7 +238,7 @@ const Hero = () => {
                             animate={{ opacity: 1 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
+                                transition: { duration: 0.2, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
@@ -256,7 +262,7 @@ const Hero = () => {
                             animate={{ opacity: 1 }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.2 },
+                                transition: { duration: 0.2, ease: "easeOut" },
                             }}
                             whileTap={{ opacity: 0.8 }}
                         >
