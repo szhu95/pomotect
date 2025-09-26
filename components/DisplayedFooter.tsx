@@ -18,7 +18,7 @@ const DisplayedFooter = ({ response, objectsResponse }: any) => {
         <div>
             {pathname == "/" || pathname == "/cart" ? <></> : <WordsTicker response={response} objectsResponse={objectsResponse} />}
             <div className={
-                pathname == "/" ? "flex border-t border-black" : pathname == "/cart" ? "flex border-t border-black mt-[250px]" : "flex border-t border-black mt-[10px]"}>
+                pathname == "/" ? "flex border-t border-black md:mt-[15%] mt-[20%]" : pathname == "/cart" ? "flex border-t border-black mt-[250px]" : "flex border-t border-black mt-[10px]"}>
                 <div className="site-section italic text-gray-700 py-1">
                     <Link href="/terms" className={`${pathname.startsWith("/terms") ? `${pomotectFont.className} pr-2 md:mr-10 text-primary-blue` : `${pomotectFont.className} pr-2 md:mr-10 hover:text-primary-blue`}`}>
                         Privacy & Terms of Use
