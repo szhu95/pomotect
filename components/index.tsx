@@ -25,6 +25,7 @@ import CookieConsent from './CookieConsent';
 import FadeInImage from './FadeInImage';
 import OptimizedGlobeVideo from './OptimizedGlobeVideo';
 import ShimmerImage from './ShimmerImage';
+import RSVPLink from './RSVPLink';
 
 export {
     Hero,
@@ -53,5 +54,6 @@ export {
     CookieConsent,
     FadeInImage,
     OptimizedGlobeVideo,
-    ShimmerImage
+    ShimmerImage,
+    RSVPLink
 }
