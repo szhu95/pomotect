@@ -292,7 +292,7 @@ iframe {
 
 /* START: Hero styles */
 .hero {
-  @apply md:gap-[7.25rem] relative z-0 max-w-[1440px];
+  @apply md:gap-[7.25rem] relative z-0 max-w-[1440px] min-h-screen;
 }
 
 .hero-link {
