@@ -85,12 +85,18 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
+                            transition={{ 
+                                default: { duration: 0.05, ease: "easeIn" },
+                                hover: { duration: 0.1, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" },
+                                delay: 0.4
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
-                            whileTap={{ opacity: 0.8 }}
+                            whileTap={{ 
+                                opacity: 0.8,
+                            }}
                         >
                             <Link
                                 key="words"
@@ -111,12 +117,18 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
+                            transition={{ 
+                                default: { duration: 0.05, ease: "easeIn" },
+                                hover: { duration: 0.1, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" },
+                                delay: 0.6
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
-                            whileTap={{ opacity: 0.8 }}
+                            whileTap={{ 
+                                opacity: 0.8,
+                            }}
                         >
                             <Link
                                 key="sounds"
@@ -138,12 +150,18 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.5 }}
+                            transition={{ 
+                                default: { duration: 0.05, ease: "easeIn" },
+                                hover: { duration: 0.1, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" },
+                                delay: 0.5
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
-                            whileTap={{ opacity: 0.8 }}
+                            whileTap={{ 
+                                opacity: 0.8,
+                            }}
                         >
                             <Link
                                 key="about"
@@ -218,12 +236,18 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
+                            transition={{ 
+                                default: { duration: 0.05, ease: "easeIn" },
+                                hover: { duration: 0.1, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" },
+                                delay: 0.4
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
-                            whileTap={{ opacity: 0.8 }}
+                            whileTap={{ 
+                                opacity: 0.8,
+                            }}
                         >
                             <Link
                                 key="words"
@@ -242,14 +266,17 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
+                            transition={{ 
+                                default: { duration: 0.05, ease: "easeIn" },
+                                hover: { duration: 0.1, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" },
+                                delay: 0.6
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ 
                                 opacity: 0.8,
-                                transition: { duration: 0.1, ease: "easeIn" }
                             }}
                         >
                             <Link
@@ -270,14 +297,17 @@ const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.5 }}
+                            transition={{ 
+                                default: { duration: 0.05, ease: "easeIn" },
+                                hover: { duration: 0.1, ease: "easeOut" },
+                                tap: { duration: 0.1, ease: "easeIn" },
+                                delay: 0.5
+                            }}
                             whileHover={{
                                 opacity: 0.6,
-                                transition: { duration: 0.1, ease: "easeOut" },
                             }}
                             whileTap={{ 
                                 opacity: 0.8,
-                                transition: { duration: 0.1, ease: "easeIn" }
                             }}
                         >
                             <Link
