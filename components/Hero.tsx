@@ -59,7 +59,7 @@ const Hero = () => {
                                 href={`/products`}
                                 className="group md:block absolute top-[6vw] left-[6vw] hidden"
                                 scroll={false}
-                                tabIndex={0}>
+>
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"Objects"}
@@ -80,7 +80,7 @@ const Hero = () => {
                                 key="words"
                                 href={`/words`}
                                 className="group md:block absolute top-[13vw] left-[22vw] hidden"
-                                tabIndex={0}>
+>
                                 <Image
                                     src={wordsLinkImage}
                                     alt={"Words"}
@@ -102,7 +102,7 @@ const Hero = () => {
                                 href={`/sounds`}
                                 className="group md:block absolute top-[26vw] left-[6vw] hidden"
                                 scroll={false}
-                                tabIndex={0}>
+>
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"Sounds"}
@@ -124,7 +124,7 @@ const Hero = () => {
                                 href={`/about`}
                                 className="group hidden absolute top-[36vw] left-[22vw] md:flex"
                                 scroll={false}
-                                tabIndex={0}>
+>
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"About"}
@@ -168,7 +168,7 @@ const Hero = () => {
                                 href={`/products`}
                                 className="group block absolute top-[12vw] left-[7vw] md:hidden"
                                 scroll={false}
-                                tabIndex={0}>
+>
                                 <Image
                                     src={objectsLinkImage}
                                     alt={"Objects"}
@@ -187,7 +187,7 @@ const Hero = () => {
                                 key="words"
                                 href={`/words`}
                                 className="group block absolute top-[35vw] left-[35vw] md:hidden"
-                                tabIndex={0}>
+>
                                 <Image
                                     src={wordsLinkImage}
                                     alt={"Words"}
@@ -206,7 +206,7 @@ const Hero = () => {
                                 href={`/sounds`}
                                 className="group block absolute top-[60vw] left-[6vw] md:hidden"
                                 scroll={false}
-                                tabIndex={0}>
+>
                                 <Image
                                     src={soundsLinkImage}
                                     alt={"Sounds"}
@@ -225,7 +225,7 @@ const Hero = () => {
                                 href={`/about`}
                                 className="group md:hidden absolute top-[85vw] left-[35vw] block"
                                 scroll={false}
-                                tabIndex={0}>
+>
                                 <Image
                                     src={aboutLinkImage}
                                     alt={"About"}

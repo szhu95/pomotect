@@ -358,7 +358,13 @@ iframe {
 
 /* START: Site layout styles */
 .site-layout {
-  min-height: fit-content;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-layout > footer {
+  margin-top: auto;
 }
 
 /* END: Site layout styles */
