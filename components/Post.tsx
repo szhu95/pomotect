@@ -23,6 +23,7 @@ export default async function Post({ response }: any) {
                 .replaceAll('<li', '<li className="minion-font"')
                 .replaceAll('<strong', '<strong className="minion-font"')
                 .replaceAll('<a', '<a className="minion-font text-primary-blue"')
+                .replaceAll('<u ', '<u className="minion-font" ')
                 .replaceAll('<em', '<em className="minion-font"')
                 .replaceAll('<h1', '<h1 className="minion-font"')
                 .replaceAll('<span', '<span className="minion-font text-gray-400 italic"')

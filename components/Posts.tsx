@@ -26,6 +26,7 @@ export default function Posts({ response }: any) {
                 .replaceAll('<li', '<li className="garamond-font"')
                 .replaceAll('<strong', '<strong className="garamond-font"')
                 .replaceAll('<a', '<a className="garamond-font text-primary-blue"')
+                .replaceAll('<u ', '<u className="garamond-font" ')
                 .replaceAll('<em', '<em className="garamond-font"')
                 .replaceAll('class=\"italic\"', '')
                 .replaceAll('<span', '<span className="garamond-font text-gray-400 italic"')

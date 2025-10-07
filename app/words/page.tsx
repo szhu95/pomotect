@@ -52,7 +52,7 @@ const Words = () => {
       <div className="relative">
         <div className="site-section">
           <h3 className="main_header">Words</h3>
-          <p className="italic">Loading posts...</p>
+          <p className={`${pomotectFont.className} italic text-center`}>Loading posts...</p>
         </div>
       </div>
     );
