@@ -14,7 +14,7 @@ export default async function Post({ response }: any) {
     return (
         response.posts.map((post: any) => {
 
-            // console.log("POST IS +++++" + JSON.stringify(post))
+            console.log("POST IS +++++" + JSON.stringify(post))
             let postUtcTimeString = post.published_at;
             let postDate = new Date(postUtcTimeString)
             let formattedPostDate = formatUpdatedDate(postDate);
@@ -23,7 +23,6 @@ export default async function Post({ response }: any) {
                 .replaceAll('<li', '<li className="minion-font"')
                 .replaceAll('<strong', '<strong className="minion-font"')
                 .replaceAll('<a', '<a className="minion-font text-primary-blue"')
-                .replaceAll('<u', '<u className="minion-font text-inherit"')
                 .replaceAll('<em', '<em className="minion-font"')
                 .replaceAll('<h1', '<h1 className="minion-font"')
                 .replaceAll('<span', '<span className="minion-font text-gray-400 italic"')
@@ -32,7 +31,7 @@ export default async function Post({ response }: any) {
                 .replaceAll('<img', '<img className="my-4"')
                 .replaceAll('/figure>', '/figure><br>');
 
-            // console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
+            console.log("FINAL POST IS +++++" + JSON.stringify(finalHtml))
 
             let parsedPost = parse(finalHtml);
 

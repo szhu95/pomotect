@@ -1,0 +1,82 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Kolf" [ref=e6]:
+        - /url: /
+        - img "Kolf" [ref=e7]
+      - generic [ref=e8]:
+        - navigation [ref=e9]:
+          - link "ORIGINS" [ref=e10]:
+            - /url: /about/
+          - link "PRO SHOP" [ref=e11]:
+            - /url: /products/
+          - link "TEE IT UP" [ref=e12]:
+            - /url: /contact/
+        - link "CART Cart" [ref=e13]:
+          - /url: /cart/
+          - generic [ref=e14]: CART
+          - img "Cart" [ref=e16]
+  - main [ref=e17]:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading "NEW ARRIVALS" [level=1]
+            - generic:
+              - generic:
+                - link "Sunday Polo - Premium Golf Apparel SUNDAY POLO 1 COLORWAY 120 USD":
+                  - /url: /products/sunday-polo/
+                  - generic:
+                    - generic:
+                      - img "Sunday Polo - Premium Golf Apparel"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading "SUNDAY POLO" [level=3]
+                          - generic: 1 COLORWAY
+                        - paragraph: 120 USD
+              - generic:
+                - link "Putting Sweater - Premium Golf Apparel Putting Sweater - Black Colorway PUTTING SWEATER 1 COLORWAY 65 USD":
+                  - /url: /products/putting-sweater/
+                  - generic:
+                    - generic:
+                      - img "Putting Sweater - Premium Golf Apparel"
+                      - img "Putting Sweater - Black Colorway"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading "PUTTING SWEATER" [level=3]
+                          - generic: 1 COLORWAY
+                        - paragraph: 65 USD
+              - generic:
+                - link "Fairway Sweater - Premium Golf Apparel FAIRWAY SWEATER 1 COLORWAY 85 USD":
+                  - /url: /products/fairway-sweater/
+                  - generic:
+                    - generic:
+                      - img "Fairway Sweater - Premium Golf Apparel"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading "FAIRWAY SWEATER" [level=3]
+                          - generic: 1 COLORWAY
+                        - paragraph: 85 USD
+              - generic:
+                - link "Kolf Hat - Premium Golf Apparel CLUBHOUSE CAP 1 COLORWAY 45 USD":
+                  - /url: /products/kolf-hat/
+                  - generic:
+                    - generic:
+                      - img "Kolf Hat - Premium Golf Apparel"
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading "CLUBHOUSE CAP" [level=3]
+                          - generic: 1 COLORWAY
+                        - paragraph: 45 USD
+            - generic:
+              - link "EXPLORE ALL PRODUCTS":
+                - /url: /products/
+```

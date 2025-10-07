@@ -9,7 +9,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test",
+    "test:e2e:fast": "playwright test --project=chromium",
+    "test:e2e:all-browsers": "ALL_BROWSERS=1 playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -40,6 +47,7 @@
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",

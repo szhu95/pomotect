@@ -233,8 +233,56 @@
   padding-right: 3px;
 }
 
+.words-body ul,
+.words-body ol,
+.words-body li {
+  text-decoration: none !important;
+}
+
+.words-body ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+  padding-left: 0;
+}
+
+.words-body ol {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+  padding-left: 0;
+}
+
+.words-body li {
+  list-style-position: outside;
+  margin-bottom: 0.5em;
+  display: list-item;
+}
+
 .post-body {
   padding-right: 3px;
+}
+
+.post-body ul,
+.post-body ol,
+.post-body li {
+  text-decoration: none !important;
+}
+
+.post-body ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+  padding-left: 0;
+}
+
+.post-body ol {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+  padding-left: 0;
+}
+
+.post-body li {
+  list-style-position: outside;
+  margin-bottom: 0.5em;
+  display: list-item;
 }
 
 .embla {
