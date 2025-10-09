@@ -4,18 +4,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import headerLogo from "@/assets/images/header-logo-2.7.png";
 import OptimizedGlobeVideo from "./OptimizedGlobeVideo";
+import { usePathname } from "next/navigation";
 
 export default function SplashScreen() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        // Show splash screen for 2 seconds, then hide
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
+        // Only show splash screen on homepage and only on first visit
+        const hasVisited = sessionStorage.getItem('has-visited');
+        const isHomepage = pathname === '/';
+        
+        if (!hasVisited && isHomepage) {
+            // First visit to homepage - show splash screen
+            setIsLoading(true);
+            
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+                sessionStorage.setItem('has-visited', 'true');
+            }, 2000);
 
-        return () => clearTimeout(timer);
-    }, []);
+            return () => clearTimeout(timer);
+        }
+    }, [pathname]);
 
     return (
         <AnimatePresence mode="wait">

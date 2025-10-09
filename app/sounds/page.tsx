@@ -1,10 +1,8 @@
 "use client";
 import { Soundcloud } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import { formatDate } from '@/utils';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import localFont from 'next/font/local';
 
 const pomotectBoldFont = localFont({
@@ -15,13 +13,17 @@ const pomotectFont = localFont({
     src: '../../fonts/pomotect-analog-regular.otf',
 });
 
+export const dynamic = 'force-dynamic';
 
-const Sounds = () => {
+export default function Sounds() {
+    const [mounted, setMounted] = useState(false);
 
-    let lastUpdatedDate = formatDate();
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
-        <div>
+        <div suppressHydrationWarning>
             <div className="site-section">
                 <h3 className={`${pomotectBoldFont.className} main_header`}>Sounds</h3>
                 <p className={`${pomotectFont.className} italic`}>Most recently updated on November 28, 2024</p>
@@ -30,10 +32,7 @@ const Sounds = () => {
                 <Link href="/sounds" scroll={false} className={`${pomotectFont.className} objects_link bg-black text-white hover:bg-black hover:text-white`}>Mixes</Link>
                 <Link href="/sounds/sets" scroll={false} className={`${pomotectFont.className} objects_link focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Sets</Link>
             </div>
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-            >
+            {mounted && <div>
                 <Soundcloud title_href="https://soundcloud.com/pomotect/detroit-locomotive" title="DETRIOT LOCOMOTIVE [8 of ?]" label="DETRIOT LOCOMOTIVE [8 of ?]" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1933063748&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
                 <Soundcloud title_href="https://soundcloud.com/pomotect/help-me-put-out-the-flames" title="HELP ME PUT OUT THE FLAMES [7 of ?]" label="HELP ME PUT OUT THE FLAMES [7 of ?]" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1932471983&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
                 <Soundcloud title_href="https://soundcloud.com/pomotect/cellar-36-set-062824" title="Cellar 36 Set 06.28.24" label="Cellar 36 Set 06.28.24" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1864662273&color=%233100ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" />
@@ -50,9 +49,7 @@ const Sounds = () => {
                 <div className="hidden md:block">
                     <ScrollToTopButton />
                 </div>
-            </motion.div>
+            </div>}
         </div>
     )
 }
-
-export default Sounds

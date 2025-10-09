@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { formatUpdatedDate, getPosts } from '@/utils';
-import Image from "next/image";
-import parse from 'html-react-parser';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { Posts } from '@/components';
 import WordsSidebar from '@/components/WordsSidebar';
@@ -17,10 +15,13 @@ const pomotectFont = localFont({
   src: '../../fonts/pomotect-analog-regular.otf',
 });
 
-const Words = () => {
+export const dynamic = 'force-dynamic';
+
+export default function Words() {
   const [posts, setPosts] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +47,10 @@ const Words = () => {
     fetchData();
   }, []);
 
-  // Loading state
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   if (loading) {
     return (
       <div className="relative">
@@ -58,7 +62,6 @@ const Words = () => {
     );
   }
 
-  // Error state
   if (error || !posts) {
     return (
       <div className="relative">
@@ -72,8 +75,7 @@ const Words = () => {
 
   let response = posts.posts.filter((post: any) => { return (post.primary_tag?.name !== "Process") });
 
-  // Check if we have posts before accessing the first one
-  const utcTimeString = response.length > 0 ? response[0].published_at : new Date().toISOString();
+  const utcTimeString = response.length > 0 ? response[0].published_at : '2024-01-01T00:00:00.000Z';
   const date = new Date(utcTimeString);
   let formattedDate = formatUpdatedDate(date)
 
@@ -103,5 +105,3 @@ const Words = () => {
     </div>
   )
 }
-
-export default Words

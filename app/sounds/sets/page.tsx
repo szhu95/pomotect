@@ -22,8 +22,6 @@ const pomotectFont = localFont({
 });
 
 const Events = () => {
-    let lastUpdatedDate = formatDate();
-
     // Event data with flyer images
     const events = [
         {
@@ -92,13 +90,13 @@ const Events = () => {
                                     </div>
                                     </div>
                                 </div>
-                                <div className="flex justify-center">
+                                <div className="flex justify-center items-center">
                                     <ShimmerImage
                                         width={300}
                                         height={300}
                                         src={event.flyer}
                                         alt={event.alt}
-                                        className="mx-auto shadow-lg max-w-full h-auto"
+                                        className="shadow-lg max-w-full h-auto object-contain"
                                         priority={event.id === 1} // Only priority for first image on mobile
                                         sizes="(max-width: 768px) 300px, 400px"
                                     />
@@ -109,7 +107,7 @@ const Events = () => {
                 </div>
 
                 {/* Desktop: Hover functionality */}
-                <div className="hidden md:flex w-full md:flex-row min-h-screen">
+                <div className="hidden md:flex w-full md:flex-row min-h-screen max-w-[90%] mx-auto">
                     {/* Left Sidebar */}
                     <div
                         className="w-full md:w-1/3 pr-0 md:pr-8 mb-8 md:mb-0"
@@ -143,26 +141,24 @@ const Events = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: hoveredEvent ? 1 : 0 }}
                             transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="text-center w-full"
+                            className="flex items-center justify-center w-full h-full"
                         >
                             {hoveredEvent ? (
-                                <div className="relative">
+                                <div className="flex items-center justify-center">
                                     {(() => {
                                         const event = events.find(e => e.id === hoveredEvent);
                                         if (!event) return null;
 
                                         return (
-                                            <>
-                                                <ShimmerImage
-                                                    width={500}
-                                                    height={500}
-                                                    src={event.flyer}
-                                                    alt={event.alt}
-                                                    className="mx-auto shadow-lg max-w-full h-auto"
-                                                    priority={false} // No priority on desktop since images load on hover
-                                                    sizes="(min-width: 768px) 500px, 300px"
-                                                />
-                                            </>
+                                            <ShimmerImage
+                                                width={500}
+                                                height={500}
+                                                src={event.flyer}
+                                                alt={event.alt}
+                                                className="shadow-lg max-w-full h-auto object-contain"
+                                                priority={false} // No priority on desktop since images load on hover
+                                                sizes="(min-width: 768px) 500px, 300px"
+                                            />
                                         );
                                     })()}
                                 </div>

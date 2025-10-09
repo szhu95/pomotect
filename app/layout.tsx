@@ -25,7 +25,7 @@ export default function RootLayout({
         <link rel="preload" href="/globe-animation.webm" as="fetch" type="video/webm" />
         <link rel="preload" href="/globe-animation.gif" as="image" type="image/gif" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         {/* <RSVPLink /> */}
         <Providers>
           <div className="site-layout">

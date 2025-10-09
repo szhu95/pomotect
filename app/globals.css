@@ -426,6 +426,11 @@ body {
   background: white;
   @apply px-[5%] md:px-[10%];
   @apply max-w-[100%] md:max-w-[100%];
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='16' viewBox='0 0 24 24' fill='%230000ff' stroke='none'><line x1='3' y1='12' x2='19' y2='12' stroke='%230066cc' stroke-width='2' stroke-dasharray='4,3'/><path d='m12 5 7 7-7 7'/></svg>") 12 12, auto;
+}
+
+a, button {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='16' viewBox='0 0 24 24' fill='%230000ff' stroke='none'><line x1='3' y1='12' x2='19' y2='12' stroke='%230066cc' stroke-width='2' stroke-dasharray='4,3'/><path d='m12 5 7 7-7 7'/></svg>") 12 12, pointer;
 }
 
 .soundcloud-section {

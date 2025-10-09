@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import homeLogo from '../assets/images/header-logo-2.7.png'
-import mobileHomeLogo from '../assets/images/header-logo-2.5.png'
+import mobileHomeLogo from '../assets/images/header-logo-2.5.webp'
 import { usePathname, useRouter } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
@@ -23,6 +23,8 @@ const Header = ({ title, menuStatus }: any) => {
     const [cartFilled, setCartFilled] = useState(false)
     const [menuIcon, setIcon] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [showStickyHeader, setShowStickyHeader] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const pathname = usePathname();
     const { cartItemCount } = useCart();
     const router = useRouter();
@@ -49,6 +51,22 @@ const Header = ({ title, menuStatus }: any) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname]);
 
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!isMounted) return;
+
+        const handleScroll = () => {
+            // Show sticky header when scrolled past 300px
+            setShowStickyHeader(window.scrollY > 300);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isMounted]);
+
     const handleMobileNavClick = (href: string) => {
         setLoading(true);
         setIcon(false);
@@ -68,7 +86,30 @@ const Header = ({ title, menuStatus }: any) => {
     };
 
     return (
-        <div className="padding-y md:text-center">
+        <>
+            {/* Sticky Header - shows on scroll - only render after client mount */}
+            {isMounted && (
+                <div className={`hidden md:block fixed top-0 left-0 right-0 z-50 bg-white border-b border-black transition-transform duration-300 ${showStickyHeader ? 'translate-y-0' : '-translate-y-full'}`}>
+                    <div className="px-[10%] py-0 flex justify-between items-center">
+                        <Link href="/" scroll={true} className="flex items-center">
+                            <Image
+                                src={homeLogo}
+                                alt="Postmodern Tectonics"
+                                width={400}
+                                height={90}
+                                className="h-14 w-auto hover:opacity-80 transition-opacity"
+                            />
+                        </Link>
+                        <Link href="/cart" scroll={false} className="flex items-center">
+                            <div className={`${pomotectFont.className} hover:text-terracotta inline-flex items-center relative min-w-[50px] ${pathname.startsWith("/cart") ? 'text-terracotta' : ''}`}>
+                                [Cart]<CartCount />
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+            )}
+
+            <div className="padding-y md:text-center" suppressHydrationWarning>
             <div onClick={() => setIcon(false)} className="home-link mb-4">
                 <Link href="/" scroll={true} className="md:block hidden">
                     <Image
@@ -233,7 +274,8 @@ const Header = ({ title, menuStatus }: any) => {
                     <OptimizedGlobeVideo showOnMobile={true} />
                 </div>
             )}
-        </div >
+        </div>
+        </>
     )
 }
 
