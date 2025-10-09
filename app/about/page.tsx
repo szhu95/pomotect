@@ -57,20 +57,20 @@ const About = () => {
                             Currently, the Label is focused on — but never limited to — four human art forms:
                         </div>
 
-                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
-                            <Link href="/products/process" className={`${pomotectBoldFont.className}`}> Architecture,</Link>
+                        <div className={`${pomotectFont.className}`}>
+                            <Link href="/products/process" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> Architecture,</Link>
                         </div>
 
-                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
-                            <Link href="/products" className={`${pomotectBoldFont.className}`}> Objects,</Link>
+                        <div className={`${pomotectFont.className}`}>
+                            <Link href="/products" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> Objects,</Link>
                         </div>
 
-                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer`}>
-                            <Link href="/words" className={`${pomotectBoldFont.className}`}> Words,</Link>
+                        <div className={`${pomotectFont.className}`}>
+                            <Link href="/words" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> Words,</Link>
                         </div>
 
-                        <div className={`${pomotectFont.className} text-primary-blue md:text-black hover:text-primary-blue hover:cursor-pointer mb-6`}>
-                            <Link href="/sounds" className={`${pomotectBoldFont.className}`}> and Sounds.</Link>
+                        <div className={`${pomotectFont.className} mb-6`}>
+                            <Link href="/sounds" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> and Sounds.</Link>
                         </div>
 
                         <div className={`${pomotectFont.className} about-section`}>
