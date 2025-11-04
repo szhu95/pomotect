@@ -49,21 +49,26 @@ export default function Shop({ response }: ShopProps) {
   };
 
 
-  // Separate products by category
-  const furnitureProducts = response.products.edges.filter(item => 
-    item.node.tags && item.node.tags.includes('furniture')
-  );
-  
+  // Separate products by category with priority: latest > furniture > priority > other
   const latestProducts = response.products.edges.filter(item => 
     item.node.tags && item.node.tags.includes('latest')
   );
   
+  const furnitureProducts = response.products.edges.filter(item => 
+    item.node.tags && item.node.tags.includes('furniture') && !item.node.tags.includes('latest')
+  );
+  
+  const priorityProducts = response.products.edges.filter(item => 
+    item.node.tags && item.node.tags.includes('priority') && 
+    !item.node.tags.includes('latest') && !item.node.tags.includes('furniture')
+  );
+  
   const otherProducts = response.products.edges.filter(item => 
-    !item.node.tags || (!item.node.tags.includes('furniture') && !item.node.tags.includes('latest'))
+    !item.node.tags || (!item.node.tags.includes('furniture') && !item.node.tags.includes('latest') && !item.node.tags.includes('priority'))
   );
 
-  // Combine: furniture first, then books, then everything else
-  const sortedProducts = [...furnitureProducts, ...latestProducts, ...otherProducts];
+  // Combine: latest first, then furniture, then priority, then everything else
+  const sortedProducts = [...latestProducts, ...furnitureProducts, ...priorityProducts, ...otherProducts];
 
   return (
     <motion.div

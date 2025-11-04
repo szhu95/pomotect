@@ -9,10 +9,12 @@ import localFont from 'next/font/local';
 
 const pomotectBoldFont = localFont({
   src: '../../fonts/pomotect-analog-bold.otf',
+  display: 'swap',
 });
 
 const pomotectFont = localFont({
   src: '../../fonts/pomotect-analog-regular.otf',
+  display: 'swap',
 });
 
 export const dynamic = 'force-dynamic';
@@ -21,7 +23,6 @@ export default function Words() {
   const [posts, setPosts] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,16 +48,14 @@ export default function Words() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   if (loading) {
     return (
       <div className="relative">
         <div className="site-section">
-          <h3 className="main_header">Words</h3>
-          <p className={`${pomotectFont.className} italic text-center`}>Loading posts...</p>
+          <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
+          <p className={`${pomotectFont.className} italic text-center mt-6`}>
+            Loading posts...
+          </p>
         </div>
       </div>
     );
@@ -66,7 +65,7 @@ export default function Words() {
     return (
       <div className="relative">
         <div className="site-section">
-          <h3 className="main_header">Words</h3>
+          <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
           <p className="italic text-red-500">Unable to load posts at this time. Please try again later.</p>
         </div>
       </div>

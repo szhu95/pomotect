@@ -721,9 +721,42 @@ input[type="range"].dj-mixer-slider:focus::-ms-thumb {
   animation: slideUp 0.4s ease-out;
 }
 
+@keyframes pulseOpacity {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-opacity {
+  animation: pulseOpacity 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 /* Hide scrollbar for webkit browsers */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Add spacing between paragraphs in product description */
+.site-section .text-justify p {
+  margin-bottom: 1.25rem;
+}
+
+.site-section .text-justify p:last-child {
+  margin-bottom: 0;
+}
+
+/* Add spacing at the bottom of lists in product description */
+.site-section .text-justify ul,
+.site-section .text-justify ol {
+  margin-bottom: 1.25rem;
+}
+
+.site-section .text-justify ul:last-child,
+.site-section .text-justify ol:last-child {
+  margin-bottom: 0;
 }
 
 /* Mobile video optimizations */
