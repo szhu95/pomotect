@@ -759,6 +759,35 @@ input[type="range"].dj-mixer-slider:focus::-ms-thumb {
   margin-bottom: 0;
 }
 
+/* Custom unique bullet points for lists in product description */
+.site-section .text-justify ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.site-section .text-justify ul li {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.site-section .text-justify ul li::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  color: #0025FF;
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+/* Ensure all links in product description are blue */
+.site-section .text-justify a,
+.site-section .text-justify a[href^="mailto:"],
+.site-section .text-justify a[href*="mailto:"] {
+  color: #0025FF !important;
+  text-decoration: underline;
+}
+
 /* Mobile video optimizations */
 video {
   -webkit-user-select: none;
