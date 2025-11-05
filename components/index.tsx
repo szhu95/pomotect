@@ -26,6 +26,7 @@ import FadeInImage from './FadeInImage';
 import OptimizedGlobeVideo from './OptimizedGlobeVideo';
 import ShimmerImage from './ShimmerImage';
 import RSVPLink from './RSVPLink';
+import ProductWithVariantImages from './ProductWithVariantImages';
 
 export {
     Hero,
@@ -55,5 +56,6 @@ export {
     FadeInImage,
     OptimizedGlobeVideo,
     ShimmerImage,
-    RSVPLink
+    RSVPLink,
+    ProductWithVariantImages
 }

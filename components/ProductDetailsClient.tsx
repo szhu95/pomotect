@@ -15,7 +15,7 @@ const pomotectBoldFont = localFont({
   src: '../fonts/pomotect-analog-bold.otf',
 });
 
-export default function ProductDetailsClient({ product, isFurniture, markup }: { product: any, isFurniture: boolean, markup: React.ReactNode }) {
+export default function ProductDetailsClient({ product, isFurniture, markup, onVariantChange }: { product: any, isFurniture: boolean, markup: React.ReactNode, onVariantChange?: (variant: string) => void }) {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
 
   return (
@@ -75,6 +75,7 @@ export default function ProductDetailsClient({ product, isFurniture, markup }: {
             options={product.options[0].values}
             quantity={product.totalInventory}
             variants={product.variants}
+            onVariantChange={onVariantChange}
           />
         )}
       </div>

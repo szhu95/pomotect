@@ -840,6 +840,71 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
             )
         )
       }
+      {(() => {
+        // Calculate discount by summing item prices and comparing to displayed total
+        let discountAmount = 0;
+        
+        // Calculate sum of all item prices in cart
+        let sumOfItems = 0;
+        let displayedTotal = 0;
+        
+        // For variants array view
+        if (variants && variants.length > 0 && variantsData.length > 0) {
+          // Sum of item prices (what we see displayed)
+          sumOfItems = variantsData.reduce((sum, variant) => {
+            const variantNode = variant.data?.node;
+            if (variantNode) {
+              return sum + (Number(variantNode.price.amount) * variant.quantity);
+            }
+            return sum;
+          }, 0);
+          // Displayed total is the same calculation (no discount shown separately for variants)
+          displayedTotal = sumOfItems;
+        }
+        // For single variant view
+        else if (variantId && variantData?.node) {
+          sumOfItems = Number(variantData.node.price.amount) * providedQuantity;
+          displayedTotal = sumOfItems; // Same calculation (no discount shown separately)
+        }
+        // For regular cart view - this is where discounts would show
+        else if (data?.cart?.lines?.edges && data?.cart?.cost) {
+          // Sum up all line item prices (price × quantity) as displayed in cart
+          sumOfItems = data.cart.lines.edges.reduce((sum: number, edge: any) => {
+            const price = Number(edge.node.merchandise?.price?.amount || 0);
+            const quantity = Number(edge.node.quantity || 0);
+            return sum + (price * quantity);
+          }, 0);
+          
+          // Get the displayed total (what's shown at bottom - subtotalAmount)
+          displayedTotal = Number(data.cart.cost?.subtotalAmount?.amount || 0);
+        }
+        // Fallback to state values
+        else if (total && total !== '0.0') {
+          // If we only have state values, we can't calculate from items
+          // So we'll use the old method as fallback
+          const subtotalAmount = Number(total);
+          const totalAmount = Number(salePrice || total);
+          if (subtotalAmount > totalAmount && (subtotalAmount - totalAmount) > 0.01) {
+            discountAmount = subtotalAmount - totalAmount;
+          }
+        }
+        
+        // Calculate discount: sum of items - displayed total
+        if (sumOfItems > 0 && displayedTotal > 0 && sumOfItems > displayedTotal) {
+          discountAmount = sumOfItems - displayedTotal;
+        }
+        
+        return discountAmount > 0.01 ? (
+          <>
+            <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 text-black transition-all duration-300 ease-in-out`}>
+              SUBTOTAL: {formatter.format(sumOfItems)}
+            </div>
+            <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic text-primary-blue transition-all duration-300 ease-in-out`}>
+              DISCOUNT: -{formatter.format(discountAmount)}
+            </div>
+          </>
+        ) : null;
+      })()}
       <div className={`${pomotectFont.className} text-right pr-2 font-semibold pb-2 italic border-b-2 border-terracotta transition-all duration-300 ease-in-out`}>TOTAL BEFORE TAXES + SHIPPING</div>
       <div className={`text-right pr-2 font-semibold pt-2 mb-2 ${pomotectFont.className} transition-all duration-300 ease-out ${
         isTotalFlashing ? 'text-terracotta' : ''

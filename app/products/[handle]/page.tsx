@@ -7,6 +7,7 @@ import Carousel from "@/components/Carousel";
 import NotFound from "@/app/not-found";
 import localFont from 'next/font/local';
 import ProductDetailsClient from '@/components/ProductDetailsClient';
+import ProductWithVariantImages from '@/components/ProductWithVariantImages';
 
 const pomotectFont = localFont({
   src: '../../../fonts/pomotect-analog-regular.otf',
@@ -62,6 +63,10 @@ const singleProductQuery = gql`
             title
             id
             quantityAvailable
+            image {
+              transformedSrc
+              altText
+            }
           }
         }
       }
@@ -114,6 +119,7 @@ export default async function Page({ params, searchParams }: PageProps) {
   const markup = parse(product.descriptionHtml, options);
 
   const isFurniture = handle.toLowerCase().includes('furniture');
+  const shouldSwitchVariantImages = handle === 'a-not-so-still-life-1';
 
   return (
     <div>
@@ -121,17 +127,21 @@ export default async function Page({ params, searchParams }: PageProps) {
         <h3 className={`${pomotectBoldFont.className} product-details-header`}>Objects</h3>
         <Link href="/products" scroll={false} className={`$minion-font back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
       </div>
-      <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
-        <div className="md:w-1/2 w-full md:block hidden">
-          <Carousel images={product.images} />
+      {shouldSwitchVariantImages ? (
+        <ProductWithVariantImages product={product} isFurniture={isFurniture} markup={markup} />
+      ) : (
+        <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
+          <div className="md:w-1/2 w-full md:block hidden">
+            <Carousel images={product.images} />
+          </div>
+          <div className="flex md:hidden">
+            <Carousel images={product.images} />
+          </div>
+          <div className="product-details">
+            <ProductDetailsClient product={product} isFurniture={isFurniture} markup={markup} />
+          </div>
         </div>
-        <div className="flex md:hidden">
-          <Carousel images={product.images} />
-        </div>
-        <div className="product-details">
-          <ProductDetailsClient product={product} isFurniture={isFurniture} markup={markup} />
-        </div>
-      </div>
+      )}
       <div className="hidden md:block">
         <ScrollToTopButton />
       </div>

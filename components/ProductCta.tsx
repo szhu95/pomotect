@@ -115,11 +115,18 @@ mutation cartCreate($input: CartInput!) {
 }
 
 
-const ProductCta = ({ variantName, options, quantity, variants }: any) => {
+const ProductCta = ({ variantName, options, quantity, variants, onVariantChange }: any) => {
   const { cartItemCount, updateCartItemCount } = useCart();
   const [size, setSize] = useState(options[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [itemAdded, setItemAdded] = useState(false);
+
+  // Call onVariantChange when size changes
+  React.useEffect(() => {
+    if (onVariantChange && size) {
+      onVariantChange(size);
+    }
+  }, [size, onVariantChange]);
 
   let variantArr = variants.edges;
 

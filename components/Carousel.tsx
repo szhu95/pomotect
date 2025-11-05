@@ -10,8 +10,8 @@ const pomotectFont = localFont({
 });
 
 const Carousel = (response: any) => {
-
-    const [emblaRef, emblaApi] = useEmblaCarousel();
+    const initialSlide = response.initialSlide || 0;
+    const [emblaRef, emblaApi] = useEmblaCarousel({ startIndex: initialSlide });
     const [modalOpen, setModalOpen] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalZoom, setModalZoom] = useState(1);
@@ -34,6 +34,13 @@ const Carousel = (response: any) => {
             });
         }
     }, [response.images?.edges]);
+
+    // Scroll to initial slide when it changes
+    useEffect(() => {
+        if (emblaApi && initialSlide !== undefined) {
+            emblaApi.scrollTo(initialSlide, false);
+        }
+    }, [emblaApi, initialSlide]);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()

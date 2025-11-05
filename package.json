@@ -14,7 +14,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
-    "@netlify/plugin-nextjs": "^5.13.5",
+    "@netlify/plugin-nextjs": "^5.14.4",
     "@shopify/hydrogen-react": "^2023.10.1",
     "@shopify/shopify-api": "^8.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
