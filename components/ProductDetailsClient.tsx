@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { ProductCta } from ".";
 import BlueHandLogo from "../assets/images/blue-hand-logo.png";
@@ -7,6 +7,7 @@ import InquiryForm from "@/components/InquiryForm";
 import { motion, AnimatePresence } from "framer-motion";
 import moment from "moment";
 import localFont from "next/font/local";
+import { formatPrice } from "@/utils";
 
 const pomotectFont = localFont({
   src: '../fonts/pomotect-analog-regular.otf',
@@ -17,6 +18,73 @@ const pomotectBoldFont = localFont({
 
 export default function ProductDetailsClient({ product, isFurniture, markup, onVariantChange }: { product: any, isFurniture: boolean, markup: React.ReactNode, onVariantChange?: (variant: string) => void }) {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
+
+  const pricing = useMemo(() => {
+    if (!product || !product.priceRange || !product.priceRange.minVariantPrice || !product.priceRange.minVariantPrice.amount) {
+      return { price: 0, compareAtPrice: null };
+    }
+    
+    // Find the variant with the lowest discounted price
+    let minDiscountedPrice: number | null = null;
+    let compareAtPrice: number | null = null;
+    let minRegularPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+    
+    // Check all variants for discounts
+    if (product.variants && product.variants.edges && Array.isArray(product.variants.edges)) {
+      for (const variantEdge of product.variants.edges) {
+        if (!variantEdge || !variantEdge.node) continue;
+        
+        const variant = variantEdge.node;
+        const variantPriceAmount = variant.price?.amount || product.priceRange.minVariantPrice.amount;
+        if (!variantPriceAmount) continue;
+        
+        const variantPrice = parseFloat(variantPriceAmount);
+        
+        // Track the minimum regular price
+        if (variantPrice < minRegularPrice) {
+          minRegularPrice = variantPrice;
+        }
+        
+        // Check if this variant has a compareAtPrice discount
+        if (variant.compareAtPrice && variant.compareAtPrice.amount) {
+          const variantCompareAtPrice = parseFloat(variant.compareAtPrice.amount);
+          
+          // If this variant has a discount (compareAtPrice > price)
+          if (variantCompareAtPrice > variantPrice) {
+            // If this is the first discounted variant or has a lower discounted price, use it
+            if (minDiscountedPrice === null || variantPrice < minDiscountedPrice) {
+              minDiscountedPrice = variantPrice;
+              compareAtPrice = variantCompareAtPrice;
+            }
+          }
+        }
+      }
+    }
+    
+    // If we found a compareAtPrice discount, return it
+    if (minDiscountedPrice !== null && compareAtPrice !== null) {
+      return { price: minDiscountedPrice, compareAtPrice };
+    }
+    
+    // Check if product is eligible for BF-30-OFF discount code (30% off)
+    // Only apply to products with a specific tag (e.g., 'bf-30-off' or 'sale')
+    const isEligibleForBF30Off = !isFurniture && 
+      product.tags && 
+      Array.isArray(product.tags) && (
+        product.tags.includes('bf-30-off') || 
+        product.tags.includes('sale') ||
+        product.tags.includes('discount')
+      );
+    
+    if (isEligibleForBF30Off) {
+      // Calculate 30% discount
+      const originalPrice = minRegularPrice;
+      const discountedPrice = originalPrice * 0.7; // 30% off
+      return { price: discountedPrice, compareAtPrice: originalPrice };
+    }
+    
+    return { price: minRegularPrice, compareAtPrice: null };
+  }, [product, isFurniture]);
 
   return (
     <>
@@ -33,7 +101,16 @@ export default function ProductDetailsClient({ product, isFurniture, markup, onV
             height={50}
           />
           {!isFurniture && (
-            <div className='font-bold minion-font ml-2 mt-4'>{product.priceRange && product.priceRange.minVariantPrice && product.priceRange.minVariantPrice.amount ? `$${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(2)}` : null}</div>
+            pricing.compareAtPrice && pricing.compareAtPrice > pricing.price ? (
+              <div className='font-bold minion-font ml-2 mt-1'>
+                <div className="minion-font line-through text-slate-400">{formatPrice(pricing.compareAtPrice.toString())}</div>
+                <div className="minion-font text-primary-blue">{formatPrice(pricing.price.toString())}</div>
+              </div>
+            ) : (
+              <div className='font-bold minion-font ml-2 mt-4'>
+                {formatPrice(pricing.price.toString())}
+              </div>
+            )
           )}
         </div>
       </div>

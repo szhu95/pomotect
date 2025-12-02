@@ -7,26 +7,40 @@ import OptimizedGlobeVideo from "./OptimizedGlobeVideo";
 import { usePathname } from "next/navigation";
 
 export default function SplashScreen() {
-    const [isLoading, setIsLoading] = useState(false);
     const pathname = usePathname();
+    
+    // Initialize state immediately to prevent flash - start with true on client
+    // to cover the splash screen, then check if we should actually show it
+    const [isLoading, setIsLoading] = useState(() => {
+        // On client, check immediately if we should show splash
+        if (typeof window !== 'undefined') {
+            const hasVisited = sessionStorage.getItem('has-visited');
+            // Check if we're on homepage by checking window.location
+            const isHomepage = window.location.pathname === '/';
+            return !hasVisited && isHomepage;
+        }
+        // On server, default to false
+        return false;
+    });
 
     useEffect(() => {
         // Only show splash screen on homepage and only on first visit
         const hasVisited = sessionStorage.getItem('has-visited');
         const isHomepage = pathname === '/';
         
-        if (!hasVisited && isHomepage) {
-            // First visit to homepage - show splash screen
-            setIsLoading(true);
-            
+        if (!hasVisited && isHomepage && isLoading) {
+            // First visit to homepage - set up timer to hide splash screen
             const timer = setTimeout(() => {
                 setIsLoading(false);
                 sessionStorage.setItem('has-visited', 'true');
             }, 2000);
 
             return () => clearTimeout(timer);
+        } else if (hasVisited || !isHomepage) {
+            // If already visited or not homepage, ensure loading is false
+            setIsLoading(false);
         }
-    }, [pathname]);
+    }, [pathname, isLoading]);
 
     return (
         <AnimatePresence mode="wait">
@@ -36,7 +50,7 @@ export default function SplashScreen() {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="fixed inset-0 z-[10000] bg-white flex flex-col items-center justify-center"
+                    className="fixed inset-0 z-[10001] bg-white flex flex-col items-center justify-center"
                 >
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}

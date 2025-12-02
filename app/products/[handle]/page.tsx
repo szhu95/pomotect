@@ -44,6 +44,9 @@ const singleProductQuery = gql`
         minVariantPrice {
           amount
         }
+        maxVariantPrice {
+          amount
+        }
       }
       options {
         name
@@ -63,6 +66,12 @@ const singleProductQuery = gql`
             title
             id
             quantityAvailable
+            price {
+              amount
+            }
+            compareAtPrice {
+              amount
+            }
             image {
               transformedSrc
               altText

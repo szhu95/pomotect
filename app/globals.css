@@ -290,6 +290,10 @@
 }
 
 .embla {
+  position: relative;
+}
+
+.embla__viewport {
   overflow: hidden;
 }
 

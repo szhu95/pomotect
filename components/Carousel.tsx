@@ -103,12 +103,12 @@ const Carousel = (response: any) => {
     };
 
     return (
-        <div className="embla">
-            <div className="embla__viewport" ref={emblaRef}>
+        <div className="embla relative">
+            <div className="embla__viewport pb-4" ref={emblaRef}>
                 <div className="embla__container">
                     {response.images?.edges.map((item: any, i: React.Key | null | undefined) => {
                         return (
-                            <div key={i} className="embla__slide">
+                            <div key={i} className="embla__slide flex items-center justify-center">
                                 <ZoomableImage
                                     src={item.node?.transformedSrc}
                                     alt={"product image"}
@@ -121,14 +121,14 @@ const Carousel = (response: any) => {
                         )
                     })}
                 </div>
-                <div className="text-center">
-                    <button className="embla__prev text-primary-blue" onClick={scrollPrev}>
-                        ⇠
-                    </button>
-                    <button className="ml-[89%] embla__next text-primary-blue" onClick={scrollNext}>
-                        ⇢
-                    </button>
-                </div>
+            </div>
+            <div className="relative flex items-center justify-center w-full mt-2">
+                <button className="embla__prev text-primary-blue absolute left-0 xl:left-4 z-10 ml-4 xl:ml-8" onClick={scrollPrev}>
+                    ⇠
+                </button>
+                <button className="embla__next text-primary-blue absolute right-0 xl:right-4 z-10 mr-4 xl:mr-8" onClick={scrollNext}>
+                    ⇢
+                </button>
             </div>
             {modalVisible && modalImg && (
                 <div className={`fixed inset-0 bg-white flex items-center justify-center z-50 modal-fade${modalOpen ? '' : ' modal-fade-exit'}`}>

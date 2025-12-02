@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Footer, Header, CookieConsent } from '@/components'
+import { Footer, Header } from '@/components'
 import Providers from '@/components/Providers'
 // import RSVPLink from '@/components/RSVPLink'
 
@@ -33,7 +33,6 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
-          <CookieConsent />
         </Providers>
       </body>
     </html>

@@ -38,6 +38,9 @@ const productsQuery = gql`
               minVariantPrice {
                 amount
               }
+              maxVariantPrice {
+                amount
+              }
             }
             variants(first: 10) {
               edges {
@@ -45,6 +48,12 @@ const productsQuery = gql`
                   id
                   availableForSale
                   quantityAvailable
+                  price {
+                    amount
+                  }
+                  compareAtPrice {
+                    amount
+                  }
                 }
               }
             }
