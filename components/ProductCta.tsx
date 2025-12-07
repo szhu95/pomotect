@@ -78,40 +78,100 @@ mutation cartCreate($input: CartInput!) {
   `;
 
   async function createCart() {
+    try {
+      const { data } = await storefront(createCartQuery, {
+        "input": {
+          "lines": [{
+            "merchandiseId": variant_id,
+            "quantity": 1
+          }]
+        }
+      });
 
-    const { data } = await storefront(createCartQuery, {
-      "input": {
-        "lines": [{
-          "merchandiseId": variant_id,
-          "quantity": 1
-        }]
+      if (data?.cartCreate?.cart?.id) {
+        try {
+          localStorage.setItem("cartId", data.cartCreate.cart.id);
+        } catch (storageError) {
+          console.warn('ProductCta: Could not save cartId to localStorage (may be blocked by browser extension):', storageError);
+          // Cart will still work for this session even if localStorage is blocked
+        }
+        return data.cartCreate.cart;
       }
-    })
 
-    localStorage.setItem("cartId", data.cartCreate.cart.id);
-    return data.cartCreate.cart;
+      // Check for user errors
+      if (data?.cartCreate?.userErrors?.length > 0) {
+        console.error('ProductCta: Error creating cart:', data.cartCreate.userErrors);
+      }
+
+      return null;
+    } catch (error) {
+      console.error('ProductCta: Error creating cart:', error);
+      return null;
+    }
   }
 
 
-  if (!localStorage.getItem("cartId")) {
+  let cartId;
+  try {
+    cartId = localStorage.getItem("cartId");
+  } catch (storageError) {
+    console.warn('ProductCta: localStorage may be blocked by browser extension, creating new cart');
+    cartId = null;
+  }
+
+  if (!cartId) {
     const cart = await createCart();
     return cart;
   }
-
   
-  const response = await storefront(addToCartQuery, {
-    "cartId": localStorage.getItem("cartId"),
-    "lines": [{
-      "merchandiseId": variant_id,
-      "quantity": 1
-    }]
-  })
-    .catch((error) => {
-      console.error('ProductCta: Error adding to cart:', error);
+  try {
+    const response = await storefront(addToCartQuery, {
+      "cartId": cartId,
+      "lines": [{
+        "merchandiseId": variant_id,
+        "quantity": 1
+      }]
     });
-  
-  
-  return response?.data?.cartLinesAdd?.cart;
+
+    // Check for user errors from Shopify
+    if (response?.data?.cartLinesAdd?.userErrors?.length > 0) {
+      console.error('ProductCta: Cart errors:', response.data.cartLinesAdd.userErrors);
+      // If cart is invalid, create a new one
+      if (response.data.cartLinesAdd.userErrors.some((error: any) => 
+        error.message?.toLowerCase().includes('cart') || 
+        error.message?.toLowerCase().includes('not found')
+      )) {
+        localStorage.removeItem("cartId");
+        return await createCart();
+      }
+    }
+
+    const cart = response?.data?.cartLinesAdd?.cart;
+    
+    // Ensure cartId is saved after successful add
+    if (cart?.id) {
+      try {
+        localStorage.setItem("cartId", cart.id);
+      } catch (storageError) {
+        console.warn('ProductCta: Could not save cartId to localStorage (may be blocked by browser extension):', storageError);
+        // Cart will still work for this session even if localStorage is blocked
+      }
+    }
+    
+    return cart;
+  } catch (error) {
+    console.error('ProductCta: Error adding to cart:', error);
+    // If cartId is invalid, create a new cart
+    if (cartId) {
+      try {
+        localStorage.removeItem("cartId");
+      } catch (storageError) {
+        // Ignore localStorage errors
+      }
+      return await createCart();
+    }
+    return null;
+  }
 }
 
 

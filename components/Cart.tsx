@@ -207,17 +207,39 @@ query getCart($id: ID!) {
 `;
 
 async function getCart() {
-  if (localStorage.getItem("cartId")) {
-    let id = localStorage.getItem("cartId");
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    const cartId = localStorage.getItem("cartId");
+    if (!cartId) {
+      return null;
+    }
 
     const { data } = await storefront(getCartQuery, {
-      "id": id
-    })
+      "id": cartId
+    });
+
+    // If cart doesn't exist or has errors, clear the invalid cartId
+    if (!data?.cart) {
+      console.warn('Cart not found or invalid, clearing cartId');
+      localStorage.removeItem("cartId");
+      return null;
+    }
 
     return data;
+  } catch (error) {
+    console.error('Error fetching cart:', error);
+    // Clear invalid cartId on error
+    try {
+      localStorage.removeItem("cartId");
+    } catch (storageError) {
+      console.error('Error clearing cartId from localStorage:', storageError);
+      // This might happen if localStorage is blocked by browser extension
+    }
+    return null;
   }
-  
-  return null;
 }
 
 async function getVariant(variantId: string) {
@@ -354,39 +376,99 @@ mutation cartCreate($input: CartInput!) {
   `;
 
   async function createCart() {
+    try {
+      const { data } = await storefront(createCartQuery, {
+        "input": {
+          "lines": [{
+            "merchandiseId": formattedVariantId,
+            "quantity": providedQuantity
+          }]
+        }
+      });
 
-    const { data } = await storefront(createCartQuery, {
-      "input": {
-        "lines": [{
-          "merchandiseId": formattedVariantId,
-          "quantity": providedQuantity
-        }]
+      if (data?.cartCreate?.cart?.id) {
+        try {
+          localStorage.setItem("cartId", data.cartCreate.cart.id);
+        } catch (storageError) {
+          console.error('Error saving cartId to localStorage (may be blocked by browser extension):', storageError);
+          // Continue even if localStorage fails - cart will still work for this session
+        }
+        return data.cartCreate.cart;
       }
-    })
 
-    localStorage.setItem("cartId", data.cartCreate.cart.id);
-    return data.cartCreate.cart;
+      // Check for user errors
+      if (data?.cartCreate?.userErrors?.length > 0) {
+        console.error('Error creating cart:', data.cartCreate.userErrors);
+      }
+
+      return null;
+    } catch (error) {
+      console.error('Error creating cart:', error);
+      return null;
+    }
   }
 
-  if (!localStorage.getItem("cartId")) {
+  let cartId;
+  try {
+    cartId = localStorage.getItem("cartId");
+  } catch (storageError) {
+    console.warn('localStorage may be blocked by browser extension, creating new cart');
+    cartId = null;
+  }
+
+  if (!cartId) {
     const cart = await createCart();
     return cart;
   }
-
   
-  const response = await storefront(addToCartQuery, {
-    "cartId": localStorage.getItem("cartId"),
-    "lines": [{
-      "merchandiseId": formattedVariantId,
-      "quantity": providedQuantity
-    }]
-  })
-    .catch((error) => {
-      console.error('Error adding to cart:', error);
+  try {
+    const response = await storefront(addToCartQuery, {
+      "cartId": cartId,
+      "lines": [{
+        "merchandiseId": formattedVariantId,
+        "quantity": providedQuantity
+      }]
     });
-  
-  
-  return response?.data?.cartLinesAdd?.cart;
+
+    // Check for user errors from Shopify
+    if (response?.data?.cartLinesAdd?.userErrors?.length > 0) {
+      console.error('Cart errors:', response.data.cartLinesAdd.userErrors);
+      // If cart is invalid, create a new one
+      if (response.data.cartLinesAdd.userErrors.some((error: any) => 
+        error.message?.toLowerCase().includes('cart') || 
+        error.message?.toLowerCase().includes('not found')
+      )) {
+        localStorage.removeItem("cartId");
+        return await createCart();
+      }
+    }
+
+    const cart = response?.data?.cartLinesAdd?.cart;
+    
+    // Ensure cartId is saved after successful add
+    if (cart?.id) {
+      try {
+        localStorage.setItem("cartId", cart.id);
+      } catch (storageError) {
+        console.warn('Could not save cartId to localStorage (may be blocked by browser extension):', storageError);
+        // Cart will still work for this session even if localStorage is blocked
+      }
+    }
+    
+    return cart;
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    // If cartId is invalid, create a new cart
+    if (cartId) {
+      try {
+        localStorage.removeItem("cartId");
+      } catch (storageError) {
+        // Ignore localStorage errors
+      }
+      return await createCart();
+    }
+    return null;
+  }
 }
 
 interface CartProps {
@@ -478,33 +560,69 @@ export default function Cart({ variantId, quantity: providedQuantity = 1, varian
   }
 
   const retrieveCart = useCallback(async () => {
-    let response = (await getCart()) as any;
+    try {
+      let response = (await getCart()) as any;
 
-    // Check if cart exists and has items
-    if (!response?.cart) {
-      setCart('');
-      setIsLoading(false);
-      return;
-    }
-    setData(response ? response : '');
-          let checkoutUrl = response ? response.cart.checkoutUrl : '';
+      // Check if cart exists and has items
+      if (!response?.cart) {
+        setCart('');
+        setData(null);
+        setCheckoutUrl('');
+        setTotal('0.0');
+        setQuantity(0);
+        setSalePrice('0.0');
+        updateCartItemCount(0);
+        setIsLoading(false);
+        return;
+      }
+
+      // Check if cart has any line items
+      if (!response.cart.lines?.edges || response.cart.lines.edges.length === 0) {
+        setCart('');
+        setData(null);
+        setCheckoutUrl('');
+        setTotal('0.0');
+        setQuantity(0);
+        setSalePrice('0.0');
+        updateCartItemCount(0);
+        setIsLoading(false);
+        // Clear invalid/empty cart
+        localStorage.removeItem("cartId");
+        return;
+      }
+
+      setData(response);
+      let checkoutUrl = response.cart.checkoutUrl || '';
       if (checkoutUrl) {
         checkoutUrl = checkoutUrl
           .replace(/^https?:\/\/pomotect\.com\/cart\/c\//, 'https://pomotect.myshopify.com/checkouts/cn/')
           .replace(/\?key=[^&]+$/, '');
       }
-    setCheckoutUrl(checkoutUrl);
-    setTotal(response ? response.cart?.cost?.subtotalAmount.amount : '0.0');
-    
-    // Calculate total quantity across all line items
-    const totalQuantity = response?.cart?.lines.edges.reduce((sum: number, edge: any) => {
-      return sum + (edge.node.quantity || 0);
-    }, 0) || 0;
-    
-    setQuantity(totalQuantity);
-    updateCartItemCount(totalQuantity);
-    setSalePrice(response ? response.cart?.cost?.totalAmount.amount : '0.0');
-    setIsLoading(false);
+      setCheckoutUrl(checkoutUrl);
+      setTotal(response.cart?.cost?.subtotalAmount?.amount || '0.0');
+      
+      // Calculate total quantity across all line items
+      const totalQuantity = response.cart.lines.edges.reduce((sum: number, edge: any) => {
+        return sum + (edge.node.quantity || 0);
+      }, 0) || 0;
+      
+      setQuantity(totalQuantity);
+      updateCartItemCount(totalQuantity);
+      setSalePrice(response.cart?.cost?.totalAmount?.amount || '0.0');
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error retrieving cart:', error);
+      setCart('');
+      setData(null);
+      setCheckoutUrl('');
+      setTotal('0.0');
+      setQuantity(0);
+      setSalePrice('0.0');
+      updateCartItemCount(0);
+      setIsLoading(false);
+      // Clear invalid cart on error
+      localStorage.removeItem("cartId");
+    }
   }, [updateCartItemCount])
 
   const retrieveVariant = useCallback(async () => {
