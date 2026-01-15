@@ -7,7 +7,7 @@ import localFont from 'next/font/local';
 import EmailButton from '@/components/EmailButton';
 import Link from 'next/link';
 import NewsletterForm from '@/components/NewsletterForm';
-import HolidaySaleBanner from '@/components/HolidaySaleBanner';
+import SaleBanner from '@/components/SaleBanner';
 
 const pomotectFont = localFont({
   src: '../fonts/pomotect-analog-regular.otf',
@@ -47,7 +47,7 @@ export default async function Home() {
           </span>
           <NewsletterForm />
         </div>
-        <HolidaySaleBanner />
+        <SaleBanner />
         <ImageTicker response={response} />
         <div className={`${pomotectFont.className} bg-[#BCB7AD] font-semibold text-white pl-1`}>IN THE CUE</div>
         <Hero />

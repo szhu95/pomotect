@@ -32,11 +32,27 @@ async function fetchWithRetry(url: string, options: RequestInit, retries = 3) {
 
 export async function POST(req: NextRequest) {
     try {
+        // Validate environment variable
+        if (!process.env.SHOPIFY_ADMIN_ACCESS_TOKEN) {
+            console.error('Missing SHOPIFY_ADMIN_ACCESS_TOKEN environment variable');
+            return NextResponse.json(
+                { message: 'Server configuration error' },
+                { status: 500 }
+            );
+        }
+
         const { name, email } = await req.json();
 
-        if (!name || !email) {
+        if (!name || typeof name !== 'string' || name.trim().length === 0) {
             return NextResponse.json(
-                { message: 'Name and email are required' },
+                { message: 'Name is required' },
+                { status: 400 }
+            );
+        }
+
+        if (!email || typeof email !== 'string' || !email.includes('@')) {
+            return NextResponse.json(
+                { message: 'Valid email is required' },
                 { status: 400 }
             );
         }

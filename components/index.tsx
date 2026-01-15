@@ -27,7 +27,7 @@ import OptimizedGlobeVideo from './OptimizedGlobeVideo';
 import ShimmerImage from './ShimmerImage';
 import RSVPLink from './RSVPLink';
 import ProductWithVariantImages from './ProductWithVariantImages';
-import HolidaySaleBanner from './HolidaySaleBanner';
+import SaleBanner from './SaleBanner';
 
 export {
     Hero,
@@ -59,5 +59,5 @@ export {
     ShimmerImage,
     RSVPLink,
     ProductWithVariantImages,
-    HolidaySaleBanner
+    SaleBanner
 }

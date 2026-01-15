@@ -3,14 +3,50 @@ import { NextRequest, NextResponse } from 'next/server';
 const SHOPIFY_DOMAIN = '3d9909-43.myshopify.com';
 const SHOPIFY_ADMIN_API = `https://${SHOPIFY_DOMAIN}/admin/api/2024-04/graphql.json`;
 
+async function fetchWithRetry(url: string, options: RequestInit, retries = 3) {
+    const timeout = 15000; // 15 seconds timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url, { ...options, signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response;
+        } catch (error: unknown) {
+            console.error(`Attempt ${i + 1} failed:`, error);
+            if (i === retries - 1) {
+                throw new Error(`Failed to fetch after ${retries} attempts: ${error instanceof Error ? error.message : String(error)}`);
+            }
+            clearTimeout(timeoutId);
+            const backoffMs = Math.min(1000 * Math.pow(2, i) + Math.random() * 1000, 10000);
+            console.log(`Retrying in ${backoffMs}ms...`);
+            await new Promise(res => setTimeout(res, backoffMs));
+        }
+    }
+}
+
 export async function POST(req: NextRequest) {
     try {
+        // Validate environment variable
+        if (!process.env.SHOPIFY_ADMIN_ACCESS_TOKEN) {
+            console.error('Missing SHOPIFY_ADMIN_ACCESS_TOKEN environment variable');
+            return NextResponse.json(
+                { message: 'Server configuration error' },
+                { status: 500 }
+            );
+        }
+
         const { email } = await req.json();
 
-        //console.log("Received email:", email);
-
-        if (!email) {
-            return NextResponse.json({ message: 'Email is required' }, { status: 400 });
+        if (!email || typeof email !== 'string' || !email.includes('@')) {
+            return NextResponse.json(
+                { message: 'Valid email is required' },
+                { status: 400 }
+            );
         }
 
         // Step 1: Check if customer already exists
@@ -30,11 +66,11 @@ export async function POST(req: NextRequest) {
       }
     `;
 
-        const lookupResponse = await fetch(SHOPIFY_ADMIN_API, {
+        const lookupResponse = await fetchWithRetry(SHOPIFY_ADMIN_API, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_ACCESS_TOKEN!,
+                'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
             },
             body: JSON.stringify({
                 query: lookupQuery,
@@ -42,14 +78,17 @@ export async function POST(req: NextRequest) {
                     query: `email:${email}`,
                 },
             }),
-        });
+        }) as Response;
 
         const lookupResult = await lookupResponse.json();
-        //console.log("lookup result is", JSON.stringify(lookupResult));
+
+        // Check for GraphQL errors
+        if (lookupResult.errors) {
+            console.error('GraphQL lookup errors:', lookupResult.errors);
+            throw new Error(lookupResult.errors.map((err: any) => err.message).join(', '));
+        }
 
         const existingCustomer = lookupResult.data?.customers?.edges?.[0]?.node;
-
-        //console.log("exisitingCustomer is ", existingCustomer)
 
         // Step 2: If exists and already subscribed
         if (existingCustomer) {
@@ -75,11 +114,11 @@ export async function POST(req: NextRequest) {
       }
     `;
 
-        const createResponse = await fetch(SHOPIFY_ADMIN_API, {
+        const createResponse = await fetchWithRetry(SHOPIFY_ADMIN_API, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_ACCESS_TOKEN!,
+                'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
             },
             body: JSON.stringify({
                 query: createQuery,
@@ -94,10 +133,15 @@ export async function POST(req: NextRequest) {
                     },
                 },
             }),
-        });
+        }) as Response;
 
         const createResult = await createResponse.json();
-        //console.log("create result is", JSON.stringify(createResult));
+
+        // Check for GraphQL errors
+        if (createResult.errors) {
+            console.error('GraphQL create errors:', createResult.errors);
+            throw new Error(createResult.errors.map((err: any) => err.message).join(', '));
+        }
 
         const createErrors = createResult.data?.customerCreate?.userErrors;
         if (createErrors?.length > 0) {
@@ -107,7 +151,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: 'Successfully subscribed!' });
 
     } catch (error: any) {
-        console.error('GraphQL API error:', error);
-        return NextResponse.json({ message: error.message || 'Internal error' }, { status: 500 });
+        console.error('Subscribe API error:', error);
+        return NextResponse.json(
+            { message: error.message || 'Internal error' },
+            { status: 500 }
+        );
     }
 }
