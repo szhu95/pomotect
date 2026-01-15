@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "22.0.0"
+
+# Next.js already handles server-side rendering and static generation,
+# so the Prerender extension is NOT needed. Just disable legacy prerendering.
+#
+# To disable legacy prerendering in Netlify dashboard:
+# 1. Go to: Site settings → Build & deploy → Post processing → Prerendering
+# 2. Disable "Enable legacy prerendering with Netlify"
+# 3. Save changes
+#
+# The @netlify/plugin-nextjs plugin handles all Next.js rendering automatically.
