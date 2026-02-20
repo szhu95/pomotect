@@ -1,6 +1,7 @@
 import { unstable_cache } from 'next/cache';
 import { Hero, ImageTicker } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
+import HomeReveal from '@/components/HomeReveal';
 import { getPosts } from '@/utils';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic'
@@ -29,22 +30,24 @@ export default async function Home() {
   const response = { posts: posts?.posts ?? [] };
 
   return (
-    <Suspense fallback={<Loading />}>
-      <main>
-        <div className='md:flex text-center'>
-          <span className={`${pomotectFont.className} text-primary-blue md:mr-4 text-sm`}>
-            Subscribe to our newsletter
-          </span>
-          <NewsletterForm />
-        </div>
-        <SaleBanner />
-        <ImageTicker response={response} />
-        <div className={`${pomotectFont.className} bg-[#BCB7AD] font-semibold text-white pl-1`}>IN THE CUE</div>
-        <Hero />
-        <div className="hidden md:block">
-          <ScrollToTopButton />
-        </div>
-      </main>
-    </Suspense>
-  )
+    <HomeReveal>
+      <Suspense fallback={<Loading />}>
+        <main>
+          <div className='md:flex text-center'>
+            <span className={`${pomotectFont.className} text-primary-blue md:mr-4 text-sm`}>
+              Subscribe to our newsletter
+            </span>
+            <NewsletterForm />
+          </div>
+          <SaleBanner />
+          <ImageTicker response={response} />
+          <div className={`${pomotectFont.className} bg-[#BCB7AD] font-semibold text-white pl-1`}>IN THE CUE</div>
+          <Hero />
+          <div className="hidden md:block">
+            <ScrollToTopButton />
+          </div>
+        </main>
+      </Suspense>
+    </HomeReveal>
+  );
 }

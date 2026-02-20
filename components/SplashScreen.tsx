@@ -5,42 +5,37 @@ import Image from "next/image";
 import headerLogo from "@/assets/images/header-logo-2.7.png";
 import OptimizedGlobeVideo from "./OptimizedGlobeVideo";
 import { usePathname } from "next/navigation";
+import { useSplash } from "@/context/SplashContext";
 
 export default function SplashScreen() {
     const pathname = usePathname();
-    
-    // Initialize state immediately to prevent flash - start with true on client
-    // to cover the splash screen, then check if we should actually show it
+    const { setRevealed } = useSplash();
+
     const [isLoading, setIsLoading] = useState(() => {
-        // On client, check immediately if we should show splash
         if (typeof window !== 'undefined') {
             const hasVisited = sessionStorage.getItem('has-visited');
-            // Check if we're on homepage by checking window.location
             const isHomepage = window.location.pathname === '/';
             return !hasVisited && isHomepage;
         }
-        // On server, default to false
         return false;
     });
 
     useEffect(() => {
-        // Only show splash screen on homepage and only on first visit
         const hasVisited = sessionStorage.getItem('has-visited');
         const isHomepage = pathname === '/';
-        
+
         if (!hasVisited && isHomepage && isLoading) {
-            // First visit to homepage - set up timer to hide splash screen
             const timer = setTimeout(() => {
                 setIsLoading(false);
                 sessionStorage.setItem('has-visited', 'true');
+                setRevealed(true);
             }, 2000);
-
             return () => clearTimeout(timer);
         } else if (hasVisited || !isHomepage) {
-            // If already visited or not homepage, ensure loading is false
             setIsLoading(false);
+            setRevealed(true);
         }
-    }, [pathname, isLoading]);
+    }, [pathname, isLoading, setRevealed]);
 
     return (
         <AnimatePresence mode="wait">

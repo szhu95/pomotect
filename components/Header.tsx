@@ -2,11 +2,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import homeLogo from '../assets/images/header-logo-2.7.png'
 import mobileHomeLogo from '../assets/images/header-logo-2.5.webp'
 import { usePathname, useRouter } from 'next/navigation';
 import localFont from 'next/font/local';
 import { useCart } from '@/context/CartContext';
+import { useSplash } from '@/context/SplashContext';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
 import OptimizedGlobeVideo from './OptimizedGlobeVideo';
 
@@ -27,7 +29,10 @@ const Header = ({ title, menuStatus }: any) => {
     const [isMounted, setIsMounted] = useState(false);
     const pathname = usePathname();
     const { cartItemCount } = useCart();
+    const { isRevealed } = useSplash();
     const router = useRouter();
+    const isHome = pathname === '/';
+    const hideForSplash = isHome && !isRevealed;
 
     // Preload header images
     useImagePreloader(homeLogo.src);
@@ -85,7 +90,7 @@ const Header = ({ title, menuStatus }: any) => {
         return null;
     };
 
-    return (
+    const headerContent = (
         <>
             {/* Sticky Header - shows on scroll - only render after client mount */}
             {isMounted && (
@@ -276,7 +281,34 @@ const Header = ({ title, menuStatus }: any) => {
             )}
         </div>
         </>
-    )
+    );
+
+    if (hideForSplash) {
+        return (
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0 }}
+                className="pointer-events-none select-none"
+                aria-hidden
+            >
+                {headerContent}
+            </motion.div>
+        );
+    }
+
+    if (isHome) {
+        return (
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+                {headerContent}
+            </motion.div>
+        );
+    }
+
+    return <>{headerContent}</>;
 }
 
 export default Header

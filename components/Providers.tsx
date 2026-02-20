@@ -2,6 +2,7 @@
 import React from 'react';
 import { ImageLoadingProvider } from '@/context/ImageLoadingContext';
 import { CartProvider } from '@/context/CartContext';
+import { SplashProvider } from '@/context/SplashContext';
 import ScrollToTopOnMount from '@/components/ScrollToTopOnMount';
 import SplashScreen from '@/components/SplashScreen';
 import CookieConsent from '@/components/CookieConsent';
@@ -12,13 +13,15 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   return (
-    <ImageLoadingProvider>
-      <ScrollToTopOnMount />
-      <SplashScreen />
-      <CartProvider>
-        {children}
-      </CartProvider>
-      <CookieConsent />
-    </ImageLoadingProvider>
+    <SplashProvider>
+      <ImageLoadingProvider>
+        <ScrollToTopOnMount />
+        <SplashScreen />
+        <CartProvider>
+          {children}
+        </CartProvider>
+        <CookieConsent />
+      </ImageLoadingProvider>
+    </SplashProvider>
   );
 }
