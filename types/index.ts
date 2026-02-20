@@ -27,6 +27,8 @@ export interface SoundcloudProps {
     compact?: boolean;
     /** Album style: fixed width for horizontal scroll strip */
     album?: boolean;
+    /** Square tile for 2-column grid */
+    tile?: boolean;
 }
 
 export interface CustomImageProps {

@@ -53,19 +53,17 @@ export default function Sounds() {
             </div>
             {mounted && (
                 <div className="site-section">
-                    <div className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 pt-2 hide-scrollbar scroll-smooth snap-x snap-mandatory [scroll-padding-inline:1rem]">
-                        <div className="flex-shrink-0 w-4 md:w-6" aria-hidden />
+                    <div className="grid grid-cols-2 gap-6 md:gap-8">
                         {MIXES.map((mix, i) => (
                             <motion.div
                                 key={mix.id}
-                                className="snap-start"
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: i * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
                             >
                                 <Soundcloud
                                     compact
-                                    album
+                                    tile
                                     title_href={`https://soundcloud.com/pomotect/${mix.slug}`}
                                     title={mix.title}
                                     label={mix.title}
@@ -73,7 +71,6 @@ export default function Sounds() {
                                 />
                             </motion.div>
                         ))}
-                        <div className="flex-shrink-0 w-4 md:w-6" aria-hidden />
                     </div>
                     <div className="hidden md:block mt-8">
                         <ScrollToTopButton />
