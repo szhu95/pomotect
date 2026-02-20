@@ -3,6 +3,7 @@ import { formatUpdatedDate, getPosts } from '@/utils';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { Posts } from '@/components';
 import WordsSidebar from '@/components/WordsSidebar';
+import WordsPageTransition from '@/components/WordsPageTransition';
 import MobileViewToggle from '@/components/MobileViewToggle';
 import localFont from 'next/font/local';
 
@@ -55,17 +56,19 @@ export default async function Words() {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <div className="w-full md:w-[65%] md:px-4">
-          <Posts response={response} containerHeight={"max-h-[85vh]"} />
+      <WordsPageTransition>
+        <div className="flex justify-center">
+          <div className="w-full md:w-[65%] md:px-4">
+            <Posts response={response} containerHeight={"max-h-[85vh]"} />
+          </div>
         </div>
-      </div>
 
-      <WordsSidebar posts={response} />
+        <WordsSidebar posts={response} />
 
-      <div className="hidden md:block">
-        <ScrollToTopButton />
-      </div>
+        <div className="hidden md:block">
+          <ScrollToTopButton />
+        </div>
+      </WordsPageTransition>
     </div>
   );
 }
