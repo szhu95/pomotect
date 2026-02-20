@@ -15,7 +15,7 @@ export default function SaleBanner() {
       className="group block"
     >
       <div className={`${pomotectFont.className} group-hover:text-opacity-45 bg-[black] font-semibold text-center text-white mt-1 pl-1`}>
-        WINTER SALE <span className={`${pomotectFont.className} text-primary-blue group-hover:text-terracotta`}>30% OFF</span> ON SELECT ITEMS
+        <span className={`${pomotectFont.className} text-primary-blue group-hover:text-terracotta`}>30% OFF</span> ON SELECT ITEMS
       </div>
     </Link>
   );

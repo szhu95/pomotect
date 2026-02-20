@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import localFont from 'next/font/local';
 
 const minionFont = localFont({
@@ -17,7 +17,9 @@ interface InquiryFormProps {
 export default function InquiryForm({ productTitle, onClose }: InquiryFormProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState(`I'm interested in ${productTitle}. Please provide more information.`);
+  const [company, setCompany] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const startedAtRef = useRef<number>(Date.now());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,11 +37,14 @@ export default function InquiryForm({ productTitle, onClose }: InquiryFormProps)
           message,
           type: 'inquiry',
           productTitle,
+          company,
+          startedAt: startedAtRef.current,
         }),
       });
 
       if (response.ok) {
         setStatus('success');
+        startedAtRef.current = Date.now();
         setTimeout(() => {
           onClose();
         }, 2000);
@@ -54,6 +59,22 @@ export default function InquiryForm({ productTitle, onClose }: InquiryFormProps)
   return (
     <div className={`${minionFont.className} bg-white p-6 shadow-lg`}>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Honeypot field: hidden from users, visible to bots */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="company" className="block font-medium mb-1 minion-font" style={{ fontSize: '0.85rem' }}>
+            Company
+          </label>
+          <input
+            type="text"
+            id="company"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            className={`w-full px-3 py-2 border border-gray-300`}
+            style={{ borderRadius: 0, fontSize: '0.85rem' }}
+          />
+        </div>
         <div>
           <label htmlFor="email" className="block font-medium mb-1 minion-font" style={{ fontSize: '0.85rem' }}>
             Email

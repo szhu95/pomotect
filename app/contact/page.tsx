@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import localFont from 'next/font/local';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,9 +18,12 @@ const Contact = () => {
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
+        // Honeypot: humans won't fill this; bots often will.
+        company: '',
     });
     const [status, setStatus] = useState('');
+    const startedAtRef = useRef<number>(Date.now());
 
     useEffect(() => {
         if (status === 'success') {
@@ -41,14 +44,18 @@ const Contact = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    startedAt: startedAtRef.current,
+                }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 setStatus('success');
-                setFormData({ name: '', email: '', subject: '', message: '' });
+                setFormData({ name: '', email: '', subject: '', message: '', company: '' });
+                startedAtRef.current = Date.now();
             } else {
                 setStatus('error');
             }
@@ -78,6 +85,20 @@ const Contact = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Honeypot field: hidden from users, visible to bots */}
+                        <div className="hidden" aria-hidden="true">
+                            <label htmlFor="company" className={`${pomotectFont.className} block text-sm mb-2`}>Company</label>
+                            <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                value={formData.company}
+                                onChange={handleChange}
+                                tabIndex={-1}
+                                autoComplete="off"
+                                className={`${pomotectFont.className} w-full px-4 py-2 border border-gray-300`}
+                            />
+                        </div>
                         <div className="grid md:grid-cols-2 md:gap-8 mb-2">
                             <div className='mb-4 md:mb-0'>
                                 <label htmlFor="name" className={`${pomotectFont.className} block text-sm mb-2`}>Name</label>
