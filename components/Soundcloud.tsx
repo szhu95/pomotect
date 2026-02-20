@@ -1,26 +1,42 @@
 "use client";
 import { SoundcloudProps } from '@/types';
-import React from 'react'
+import React from 'react';
 
-const Soundcloud = ({ title_href, title, label, src }: SoundcloudProps) => {
+const Soundcloud = ({ title_href, title, label, src, compact = false, album = false }: SoundcloudProps) => {
+    const height = compact ? 166 : 250;
+    const articleClass = album
+        ? 'group flex-shrink-0 w-[280px] md:w-[320px] rounded-lg border border-gray-200 bg-white overflow-hidden transition-all duration-300 hover:border-primary-blue/40 hover:shadow-lg snap-start'
+        : 'group rounded-lg border border-gray-200 bg-white overflow-hidden transition-all duration-300 hover:border-primary-blue/40 hover:shadow-md';
     return (
-        <div className="site-section border-b border-black pb-4">
-            <a className="soundcloud_title font-['Minion'] hover:bg-yellow hover:text-black" href={title_href} title={title} target="_blank" rel="noopener noreferrer">{label}</a>
-            <iframe 
-                className="soundcloud_link soundcloud-section" 
-                width="100%" 
-                height="250" 
-                scrolling="no"
-                frameBorder="0"
-                allow="autoplay" 
-                src={src}
-                title={title}
-                loading="lazy"
-            ></iframe>
-        </div>
-    )
-}
+        <article className={articleClass}>
+            <div className={album ? 'p-3 pb-0' : 'p-3 md:p-4 pb-0'}>
+                <a
+                    className="soundcloud_title font-['Minion'] hover:bg-yellow hover:text-black inline-block text-sm"
+                    href={title_href}
+                    title={title}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {label}
+                </a>
+            </div>
+            <div className={album ? 'px-3 pb-3' : 'px-3 md:px-4 pb-3 md:pb-4'}>
+                <iframe
+                    className="w-full rounded-b transition-opacity duration-300 group-hover:opacity-[0.98]"
+                    width="100%"
+                    height={height}
+                    scrolling="no"
+                    frameBorder="0"
+                    allow="autoplay"
+                    src={src}
+                    title={title}
+                    loading="lazy"
+                />
+            </div>
+        </article>
+    );
+};
 
-export default Soundcloud
+export default Soundcloud;
 
 

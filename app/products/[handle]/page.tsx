@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache';
 import { formatDate, formatPrice, storefront } from "@/utils";
 import Link from "next/link";
 import React from "react";
@@ -19,16 +20,20 @@ const pomotectBoldFont = localFont({
 
 const gql = String.raw;
 
-export const revalidate = 0;
+export const revalidate = 300;
 
-async function getSingleProduct(handle: string) {
-  const { data } = await storefront(singleProductQuery, {
-    handle,
-  });
+async function fetchSingleProduct(handle: string) {
+  const { data } = await storefront(singleProductQuery, { handle });
+  const product = data?.productByHandle;
+  return product ? { product } : null;
+}
 
-  return {
-    product: data.productByHandle,
-  };
+function getCachedProduct(handle: string) {
+  return unstable_cache(
+    () => fetchSingleProduct(handle),
+    ['product', handle],
+    { revalidate: 300 }
+  )();
 }
 
 const singleProductQuery = gql`
@@ -93,7 +98,7 @@ interface PageProps {
 export default async function Page({ params, searchParams }: PageProps) {
   const { handle } = await params;
   const resolvedSearchParams = await searchParams;
-  const response = await getSingleProduct(handle);
+  const response = await getCachedProduct(handle);
 
   if (!response?.product) {
     return NotFound();

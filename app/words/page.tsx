@@ -48,20 +48,7 @@ export default function Words() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="relative">
-        <div className="site-section">
-          <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
-          <p className={`${pomotectFont.className} italic text-center mt-6`}>
-            Loading posts...
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error || !posts) {
+  if (!loading && (error || !posts)) {
     return (
       <div className="relative">
         <div className="site-section">
@@ -72,11 +59,11 @@ export default function Words() {
     );
   }
 
-  let response = posts.posts.filter((post: any) => { return (post.primary_tag?.name !== "Process") });
+  const response = posts?.posts?.filter((post: any) => post.primary_tag?.name !== "Process") ?? [];
 
   const utcTimeString = response.length > 0 ? response[0].published_at : '2024-01-01T00:00:00.000Z';
   const date = new Date(utcTimeString);
-  let formattedDate = formatUpdatedDate(date)
+  const formattedDate = formatUpdatedDate(date);
 
   return (
     <div className="relative">

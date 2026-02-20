@@ -23,6 +23,10 @@ export interface SoundcloudProps {
     title?: string;
     label?: string;
     src?: string;
+    /** Use compact player height (166px) for grid layouts */
+    compact?: boolean;
+    /** Album style: fixed width for horizontal scroll strip */
+    album?: boolean;
 }
 
 export interface CustomImageProps {

@@ -1,11 +1,14 @@
-import { Post, Posts } from '@/components';
+import { unstable_cache } from 'next/cache';
+import { Post } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import WordsSidebar from '@/components/WordsSidebar';
 import { formatUpdatedDate, getPost, getPosts } from '@/utils';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
 import NotFound from "@/app/not-found";
 import localFont from 'next/font/local';
+
+export const revalidate = 300;
 
 const pomotectBoldFont = localFont({
   src: '../../../fonts/pomotect-analog-bold.otf',
@@ -15,28 +18,30 @@ const pomotectFont = localFont({
   src: '../../../fonts/pomotect-analog-regular.otf',
 });
 
+async function fetchArticleData(slug: string) {
+  const [post, allPostsData] = await Promise.all([
+    getPost(slug),
+    getPosts(),
+  ]);
+  if (!post || !allPostsData) return null;
+  return { post, allPosts: allPostsData };
+}
+
+const getCachedArticleData = (slug: string) =>
+  unstable_cache(
+    () => fetchArticleData(slug),
+    ['word-article', slug],
+    { revalidate: 300 }
+  )();
+
 export default async function Article({ params }: any) {
   const awaitedParams = await params;
+  const slug = awaitedParams.slug;
+  const data = await getCachedArticleData(slug);
 
-  async function getData() {
-    const [post, allPostsData] = await Promise.all([
-      getPost(awaitedParams.slug),
-      getPosts()
-    ]);
-
-    if (!post || !allPostsData) {
-      return {
-        notFound: true,
-      }
-    }
-
-    return {
-      post,
-      allPosts: allPostsData
-    }
+  if (!data) {
+    return NotFound();
   }
-
-  const data = await getData();
 
   if (data.post.errors) {
     return NotFound();
