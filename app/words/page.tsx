@@ -1,11 +1,12 @@
-"use client";
-import React, { useEffect, useState } from 'react';
+import { unstable_cache } from 'next/cache';
 import { formatUpdatedDate, getPosts } from '@/utils';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { Posts } from '@/components';
 import WordsSidebar from '@/components/WordsSidebar';
 import MobileViewToggle from '@/components/MobileViewToggle';
 import localFont from 'next/font/local';
+
+export const revalidate = 300;
 
 const pomotectBoldFont = localFont({
   src: '../../fonts/pomotect-analog-bold.otf',
@@ -17,38 +18,16 @@ const pomotectFont = localFont({
   display: 'swap',
 });
 
-export const dynamic = 'force-dynamic';
+const getCachedPosts = unstable_cache(
+  async () => getPosts(50),
+  ['home-posts'],
+  { revalidate: 300 }
+);
 
-export default function Words() {
-  const [posts, setPosts] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+export default async function Words() {
+  const postsData = await getCachedPosts();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const postsData = await getPosts(50, true);
-        
-        if (!postsData || !postsData.posts) {
-          console.error('Failed to fetch posts or posts data is invalid');
-          setError(true);
-          setLoading(false);
-          return;
-        }
-        
-        setPosts(postsData);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setError(true);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (!loading && (error || !posts)) {
+  if (!postsData?.posts) {
     return (
       <div className="relative">
         <div className="site-section">
@@ -59,8 +38,7 @@ export default function Words() {
     );
   }
 
-  const response = posts?.posts?.filter((post: any) => post.primary_tag?.name !== "Process") ?? [];
-
+  const response = postsData.posts.filter((post: any) => post.primary_tag?.name !== 'Process');
   const utcTimeString = response.length > 0 ? response[0].published_at : '2024-01-01T00:00:00.000Z';
   const date = new Date(utcTimeString);
   const formattedDate = formatUpdatedDate(date);
@@ -84,10 +62,10 @@ export default function Words() {
       </div>
 
       <WordsSidebar posts={response} />
-      
+
       <div className="hidden md:block">
         <ScrollToTopButton />
       </div>
     </div>
-  )
+  );
 }
