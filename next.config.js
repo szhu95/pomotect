@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false, // Prevents double mount on initial load (dev)
   // Ensure proper cache control in development
   generateEtags: false,
   poweredByHeader: false,

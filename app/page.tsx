@@ -1,42 +1,32 @@
+import { unstable_cache } from 'next/cache';
 import { Hero, ImageTicker } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
-import { getPosts, storefront } from '@/utils';
+import { getPosts } from '@/utils';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic'
 import localFont from 'next/font/local';
-import EmailButton from '@/components/EmailButton';
-import Link from 'next/link';
 import NewsletterForm from '@/components/NewsletterForm';
 import SaleBanner from '@/components/SaleBanner';
+
+export const revalidate = 300;
 
 const pomotectFont = localFont({
   src: '../fonts/pomotect-analog-regular.otf',
 });
 
+const getCachedPosts = unstable_cache(
+  async () => getPosts(),
+  ['home-posts'],
+  { revalidate: 300 }
+);
 
 export default async function Home() {
-
   const Loading = dynamic(() => import('./loading'), {
     ssr: true,
-  })
+  });
 
-  async function getData() {
-    const posts = await getPosts()
-
-    if (!posts) {
-      return {
-        notFound: true,
-      }
-    }
-
-    return {
-      posts
-    }
-  }
-
-  const data = await getData();
-
-  let response = data.posts
+  const posts = await getCachedPosts();
+  const response = { posts: posts?.posts ?? [] };
 
   return (
     <Suspense fallback={<Loading />}>

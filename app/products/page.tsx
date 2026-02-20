@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache';
 import { Shop } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { formatDate, storefront } from '@/utils';
@@ -5,7 +6,7 @@ import Link from 'next/link';
 import React from 'react'
 import localFont from 'next/font/local';
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 const pomotectBoldFont = localFont({
     src: '../../fonts/pomotect-analog-bold.otf',
@@ -15,12 +16,16 @@ const pomotectFont = localFont({
     src: '../../fonts/pomotect-analog-regular.otf',
 });
 
-async function getProducts() {
+async function fetchProductsPage() {
   const { data } = await storefront(productsQuery);
-  return {
-    products: data.products,
-  };
+  return { products: data.products };
 }
+
+const getProducts = unstable_cache(
+  fetchProductsPage,
+  ['products-page'],
+  { revalidate: 300 }
+);
 
 const gql = String.raw;
 
@@ -72,7 +77,7 @@ const productsQuery = gql`
   `;
 
 export default async function Page() {
-  const response = await getProducts();
+  const response = await getProducts().catch(() => ({ products: { edges: [] } }));
   const currentDate = formatDate();
 
   return (
