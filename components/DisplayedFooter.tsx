@@ -19,18 +19,18 @@ const DisplayedFooter = ({ response, objectsResponse }: any) => {
             {pathname == "/" || pathname == "/cart" ? <></> : <WordsTicker response={response} objectsResponse={objectsResponse} />}
             <div className={
                 pathname == "/" ? "flex border-t border-black md:mt-[15%] mt-[20%]" : pathname == "/cart" ? "flex border-t border-black mt-[250px]" : "flex border-t border-black mt-[10px]"}>
-                <div className="site-section italic text-gray-700 py-1 flex flex-wrap items-center gap-1">
-                    <Link href="/terms" className={`inline-flex items-center min-h-[48px] min-w-[48px] py-3 pr-2 md:min-h-0 md:min-w-0 md:py-0 md:mr-10 ${pathname.startsWith("/terms") ? `${pomotectFont.className} text-primary-blue` : `${pomotectFont.className} hover:text-primary-blue`}`}>
+                <div className="site-section italic text-gray-700 py-1">
+                    <Link href="/terms" className={`${pathname.startsWith("/terms") ? `${pomotectFont.className} pr-2 md:mr-10 text-primary-blue` : `${pomotectFont.className} pr-2 md:mr-10 hover:text-primary-blue`}`}>
                         Privacy & Terms of Use
                     </Link>
-                    <Link href="/contact" className={`inline-flex items-center min-h-[48px] min-w-[48px] py-3 px-2 md:min-h-0 md:min-w-0 md:py-0 ${pathname.startsWith("/contact") ? `${pomotectFont.className} text-primary-blue` : `${pomotectFont.className} hover:text-primary-blue`}`}>
+                    <Link href="/contact" className={`${pomotectFont.className} ${pathname.startsWith("/contact") ? `${pomotectFont.className} text-primary-blue px-2` : `${pomotectFont.className} hover:text-primary-blue px-2`}`}>
                         Contact
                     </Link>
                 </div>
                 <div className="site-section italic pt-1 text-primary-blue checkout_btn">
                     {
                         pathname == "/cart" ?
-                            <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer" className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] md:min-h-0 md:min-w-0">
+                            <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer">
                                 <Image
                                     src={InstaEasterLogo}
                                     width={18}
@@ -38,7 +38,7 @@ const DisplayedFooter = ({ response, objectsResponse }: any) => {
                                     alt="postmodern tectonics instagram"
                                 />
                             </a> :
-                            <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer" className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] md:min-h-0 md:min-w-0">
+                            <a target="_blank" href="https://www.instagram.com/pomotect/" rel="noopener noreferrer">
                                 <Image
                                     src={InstaLogo}
                                     width={18}

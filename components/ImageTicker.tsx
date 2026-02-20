@@ -229,8 +229,8 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                 </div>
             </div>
 
-            {/* Navigation Arrows Underneath - min 48px tap targets for accessibility */}
-            <div className="relative w-full flex justify-between items-center py-2">
+            {/* Navigation Arrows Underneath */}
+            <div className="relative w-full flex justify-between items-center">
                 {/* Left Arrow */}
                 <button
                     onMouseDown={canScrollLeft ? startScrollLeft : undefined}
@@ -240,7 +240,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     onTouchEnd={canScrollLeft ? stopScroll : undefined}
                     onTouchCancel={canScrollLeft ? stopScroll : undefined}
                     disabled={!canScrollLeft}
-                    className={`flex items-center justify-center min-h-[48px] min-w-[48px] md:min-h-0 md:min-w-0 md:h-8 ${
+                    className={`flex items-center justify-center h-8 ${
                         isMobile 
                             ? 'select-none' 
                             : 'transition-all duration-300'
@@ -256,7 +256,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     }}
                     aria-label="Scroll left"
                 >
-                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M15 19l-7-7" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -270,7 +270,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     onTouchStart={startScrollRight}
                     onTouchEnd={stopScroll}
                     onTouchCancel={stopScroll}
-                    className={`flex items-center justify-center min-h-[48px] min-w-[48px] md:min-h-0 md:min-w-0 md:h-8 ${
+                    className={`flex items-center justify-center h-8 ${
                         isMobile 
                             ? 'select-none' 
                             : 'transition-colors duration-200 hover:opacity-70'
@@ -280,7 +280,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                     }}
                     aria-label="Scroll right"
                 >
-                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                    <svg width="20" height="20" fill="none" stroke="#0000FF" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M9 5l7 7" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
