@@ -88,11 +88,51 @@ const singleProductQuery = gql`
   }
 `;
 
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function metaDescription(html: string, maxLength = 155): string {
+  const plain = stripHtml(html);
+  if (plain.length <= maxLength) return plain;
+  return plain.slice(0, maxLength - 3) + '...';
+}
+
 interface PageProps {
   params: Promise<{
     handle: string;
   }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { handle } = await params;
+  const response = await getCachedProduct(handle);
+  const product = response?.product;
+  if (!product) return { title: 'Object not found | postmodern tectonics' };
+
+  const title = `${product.title} | postmodern tectonics`;
+  const description = metaDescription(product.descriptionHtml);
+  const image =
+    product.images?.edges?.[0]?.node?.transformedSrc
+      ? new URL(product.images.edges[0].node.transformedSrc)
+      : null;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      ...(image && { images: [{ url: image.toString(), alt: product.title }] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  };
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
@@ -135,8 +175,35 @@ export default async function Page({ params, searchParams }: PageProps) {
   const isFurniture = handle.toLowerCase().includes('furniture');
   const shouldSwitchVariantImages = handle === 'a-not-so-still-life-1';
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pomotect.com';
+  const productUrl = `${baseUrl}/products/${handle}`;
+  const imageUrl = product.images?.edges?.[0]?.node?.transformedSrc;
+  const price = product.priceRange?.minVariantPrice?.amount ?? product.variants?.edges?.[0]?.node?.price?.amount;
+  const inStock = (product.totalInventory ?? 0) > 0;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    description: stripHtml(product.descriptionHtml).slice(0, 500),
+    url: productUrl,
+    ...(imageUrl && { image: imageUrl }),
+    ...(product.tags?.length && { category: product.tags.join(', ') }),
+    offers: {
+      '@type': 'Offer',
+      url: productUrl,
+      priceCurrency: 'USD',
+      price: price ? parseFloat(price) : undefined,
+      availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+    },
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="site-section">
         <h3 className={`${pomotectBoldFont.className} product-details-header`}>Objects</h3>
         <Link href="/products" scroll={false} className={`$minion-font back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
