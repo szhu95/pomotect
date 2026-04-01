@@ -172,7 +172,8 @@ export default async function Page({ params, searchParams }: PageProps) {
 
   const markup = parse(product.descriptionHtml, options);
 
-  const isFurniture = handle.toLowerCase().includes('furniture');
+  const isFurniture =
+    Array.isArray(product.tags) && product.tags.includes('furniture');
   const shouldSwitchVariantImages = handle === 'a-not-so-still-life-1';
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pomotect.com';
