@@ -1,12 +1,32 @@
-import { unstable_cache } from 'next/cache';
+import type { Metadata } from 'next';
 import { Shop } from '@/components'
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import { formatDate, storefront } from '@/utils';
+import { getCachedObjectsCollectionProducts } from '@/lib/shopifyObjectsCollection';
+import { formatDate } from '@/utils';
 import Link from 'next/link';
 import React from 'react'
 import localFont from 'next/font/local';
 
 export const revalidate = 300;
+
+const objectsTitle = 'Objects | postmodern tectonics';
+const objectsMetaDescription =
+  'Shop limited design objects from postmodern tectonics—vinyl slipmats, trays, apparel, and listening goods. Curated pieces for home and the turntable.';
+
+export const metadata: Metadata = {
+  title: objectsTitle,
+  description: objectsMetaDescription,
+  openGraph: {
+    title: objectsTitle,
+    description: objectsMetaDescription,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: objectsTitle,
+    description: objectsMetaDescription,
+  },
+};
 
 const pomotectBoldFont = localFont({
     src: '../../fonts/pomotect-analog-bold.otf',
@@ -16,68 +36,10 @@ const pomotectFont = localFont({
     src: '../../fonts/pomotect-analog-regular.otf',
 });
 
-async function fetchProductsPage() {
-  const { data } = await storefront(productsQuery);
-  return { products: data.products };
-}
-
-const getProducts = unstable_cache(
-  fetchProductsPage,
-  ['products-page'],
-  { revalidate: 300 }
-);
-
-const gql = String.raw;
-
-const productsQuery = gql`
-    query Products {
-      products(first: 20, sortKey: PRODUCT_TYPE) {
-        edges {
-          node {
-            title
-            handle
-            tags
-            totalInventory
-            availableForSale
-            priceRange {
-              minVariantPrice {
-                amount
-              }
-              maxVariantPrice {
-                amount
-              }
-            }
-            variants(first: 10) {
-              edges {
-                node {
-                  id
-                  availableForSale
-                  quantityAvailable
-                  price {
-                    amount
-                  }
-                  compareAtPrice {
-                    amount
-                  }
-                }
-              }
-            }
-            images(first: 10) {
-              edges {
-                node {
-                  transformedSrc
-                  altText
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
 export default async function Page() {
-  const response = await getProducts().catch(() => ({ products: { edges: [] } }));
+  const response = await getCachedObjectsCollectionProducts().catch(() => ({
+    products: { edges: [] },
+  }));
   const currentDate = formatDate();
 
   return (

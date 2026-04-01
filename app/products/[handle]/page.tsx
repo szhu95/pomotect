@@ -1,5 +1,6 @@
 import { unstable_cache } from 'next/cache';
-import { formatDate, formatPrice, storefront } from "@/utils";
+import { productRequiresInquiry } from "@/lib/productCommerce";
+import { storefront } from "@/utils";
 import Link from "next/link";
 import React from "react";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
@@ -172,8 +173,7 @@ export default async function Page({ params, searchParams }: PageProps) {
 
   const markup = parse(product.descriptionHtml, options);
 
-  const isFurniture =
-    Array.isArray(product.tags) && product.tags.includes('furniture');
+  const requiresInquiry = productRequiresInquiry(product.tags);
   const shouldSwitchVariantImages = handle === 'a-not-so-still-life-1';
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pomotect.com';
@@ -210,7 +210,7 @@ export default async function Page({ params, searchParams }: PageProps) {
         <Link href="/products" scroll={false} className={`$minion-font back-button text-purple focus:bg-black focus:text-white hover:bg-black hover:text-white`}>Back to all objects ⇢</Link>
       </div>
       {shouldSwitchVariantImages ? (
-        <ProductWithVariantImages product={product} isFurniture={isFurniture} markup={markup} />
+        <ProductWithVariantImages product={product} requiresInquiry={requiresInquiry} markup={markup} />
       ) : (
         <div className="md:flex-row-reverse md:inline-flex md:align-top md:justify-between">
           <div className="md:w-1/2 w-full md:block hidden">
@@ -220,7 +220,7 @@ export default async function Page({ params, searchParams }: PageProps) {
             <Carousel images={product.images} />
           </div>
           <div className="product-details">
-            <ProductDetailsClient product={product} isFurniture={isFurniture} markup={markup} />
+            <ProductDetailsClient product={product} requiresInquiry={requiresInquiry} markup={markup} />
           </div>
         </div>
       )}

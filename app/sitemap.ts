@@ -1,14 +1,19 @@
 import type { MetadataRoute } from 'next';
+import { objectsCollectionGid } from '@/lib/shopifyObjectsCollection';
 import { storefront } from '@/utils';
 
 const gql = String.raw;
 
-const productHandlesQuery = gql`
-  query ProductHandles {
-    products(first: 100) {
-      edges {
-        node {
-          handle
+const collectionHandlesQuery = gql`
+  query ObjectsCollectionHandles($id: ID!) {
+    node(id: $id) {
+      ... on Collection {
+        products(first: 100, sortKey: MANUAL) {
+          edges {
+            node {
+              handle
+            }
+          }
         }
       }
     }
@@ -17,8 +22,14 @@ const productHandlesQuery = gql`
 
 async function getProductHandles(): Promise<string[]> {
   try {
-    const { data } = await storefront(productHandlesQuery);
-    const edges = data?.products?.edges ?? [];
+    const { data } = await storefront(collectionHandlesQuery, {
+      id: objectsCollectionGid(),
+    });
+    const node = data?.node;
+    const edges =
+      node && 'products' in node && node.products?.edges
+        ? node.products.edges
+        : [];
     return edges.map((e: { node: { handle: string } }) => e.node.handle);
   } catch {
     return [];

@@ -5,11 +5,15 @@ import ProductDetailsClient from "@/components/ProductDetailsClient";
 
 interface ProductWithVariantImagesProps {
   product: any;
-  isFurniture: boolean;
+  requiresInquiry: boolean;
   markup: React.ReactNode;
 }
 
-export default function ProductWithVariantImages({ product, isFurniture, markup }: ProductWithVariantImagesProps) {
+export default function ProductWithVariantImages({
+  product,
+  requiresInquiry,
+  markup,
+}: ProductWithVariantImagesProps) {
   // Initialize with first variant option if available
   const firstVariant = product.options?.[0]?.values?.[0] || null;
   const [selectedVariant, setSelectedVariant] = useState<string | null>(firstVariant);
@@ -47,7 +51,7 @@ export default function ProductWithVariantImages({ product, isFurniture, markup 
       <div className="product-details">
         <ProductDetailsClient 
           product={product} 
-          isFurniture={isFurniture} 
+          requiresInquiry={requiresInquiry} 
           markup={markup}
           onVariantChange={setSelectedVariant}
         />
