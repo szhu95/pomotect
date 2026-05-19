@@ -3,9 +3,17 @@ import { GhostRateLimitError, getPosts } from '@/utils';
 
 export const GHOST_POSTS_CACHE_TAG = 'ghost-posts';
 
+/** Minimal Ghost Content API post fields used across the site. */
+export type GhostPost = {
+  slug: string;
+  title: string;
+  published_at?: string;
+  primary_tag?: { name?: string };
+  feature_image?: string;
+};
+
 export type GhostPostsResult = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  posts: any[];
+  posts: GhostPost[];
   rateLimited?: boolean;
 };
 

@@ -6,19 +6,13 @@ import { useEffect, useState } from 'react';
 import localFont from 'next/font/local';
 import Image from 'next/image';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import type { GhostPost } from '@/lib/ghostPosts';
 
 const pomotectFont = localFont({
   src: '../fonts/pomotect-analog-regular.otf'
 });
 
-interface Post {
-  title: string;
-  slug: string;
-  published_at: string;
-  feature_image: string;
-}
-
-export default function WordsSidebar({ posts }: { posts: Post[] }) {
+export default function WordsSidebar({ posts }: { posts: GhostPost[] }) {
   const pathname = usePathname();
   const [isCondensed, setIsCondensed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

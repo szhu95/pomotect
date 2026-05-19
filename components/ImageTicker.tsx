@@ -8,7 +8,7 @@ import ShimmerImage from './ShimmerImage';
 interface Post {
     slug: string;
     title: string;
-    feature_image: string;
+    feature_image?: string;
     excerpt?: string;
     published_at?: string;
 }
@@ -92,8 +92,10 @@ export default function ImageTicker({ response }: ImageTickerProps) {
 
     // Get all posts for horizontal scrolling with endless loop
     const getAllPosts = () => {
-        // Duplicate the posts array to create seamless endless scroll
-        return [...posts, ...posts, ...posts];
+        const withImages = posts.filter((p): p is Post & { feature_image: string } =>
+            Boolean(p.feature_image)
+        );
+        return [...withImages, ...withImages, ...withImages];
     };
 
     // Scroll state

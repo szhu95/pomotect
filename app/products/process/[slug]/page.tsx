@@ -39,7 +39,7 @@ export default async function ProjectPage({ params }: any) {
 
   const data = await getData();
 
-  if (data.post.errors) {
+  if ('notFound' in data || data.post?.errors) {
     return NotFound();
   }
 
@@ -48,8 +48,9 @@ export default async function ProjectPage({ params }: any) {
   const date = new Date(utcTimeString);
   let formattedDate = formatUpdatedDate(date);
 
-  // Get all process posts for sidebar
-  const processPosts = data.allPosts.posts.filter((post: any) => post.primary_tag?.name === "Process");
+  const processPosts = (data.allPosts?.posts ?? []).filter(
+    (post) => post.primary_tag?.name === 'Process'
+  );
 
   return (
     <div className="relative">

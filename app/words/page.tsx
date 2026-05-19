@@ -47,8 +47,10 @@ export default async function Words() {
     );
   }
 
-  const response = postsData.posts.filter((post: any) => post.primary_tag?.name !== 'Process');
-  const utcTimeString = response.length > 0 ? response[0].published_at : '2024-01-01T00:00:00.000Z';
+  const response = postsData.posts.filter((post) => post.primary_tag?.name !== 'Process');
+  const utcTimeString =
+    response.find((post) => post.published_at)?.published_at ??
+    '2024-01-01T00:00:00.000Z';
   const date = new Date(utcTimeString);
   const formattedDate = formatUpdatedDate(date);
 

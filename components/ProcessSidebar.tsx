@@ -5,19 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { GhostPost } from '@/lib/ghostPosts';
 import localFont from 'next/font/local';
 
 const pomotectFont = localFont({
     src: '../fonts/pomotect-analog-regular.otf',
 });
 
-interface Post {
-    slug: string;
-    title: string;
-    feature_image: string;
-}
-
-export default function ProcessSidebar({ posts }: { posts: Post[] }) {
+export default function ProcessSidebar({ posts }: { posts: GhostPost[] }) {
     const pathname = usePathname();
     const [isCondensed, setIsCondensed] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
