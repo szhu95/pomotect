@@ -78,9 +78,12 @@ async function loadObjectsCollectionProducts() {
   return { products: { edges } };
 }
 
+/** Tag for on-demand revalidation (Shopify webhooks, etc.) */
+export const OBJECTS_COLLECTION_CACHE_TAG = 'objects-collection-products';
+
 /** Shared cache for /products grid, footer ticker, etc. */
 export const getCachedObjectsCollectionProducts = unstable_cache(
   loadObjectsCollectionProducts,
-  ['objects-collection-products'],
-  { revalidate: 300 }
+  [OBJECTS_COLLECTION_CACHE_TAG],
+  { revalidate: 300, tags: [OBJECTS_COLLECTION_CACHE_TAG] }
 );

@@ -1,6 +1,7 @@
 import { ProjectPost } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import { formatUpdatedDate, getPost, getPosts } from '@/utils';
+import { formatUpdatedDate, getPost } from '@/utils';
+import { getCachedGhostPosts } from '@/lib/ghostPosts';
 import Link from 'next/link';
 import React from 'react'
 import NotFound from "@/app/not-found";
@@ -21,7 +22,7 @@ export default async function ProjectPage({ params }: any) {
   async function getData() {
     const [post, allPostsData] = await Promise.all([
       getPost(awaitedParams.slug),
-      getPosts()
+      getCachedGhostPosts()
     ]);
 
     if (!post) {

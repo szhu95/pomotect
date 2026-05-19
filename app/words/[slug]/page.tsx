@@ -2,7 +2,8 @@ import { unstable_cache } from 'next/cache';
 import { Post } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import WordsSidebar from '@/components/WordsSidebar';
-import { formatUpdatedDate, getPost, getPosts } from '@/utils';
+import { formatUpdatedDate, getPost } from '@/utils';
+import { getCachedGhostPosts } from '@/lib/ghostPosts';
 import Link from 'next/link';
 import React from 'react';
 import NotFound from "@/app/not-found";
@@ -21,10 +22,10 @@ const pomotectFont = localFont({
 async function fetchArticleData(slug: string) {
   const [post, allPostsData] = await Promise.all([
     getPost(slug),
-    getPosts(),
+    getCachedGhostPosts(),
   ]);
-  if (!post || !allPostsData) return null;
-  return { post, allPosts: allPostsData };
+  if (!post?.posts?.length) return null;
+  return { post, allPosts: { posts: allPostsData.posts ?? [] } };
 }
 
 const getCachedArticleData = (slug: string) =>

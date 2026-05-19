@@ -1,5 +1,5 @@
-import { unstable_cache } from 'next/cache';
-import { formatUpdatedDate, getPosts } from '@/utils';
+import { formatUpdatedDate } from '@/utils';
+import { getCachedGhostPosts } from '@/lib/ghostPosts';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { Posts } from '@/components';
 import WordsSidebar from '@/components/WordsSidebar';
@@ -19,21 +19,29 @@ const pomotectFont = localFont({
   display: 'swap',
 });
 
-const getCachedPosts = unstable_cache(
-  async () => getPosts(50),
-  ['home-posts'],
-  { revalidate: 300 }
-);
-
 export default async function Words() {
-  const postsData = await getCachedPosts();
+  const postsData = await getCachedGhostPosts(50);
 
-  if (!postsData?.posts) {
+  if (postsData.rateLimited) {
     return (
       <div className="relative">
         <div className="site-section">
           <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
-          <p className="italic text-red-500">Unable to load posts at this time. Please try again later.</p>
+          <p className={`${pomotectFont.className} italic`}>
+            Ghost is temporarily rate-limiting requests (too many loads during development).
+            Wait a few minutes, restart the dev server once, then refresh.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!postsData.posts.length) {
+    return (
+      <div className="relative">
+        <div className="site-section">
+          <h3 className={`${pomotectBoldFont.className} main_header`}>Words</h3>
+          <p className={`${pomotectFont.className} italic`}>No posts to show right now.</p>
         </div>
       </div>
     );

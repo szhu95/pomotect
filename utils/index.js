@@ -70,57 +70,143 @@ export function formatUpdatedDate(date) {
     return lastUpdatedDate
 }
 
+const GHOST_API_BASE =
+    process.env.GHOST_API_URL || 'https://postmodern-tectonics.ghost.io';
+
+function getGhostContentApiKey() {
+    return (
+        process.env.GHOST_CONTENT_API_KEY ||
+        process.env.GHOST_API_KEY ||
+        ''
+    );
+}
+
+function buildGhostContentUrl(path, searchParams = '') {
+    const key = getGhostContentApiKey();
+    if (!key) return null;
+    const qs = searchParams ? `&${searchParams}` : '';
+    return `${GHOST_API_BASE}/ghost/api/content${path}?key=${encodeURIComponent(key)}${qs}`;
+}
+
+const EMPTY_POSTS = { posts: [] };
+
+/** Thrown on HTTP 429 so callers do not cache empty results as a successful response. */
+export class GhostRateLimitError extends Error {
+    constructor() {
+        super('Ghost Content API rate limited (429)');
+        this.name = 'GhostRateLimitError';
+    }
+}
+
+/** After a 429, skip Ghost requests so dev hot-reload does not hammer the API. */
+let ghostCooldownUntil = 0;
+/** Dedupe concurrent identical fetches in the same process. */
+let ghostInflight = null;
+
 export async function getPosts(limit = 50, isClient = false) {
+    if (Date.now() < ghostCooldownUntil) {
+        throw new GhostRateLimitError();
+    }
+
+    const inflightKey = `posts-${limit}-${isClient}`;
+    if (ghostInflight?.key === inflightKey) {
+        return ghostInflight.promise;
+    }
+
+    const promise = fetchGhostPosts(limit, isClient).finally(() => {
+        if (ghostInflight?.key === inflightKey) {
+            ghostInflight = null;
+        }
+    });
+
+    ghostInflight = { key: inflightKey, promise };
+    return promise;
+}
+
+async function fetchGhostPosts(limit = 50, isClient = false) {
+    const url = buildGhostContentUrl(
+        '/posts',
+        `include=authors,tags&limit=${limit}`
+    );
+
+    if (!url) {
+        console.warn(
+            'getPosts: missing GHOST_CONTENT_API_KEY or GHOST_API_KEY — returning empty list'
+        );
+        return EMPTY_POSTS;
+    }
+
+    const fetchOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Version': 'v5.0',
+        },
+    };
+
+    if (!isClient) {
+        fetchOptions.next = { revalidate: 3600 };
+    }
+
     try {
-        const fetchOptions = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept-Version': 'v5.0',
-            },
-        };
+        const response = await fetch(url, fetchOptions);
 
-        // Only add Next.js caching options for server-side requests
-        if (!isClient) {
-            fetchOptions.next = { revalidate: 300 }; // Revalidate every 5 minutes
+        if (response.status === 429) {
+            ghostCooldownUntil = Date.now() + 5 * 60_000;
+            console.warn(
+                'Ghost API rate limited (429). Pausing Ghost requests for 5 minutes (not an API breaking change).'
+            );
+            throw new GhostRateLimitError();
         }
 
-        const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags&limit=${limit}`, fetchOptions);
-        
         if (!response.ok) {
-            console.error(`Ghost API responded with status: ${response.status}`);
-            throw new Error(`HTTP error! status: ${response.status}`);
+            console.warn(`getPosts: Ghost API responded with status ${response.status}`);
+            return EMPTY_POSTS;
         }
-        
+
         const data = await response.json();
-        
-        if (!data || !data.posts) {
-            console.error('Invalid response from Ghost API:', data);
-            throw new Error('Invalid response format from Ghost API');
+
+        if (!data?.posts) {
+            console.warn('getPosts: invalid Ghost API response shape');
+            return EMPTY_POSTS;
         }
-        
+
         return data;
     } catch (error) {
-        console.error('getPosts fetch failed:', error);
-        return null;
+        console.warn('getPosts fetch failed:', error.message);
+        return EMPTY_POSTS;
     }
 }
 
 export async function getPost(slug) {
-    const slugId = slug;
+    const url = buildGhostContentUrl(
+        `/posts/slug/${encodeURIComponent(slug)}`,
+        'include=authors,tags'
+    );
+
+    if (!url) {
+        console.warn('getPost: missing Ghost API key');
+        return null;
+    }
+
     try {
-        const response = await fetch(`https://postmodern-tectonics.ghost.io/ghost/api/content/posts/slug/${slugId}?key=f1de9b4fe6cc50d8f26494934e&include=authors,tags`, {
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept-Version': 'v5.0',
             },
-            // Add caching for better performance
-            next: { revalidate: 300 }, // Revalidate every 5 minutes
+            next: { revalidate: 300 },
         });
+
+        if (!response.ok) {
+            console.warn(`getPost: Ghost API responded with status ${response.status}`);
+            return null;
+        }
+
         return await response.json();
     } catch (error) {
-        console.error('getPost fetch failed:', error);
+        console.warn('getPost fetch failed:', error.message);
         return null;
     }
 }

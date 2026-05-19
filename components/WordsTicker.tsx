@@ -4,6 +4,8 @@ import Marquee from "react-fast-marquee";
 import Link from "next/link";
 
 export default function WordsTicker({ response, objectsResponse }: any) {
+    const posts = response?.posts ?? [];
+    const productEdges = objectsResponse?.products?.edges ?? [];
 
     return (
         <Marquee
@@ -12,7 +14,7 @@ export default function WordsTicker({ response, objectsResponse }: any) {
             speed={55}
             className="relative mt-[200px]"
         >
-            {response.posts.filter((post: any) => post.primary_tag?.name !== "Process").map((post: any) => {
+            {posts.filter((post: any) => post.primary_tag?.name !== "Process").map((post: any) => {
                 return (
                     <Link
                         key={post.slug}
@@ -24,7 +26,7 @@ export default function WordsTicker({ response, objectsResponse }: any) {
                 )
             })}
 
-            {objectsResponse.products.edges.map((item: any) => {
+            {productEdges.map((item: any) => {
 
                 let product = item.node;
 

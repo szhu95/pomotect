@@ -1,4 +1,8 @@
 import { unstable_cache } from 'next/cache';
+import {
+  productCacheTag,
+  SHOPIFY_PRODUCTS_CACHE_TAG,
+} from '@/lib/shopifyRevalidate';
 import { productRequiresInquiry } from "@/lib/productCommerce";
 import { storefront } from "@/utils";
 import Link from "next/link";
@@ -33,7 +37,10 @@ function getCachedProduct(handle: string) {
   return unstable_cache(
     () => fetchSingleProduct(handle),
     ['product', handle],
-    { revalidate: 300 }
+    {
+      revalidate: 300,
+      tags: [SHOPIFY_PRODUCTS_CACHE_TAG, productCacheTag(handle)],
+    }
   )();
 }
 

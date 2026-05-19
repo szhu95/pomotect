@@ -116,24 +116,27 @@ const Header = ({ title, menuStatus }: any) => {
 
             <div className="padding-y md:text-center" suppressHydrationWarning>
             <div onClick={() => setIcon(false)} className="home-link mb-4">
-                <Link href="/" scroll={true} className="md:block hidden">
+                <Link
+                    href="/"
+                    scroll={true}
+                    aria-label="Postmodern Tectonics home"
+                    className="inline-block"
+                >
                     <Image
                         src={homeLogo}
                         priority
                         width={500}
                         height={600}
-                        alt="home page link"
-                        className="w-auto h-auto"
+                        alt=""
+                        className="w-auto h-auto md:block hidden"
                     />
-                </Link>
-                <Link href="/" scroll={true} className="md:hidden block">
                     <Image
                         src={mobileHomeLogo}
                         priority
                         width={650}
                         height={600}
-                        alt="home page link"
-                        className="w-auto h-auto"
+                        alt=""
+                        className="w-auto h-auto md:hidden block"
                     />
                 </Link>
             </div>

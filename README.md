@@ -43,9 +43,25 @@ Create a `.env.local` file with required environment variables:
 ```env
 NEXT_PUBLIC_API_URL=your_shopify_storefront_url
 NEXT_PUBLIC_ACCESS_TOKEN=your_shopify_access_token
-GHOST_API_KEY=your_ghost_cms_key
+SHOPIFY_WEBHOOK_SECRET=your_webhook_signing_secret
+GHOST_CONTENT_API_KEY=your_ghost_content_api_key
+# optional alias:
+# GHOST_API_KEY=your_ghost_content_api_key
 RESEND_API_KEY=your_resend_api_key
 ```
+
+### Shopify product cache (instant updates)
+
+The `/products` grid is cached for up to 5 minutes. To refresh it immediately when you add or edit products in Shopify, register webhooks in **Shopify Admin → Settings → Notifications → Webhooks**:
+
+| Event | URL |
+| --- | --- |
+| Product creation | `https://your-domain.com/api/shopify/webhooks` |
+| Product update | same |
+| Product deletion | same |
+| Collection update | same |
+
+Use the same signing secret for each webhook and set it as `SHOPIFY_WEBHOOK_SECRET` in your environment (Netlify env vars for production).
 
 Run the development server:
 

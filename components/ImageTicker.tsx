@@ -191,6 +191,7 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                         <Link
                             key={`${post.slug}-${idx}`}
                             href={`/words/${post.slug}`}
+                            aria-label={`Words: ${post.title}`}
                             className={`relative cursor-pointer overflow-hidden shadow-lg bg-gray-50 rounded-lg flex-shrink-0 ${
                                 isMobile 
                                     ? 'select-none' 
@@ -213,8 +214,8 @@ export default function ImageTicker({ response }: ImageTickerProps) {
                                 sizes={isMobile ? "112px" : "150px"}
                                 priority={idx < (isMobile ? 1 : 3)} // Only first image priority on mobile
                             />
-                            {/* Title overlay */}
-                            <div className={`absolute bottom-0 left-0 w-full text-white text-sm minion-font px-2 py-1 text-center break-words leading-tight ${
+                            {/* Title overlay — aria-hidden so article titles are less likely to become Google sitelinks */}
+                            <div aria-hidden className={`pointer-events-none absolute bottom-0 left-0 w-full text-white text-sm minion-font px-2 py-1 text-center break-words leading-tight ${
                                 isMobile 
                                     ? 'bg-black/30 opacity-100' 
                                     : 'bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300'

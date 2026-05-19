@@ -21,7 +21,7 @@ const About = () => {
             <div className="site-section">
                 <div className={`${pomotectFont.className} about-section`}>
                     <h3 className={`${pomotectBoldFont.className} main_header`}>About</h3>
-                    <p className={`${pomotectFont.className} italic`}>Most recently updated on March 09, 2025</p>
+                    <p className={`${pomotectFont.className} italic`}>Most recently updated on February 27, 2026</p>
                 </div>
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -29,109 +29,89 @@ const About = () => {
                 >
                     <div className="md:w-[75%] md:m-auto">
                         <div className={`${pomotectFont.className} about-section`}>
-                            <h3 className={`${pomotectFont.className} about_header pl-1 pr-6`}>Postmodern Tectonics </h3>
-
-                            <div className={`${pomotectBoldFont.className} about-section`}><b><span className={`${pomotectBoldFont.className} italic`}>Postmodern Tectonics LLC</span></b>  is the world's first <span className={`${pomotectBoldFont.className} text-primary-blue italic`}>Creative Label™</span>. </div>
-
-                            <div className={`${pomotectBoldFont.className} about-section`}>We exist to help emerging artists and designers actualize their visions for new creations in the physical world through creative joint ventures.</div>
-
-                            <div className="mb-8">
-                                <Link className={`${pomotectBoldFont.className} about-section italic hover:text-yellow hover:bg-black hover:cursor-pointer text-primary-blue`} href={'/contact'}>
-                                    [We welcome artist, designer, or misc. project submissions here]
-                                </Link>
-                            </div>
-
-                            <div className={`${pomotectBoldFont.className} about-section`}>
-                                Our work centers on the design, fabrication, and distribution of artifacts or experiences that move us into the future, always with a healthy respect for the past.
-                            </div>
-                        </div>
-                        <div className={`${pomotectFont.className} about-section`}>
-                            <span className={`${pomotectBoldFont.className}`}>POSTMODERN</span> — because we do not adhere to dogmatic rules about what things should look, feel, or act like.
+                            <h3 className={`${pomotectFont.className} about_header pl-1 pr-6`}>Postmodern Tectonics</h3>
                         </div>
 
                         <div className={`${pomotectFont.className} about-section`}>
-                            <span className={`${pomotectBoldFont.className}`}>TECTONICS</span> — because we explore the art and science of construction through everything we research and make.
+                            <span className={pomotectBoldFont.className}>POSTMODERN TECTONICS LLC</span> is a creative label.
                         </div>
 
                         <div className={`${pomotectFont.className} about-section`}>
-                            Currently, the Label is focused on — but never limited to — four human art forms:
-                        </div>
-
-                        <div className={`${pomotectFont.className}`}>
-                            <Link href="/products/process" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> Architecture,</Link>
-                        </div>
-
-                        <div className={`${pomotectFont.className}`}>
-                            <Link href="/products" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> Objects,</Link>
-                        </div>
-
-                        <div className={`${pomotectFont.className}`}>
-                            <Link href="/words" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> Words,</Link>
-                        </div>
-
-                        <div className={`${pomotectFont.className} mb-6`}>
-                            <Link href="/sounds" className={`${pomotectBoldFont.className} text-primary-blue md:text-black hover:text-primary-blue inline-block`}> and Sounds.</Link>
+                            We design brands, buildings, products, and objects with our own ideas or yours. We exist to bring original works into the world across practically any creative discipline. In the process, we meet and collaborate with incredible people who become friends and members of our label.
                         </div>
 
                         <div className={`${pomotectFont.className} about-section`}>
-                            In the past, we have made or helped others make…
+                            Founded and operated somewhere between Los Angeles and New York in 2024 by <span className={pomotectBoldFont.className}>STEVIE HU</span>, <span className={pomotectBoldFont.className}>PETE DAILEY</span>, and <span className={pomotectBoldFont.className}>XANDER SHAMBAUGH</span>.
                         </div>
 
-                        <div className={`${pomotectFont.className}`}>
-                            …apparel
+                        <div className="mb-8">
+                            <Link className={`${pomotectBoldFont.className} about-section italic hover:text-yellow hover:bg-black hover:cursor-pointer text-primary-blue`} href={'/contact'}>
+                                [We welcome artist, designer, or misc. project submissions here]
+                            </Link>
+                        </div>
+
+                        <div className={`${pomotectBoldFont.className} about-section mt-6`}>
+                            MEMBERS
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …ceramics
+                            Casa Ysasi
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …music
+                            JC
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …vinyl
+                            Lee Pozin
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …essays
+                            Blaise Slattery
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …books
+                            Owen Higgs
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …zines
+                            Luciano Menghini
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …tote bags
+                            Andrea Sanchez
                         </div>
                         <div className={`${pomotectFont.className}`}>
-                            …logos
-                        </div>
-                        <div className={`${pomotectFont.className}`}>
-                            …typefaces
-                        </div>
-                        <div className={`${pomotectFont.className}`}>
-                            …brand strategy
-                        </div>
-                        <div className={`${pomotectFont.className}`}>
-                            …event strategy
-                        </div>
-                        <div className={`${pomotectFont.className}`}>
-                            …music curation (DJ)
-                        </div>
-                        <div className={`${pomotectFont.className}`}>
-                            …spatial design
-                        </div>
-                        <div className={`${pomotectFont.className}`}>
-                            …furniture
+                            Ben Elmer
                         </div>
                         <div className={`${pomotectFont.className} mb-6`}>
-                            …and architecture
+                            Niko Pagones
                         </div>
 
-                        <div className={`${pomotectFont.className} about-section italic`}>
-                            Disciplined observation of the world is the source of all creative inspiration.
+                        <div className={`${pomotectBoldFont.className} about-section mt-6`}>
+                            CLIENTS
+                        </div>
+                        <div className={`${pomotectFont.className}`}>
+                            Creative Entrepreneurs
+                        </div>
+                        <div className={`${pomotectFont.className}`}>
+                            Kolf LLC
+                        </div>
+                        <div className={`${pomotectFont.className}`}>
+                            Conca Capital
+                        </div>
+                        <div className={`${pomotectFont.className} mb-6`}>
+                            Amaxi Autosport
                         </div>
 
-                        <div className={`${pomotectFont.className} about-section`}>
-                            We were founded in ©2024 somewhere between New York & Los Angeles.
+                        <div className={`${pomotectBoldFont.className} about-section mt-6`}>
+                            PRESS
+                        </div>
+                        <div className={`${pomotectFont.className}`}>
+                            Basic Space
+                        </div>
+                        <div className={`${pomotectFont.className}`}>
+                            Public Announcement
+                        </div>
+                        <div className={`${pomotectFont.className} mb-6`}>
+                            Wear Many Hats
+                        </div>
+
+                        <div className={`${pomotectBoldFont.className} about-section italic mt-8`}>
+                            A B2B OF IDEAS
                         </div>
                     </div>
                 </motion.div>

@@ -16,7 +16,8 @@ export function useSplash() {
 }
 
 export function SplashProvider({ children }: { children: ReactNode }) {
-  const [isRevealed, setRevealed] = useState(false);
+  // Default true so content is visible until SplashScreen explicitly hides it on first home visit
+  const [isRevealed, setRevealed] = useState(true);
   return (
     <SplashContext.Provider value={{ isRevealed, setRevealed }}>
       {children}

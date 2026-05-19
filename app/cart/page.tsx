@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import { Cart } from '@/components';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { formatDate } from '@/utils';
 import React from 'react'
 import localFont from 'next/font/local';
+
+export const metadata: Metadata = {
+  title: 'Cart',
+  robots: { index: false, follow: true },
+};
 
 const pomotectBoldFont = localFont({
   src: '../../fonts/pomotect-analog-bold.otf',

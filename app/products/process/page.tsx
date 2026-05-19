@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 import localFont from 'next/font/local';
-import { getPosts } from '@/utils';
+import { getCachedGhostPosts } from '@/lib/ghostPosts';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import { ProjectPosts } from '@/components';
 import ProcessSidebar from '@/components/ProcessSidebar';
@@ -15,23 +15,47 @@ const pomotectFont = localFont({
 });
 
 async function getData() {
-    const posts = await getPosts()
+    const ghostData = await getCachedGhostPosts();
 
-    if (!posts) {
-        return {
-            notFound: true,
-        }
+    if (ghostData.rateLimited) {
+        return { rateLimited: true as const };
     }
 
-    return {
-        posts
+    if (!ghostData.posts.length) {
+        return { notFound: true as const };
     }
+
+    return { posts: ghostData.posts };
 }
 
 const Process = async () => {
     const data = await getData();
 
-    let projects = data.posts.posts.filter((post: any) => { return (post.primary_tag?.name === "Process") });
+    if ('rateLimited' in data && data.rateLimited) {
+        return (
+            <div className="relative">
+                <div className="site-section">
+                    <h3 className={`${pomotectBoldFont.className} main_header`}>Objects</h3>
+                    <p className={`${pomotectFont.className} italic`}>
+                        Ghost is temporarily rate-limiting requests. Wait a few minutes and refresh.
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    if ('notFound' in data) {
+        return (
+            <div className="relative">
+                <div className="site-section">
+                    <h3 className={`${pomotectBoldFont.className} main_header`}>Objects</h3>
+                    <p className={`${pomotectFont.className} italic`}>No process posts to show right now.</p>
+                </div>
+            </div>
+        );
+    }
+
+    const projects = data.posts.filter((post: any) => post.primary_tag?.name === 'Process');
 
     return (
         <div className="relative">

@@ -11,31 +11,34 @@ export default function SplashScreen() {
     const pathname = usePathname();
     const { setRevealed } = useSplash();
 
-    const [isLoading, setIsLoading] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const hasVisited = sessionStorage.getItem('has-visited');
-            const isHomepage = window.location.pathname === '/';
-            return !hasVisited && isHomepage;
-        }
-        return false;
-    });
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const hasVisited = sessionStorage.getItem('has-visited');
         const isHomepage = pathname === '/';
 
-        if (!hasVisited && isHomepage && isLoading) {
-            const timer = setTimeout(() => {
-                setIsLoading(false);
-                sessionStorage.setItem('has-visited', 'true');
-                setRevealed(true);
-            }, 2000);
-            return () => clearTimeout(timer);
-        } else if (hasVisited || !isHomepage) {
+        if (!isHomepage) {
             setIsLoading(false);
             setRevealed(true);
+            return;
         }
-    }, [pathname, isLoading, setRevealed]);
+
+        if (hasVisited) {
+            setIsLoading(false);
+            setRevealed(true);
+            return;
+        }
+
+        // First visit to home — show splash, then reveal (client-only; avoids SSR/hydration blank screen)
+        setIsLoading(true);
+        setRevealed(false);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+            sessionStorage.setItem('has-visited', 'true');
+            setRevealed(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [pathname, setRevealed]);
 
     return (
         <AnimatePresence mode="wait">
