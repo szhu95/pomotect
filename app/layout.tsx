@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Footer, Header } from '@/components'
 import Providers from '@/components/Providers'
-import AppShell from '@/components/AppShell'
-import Footer from '@/components/Footer'
 import SiteNavigationJsonLd from '@/components/SiteNavigationJsonLd'
 // import RSVPLink from '@/components/RSVPLink'
 
@@ -35,7 +34,11 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         {/* <RSVPLink /> */}
         <Providers>
-          <AppShell footer={<Footer />}>{children}</AppShell>
+          <div className="site-layout">
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
